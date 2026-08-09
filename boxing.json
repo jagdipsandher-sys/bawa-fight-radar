@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Teremoana vs Savage",
+    "promotion": "Matchroom",
+    "date_utc": "2026-08-12T09:00:00Z",
+    "venue": "Broadbeach, Gold Coast",
+    "fights": [
+      "Teremoana Teremoana vs DeAndre Savage (Heavyweight, 10 rds)",
+      "Michael Zerafa vs Alejandro Ortiz (Middleweight)"
+    ],
+    "watch_au": "DAZN"
+  },
+  {
+    "name": "Itauma vs Hrgovic — IBF Heavyweight Title",
+    "promotion": "Queensberry",
+    "date_utc": "2026-08-29T21:00:00Z",
+    "venue": "O2 Arena, London",
+    "fights": [
+      "Moses Itauma vs Filip Hrgovic (Vacant IBF Heavyweight Title)",
+      "Sam Noakes vs Denys Berinchyk (Lightweight)",
+      "Constantin Ursu vs Ben Vaughan (British & Commonwealth WW Title)"
+    ],
+    "watch_au": ""
+  },
+  {
+    "name": "Ruiz Jr vs Knyba",
+    "promotion": "Matchroom",
+    "date_utc": "2026-09-05T02:00:00Z",
+    "venue": "Prudential Center, Newark",
+    "fights": [
+      "Andy Ruiz Jr vs Damian Knyba (Heavyweight, 12 rds)",
+      "Vito Mielnicki Jr vs Austin Williams (Middleweight)"
+    ],
+    "watch_au": ""
+  }
+]

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAWA Fight Radar — 9 Aug to 6 Sep 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#d20a0a; --red2:#b00808;
+    --ink:#1b1b1b; --grey:#6b6b6b; --faint:#d5d5d5; --panelbg:#f5f5f5;
+    --dw:460px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:#fff; color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height:1.45; padding:0 0 40px;
+    transition:padding-right .25s ease;
+  }
+  @media(min-width:1000px){ body.drawer-open{padding-right:var(--dw)} }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 16px}
+
+  /* UFC.com-style condensed upright caps — Barlow Condensed is the closest
+     widely-available match to UFC Sans Condensed */
+  .hd{
+    font-weight:700;text-transform:uppercase;letter-spacing:.005em;
+    font-family:"Barlow Condensed","Arial Narrow","Helvetica Neue Condensed",Arial,sans-serif;
+    font-stretch:condensed;
+  }
+
+  /* black top bar like ufc.com nav */
+  .topbar{background:#000;color:#fff}
+  .topbar .wrap{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    padding-top:16px;padding-bottom:14px;
+  }
+  h1{font-size:2rem;line-height:1;color:#fff}
+  h1 .r{color:var(--red)}
+  .range{color:#bbb;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .redline{height:4px;background:var(--red)}
+
+  h2{
+    font-size:1.15rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);
+    margin:34px 0 14px;font-weight:800;
+    display:flex;align-items:center;gap:12px;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  h2::before{content:"";width:5px;height:1.15rem;background:var(--red)}
+  h2::after{content:"";flex:1;height:1px;background:var(--faint)}
+
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.hero{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--faint);border-top:4px solid #000;padding:0 0 18px}
+  .card .inner{padding:0 20px}
+  .sport{
+    font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;color:var(--grey);
+    padding:12px 20px 10px;border-bottom:1px solid #ececec;margin-bottom:0;
+  }
+  .badge{display:inline-block;padding:3px 9px;font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;vertical-align:middle}
+  .badge.ppv{background:var(--red);color:#fff}
+  .badge.fn{background:#ececec;color:#555}
+  .badge.live{background:#000;color:#fff}
+  .badge.tbc{background:#fff;border:1px solid var(--grey);color:var(--grey)}
+  .badge.aus{background:#00247d;color:#fff}
+
+  /* fighter photos on light grey like ufc.com fight cards */
+  .faces{
+    display:flex;align-items:flex-end;justify-content:center;gap:0;
+    background:linear-gradient(180deg,#f2f2f2,#e2e2e2);
+    border-bottom:1px solid #ececec;padding:14px 0 0;margin-bottom:14px;
+  }
+  .faces img,.faces .av{
+    width:110px;height:110px;object-fit:cover;object-position:top;display:block;
+    background:transparent;border:0;
+  }
+  .faces .vs{
+    color:var(--red);font-weight:800;font-size:1rem;margin:0 10px;align-self:center;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  .thumbs{display:inline-flex;align-items:center;vertical-align:middle;margin-right:8px}
+  .thumbs img,.thumbs .av{
+    width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;
+    background:#e8e8e8;border:1.5px solid #cfcfcf;
+  }
+  .thumbs img+img,.thumbs .av+.av,.thumbs img+.av,.thumbs .av+img{margin-left:-9px}
+  .thumbs img.oz,.thumbs .av.oz{border-color:var(--red);z-index:1;position:relative}
+  .thumbs img.poster{width:52px;border-radius:3px}
+  .av{display:inline-flex;align-items:center;justify-content:center;color:#888;font-weight:800;font-size:.72rem;letter-spacing:.05em}
+  .faces .av{font-size:1.6rem;background:#dcdcdc;color:#999;align-items:center}
+
+  .fight{font-size:1.85rem;line-height:1.02;margin:2px 0 2px;color:var(--ink)}
+  .fight small{
+    display:block;font-size:.82rem;color:var(--grey);font-weight:600;margin-top:5px;
+    text-transform:none;letter-spacing:0;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  .when{
+    font-size:.9rem;font-weight:800;color:var(--ink);margin:12px 0 2px;text-transform:uppercase;letter-spacing:.04em;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  .when .t{color:var(--red)}
+  .meta{color:var(--grey);font-size:.86rem}
+  ul.mc{list-style:none;margin-top:12px;font-size:.9rem}
+  ul.mc li{padding:5px 0;border-bottom:1px solid #efefef}
+  ul.mc li:last-child{border-bottom:none}
+  .flag{font-size:1rem}
+
+  .btns{margin-top:14px;padding-top:14px;border-top:1px solid #ececec;display:flex;flex-wrap:wrap;gap:10px}
+  a.btn,button.btn{
+    display:inline-block;padding:9px 18px;text-decoration:none;cursor:pointer;
+    font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    white-space:nowrap;border:none;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  a.btn.red{background:var(--red);color:#fff}
+  a.btn.red:hover{background:var(--red2)}
+  button.btn.ghost{background:#fff;color:var(--ink);border:1px solid #bbb}
+  button.btn.ghost:hover{border-color:#000}
+  .price{font-weight:800}
+
+  table{width:100%;border-collapse:collapse;font-size:.92rem;background:#fff;border:1px solid var(--faint)}
+  th{
+    text-align:left;color:var(--grey);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+    padding:10px;border-bottom:2px solid #000;background:#fafafa;
+  }
+  td{padding:12px 10px;border-bottom:1px solid #ececec;vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr.big td{background:#fdf1f1}
+  tr.big td:first-child{border-left:4px solid var(--red)}
+  .d{white-space:nowrap;font-weight:800}
+  .d small{display:block;color:var(--grey);font-weight:500}
+  td .ev{font-weight:800;text-transform:uppercase;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;font-size:1.02rem}
+  td .sub{color:var(--grey);font-size:.84rem}
+  .sporttag{font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:2px 7px;text-transform:uppercase}
+  .sporttag.u{background:#000;color:#fff}
+  .sporttag.b{background:#00247d;color:#fff}
+  td a.mini,td button.mini{
+    display:inline-block;margin:6px 8px 0 0;color:var(--ink);background:#fff;border:1px solid #bbb;
+    padding:4px 10px;text-decoration:none;cursor:pointer;
+    font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  td a.mini:hover,td button.mini:hover{border-color:#000}
+  td a.mini.buy{background:var(--red);border-color:var(--red);color:#fff}
+  td a.mini.buy:hover{background:var(--red2)}
+
+  /* ===== RIGHT PANEL (light, ufc.com style) ===== */
+  #drawer{
+    position:fixed;top:0;right:calc(-1 * var(--dw) - 20px);width:var(--dw);max-width:96vw;height:100vh;
+    background:#fff;border-left:1px solid var(--faint);z-index:50;
+    transition:right .25s ease;display:flex;flex-direction:column;
+    box-shadow:-10px 0 30px rgba(0,0,0,.18);
+  }
+  #drawer.open{right:0}
+  #drawer .dr-top{
+    padding:14px 16px 12px;background:#000;color:#fff;border-bottom:4px solid var(--red);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  #drawer .dr-title{font-size:1.1rem;line-height:1.1;color:#fff}
+  #drawer .dr-when{color:#bbb;font-size:.7rem;font-weight:700;margin-top:3px;text-transform:uppercase;letter-spacing:.08em}
+  #closeDrawer{background:transparent;border:1px solid #555;color:#fff;cursor:pointer;width:30px;height:30px;font-size:.95rem;font-weight:800;flex:none}
+  #closeDrawer:hover{border-color:#fff}
+  #drBody{overflow-y:auto;padding:14px 16px 24px;flex:1;background:#fff}
+  .dr-sec{margin-top:16px}
+  .dr-sec:first-child{margin-top:0}
+  .dr-sec h4{
+    font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);
+    padding-bottom:6px;border-bottom:2px solid #000;margin-bottom:2px;
+  }
+  .bout{padding:9px 0;border-bottom:1px solid #ececec;font-size:.9rem}
+  .bout:last-child{border-bottom:none}
+  .bout b{font-weight:700}
+  .bout .wc{display:block;color:var(--grey);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+  .bout.star{background:#fdf1f1;padding-left:8px;border-left:3px solid var(--red)}
+  .dr-note2{color:var(--grey);font-size:.8rem;margin-top:14px;font-style:italic}
+  .dr-foot{padding:12px 16px;border-top:1px solid var(--faint);background:#fafafa}
+  .dr-foot a{
+    display:block;text-align:center;background:var(--red);color:#fff;text-decoration:none;
+    padding:10px;font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  .dr-foot a:hover{background:var(--red2)}
+  #overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;display:none}
+  @media(max-width:999px){ body.drawer-open #overlay{display:block} }
+
+  footer{margin-top:34px;color:var(--grey);font-size:.8rem;border-top:1px solid var(--faint);padding-top:14px}
+  @media(max-width:600px){
+    .fight{font-size:1.45rem}
+    h1{font-size:1.6rem}
+    th:nth-child(4),td:nth-child(4){display:none}
+    .thumbs{display:none}
+    .faces img,.faces .av{width:84px;height:84px}
+  }
+</style>
+<script>
+function mkAv(initials){
+  const s = document.createElement('span');
+  s.className = 'av';
+  s.textContent = initials;
+  return s;
+}
+function imgFail(img, initials){
+  const s = mkAv(initials);
+  if(img.classList.contains('oz')) s.classList.add('oz');
+  s.style.width = getComputedStyle(img).width;
+  s.style.height = getComputedStyle(img).height;
+  if(img.parentElement && img.parentElement.classList.contains('thumbs')) s.style.borderRadius = '50%';
+  img.replaceWith(s);
+}
+</script>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <h1 class="hd"><span class="r">BAWA</span> Fight Radar</h1>
+    <div class="range">Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)</div>
+  </div>
+</div>
+<div class="redline"></div>
+
+<div class="wrap">
+
+  <h2>This Weekend</h2>
+  <div class="hero">
+
+    <!-- UFC HERO -->
+    <div class="card">
+      <div class="sport">UFC &nbsp;<span class="badge fn">Fight Night</span> <span class="badge live">On Today</span></div>
+      <div class="faces">
+        <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-08/GAMROT_MATEUSZ_08-08.png?itok=J4c_l0VS" alt="Gamrot" onerror="imgFail(this,'MG')">
+        <span class="vs">VS</span>
+        <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-08/SALKILLD_QUILLAN_08-08.png?itok=OXVR6d9W" alt="Salkilld" onerror="imgFail(this,'QS')">
+      </div>
+      <div class="inner">
+        <div class="fight hd">Gamrot vs Salkilld
+          <small>Lightweight · #8 vs #12 — Mateusz Gamrot (POL) vs Quillan Salkilld <span class="flag">🇦🇺</span></small>
+        </div>
+        <div class="when">Sunday 9 Aug · <span class="t">Main card 10:00am AEST</span></div>
+        <div class="meta">Prelims 7:00am · Meta APEX, Las Vegas · Main event expected ~1:00pm</div>
+        <ul class="mc">
+          <li><b>Salkilld</b> <span class="flag">🇦🇺</span> is the only Aussie/NZ fighter on the card — and he's headlining. A win likely puts him in the lightweight top 10.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.paramountplus.com/au/">Watch · Paramount+</a>
+          <button class="btn ghost" onclick="openCard('gamrot')">Full Card</button>
+          <button class="btn ghost" onclick="addCal('gamrot')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOXING HERO -->
+    <div class="card">
+      <div class="sport">Heavyweight Boxing &nbsp;<span class="badge fn">No card this weekend</span></div>
+      <div class="faces">
+        <img src="https://www.matchroomboxing.com/app/uploads/2024/12/Teremoana_Jr_12-12-24_001_2-removebg-preview.png" alt="Teremoana" onerror="imgFail(this,'TT')">
+        <span class="vs">VS</span>
+        <img src="https://www.matchroomboxing.com/app/uploads/2026/07/Savage-cutout-2.png" alt="Savage" onerror="imgFail(this,'DS')">
+      </div>
+      <div class="inner">
+        <div class="fight hd">Quiet Weekend
+          <small>Next up: Teremoana <span class="flag">🇦🇺</span> vs Savage on the Gold Coast — then the IBF title fight on 30 Aug</small>
+        </div>
+        <div class="when">Wed 12 Aug · <span class="t">Teremoana vs Savage</span></div>
+        <div class="meta">Teremoana Teremoana <span class="flag">🇦🇺</span> (11-0, 11 KO) vs DeAndre Savage · Broadbeach, Gold Coast</div>
+        <ul class="mc">
+          <li><b>Sun 30 Aug</b> — Itauma vs Hrgovic, vacant <b>IBF heavyweight title</b>, O2 London. Ring walks ~7:00am AEST.</li>
+          <li><b>Sat 5 Sep</b> — Andy Ruiz Jr returns vs Damian Knyba, Newark (~midday AEST).</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.dazn.com/">Watch · DAZN</a>
+          <button class="btn ghost" onclick="openCard('teremoana')">Full Card · Wed 12 Aug</button>
+          <button class="btn ghost" onclick="addCal('teremoana')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Lookahead — Next 4 Weeks</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Event</th><th>Venue</th><th>Watch / Card</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="d">Wed 12 Aug<small>evening AEST</small></td>
+        <td><span class="sporttag b">Box</span></td>
+        <td><span class="thumbs">
+              <img class="oz" src="https://www.matchroomboxing.com/app/uploads/2024/12/Teremoana_Jr_12-12-24_001_2-removebg-preview.png" onerror="imgFail(this,'TT')">
+              <img src="https://www.matchroomboxing.com/app/uploads/2026/07/Savage-cutout-2.png" onerror="imgFail(this,'DS')">
+            </span><span class="ev">Teremoana <span class="flag">🇦🇺</span> vs Savage</span> <span class="badge aus">Aussie HW · Home Soil</span><br><span class="sub">Heavyweights, 10 rds · Zerafa <span class="flag">🇦🇺</span> vs Ortiz co-feature</span></td>
+        <td>Gold Coast</td>
+        <td><a class="mini buy" href="https://www.dazn.com/">Watch · DAZN</a><button class="mini" onclick="openCard('teremoana')">Full Card</button><button class="mini" onclick="addCal('teremoana')">+ Cal</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sun 16 Aug<small>main card 11am</small></td>
+        <td><span class="sporttag u">UFC</span></td>
+        <td><span class="thumbs">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-01/7/MAKHACHEV_ISLAM_BELT_01-18.png?itok=IabJoyhX" onerror="imgFail(this,'IM')">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/MACHADO_GARRY_IAN_11-22.png?itok=H2T89_Bz" onerror="imgFail(this,'IG')">
+            </span><span class="ev">UFC 330: Makhachev vs Machado Garry</span> <span class="badge ppv">Pay-Per-View</span><br><span class="sub">Welterweight title · co-main Dern vs Robertson (W-SW title) · no Aussies announced</span></td>
+        <td>Philadelphia</td>
+        <td><a class="mini buy" href="https://www.mainevent.com.au/">Buy PPV <span class="price">$59.95</span></a><a class="mini" href="https://kayosports.com.au/">Kayo</a><button class="mini" onclick="openCard('ufc330')">Full Card</button><button class="mini" onclick="addCal('ufc330')">+ Cal</button><br><span class="sub">Prelims: Paramount+ / 10</span></td>
+      </tr>
+      <tr>
+        <td class="d">Sun 23 Aug<small>main card 10am</small></td>
+        <td><span class="sporttag u">UFC</span></td>
+        <td><span class="thumbs">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-02/HERNANDEZ_ANTHONY_02-21.png?itok=9XNu2V0D" onerror="imgFail(this,'AH')">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-03/RODRIGUES_GREGORY_03-07.png?itok=W1loglA5" onerror="imgFail(this,'GR')">
+            </span><span class="ev">UFC Fight Night: Hernandez vs Rodrigues</span> <span class="badge fn">Fight Night</span><br><span class="sub">Middleweight · co-main Spivac vs Petrino (HW) · no Aussies announced</span></td>
+        <td>Sacramento</td>
+        <td><a class="mini buy" href="https://www.paramountplus.com/au/">Watch · Paramount+</a><button class="mini" onclick="openCard('sacramento')">Full Card</button><button class="mini" onclick="addCal('sacramento')">+ Cal</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sat 29 Aug<small>main card 8pm 🌙</small></td>
+        <td><span class="sporttag u">UFC</span></td>
+        <td><span class="thumbs">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-01/NURMAGOMEDOV_UMAR_01-24.png?itok=42cWtPfi" onerror="imgFail(this,'UN')">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-05/YADONG_SONG_05-30.png?itok=ZSGpgQqR" onerror="imgFail(this,'SY')">
+            </span><span class="ev">UFC Shanghai: Nurmagomedov vs Song</span> <span class="badge fn">Fight Night</span> <span class="badge aus">2 Aussies</span><br><span class="sub">Bantamweight #3 vs #6 · Junior Tafa <span class="flag">🇦🇺</span> main card · Jack Jenkins <span class="flag">🇦🇺</span> prelims (5pm) · rare Saturday-night viewing slot</span></td>
+        <td>Shanghai</td>
+        <td><a class="mini buy" href="https://www.paramountplus.com/au/">Watch · Paramount+</a><button class="mini" onclick="openCard('shanghai')">Full Card</button><button class="mini" onclick="addCal('shanghai')">+ Cal</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sun 30 Aug<small>ring walks ~7am</small></td>
+        <td><span class="sporttag b">Box</span></td>
+        <td><span class="thumbs">
+              <img src="https://queensberry.co.uk/cdn/shop/files/Moses-Itauma_b09f51cd-7c8e-4a37-b7c0-d725579c1bc2.png?v=1757673128" onerror="imgFail(this,'MI')">
+              <img src="https://queensberry.co.uk/cdn/shop/files/Filip-Hrgovic_3.png?v=1757673148" onerror="imgFail(this,'FH')">
+            </span><span class="ev">Itauma vs Hrgovic — IBF Heavyweight Title</span> <span class="badge ppv">Pay-Per-View</span><br><span class="sub">Vacant belt (Usyk vacated) · 21yo Itauma's first world title shot · O2 Arena</span></td>
+        <td>London</td>
+        <td><a class="mini buy" href="https://www.dazn.com/">DAZN PPV</a><button class="mini" onclick="openCard('itauma')">Full Card</button><button class="mini" onclick="addCal('itauma')">+ Cal</button><br><span class="sub"><span class="badge tbc">AU Broadcaster TBC</span></span></td>
+      </tr>
+      <tr>
+        <td class="d">Sat 5 Sep<small>~midday</small></td>
+        <td><span class="sporttag b">Box</span></td>
+        <td><span class="thumbs">
+              <img class="poster" src="https://www.matchroomboxing.com/app/uploads/2026/07/WhatsApp-Image-2026-07-08-at-19.13.46.jpeg" onerror="imgFail(this,'AR')">
+            </span><span class="ev">Andy Ruiz Jr vs Damian Knyba</span> <span class="badge fn">Non-Title</span><br><span class="sub">Heavyweights, 12 rds · Ruiz's comeback · Mielnicki Jr vs Williams co-feature</span></td>
+        <td>Newark, NJ</td>
+        <td><a class="mini buy" href="https://www.dazn.com/">Watch · DAZN</a><button class="mini" onclick="openCard('ruiz')">Full Card</button><button class="mini" onclick="addCal('ruiz')">+ Cal</button><br><span class="sub"><span class="badge tbc">AU Broadcaster TBC</span></span></td>
+      </tr>
+      <tr>
+        <td class="d">Sun 6 Sep<small>main card 5am</small></td>
+        <td><span class="sporttag u">UFC</span></td>
+        <td><span class="thumbs">
+              <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-01/HOOKER_DAN_01-31.png?itok=HwIAlL49" onerror="imgFail(this,'DH')">
+              <span class="av">SP</span>
+            </span><span class="ev">UFC Paris: Hooker vs Parnasse</span> <span class="badge fn">Fight Night</span> <span class="badge aus">NZ Headliner</span><br><span class="sub">Dan Hooker <span class="flag">🇳🇿</span> vs Salahdine Parnasse (FRA) · Accor Arena</span></td>
+        <td>Paris</td>
+        <td><a class="mini buy" href="https://www.paramountplus.com/au/">Watch · Paramount+</a><button class="mini" onclick="openCard('paris')">Full Card</button><button class="mini" onclick="addCal('paris')">+ Cal</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    All times Sydney (AEST, UTC+10). Broadcast details for later weeks may firm up closer to the date. Fighter photos load from ufc.com / promoter sites and need an internet connection. On the horizon: <b>Fury vs Joshua</b> is signed for November on Netflix.
+  </footer>
+</div>
+
+<!-- RIGHT PANEL -->
+<div id="overlay" onclick="closeDrawer()"></div>
+<div id="drawer" role="dialog" aria-label="Full fight card">
+  <div class="dr-top">
+    <div>
+      <div class="dr-title hd" id="drTitle"></div>
+      <div class="dr-when" id="drWhen"></div>
+    </div>
+    <button id="closeDrawer" onclick="closeDrawer()" aria-label="Close">✕</button>
+  </div>
+  <div id="drBody"></div>
+  <div class="dr-foot">
+    <a id="drOpen" href="#" target="_blank" rel="noopener">Official Website Card ↗</a>
+    <a id="drCal" href="#" onclick="addCal(curCardId);return false;" style="margin-top:8px;background:#fff;color:#1b1b1b;border:1px solid #bbb;">+ Add to Calendar</a>
+  </div>
+</div>
+
+<script>
+const CARDS = {
+  gamrot: {
+    cal:{s:"2026-08-09T00:00:00Z",e:"2026-08-09T03:00:00Z",loc:"Meta APEX, Las Vegas (watch from home)"},
+    title:"UFC FN: Gamrot vs Salkilld",
+    when:"Sun 9 Aug · Prelims 7:00am · Main 10:00am AEST · Meta APEX, Las Vegas",
+    link:"https://www.ufc.com/event/ufc-fight-night-august-08-2026",
+    secs:[
+      {h:"Main Card — 10:00am AEST",b:[
+        ["Mateusz Gamrot vs Quillan Salkilld 🇦🇺","Lightweight · #8 vs #12 · Main Event",1],
+        ["Diego Ferreira vs Billy Quarantillo","Lightweight · Co-Main"],
+        ["Darren Elkins vs Yadier del Valle","Featherweight"],
+        ["Amanda Lemos vs Alexia Thainara","Women's Strawweight · #8 vs #12"],
+        ["Billy Ray Goff vs Ty Miller","Welterweight"]
+      ]},
+      {h:"Prelims — 7:00am AEST",b:[
+        ["Steven Asplund vs Guilherme Pat","Heavyweight"],
+        ["Diyar Nurgozhay vs Bruno Lopes","Light Heavyweight"],
+        ["Louie Sutherland vs José Montanha","Heavyweight"],
+        ["Manoel Sousa vs Richie Miranda","Lightweight"],
+        ["Miles Johns vs Gianni Vazquez","Featherweight"],
+        ["Juliana Miller vs Ravena Oliveira","Women's Flyweight"],
+        ["Gigi Canuto vs Carol Foro","Women's Strawweight"]
+      ]}
+    ]
+  },
+  ufc330: {
+    cal:{s:"2026-08-16T01:00:00Z",e:"2026-08-16T04:00:00Z",loc:"Main Event PPV $59.95 — Kayo/Foxtel"},
+    title:"UFC 330: Makhachev vs Machado Garry",
+    when:"Sun 16 Aug · Main card 11:00am AEST · Philadelphia · PPV $59.95",
+    link:"https://www.ufc.com/event/ufc-330",
+    secs:[
+      {h:"Main Card — 11:00am AEST · Main Event PPV",b:[
+        ["Islam Makhachev vs Ian Machado Garry","Welterweight Title · Main Event",1],
+        ["Mackenzie Dern vs Gillian Robertson","Women's Strawweight Title · Co-Main",1],
+        ["Mansur Abdul-Malik vs Dustin Stoltzfus","Middleweight"],
+        ["Edson Barboza vs Esteban Ribovics","Lightweight"]
+      ]},
+      {h:"Prelims — Paramount+ / Network 10",b:[
+        ["Chidi Njokuani vs Joel Álvarez","Welterweight"],
+        ["Jalin Turner vs Kauê Fernandes","Lightweight"],
+        ["Donte Johnson vs Eric McConico","Middleweight"],
+        ["Vicente Luque vs Tresean Gore","Middleweight"]
+      ]},
+      {h:"Early Prelims",b:[
+        ["Rafael Tobias vs Lucas Fernando","Light Heavyweight"],
+        ["Neil Magny vs Ramiz Brahimaj","Welterweight"],
+        ["Jeremiah Wells vs Myktybek Orolbai","Welterweight"]
+      ]}
+    ]
+  },
+  sacramento: {
+    cal:{s:"2026-08-23T00:00:00Z",e:"2026-08-23T03:00:00Z",loc:"Paramount+"},
+    title:"UFC FN: Hernandez vs Rodrigues",
+    when:"Sun 23 Aug · Prelims 7:00am · Main 10:00am AEST · Sacramento",
+    link:"https://www.ufc.com/event/ufc-fight-night-august-22-2026",
+    secs:[
+      {h:"Main Card — 10:00am AEST",b:[
+        ["Anthony Hernandez vs Gregory Rodrigues","Middleweight · #6 vs #11 · Main Event",1],
+        ["Serghei Spivac vs Vitor Petrino","Heavyweight · Co-Main"],
+        ["Reinier de Ridder vs Roman Dolidze","Light Heavyweight"],
+        ["Carli Judice vs Jeisla Chaves","Women's Strawweight"],
+        ["Kennedy Nzechukwu vs Shamil Gaziev","Heavyweight"]
+      ]},
+      {h:"Prelims — 7:00am AEST",b:[
+        ["Wes Schultz vs Jackson McVey","Middleweight"],
+        ["Kody Steele vs Gauge Young","Lightweight"],
+        ["Shanelle Dyer vs Elise Reed","Women's Strawweight"]
+      ]}
+    ]
+  },
+  shanghai: {
+    cal:{s:"2026-08-29T10:00:00Z",e:"2026-08-29T13:00:00Z",loc:"Paramount+"},
+    title:"UFC Shanghai: Nurmagomedov vs Song",
+    when:"Sat 29 Aug · Prelims 5:00pm · Main 8:00pm AEST 🌙 · Shanghai",
+    link:"https://www.ufc.com/event/ufc-fight-night-august-29-2026",
+    secs:[
+      {h:"Main Card — 8:00pm AEST Saturday night",b:[
+        ["Umar Nurmagomedov vs Song Yadong","Bantamweight · #3 vs #6 · Main Event",1],
+        ["Yan Xiaonan vs Denise Gomes","Women's Strawweight · Co-Main"],
+        ["Aoriqileng vs Kai Asakura","Bantamweight"],
+        ["Sumudaerji vs Alex Perez","Flyweight"],
+        ["Ce Liu vs Junior Tafa 🇦🇺","Light Heavyweight",1],
+        ["Namsrai Batbayar vs Andre Lima","Flyweight"]
+      ]},
+      {h:"Prelims — 5:00pm AEST",b:[
+        ["Jack Jenkins 🇦🇺 vs Sean Woodson","Featherweight",1],
+        ["Rei Tsuruya vs Kevin Borjas","Flyweight"],
+        ["Xiong Jingnan vs Julia Polastri","Women's Strawweight"]
+      ]}
+    ]
+  },
+  paris: {
+    cal:{s:"2026-09-05T19:00:00Z",e:"2026-09-05T22:00:00Z",loc:"Paramount+"},
+    title:"UFC Paris: Hooker vs Parnasse",
+    when:"Sun 6 Sep · Prelims 2:00am · Main 5:00am AEST · Accor Arena",
+    link:"https://www.ufc.com/event/ufc-fight-night-september-05-2026",
+    secs:[
+      {h:"Main Card — 5:00am AEST",b:[
+        ["Dan Hooker 🇳🇿 vs Salahdine Parnasse","Lightweight · Main Event · Parnasse's UFC debut",1],
+        ["Michael 'Venom' Page vs Nursulton Ruziboev","Middleweight"],
+        ["Morgan Charriere vs Felipe Lima","Featherweight"]
+      ]},
+      {h:"Prelims — 2:00am AEST",b:[
+        ["Mario Pinto vs Ryan Spann","Heavyweight"],
+        ["Kurtis Campbell vs Trevor Peek","Featherweight"],
+        ["Nathaniel Wood vs Mairon Santos","Featherweight"],
+        ["Matthieu Letho Duclos vs Luis Felipe Dias","Middleweight"]
+      ]}
+    ]
+  },
+  teremoana: {
+    cal:{s:"2026-08-12T09:00:00Z",e:"2026-08-12T12:00:00Z",loc:"DAZN — Broadbeach, Gold Coast"},
+    title:"Teremoana vs Savage",
+    when:"Wed 12 Aug · Evening AEST · Broadbeach, Gold Coast · DAZN",
+    link:"https://www.matchroomboxing.com/events/teremoana-vs-savage/",
+    secs:[
+      {h:"Card",b:[
+        ["Teremoana Teremoana 🇦🇺 vs DeAndre Savage","Heavyweight · 10 rds · 22 KOs between them",1],
+        ["Michael Zerafa 🇦🇺 vs Alejandro Ortiz","Middleweight · Co-Feature",1],
+        ["Jack Bowen vs Mielifeier Dalielibieke","Undercard"],
+        ["Jasmine Parr vs Jemma Peart","Undercard · Women's"]
+      ]}
+    ],
+    note:"Card order and further bouts may be added fight week."
+  },
+  itauma: {
+    cal:{s:"2026-08-29T21:00:00Z",e:"2026-08-29T23:00:00Z",loc:"DAZN PPV (AU TBC) — O2 Arena, London"},
+    title:"Itauma vs Hrgovic",
+    when:"Sun 30 Aug · Ring walks ~7:00am AEST · O2 Arena, London",
+    link:"https://queensberry.co.uk/pages/moses-itauma-vs-filip-hrgovic-natural-born-thriller",
+    secs:[
+      {h:"Card",b:[
+        ["Moses Itauma vs Filip Hrgovic","Vacant IBF Heavyweight World Title · 12 rds",1],
+        ["Sam Noakes vs Denys Berinchyk","Lightweight"],
+        ["Constantin Ursu vs Ben Vaughan","British & Commonwealth Welterweight Title"],
+        ["Aloys Junior vs Mike Perez","Cruiserweight"]
+      ]}
+    ],
+    note:"Winner faces mandatory Frank Sanchez within six months. More undercard bouts to be announced."
+  },
+  ruiz: {
+    cal:{s:"2026-09-05T02:00:00Z",e:"2026-09-05T04:00:00Z",loc:"DAZN (AU TBC) — Prudential Center, Newark"},
+    title:"Ruiz Jr vs Knyba",
+    when:"Sat 5 Sep · Main event ~midday AEST · Prudential Center, Newark",
+    link:"https://www.matchroomboxing.com/news/ruiz-jr-faces-knyba-at-prudential-center-newark-nj-on-sept-4-live-on-tnt-and-dazn-former-unified-heavyweight-ruler-back-in-action-mielnicki-jr-vs-ammo-williams-leads-supporti/",
+    secs:[
+      {h:"Card",b:[
+        ["Andy Ruiz Jr vs Damian Knyba","Heavyweight · 12 rds · Ruiz's comeback",1],
+        ["Vito Mielnicki Jr vs Austin 'Ammo' Williams","Middleweight · Co-Feature"]
+      ]}
+    ],
+    note:"Full undercard to be announced closer to the date."
+  }
+};
+
+let curCardId = null;
+function openCard(id){
+  const c = CARDS[id];
+  if(!c) return;
+  curCardId = id;
+  document.getElementById('drTitle').textContent = c.title;
+  document.getElementById('drWhen').textContent = c.when;
+  document.getElementById('drOpen').href = c.link;
+  const body = document.getElementById('drBody');
+  body.innerHTML = '';
+  c.secs.forEach(s=>{
+    const sec = document.createElement('div'); sec.className='dr-sec';
+    const h = document.createElement('h4'); h.textContent = s.h; sec.appendChild(h);
+    s.b.forEach(bt=>{
+      const d = document.createElement('div');
+      d.className = 'bout' + (bt[2] ? ' star' : '');
+      const b = document.createElement('b'); b.textContent = bt[0];
+      const w = document.createElement('span'); w.className='wc'; w.textContent = bt[1];
+      d.appendChild(b); d.appendChild(w); sec.appendChild(d);
+    });
+    body.appendChild(sec);
+  });
+  if(c.note){
+    const n = document.createElement('div'); n.className='dr-note2'; n.textContent = c.note;
+    body.appendChild(n);
+  }
+  document.getElementById('drawer').classList.add('open');
+  document.body.classList.add('drawer-open');
+  body.scrollTop = 0;
+}
+function addCal(id){
+  const c = CARDS[id];
+  if(!c || !c.cal) return;
+  const body = c.title + "\n" + c.when + "\nWatch: " + c.cal.loc + "\nFull card: " + c.link + "\n(times auto-convert to your timezone)";
+  const u = "https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent"
+    + "&subject=" + encodeURIComponent("🥊 " + c.title)
+    + "&startdt=" + encodeURIComponent(c.cal.s)
+    + "&enddt="   + encodeURIComponent(c.cal.e)
+    + "&location="+ encodeURIComponent(c.cal.loc)
+    + "&body="    + encodeURIComponent(body);
+  window.open(u, "_blank", "noopener");
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.body.classList.remove('drawer-open');
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+</script>
+</body>
+</html>

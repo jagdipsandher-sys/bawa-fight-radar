@@ -1,0 +1,37 @@
+name: BAWA Fight Radar
+on:
+  schedule:
+    # GitHub cron is UTC. 00:00 UTC Friday = 10am Sydney Friday (AEST) / 11am (AEDT).
+    # Scheduled twice because GitHub silently skips runs under load —
+    # the script's .last_sent marker stops a double-send.
+    - cron: "0 0 * * 5"
+    - cron: "0 1 * * 5"
+  workflow_dispatch: {}   # run it by hand from the Actions tab to test
+concurrency:
+  group: fight-radar
+  cancel-in-progress: false
+permissions:
+  contents: write         # lets the job commit the .last_sent marker
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch fixtures and email
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python send_fights.py
+      - name: Commit sent marker
+        run: |
+          if ! git diff --quiet -- .last_sent 2>/dev/null || [ -n "$(git status --porcelain .last_sent)" ]; then
+            git config user.name "fight-radar-bot"
+            git config user.email "actions@github.com"
+            git add .last_sent
+            git commit -m "mark sent [skip ci]"
+            git push
+          fi
