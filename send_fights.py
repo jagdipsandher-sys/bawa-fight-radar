@@ -104,36 +104,37 @@ HD = "'Arial Narrow','Helvetica Neue Condensed',Arial,Helvetica,sans-serif"
 
 def build_html(events):
     # EMAIL HTML RULES: tables + inline styles only, no JS, single column.
-    # The email is the door-knock; the button opens the full site.
-    rows = []
-    for ev in events:
-        fights = "<br>".join(ev["fights"][:5]) or "Card TBA"
-        watch = ev["watch"] or "AU broadcaster TBC"
-        venue = f" · {ev['venue']}" if ev["venue"] else ""
-        is_ufc = ev["sport"].startswith("UFC")
-        tag_bg = "#000000" if is_ufc else "#00247d"
-        tag = "UFC" if is_ufc else "BOX"
-        rows.append(f"""
-        <tr><td style="padding:14px 20px;border-bottom:1px solid #ececec;">
-          <div style="font-size:10px;color:#6b6b6b;letter-spacing:3px;text-transform:uppercase;font-weight:bold;">
-            <span style="background:{tag_bg};color:#ffffff;padding:2px 7px;letter-spacing:2px;">{tag}</span>
-            &nbsp;{ev['sport']}{venue}</div>
-          <div style="font-family:{HD};font-size:22px;font-weight:bold;color:#1b1b1b;text-transform:uppercase;padding:6px 0 2px;">{ev['name']}</div>
-          <div style="font-family:{HD};font-size:15px;color:#d20a0a;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{sydney(ev['when_utc'])} (Sydney)</div>
-          <div style="font-size:13px;color:#333333;padding-top:6px;line-height:1.5;">{fights}</div>
-          <div style="font-size:12px;color:#6b6b6b;padding-top:5px;">Watch: <b>{watch}</b></div>
-        </td></tr>""")
-    button = f"""
-      <tr><td align="center" style="padding:22px 20px 8px;">
-        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-          <td align="center" bgcolor="#d20a0a" style="background:#d20a0a;">
-            <a href="{SITE_URL}" target="_blank"
-               style="display:inline-block;padding:14px 34px;font-family:{HD};font-size:17px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;">
-              View The Fight Radar &#8594;</a>
-          </td>
-        </tr></table>
-        <div style="font-size:11px;color:#999999;padding-top:8px;">Full cards · fighter photos · add-to-calendar · opens in your browser</div>
+    # Teaser email: the next fight in full, the rest fading to grey — the
+    # button to the site is the only way to see everything.
+    hero = events[0]
+    fights = "<br>".join(hero["fights"][:4]) or "Card TBA"
+    watch = hero["watch"] or "AU broadcaster TBC"
+    venue = f" · {hero['venue']}" if hero["venue"] else ""
+    is_ufc = hero["sport"].startswith("UFC")
+    tag_bg = "#000000" if is_ufc else "#00247d"
+    tag = "UFC" if is_ufc else "BOX"
+    hero_row = f"""
+      <tr><td style="padding:18px 20px 14px;">
+        <div style="font-family:{HD};font-size:13px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#d20a0a;padding-bottom:8px;">Next Fight</div>
+        <div style="font-size:10px;color:#6b6b6b;letter-spacing:3px;text-transform:uppercase;font-weight:bold;">
+          <span style="background:{tag_bg};color:#ffffff;padding:2px 7px;letter-spacing:2px;">{tag}</span>
+          &nbsp;{hero['sport']}{venue}</div>
+        <div style="font-family:{HD};font-size:26px;font-weight:bold;color:#1b1b1b;text-transform:uppercase;padding:6px 0 2px;">{hero['name']}</div>
+        <div style="font-family:{HD};font-size:16px;color:#d20a0a;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{sydney(hero['when_utc'])} (Sydney)</div>
+        <div style="font-size:13px;color:#333333;padding-top:6px;line-height:1.5;">{fights}</div>
+        <div style="font-size:12px;color:#6b6b6b;padding-top:5px;">Watch: <b>{watch}</b></div>
       </td></tr>"""
+    # the fade: each following event lighter than the last, details withheld
+    shades = [("#9a9a9a", "#b4b4b4"), ("#c4c4c4", "#d4d4d4"), ("#dddddd", "#e6e6e6")]
+    fade_rows = []
+    for ev, (c_name, c_meta) in zip(events[1:4], shades):
+        fade_rows.append(f"""
+      <tr><td style="padding:10px 20px 0;">
+        <div style="font-family:{HD};font-size:19px;font-weight:bold;color:{c_name};text-transform:uppercase;">{ev['name']}</div>
+        <div style="font-family:{HD};font-size:13px;color:{c_meta};font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{sydney(ev['when_utc'])} (Sydney)</div>
+      </td></tr>""")
+    more = len(events) - 1
+    plural = "s" if more != 1 else ""
     return f"""<!DOCTYPE html><html><body style="margin:0;background:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px;">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;max-width:600px;width:100%;">
@@ -142,23 +143,22 @@ def build_html(events):
         <span style="font-family:{HD};color:#ffffff;font-size:26px;font-weight:bold;letter-spacing:1px;"> FIGHT RADAR</span>
       </td></tr>
       <tr><td style="background:#d20a0a;height:4px;font-size:0;line-height:4px;">&nbsp;</td></tr>
-      {button}
-      <tr><td style="padding:4px 20px 10px;">
-        <div style="font-family:{HD};font-size:14px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#1b1b1b;border-bottom:2px solid #000000;padding-bottom:6px;">
-          <span style="color:#d20a0a;">&#9646;</span> This Week's Fights</div>
-      </td></tr>
-      {''.join(rows)}
-      <tr><td align="center" style="padding:18px 20px;">
+      {hero_row}
+      {''.join(fade_rows)}
+      <tr><td align="center" style="padding:6px 20px 26px;">
+        <div style="font-size:12px;color:#c9c9c9;padding:2px 0 14px;">&#8942;</div>
+        <div style="font-family:{HD};font-size:14px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#8a8a8a;padding-bottom:14px;">{more} more fight{plural} on the radar</div>
         <table role="presentation" cellpadding="0" cellspacing="0"><tr>
           <td align="center" bgcolor="#d20a0a" style="background:#d20a0a;">
             <a href="{SITE_URL}" target="_blank"
-               style="display:inline-block;padding:12px 28px;font-family:{HD};font-size:15px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;">
+               style="display:inline-block;padding:15px 36px;font-family:{HD};font-size:18px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;">
               View The Fight Radar &#8594;</a>
           </td>
         </tr></table>
+        <div style="font-size:11px;color:#999999;padding-top:9px;">Full cards · fighter photos · add-to-calendar</div>
       </td></tr>
       <tr><td style="padding:12px 20px 16px;font-size:11px;color:#999999;border-top:1px solid #ececec;">
-        All times Sydney. UFC data auto-pulled from ESPN; boxing curated. Broadcast details firm up closer to fight week.
+        All times Sydney. Broadcast details firm up closer to fight week.
       </td></tr>
     </table></td></tr></table></body></html>"""
 
