@@ -47,6 +47,9 @@ def fetch_ufc(start: datetime, end: datetime):
         data = json.load(r)
     events = []
     for ev in data.get("events", []):
+        # Contender Series starts midweek — deliberately excluded from the radar.
+        if "contender series" in ev.get("name", "").lower():
+            continue
         try:
             when = datetime.fromisoformat(ev["date"].replace("Z", "+00:00"))
         except (KeyError, ValueError):
