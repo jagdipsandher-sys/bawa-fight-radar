@@ -183,9 +183,13 @@ def send(subject, html):
 
 
 def main():
+    # A hand-run test to a single address must not touch the marker — otherwise
+    # testing on a Friday morning would silently cancel that day's real send.
+    test = bool(os.environ.get("RADAR_TEST", "").strip())
+
     today = datetime.now(timezone.utc).date().isoformat()
     # dedupe: the backup cron must not double-send
-    if os.path.exists(MARKER) and open(MARKER).read().strip() == today:
+    if not test and os.path.exists(MARKER) and open(MARKER).read().strip() == today:
         print("already sent today — skipping")
         return
 
@@ -200,7 +204,11 @@ def main():
         sys.exit(1)
 
     syd_sat = (now.astimezone(SYD) + timedelta(days=1)).strftime("%d %b")
-    send(f"BAWA Fight Radar — weekend of {syd_sat}", build_html(events))
+    prefix = "[TEST] " if test else ""
+    send(f"{prefix}BAWA Fight Radar — weekend of {syd_sat}", build_html(events))
+    if test:
+        print("test send — marker left untouched")
+        return
     with open(MARKER, "w") as f:
         f.write(today)
 

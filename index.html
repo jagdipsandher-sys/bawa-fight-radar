@@ -150,8 +150,9 @@
   }
   a.btn.red{background:var(--red);color:#fff}
   a.btn.red:hover{background:var(--red2)}
-  button.btn.ghost{background:#fff;color:var(--ink);border:1px solid #bbb}
-  button.btn.ghost:hover{border-color:#000}
+  button.btn.ghost,a.btn.ghost{background:#fff;color:var(--ink);border:1px solid #bbb}
+  button.btn.ghost:hover,a.btn.ghost:hover{border-color:#000}
+  .gone{color:var(--grey);font-size:.86rem;font-style:italic;padding:14px 10px}
   .price{font-weight:800}
 
   table{width:100%;border-collapse:collapse;font-size:.92rem;background:#fff;border:1px solid var(--faint)}
@@ -282,7 +283,7 @@ function imgFail(img, initials){
   <div class="hero">
 
     <!-- UFC HERO -->
-    <div class="card">
+    <div class="card" data-slot="ufc" data-ends="2026-08-09T15:00:00+10:00">
       <div class="sport">UFC &nbsp;<span class="badge fn">Fight Night</span> <span class="badge live">On Today</span></div>
       <div class="faces">
         <img src="https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-08/GAMROT_MATEUSZ_08-08.png?itok=J4c_l0VS" alt="Gamrot" onerror="imgFail(this,'MG')">
@@ -307,7 +308,7 @@ function imgFail(img, initials){
     </div>
 
     <!-- BOXING HERO -->
-    <div class="card">
+    <div class="card" data-slot="box" data-ends="2026-08-12T23:59:00+10:00">
       <div class="sport">Heavyweight Boxing &nbsp;<span class="badge fn">No card this weekend</span></div>
       <div class="faces">
         <img src="https://www.matchroomboxing.com/app/uploads/2024/12/Teremoana_Jr_12-12-24_001_2-removebg-preview.png" alt="Teremoana" onerror="imgFail(this,'TT')">
@@ -339,7 +340,7 @@ function imgFail(img, initials){
       <tr><th>Sydney date</th><th></th><th>Event</th><th>Venue</th><th>Watch / Card</th></tr>
     </thead>
     <tbody>
-      <tr>
+      <tr data-sport="box" data-ends="2026-08-12T23:59:00+10:00" data-card="teremoana">
         <td class="d">Wed 12 Aug<small>evening AEST</small></td>
         <td><span class="sporttag b">Box</span></td>
         <td><span class="thumbs">
@@ -349,7 +350,7 @@ function imgFail(img, initials){
         <td>Gold Coast</td>
         <td><a class="mini buy" href="https://www.dazn.com/">Watch · DAZN</a><button class="mini" onclick="openCard('teremoana')">Full Card</button><button class="mini" onclick="addCal('teremoana')">+ Cal</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="ufc" data-ends="2026-08-16T15:00:00+10:00" data-card="ufc330">
         <td class="d">Sun 16 Aug<small>main card 11am</small></td>
         <td><span class="sporttag u">UFC</span></td>
         <td><span class="thumbs">
@@ -359,7 +360,7 @@ function imgFail(img, initials){
         <td>Philadelphia</td>
         <td><a class="mini buy" href="https://www.mainevent.com.au/">Buy PPV <span class="price">$59.95</span></a><a class="mini" href="https://kayosports.com.au/">Kayo</a><button class="mini" onclick="openCard('ufc330')">Full Card</button><button class="mini" onclick="addCal('ufc330')">+ Cal</button><br><span class="sub">Prelims: Paramount+ / 10</span></td>
       </tr>
-      <tr>
+      <tr data-sport="ufc" data-ends="2026-08-23T14:00:00+10:00" data-card="sacramento">
         <td class="d">Sun 23 Aug<small>main card 10am</small></td>
         <td><span class="sporttag u">UFC</span></td>
         <td><span class="thumbs">
@@ -369,7 +370,7 @@ function imgFail(img, initials){
         <td>Sacramento</td>
         <td><a class="mini buy" href="https://www.paramountplus.com/au/">Watch · Paramount+</a><button class="mini" onclick="openCard('sacramento')">Full Card</button><button class="mini" onclick="addCal('sacramento')">+ Cal</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="ufc" data-ends="2026-08-30T00:00:00+10:00" data-card="shanghai">
         <td class="d">Sat 29 Aug<small>main card 8pm 🌙</small></td>
         <td><span class="sporttag u">UFC</span></td>
         <td><span class="thumbs">
@@ -379,7 +380,7 @@ function imgFail(img, initials){
         <td>Shanghai</td>
         <td><a class="mini buy" href="https://www.paramountplus.com/au/">Watch · Paramount+</a><button class="mini" onclick="openCard('shanghai')">Full Card</button><button class="mini" onclick="addCal('shanghai')">+ Cal</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="box" data-ends="2026-08-30T11:00:00+10:00" data-card="itauma">
         <td class="d">Sun 30 Aug<small>ring walks ~7am</small></td>
         <td><span class="sporttag b">Box</span></td>
         <td><span class="thumbs">
@@ -389,7 +390,7 @@ function imgFail(img, initials){
         <td>London</td>
         <td><a class="mini buy" href="https://www.dazn.com/">DAZN PPV</a><button class="mini" onclick="openCard('itauma')">Full Card</button><button class="mini" onclick="addCal('itauma')">+ Cal</button><br><span class="sub"><span class="badge tbc">AU Broadcaster TBC</span></span></td>
       </tr>
-      <tr>
+      <tr data-sport="box" data-ends="2026-09-05T16:00:00+10:00" data-card="ruiz">
         <td class="d">Sat 5 Sep<small>~midday</small></td>
         <td><span class="sporttag b">Box</span></td>
         <td><span class="thumbs">
@@ -398,7 +399,7 @@ function imgFail(img, initials){
         <td>Newark, NJ</td>
         <td><a class="mini buy" href="https://www.dazn.com/">Watch · DAZN</a><button class="mini" onclick="openCard('ruiz')">Full Card</button><button class="mini" onclick="addCal('ruiz')">+ Cal</button><br><span class="sub"><span class="badge tbc">AU Broadcaster TBC</span></span></td>
       </tr>
-      <tr>
+      <tr data-sport="ufc" data-ends="2026-09-06T09:00:00+10:00" data-card="paris">
         <td class="d">Sun 6 Sep<small>main card 5am</small></td>
         <td><span class="sporttag u">UFC</span></td>
         <td><span class="thumbs">
@@ -423,7 +424,7 @@ function imgFail(img, initials){
   <div class="hero">
 
     <!-- MONSTER JAM HERO -->
-    <div class="card">
+    <div class="card" data-slot="trucks" data-ends="2026-10-10T22:00:00+11:00">
       <div class="sport">Monster Trucks &nbsp;<span class="badge ppv">Next in Sydney</span> <span class="badge soon"><span class="cd" data-until="2026-10-10"></span></span></div>
       <div class="crest">
         <div class="big">Monster <em>Jam</em></div>
@@ -448,7 +449,7 @@ function imgFail(img, initials){
     </div>
 
     <!-- BATHURST HERO -->
-    <div class="card">
+    <div class="card" data-slot="motor" data-ends="2026-10-11T18:00:00+11:00">
       <div class="sport">Supercars &nbsp;<span class="badge fn">The Great Race</span> <span class="badge aus">NSW</span></div>
       <div class="crest dark">
         <div class="big">Bathurst <em>1000</em></div>
@@ -479,49 +480,49 @@ function imgFail(img, initials){
       <tr><th>Date</th><th></th><th>Event</th><th>Venue</th><th>Tickets</th></tr>
     </thead>
     <tbody>
-      <tr>
+      <tr data-sport="motor" data-ends="2026-08-30T18:00:00+10:00" data-card="musclecar">
         <td class="d">Sat 29 – Sun 30 Aug<small>this month</small></td>
         <td><span class="sporttag m">Motor</span></td>
         <td><span class="ev">Muscle Car Masters</span> <span class="badge fn">2 Days</span><br><span class="sub">Australia's muscle-car history on track — Group C/A, Torana, Falcon GT, plus paddock access</span></td>
         <td>Sydney Motorsport Park, Eastern Creek</td>
         <td><a class="mini buy" href="https://www.sydneymotorsportpark.com.au/pages/calendar">Tickets · SMP</a><button class="mini" onclick="openCard('musclecar')">Details</button><button class="mini" onclick="addCal('musclecar')">+ Cal</button></td>
       </tr>
-      <tr>
+      <tr data-sport="drags" data-ends="2026-09-27T22:00:00+10:00" data-card="dragway">
         <td class="d">Sat 26 – Sun 27 Sep<small>weekend</small></td>
         <td><span class="sporttag m">Drags</span></td>
         <td><span class="ev">Naughty Corner Motorsports</span> <span class="badge fn">Drag Racing</span><br><span class="sub">Street and sport-compact drag racing — the cheapest loud-motorsport night going</span></td>
         <td>Sydney Dragway, Eastern Creek</td>
         <td><a class="mini buy" href="https://sydneydragway.oztix.com.au/">Tickets · Oztix</a><button class="mini" onclick="openCard('dragway')">Details</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="trucks" data-ends="2026-10-10T22:00:00+11:00" data-card="monsterjam">
         <td class="d">Sat 10 Oct<small>show 6:00pm</small></td>
         <td><span class="sporttag m">Trucks</span></td>
         <td><span class="ev">Monster Jam · Stadium World Tour</span> <span class="badge ppv">The One You Keep Missing</span><br><span class="sub">10 trucks incl. Grave Digger · gates 4:30pm · Pit Party pass sold separately · <b>from $34</b></span></td>
         <td>Accor Stadium, Sydney Olympic Park</td>
         <td><a class="mini buy" href="https://www.ticketmaster.com.au/event/250064B4EB7976F1">Buy <span class="price">from $34</span></a><button class="mini" onclick="openCard('monsterjam')">Details</button><button class="mini" onclick="addCal('monsterjam')">+ Cal</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="motor" data-ends="2026-10-11T18:00:00+11:00" data-card="bathurst">
         <td class="d">Thu 8 – Sun 11 Oct<small>race day Sun</small></td>
         <td><span class="sporttag m">Motor</span></td>
         <td><span class="ev">Repco Bathurst 1000</span> <span class="badge fn">4-Day Event</span><br><span class="sub">Mount Panorama · ~3hr drive · packages from $467pp incl. accommodation</span></td>
         <td>Bathurst, NSW</td>
         <td><a class="mini buy" href="https://www.supercars.com/events/2026-bathurst-1000">Tickets</a><a class="mini" href="https://events.com.au/supercars/bathurst-1000-2026/">Packages</a><button class="mini" onclick="openCard('bathurst')">Details</button><button class="mini" onclick="addCal('bathurst')">+ Cal</button></td>
       </tr>
-      <tr>
+      <tr data-sport="drags" data-ends="2026-12-12T23:00:00+11:00" data-card="dragway">
         <td class="d">Sat 17 Oct · Sat 14 Nov · Sat 12 Dec<small>race nights</small></td>
         <td><span class="sporttag m">Drags</span></td>
         <td><span class="ev">Sydney Dragway Race Nights</span> <span class="badge tbc">Program TBC</span><br><span class="sub">Dates confirmed on the Dragway calendar; event line-ups announced closer to each night</span></td>
         <td>Sydney Dragway, Eastern Creek</td>
         <td><a class="mini buy" href="https://sydneydragway.oztix.com.au/">Tickets · Oztix</a><button class="mini" onclick="openCard('dragway')">Details</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="sx" data-ends="2026-11-28T23:00:00+11:00" data-card="supercross">
         <td class="d">Sat 28 Nov<small>evening</small></td>
         <td><span class="sporttag m">SX</span></td>
         <td><span class="ev">AUSX Supercross Grand Final</span> <span class="badge ppv">Title Decider</span><br><span class="sub">Champions crowned · FMX stunts, pyro, Monster Energy Fan Fest · kids under 3 free</span></td>
         <td>McDonald Jones Stadium, Newcastle</td>
         <td><a class="mini buy" href="https://ausxsupercross.com.au/events/newcastle/event-information/">Tickets</a><button class="mini" onclick="openCard('supercross')">Details</button><button class="mini" onclick="addCal('supercross')">+ Cal</button></td>
       </tr>
-      <tr>
+      <tr data-sport="trucks" data-ends="2027-06-30T23:59:00+10:00" data-card="mania">
         <td class="d">Autumn 2027<small>dates TBC</small></td>
         <td><span class="sporttag m">Trucks</span></td>
         <td><span class="ev">Monster Truck Mania Live</span> <span class="badge tbc">Not Yet On Sale</span><br><span class="sub">The indoor one — monster trucks, FMX, jet car, VIP pit party. Sydney run was 25–26 Apr 2026; returns 2027</span></td>
@@ -543,7 +544,7 @@ function imgFail(img, initials){
   <div class="hero">
 
     <!-- NEXT GAME HERO -->
-    <div class="card">
+    <div class="card" data-slot="nrl" data-ends="2026-08-13T22:00:00+10:00">
       <div class="sport">NRL Round 24 &nbsp;<span class="badge home">Home</span> <span class="badge soon"><span class="cd" data-until="2026-08-13"></span></span></div>
       <div class="crest dark">
         <div class="big">Panthers <em>v</em> Roosters</div>
@@ -568,18 +569,18 @@ function imgFail(img, initials){
     </div>
 
     <!-- SEASON HERO -->
-    <div class="card">
+    <div class="card" data-slot="season">
       <div class="sport">Season Run Home &nbsp;<span class="badge live">1st on the Ladder</span></div>
       <div class="crest">
-        <div class="big">4 Rounds <em>Left</em></div>
+        <div class="big"><span id="panRounds">4</span> Rounds <em>Left</em></div>
         <div class="lil">Then finals · Grand Final Sun 4 Oct</div>
       </div>
       <div class="inner">
         <div class="fight hd">Where They Sit
           <small>1st, 36 points — level with the Roosters. Regular season ends Sun 6 Sep, finals run through September.</small>
         </div>
-        <div class="when">Home games left · <span class="t">Two, both at CommBank</span></div>
-        <div class="meta">R26 v Bulldogs (Fri 28 Aug) and R27 v Wests Tigers (Sun 6 Sep) — the two easiest ones to actually get to</div>
+        <div class="when">Home games left · <span class="t" id="panHome">Two, both at CommBank</span></div>
+        <div class="meta" id="panHomeList">R26 v Bulldogs (Fri 28 Aug) and R27 v Wests Tigers (Sun 6 Sep) — the two easiest ones to actually get to</div>
         <ul class="mc">
           <li><b>Sun 6 Sep, 4:05pm</b> v Wests Tigers is the pick for a family afternoon — Sunday daylight kick-off, home ground, last round of the year.</li>
           <li><b>Finals:</b> four weeks from mid-September, <b>Grand Final Sun 4 Oct at Accor Stadium</b>. Finals venues, dates and times are only set once the ladder locks in after Round 27.</li>
@@ -600,42 +601,42 @@ function imgFail(img, initials){
       <tr><th>Sydney date</th><th></th><th>Match</th><th>Venue</th><th>Tickets</th></tr>
     </thead>
     <tbody>
-      <tr class="big">
+      <tr class="big" data-sport="nrl" data-ends="2026-08-13T22:00:00+10:00" data-card="panR24">
         <td class="d">Thu 13 Aug<small>7:50pm</small></td>
         <td><span class="sporttag n">R24</span></td>
         <td><span class="ev">Panthers v Sydney Roosters</span> <span class="badge home">Home</span> <span class="badge ppv">1st v 2nd</span><br><span class="sub">Indigenous Round · both sides on 36 points · winner leads the competition outright</span></td>
         <td>CommBank Stadium, Parramatta</td>
         <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('panR24')">Details</button><button class="mini" onclick="addCal('panR24')">+ Cal</button></td>
       </tr>
-      <tr>
+      <tr data-sport="nrl" data-ends="2026-08-20T22:00:00+10:00" data-card="panR25">
         <td class="d">Thu 20 Aug<small>time TBC</small></td>
         <td><span class="sporttag n">R25</span></td>
         <td><span class="ev">Melbourne Storm v Panthers</span> <span class="badge away">Away</span><br><span class="sub">Interstate — one for the telly. Kick-off time not confirmed yet (Thursday-night slot)</span></td>
         <td>AAMI Park, Melbourne</td>
         <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('panR25')">Details</button><button class="mini" onclick="addCal('panR25')">+ Cal</button><br><span class="sub"><span class="badge tbc">Kick-off TBC</span></span></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="nrl" data-ends="2026-08-28T22:15:00+10:00" data-card="panR26">
         <td class="d">Fri 28 Aug<small>8:00pm</small></td>
         <td><span class="sporttag n">R26</span></td>
         <td><span class="ev">Panthers v Canterbury Bulldogs</span> <span class="badge home">Home</span> <span class="badge fn">Friday Night</span><br><span class="sub">Second-last round · late finish, so a school-night call for the young fella</span></td>
         <td>CommBank Stadium, Parramatta</td>
         <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('panR26')">Details</button><button class="mini" onclick="addCal('panR26')">+ Cal</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="nrl" data-ends="2026-09-06T18:15:00+10:00" data-card="panR27">
         <td class="d">Sun 6 Sep<small>4:05pm ☀️</small></td>
         <td><span class="sporttag n">R27</span></td>
         <td><span class="ev">Panthers v Wests Tigers</span> <span class="badge home">Home</span> <span class="badge aus">Best For Kids</span><br><span class="sub">Final round · Sunday afternoon daylight kick-off, home at a reasonable hour — the one to go to</span></td>
         <td>CommBank Stadium, Parramatta</td>
         <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('panR27')">Details</button><button class="mini" onclick="addCal('panR27')">+ Cal</button></td>
       </tr>
-      <tr>
+      <tr data-sport="nrl" data-ends="2026-09-28T23:59:00+10:00" data-card="panFinals">
         <td class="d">Mid-Sep<small>4-week series</small></td>
         <td><span class="sporttag f">Finals</span></td>
         <td><span class="ev">NRL Finals Series</span> <span class="badge tbc">Draw Set After Round 27</span><br><span class="sub">Top 4 get a qualifying final and a second life; 5th–8th are sudden death. Venues, dates and prices confirmed the week the ladder locks</span></td>
         <td>TBC — Sydney venues likely</td>
         <td><a class="mini buy" href="https://www.nrl.com/draw/">NRL Draw</a><button class="mini" onclick="openCard('panFinals')">How It Works</button></td>
       </tr>
-      <tr class="big">
+      <tr class="big" data-sport="nrl" data-ends="2026-10-04T23:00:00+11:00">
         <td class="d">Sun 4 Oct<small>grand final</small></td>
         <td><span class="sporttag f">GF</span></td>
         <td><span class="ev">NRL Grand Final</span> <span class="badge ppv">Accor Stadium</span><br><span class="sub">The last Sunday of the season. Public ticket ballot and general sale open once the two finalists are known</span></td>
@@ -1161,6 +1162,203 @@ function fillCountdowns(){
   });
 }
 
+/* ===== DATE AWARENESS =====
+   The page is hand-written, so without this it happily keeps showing a fight
+   that finished last weekend. Every event carries data-ends (Sydney time):
+   finished events are dropped from the tables, and a hero card whose event is
+   over is rebuilt from the next upcoming row in the same slot. */
+
+function heroFromRow(card, row){
+  const c = CARDS[row.dataset.card] || {};
+  const cells  = row.children;
+  const evCell = cells[2];
+  const name   = evCell.querySelector('.ev');
+  const sub    = evCell.querySelector('.sub');
+  const venue  = cells[3] ? cells[3].textContent.trim() : '';
+  const acts   = cells[4];
+  const tag    = row.querySelector('.sporttag');
+
+  card.dataset.ends = row.dataset.ends;
+  card.innerHTML = '';
+
+  const sport = document.createElement('div');
+  sport.className = 'sport';
+  sport.append((tag ? tag.textContent.trim() : '') + ' ');
+  evCell.querySelectorAll('.badge').forEach(b => { sport.appendChild(b.cloneNode(true)); sport.append(' '); });
+  const days = document.createElement('span');
+  days.className = 'badge soon';
+  days.innerHTML = '<span class="cd" data-until="' + row.dataset.ends.slice(0, 10) + '"></span>';
+  sport.appendChild(days);
+  card.appendChild(sport);
+
+  // reuse the row's headshots where it has them, otherwise a wordmark plate
+  const thumbs = row.querySelector('.thumbs');
+  if (thumbs && thumbs.children.length){
+    const faces = document.createElement('div');
+    faces.className = 'faces';
+    [...thumbs.children].forEach((k, i) => {
+      if (i === 1){
+        const vs = document.createElement('span');
+        vs.className = 'vs'; vs.textContent = 'VS';
+        faces.appendChild(vs);
+      }
+      faces.appendChild(k.cloneNode(true));
+    });
+    card.appendChild(faces);
+  } else {
+    const crest = document.createElement('div');
+    crest.className = 'crest';
+    const big = document.createElement('div');
+    big.className = 'big'; big.textContent = name ? name.textContent.trim() : (c.title || '');
+    const lil = document.createElement('div');
+    lil.className = 'lil'; lil.textContent = venue;
+    crest.appendChild(big); crest.appendChild(lil);
+    card.appendChild(crest);
+  }
+
+  const inner = document.createElement('div');
+  inner.className = 'inner';
+
+  const title = document.createElement('div');
+  title.className = 'fight hd';
+  title.append(name ? name.textContent.trim() : (c.title || 'Next up'));
+  if (sub){
+    const s = document.createElement('small');
+    s.innerHTML = sub.innerHTML;
+    title.appendChild(s);
+  }
+  inner.appendChild(title);
+
+  const when = document.createElement('div');
+  when.className = 'when';
+  when.textContent = c.when || cells[0].textContent.trim();
+  inner.appendChild(when);
+
+  // c.when often already names the venue — don't print it twice
+  if (venue && !when.textContent.toLowerCase().includes(venue.toLowerCase())){
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent = venue;
+    inner.appendChild(meta);
+  }
+
+  const btns = document.createElement('div');
+  btns.className = 'btns';
+  acts.querySelectorAll('a.mini, button.mini').forEach(el => {
+    const n = el.cloneNode(true);
+    n.classList.remove('mini');
+    n.classList.add('btn', el.classList.contains('buy') ? 'red' : 'ghost');
+    btns.appendChild(n);
+  });
+  inner.appendChild(btns);
+  card.appendChild(inner);
+}
+
+function emptyHero(card, msg){
+  card.removeAttribute('data-ends');
+  card.innerHTML = '';
+  const sport = document.createElement('div');
+  sport.className = 'sport';
+  sport.textContent = 'Nothing scheduled';
+  const inner = document.createElement('div');
+  inner.className = 'inner';
+  const t = document.createElement('div');
+  t.className = 'fight hd';
+  t.append('Radar Clear');
+  const s = document.createElement('small');
+  s.textContent = msg;
+  t.appendChild(s);
+  inner.appendChild(t);
+  card.appendChild(sport);
+  card.appendChild(inner);
+}
+
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function shortDate(d){
+  const syd = new Date(d.toLocaleString('en-US', {timeZone: 'Australia/Sydney'}));
+  return DAY[syd.getDay()] + ' ' + syd.getDate() + ' ' + MON[syd.getMonth()];
+}
+
+function refreshRadar(){
+  const now = new Date();
+
+  // 1. drop anything that has already finished
+  document.querySelectorAll('tbody tr[data-ends]').forEach(tr => {
+    if (new Date(tr.dataset.ends) < now) tr.remove();
+  });
+
+  // 2. promote a stale hero to the next event in its slot
+  document.querySelectorAll('.card[data-slot]').forEach(card => {
+    const ends = card.dataset.ends;
+    if (!ends || new Date(ends) >= now) return;
+    const next = card.closest('.pane')
+                     .querySelector('tbody tr[data-sport="' + card.dataset.slot + '"]');
+    if (next) heroFromRow(card, next);
+    else emptyHero(card, 'Nothing left on the radar in this category — new dates get added as they are announced.');
+  });
+
+  // 3. a table that has run dry should say so, not sit there empty
+  document.querySelectorAll('.pane tbody').forEach(tb => {
+    if (tb.children.length) return;
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    td.colSpan = 5; td.className = 'gone';
+    td.textContent = 'Everything on this list has now been and gone — this page needs a refresh with new dates.';
+    tr.appendChild(td); tb.appendChild(tr);
+  });
+
+  // 4. the header date range has to follow the events, not the other way round
+  const fightRows = document.querySelectorAll('#pane-fights tbody tr[data-ends]');
+  if (fightRows.length){
+    const first = new Date(fightRows[0].dataset.ends);
+    const last  = new Date(fightRows[fightRows.length - 1].dataset.ends);
+    RANGES.fights = shortDate(first) + ' – ' + shortDate(last) + ' ' +
+                    last.getFullYear() + ' · Sydney (AEST)';
+  } else {
+    RANGES.fights = 'Nothing upcoming · needs new dates';
+  }
+  const nrlRows  = document.querySelectorAll('#pane-panthers tbody tr[data-sport="nrl"]');
+  const firstNrl = nrlRows.length ? nrlRows[0].querySelector('.sporttag') : null;
+  const round    = firstNrl && /^R\d+$/.test(firstNrl.textContent.trim())
+                     ? firstNrl.textContent.trim().slice(1) : null;
+  RANGES.panthers = round ? 'Round ' + round + ' → Grand Final Sun 4 Oct 2026'
+                  : nrlRows.length ? 'Finals series → Grand Final Sun 4 Oct 2026'
+                  : '2026 season complete';
+
+  // 5. season summary counters
+  const rounds = [...document.querySelectorAll('#pane-panthers tbody tr[data-sport="nrl"] .sporttag')]
+                   .filter(t => /^R\d+$/.test(t.textContent.trim())).length;
+  const roundsEl = document.getElementById('panRounds');
+  if (roundsEl) roundsEl.textContent = rounds;
+  const home = [...document.querySelectorAll('#pane-panthers tbody tr[data-sport="nrl"]')]
+                 .filter(tr => [...tr.querySelectorAll('.badge')].some(b => b.textContent.trim() === 'Home'));
+  const homeEl = document.getElementById('panHome');
+  if (homeEl) homeEl.textContent = home.length === 0 ? 'None left — regular season done'
+    : home.length === 1 ? 'One, at CommBank'
+    : home.length === 2 ? 'Two, both at CommBank'
+    : home.length + ', all at CommBank';
+  const listEl = document.getElementById('panHomeList');
+  if (listEl){
+    const names = home.map(tr => tr.querySelector('.ev').textContent.replace('Panthers v ', 'v ') +
+                                 ' (' + tr.querySelector('.d').childNodes[0].textContent.trim() + ')');
+    listEl.textContent = names.length
+      ? (names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0]) +
+        ' — the easiest ones to actually get to'
+      : 'The regular season is over — anything further depends on the finals draw.';
+  }
+
+  // 6. say when this was worked out, so a stale tab is obvious
+  const stamp = 'Checked ' + shortDate(now) + '. Past events drop off this page automatically.';
+  document.querySelectorAll('.pane footer').forEach(f => {
+    const s = document.createElement('div');
+    s.style.cssText = 'margin-top:8px;font-size:.75rem;color:#9a9a9a';
+    s.textContent = stamp;
+    f.appendChild(s);
+  });
+}
+
+refreshRadar();
 fillCountdowns();
 showTab(location.hash.slice(1) || 'fights');
 </script>
