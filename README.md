@@ -43,15 +43,35 @@ table, slide-out detail panel, calendar buttons):
 
 Tabs are linkable: `index.html#other`, `index.html#panthers`.
 
-Both new tabs need a manual refresh at known points:
+### How each tab stays current
 
-- After **Round 27 (Sun 6 Sep)** the finals draw is published — the Panthers tab
-  is a placeholder until then.
-- After **Sat 10 Oct** Monster Jam is done; next Sydney monster trucks is
-  Monster Truck Mania Live at Qudos, expected 2027, dates not yet announced.
+| Tab | Source | Refresh |
+| --- | --- | --- |
+| Fights | ESPN MMA feed + `boxing.json` | `build_radar.py`, daily — rolling 4 weeks |
+| Panthers | ESPN NRL feed | `build_panthers.py`, daily — finals appear when published |
+| Other Action | Human web search | Scheduled Claude session, Mondays 6am Sydney |
 
-Anything not yet published (kick-off times, finals venues, 2027 dates) carries a
-**TBC** badge rather than a guess — same rule as the email.
+The two builders rewrite only the blocks between the `BUILD:` markers in
+`index.html` and commit when the output changes (`.github/workflows/radar.yml`).
+**Never hand-edit inside those markers** — it gets overwritten next morning.
+
+Monster trucks and motorsport have no feed worth trusting, so Other Action is
+researched by a **weekly scheduled Claude session** (a Routine, Mondays 6am
+Sydney) that searches for newly announced Sydney dates, updates that tab and
+pushes. As a backstop, `check_stale.py` runs Mondays 8am
+(`.github/workflows/upkeep.yml`) and emails only if that tab drops below three
+events or its last one comes inside six weeks — so a silent failure still
+surfaces. Set a `MAINTENANCE_TO` secret to keep that nag off the family list.
+
+The page also prunes itself in the browser: every event carries a `data-ends`
+timestamp, past events are dropped on load, and a hero card whose event has
+finished is rebuilt from the next one up.
+
+Anything not yet published (kick-off times, finals venues, future dates) carries
+a **TBC** badge rather than a guess — same rule as the email.
+
+Supporting data files: `photos.json` (surname → headshot, missing ones fall back
+to initials), `aussies.json` (surnames that earn a flag and an Aussie/NZ badge).
 
 ## Updating boxing
 
