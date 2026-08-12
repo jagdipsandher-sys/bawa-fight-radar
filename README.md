@@ -30,6 +30,29 @@ the usual culprit is the app password (check the spaces are stripped).
   UFC Fight Night → Paramount+, or whatever is set in `boxing.json`). Blank means
   unconfirmed — deliberately never guessed.
 
+## The radar page (`index.html`)
+
+Three tabs, all in the one file — same layout on each (hero cards, lookahead
+table, slide-out detail panel, calendar buttons):
+
+- **Fights** — UFC and boxing, as before.
+- **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
+  that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
+- **Panthers** — Penrith's remaining 2026 fixtures with venues, kick-off times
+  and where to buy.
+
+Tabs are linkable: `index.html#other`, `index.html#panthers`.
+
+Both new tabs need a manual refresh at known points:
+
+- After **Round 27 (Sun 6 Sep)** the finals draw is published — the Panthers tab
+  is a placeholder until then.
+- After **Sat 10 Oct** Monster Jam is done; next Sydney monster trucks is
+  Monster Truck Mania Live at Qudos, expected 2027, dates not yet announced.
+
+Anything not yet published (kick-off times, finals venues, 2027 dates) carries a
+**TBC** badge rather than a guess — same rule as the email.
+
 ## Updating boxing
 
 No reliable free boxing API exists, so `boxing.json` is the source of truth.
