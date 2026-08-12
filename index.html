@@ -281,6 +281,7 @@ function imgFail(img, initials){
 
   <h2>This Weekend</h2>
   <div class="hero">
+<!--BUILD:FIGHT-HERO-->
 
     <!-- UFC HERO -->
     <div class="card" data-slot="ufc" data-ends="2026-08-09T15:00:00+10:00">
@@ -332,6 +333,7 @@ function imgFail(img, initials){
         </div>
       </div>
     </div>
+<!--/BUILD:FIGHT-HERO-->
   </div>
 
   <h2>Lookahead — Next 4 Weeks</h2>
@@ -340,6 +342,7 @@ function imgFail(img, initials){
       <tr><th>Sydney date</th><th></th><th>Event</th><th>Venue</th><th>Watch / Card</th></tr>
     </thead>
     <tbody>
+<!--BUILD:FIGHT-ROWS-->
       <tr data-sport="box" data-ends="2026-08-12T23:59:00+10:00" data-card="teremoana">
         <td class="d">Wed 12 Aug<small>evening AEST</small></td>
         <td><span class="sporttag b">Box</span></td>
@@ -409,6 +412,7 @@ function imgFail(img, initials){
         <td>Paris</td>
         <td><a class="mini buy" href="https://www.paramountplus.com/au/">Watch · Paramount+</a><button class="mini" onclick="openCard('paris')">Full Card</button><button class="mini" onclick="addCal('paris')">+ Cal</button></td>
       </tr>
+    <!--/BUILD:FIGHT-ROWS-->
     </tbody>
   </table>
 
@@ -671,7 +675,8 @@ function imgFail(img, initials){
 </div>
 
 <script>
-const CARDS = {
+const FIGHT_CARDS = {
+/*BUILD:FIGHT-CARDS*/
   gamrot: {
     cal:{s:"2026-08-09T00:00:00Z",e:"2026-08-09T03:00:00Z",loc:"Meta APEX, Las Vegas (watch from home)"},
     title:"UFC FN: Gamrot vs Salkilld",
@@ -825,6 +830,10 @@ const CARDS = {
     note:"Full undercard to be announced closer to the date."
   },
 
+/*/BUILD:FIGHT-CARDS*/
+};
+
+const MANUAL_CARDS = {
   /* ===== OTHER ACTION ===== */
   monsterjam: {
     emoji:"🚚",
@@ -1082,6 +1091,8 @@ const CARDS = {
     note:"Placeholder entry — dates confirmed, kick-off and pricing are not."
   }
 };
+
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS);
 
 let curCardId = null;
 function openCard(id){

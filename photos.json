@@ -1,0 +1,14 @@
+{
+  "_comment": "Fighter surname (lowercase) -> headshot URL. Optional — anyone missing just shows initials instead. Add new ones as fights are announced.",
+  "makhachev": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-01/7/MAKHACHEV_ISLAM_BELT_01-18.png?itok=IabJoyhX",
+  "machado garry": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2025-11/MACHADO_GARRY_IAN_11-22.png?itok=H2T89_Bz",
+  "hernandez": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-02/HERNANDEZ_ANTHONY_02-21.png?itok=9XNu2V0D",
+  "rodrigues": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-03/RODRIGUES_GREGORY_03-07.png?itok=W1loglA5",
+  "nurmagomedov": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-01/NURMAGOMEDOV_UMAR_01-24.png?itok=42cWtPfi",
+  "song": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-05/YADONG_SONG_05-30.png?itok=ZSGpgQqR",
+  "hooker": "https://ufc.com/images/styles/event_results_athlete_headshot/s3/2026-01/HOOKER_DAN_01-31.png?itok=HwIAlL49",
+  "teremoana": "https://www.matchroomboxing.com/app/uploads/2024/12/Teremoana_Jr_12-12-24_001_2-removebg-preview.png",
+  "savage": "https://www.matchroomboxing.com/app/uploads/2026/07/Savage-cutout-2.png",
+  "itauma": "https://queensberry.co.uk/cdn/shop/files/Moses-Itauma_b09f51cd-7c8e-4a37-b7c0-d725579c1bc2.png?v=1757673128",
+  "hrgovic": "https://queensberry.co.uk/cdn/shop/files/Filip-Hrgovic_3.png?v=1757673148"
+}
