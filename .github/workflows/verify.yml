@@ -1,0 +1,24 @@
+name: Verify Page
+
+# Two things write to index.html with no human reading the diff: the nightly
+# builders, and the weekly Claude session that re-researches Other Action.
+# This is the seatbelt — it runs on every push and fails loudly.
+on:
+  push:
+    paths:
+      - "index.html"
+      - "build_*.py"
+      - "verify_page.py"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the page is not broken
+        run: python verify_page.py

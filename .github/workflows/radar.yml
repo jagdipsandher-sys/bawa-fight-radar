@@ -32,6 +32,9 @@ jobs:
             git config user.email "actions@github.com"
             git add index.html
             git commit -m "Rolling radar rebuild [skip ci]"
+            # the other workflow also pushes to main — rebase first so a
+            # same-minute build does not lose this commit to a rejected push
+            git pull --rebase --autostash origin main
             git push
           else
             echo "no change"

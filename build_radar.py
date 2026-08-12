@@ -154,10 +154,14 @@ def thumbs_html(ev, big=False):
 
 
 def bout_line(bout):
-    """Add flags to a 'A vs B' string."""
+    """Add flags to a 'A vs B' string.
+
+    Fighter names come straight from a third-party feed and land in HTML, so
+    they get escaped — an ampersand alone is enough to corrupt the page.
+    """
     parts = re.split(r"(\s+vs\.?\s+)", bout)
-    return "".join(p + (f' <span class="flag">{flag_for(p)}</span>' if flag_for(p) else "")
-                   if i % 2 == 0 else p for i, p in enumerate(parts))
+    return "".join(esc(p) + (f' <span class="flag">{flag_for(p)}</span>' if flag_for(p) else "")
+                   if i % 2 == 0 else esc(p) for i, p in enumerate(parts))
 
 
 def aussie_badge(ev):

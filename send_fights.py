@@ -175,7 +175,10 @@ def send(subject, html):
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = user
-    msg["To"] = ", ".join(to)
+    # BCC, not To — otherwise every recipient sees every other address, which is
+    # fine for three brothers and not fine once friends are on the list.
+    msg["To"] = user
+    msg["Bcc"] = ", ".join(to)   # send_message strips this header before sending
     msg.set_content("Please view this in an HTML capable email client.")
     msg.add_alternative(html, subtype="html")
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context()) as s:

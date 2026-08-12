@@ -210,6 +210,53 @@ def finals_tail(games):
       </tr>"""
 
 
+# The hand-written season card has "Finals Explained" and "+ GF Calendar"
+# buttons. Their cards live in this generated block, so they must be emitted
+# every run or those buttons quietly do nothing.
+STATIC_CARDS = """  panFinals: {
+    emoji:"🏆",
+    title:"NRL Finals — How It Works",
+    when:"Four weeks from mid-September · Grand Final Sun 4 Oct, Accor Stadium",
+    link:"https://www.nrl.com/draw/",
+    linkLabel:"NRL Draw & Finals ↗",
+    secs:[
+      {h:"The Format",b:[
+        ["Week 1 — Qualifying Finals","1st v 4th and 2nd v 3rd. Winners go straight to a Preliminary Final; losers get a second life.",1],
+        ["Week 1 — Elimination Finals","5th v 8th and 6th v 7th. Lose and you're out."],
+        ["Week 2 — Semi Finals","Qualifying losers v Elimination winners. Sudden death."],
+        ["Week 3 — Preliminary Finals","Winners go to the Grand Final."],
+        ["Week 4 — Grand Final","Sun 4 Oct, Accor Stadium",1]
+      ]},
+      {h:"What It Means For Penrith",b:[
+        ["A top-four finish means a second chance","Lose a qualifying final and you still get another week",1],
+        ["Fixtures appear on this tab automatically","They are pulled from the NRL feed as soon as the draw is published"],
+        ["Tickets go on sale within days of each draw","Worth watching nrl.com the Monday after the last round"]
+      ]}
+    ],
+    note:"Nothing about the finals is bookable until the ladder locks in."
+  },
+  panGF: {
+    emoji:"🏆",
+    cal:{s:"2026-10-04T08:30:00Z",e:"2026-10-04T10:30:00Z",loc:"Accor Stadium, Sydney Olympic Park"},
+    title:"NRL Grand Final 2026",
+    when:"Sun 4 Oct · Accor Stadium, Sydney Olympic Park · kick-off TBC",
+    link:"https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals",
+    linkLabel:"Accor Stadium — Grand Final ↗",
+    secs:[
+      {h:"The Day",b:[
+        ["NRL and NRLW Grand Finals","Both played at Accor Stadium on the same day",1],
+        ["Kick-off time not yet confirmed","Traditionally early evening — the calendar entry uses 7:30pm as a placeholder"]
+      ]},
+      {h:"Tickets",b:[
+        ["Members' ballots first","Club members of the qualifying teams get first access"],
+        ["General sale after the Preliminary Finals","Only once the two finalists are known"],
+        ["Accor Stadium is on the Olympic Park line","Same station as Monster Jam"]
+      ]}
+    ],
+    note:"Placeholder entry — the date is confirmed, kick-off and pricing are not."
+  }"""
+
+
 def splice(page, marker, block):
     pat = re.compile(rf"(<!--BUILD:{marker}-->|/\*BUILD:{marker}\*/).*?(<!--/BUILD:{marker}-->|/\*/BUILD:{marker}\*/)", re.S)
     if not pat.search(page):
@@ -231,7 +278,7 @@ def main():
     before = page
     page = splice(page, "NRL-HERO", hero(games[0]))
     page = splice(page, "NRL-ROWS", "\n".join(row(g) for g in games) + finals_tail(games))
-    page = splice(page, "NRL-CARDS", ",\n".join(card(g) for g in games))
+    page = splice(page, "NRL-CARDS", ",\n".join([card(g) for g in games] + [STATIC_CARDS]))
 
     if page == before:
         print("panthers tab already current")
