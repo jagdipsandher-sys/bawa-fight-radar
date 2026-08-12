@@ -100,6 +100,30 @@ for pane in ["pane-fights", "pane-other", "pane-panthers"]:
         fail(f"tab {pane} has gone missing")
 
 
+# 7. the subscriber list must be well-formed, or the Friday email breaks
+try:
+    subs = json.load(open("subscribers.json"))
+except FileNotFoundError:
+    subs = None
+except ValueError as e:
+    subs = None
+    fail(f"subscribers.json is not valid JSON: {e}")
+if subs is not None:
+    seen_addr = set()
+    for s_ in subs.get("subscribers", []):
+        addr = (s_.get("email") or "").strip().lower()
+        if not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", addr):
+            fail(f"subscriber has a malformed email: {s_.get('email')!r}")
+        if addr in seen_addr:
+            fail(f"{addr} is listed twice — they would get two copies")
+        seen_addr.add(addr)
+        if s_.get("active") and not (s_.get("consent") or {}).get("source"):
+            fail(f"{addr} is active but has no recorded consent — required by the Spam Act")
+    active = [x for x in subs.get("subscribers", []) if x.get("active")]
+    if len(active) > 400:
+        fail(f"{len(active)} active subscribers is past what Gmail can safely send")
+
+
 if problems:
     print(f"index.html FAILED {len(problems)} check(s):\n")
     for p in problems:

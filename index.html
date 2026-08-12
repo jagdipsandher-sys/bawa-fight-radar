@@ -223,6 +223,15 @@
   #overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;display:none}
   @media(max-width:999px){ body.drawer-open #overlay{display:block} }
 
+
+  /* ===== JOIN STRIP ===== */
+  .join{border:1px solid var(--faint);border-top:4px solid var(--red);background:var(--panelbg);
+        margin-top:34px;padding:20px}
+  .join h3{font-size:1.3rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:4px;
+        font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;font-weight:800}
+  .join p{font-size:.88rem;color:var(--grey);max-width:62ch}
+  .join .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .join .fine{font-size:.74rem;color:#8a8a8a;margin-top:12px;max-width:70ch}
   footer{margin-top:34px;color:var(--grey);font-size:.8rem;border-top:1px solid var(--faint);padding-top:14px}
   @media(max-width:600px){
     .fight{font-size:1.45rem}
@@ -612,6 +621,24 @@ function imgFail(img, initials){
     All times Sydney (AEST). Penrith are playing 2026 home games at <b>CommBank Stadium, Parramatta</b> while Penrith Stadium is redeveloped, and all home-game tickets are sold exclusively through <b>Ticketmaster</b> — pre-purchased tickets include free public transport to the ground on match day. Single-game prices vary by seating category and by how big the fixture is, so the live price sits on the Ticketmaster page rather than being guessed here. Finals kick-off times are confirmed only after Round 27.
   </footer>
 </div><!-- /pane-panthers -->
+
+
+<div class="join">
+  <h3>Get It Every Friday</h3>
+  <p>One email, Friday 10am Sydney: the next fight in full, everything else on the
+     radar, and a link back to this page. Nothing else, ever &mdash; it's a list for
+     mates, not a business.</p>
+  <div class="row">
+    <a class="btn red" href="mailto:jack@topsecretimports.com.au?subject=Add%20me%20to%20the%20BAWA%20Radar&amp;body=Go%20on%20then%20%E2%80%94%20add%20me%20to%20the%20Friday%20fight%20email.%0A%0AName%3A%0A">Add Me To The List</a>
+    <a class="btn ghost" href="mailto:?subject=You%20need%20to%20see%20the%20BAWA%20Fight%20Radar&amp;body=Every%20UFC%20and%20boxing%20card%20worth%20watching%2C%20in%20Sydney%20time%2C%20plus%20monster%20trucks%20and%20the%20Panthers%20draw.%0A%0AHave%20a%20look%3A%20https%3A%2F%2Fjagdipsandher-sys.github.io%2Fbawa-fight-radar%2F%0A%0AIf%20you%20want%20the%20Friday%20email%2C%20hit%20the%20%22Add%20Me%20To%20The%20List%22%20button%20on%20that%20page%20and%20Jack%20will%20sort%20it.">Send It To A Mate</a>
+  </div>
+  <div class="fine">
+    <b>Sending it to a mate doesn't sign them up</b> &mdash; it just forwards them the
+    page. They have to ask for the email themselves, which is both the polite way
+    round and what Australian spam law actually requires. Every email carries a
+    one-click unsubscribe and you'll be off the list before the next one goes out.
+  </div>
+</div>
 
 </div><!-- /wrap -->
 

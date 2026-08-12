@@ -1,0 +1,26 @@
+{
+  "_comment": [
+    "Friends who have opted in, on top of the core MAIL_TO list.",
+    "",
+    "Australia's Spam Act needs consent from the PERSON THEMSELVES — a mate",
+    "cannot sign someone else up. So only add someone here after they have",
+    "personally asked, and record where that request came from. The 'consent'",
+    "field is the evidence if anyone ever queries it.",
+    "",
+    "To add: append an entry. To remove: set active to false (keep the record,",
+    "so an unsubscribe cannot be quietly undone by a later edit).",
+    "",
+    "source: how they asked — 'subscribe email', 'in person', 'whatsapp', etc."
+  ],
+  "subscribers": [
+    {
+      "email": "example@example.com",
+      "name": "Example Mate",
+      "active": false,
+      "consent": {
+        "source": "placeholder — delete this entry when the first real friend signs up",
+        "date": "2026-08-12"
+      }
+    }
+  ]
+}

@@ -73,6 +73,35 @@ a **TBC** badge rather than a guess — same rule as the email.
 Supporting data files: `photos.json` (surname → headshot, missing ones fall back
 to initials), `aussies.json` (surnames that earn a flag and an Aussie/NZ badge).
 
+## The mailing list
+
+Recipients are the `MAIL_TO` secret (the original three) **plus** anyone marked
+`active` in `subscribers.json`. Everyone is BCC'd, so no recipient ever sees
+another's address.
+
+**Adding a friend.** They ask via the "Add Me To The List" button on the page,
+which opens an email to Jack. Add an entry to `subscribers.json` recording who
+asked and how:
+
+```json
+{ "email": "mate@example.com", "name": "Mate", "active": true,
+  "consent": { "source": "asked by email 14 Aug", "date": "2026-08-14" } }
+```
+
+**Removing.** Set `"active": false` — don't delete the entry, so an unsubscribe
+can't be undone by a later edit. `verify_page.py` rejects an active subscriber
+with no recorded consent, a malformed address, or a duplicate.
+
+**Why the referral button doesn't sign anyone up.** Australia's Spam Act needs
+consent from the person themselves; a mate can't consent on their behalf. So
+"Send It To A Mate" just forwards them the page, and they ask for themselves.
+Every email carries sender identification, a one-click unsubscribe, and a
+`List-Unsubscribe` header.
+
+**Ceiling.** A Gmail app password does roughly 500 recipients a day. The sender
+refuses to run past 400 and tells you to move to a mailing provider. Twenty
+friends is nowhere near it.
+
 ## Updating boxing
 
 No reliable free boxing API exists, so `boxing.json` is the source of truth.

@@ -104,7 +104,7 @@ SITE_URL = "https://jagdipsandher-sys.github.io/bawa-fight-radar/"
 HD = "'Arial Narrow','Helvetica Neue Condensed',Arial,Helvetica,sans-serif"
 
 
-def build_html(events):
+def build_html(events, owner=""):
     # EMAIL HTML RULES: tables + inline styles only, no JS, single column.
     # Teaser email: the next fight in full, the rest fading to grey — the
     # button to the site is the only way to see everything.
@@ -137,6 +137,7 @@ def build_html(events):
       </td></tr>""")
     more = len(events) - 1
     plural = "s" if more != 1 else ""
+    site = SITE_URL
     return f"""<!DOCTYPE html><html><body style="margin:0;background:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:16px;">
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;max-width:600px;width:100%;">
@@ -162,19 +163,65 @@ def build_html(events):
       <tr><td style="padding:12px 20px 16px;font-size:11px;color:#999999;border-top:1px solid #ececec;">
         All times Sydney. Broadcast details firm up closer to fight week.
       </td></tr>
+      <!-- Spam Act basics: say who sent it, why they got it, and how to stop it. -->
+      <tr><td style="padding:0 20px 18px;font-size:11px;color:#999999;line-height:1.6;">
+        You're getting this because you asked Jack to put you on the BAWA Fight Radar —
+        a personal list run for mates, not a business.<br>
+        <a href="mailto:{owner}?subject=Unsubscribe%20from%20BAWA%20Radar"
+           style="color:#777777;text-decoration:underline;">Unsubscribe</a> —
+        one click, replies to Jack, and you'll be taken off before the next one.
+        Know someone who'd want it? Send them
+        <a href="{site}" style="color:#777777;text-decoration:underline;">the radar</a>
+        and they can ask to join themselves.
+      </td></tr>
     </table></td></tr></table></body></html>"""
+
+
+def subscribers():
+    """Opted-in friends, on top of the core MAIL_TO list.
+
+    Only entries marked active are mailed. Consent is recorded per person in
+    subscribers.json — see the note at the top of that file.
+    """
+    try:
+        with open("subscribers.json") as f:
+            data = json.load(f)
+    except (FileNotFoundError, ValueError):
+        return []
+    out = []
+    for s in data.get("subscribers", []):
+        email = (s.get("email") or "").strip()
+        if s.get("active") and "@" in email:
+            out.append(email)
+    return out
 
 
 def send(subject, html):
     user = os.environ.get("GMAIL_USER", "").strip()
     pw = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "").strip()
     to = [a.strip() for a in os.environ.get("MAIL_TO", "").replace(";", ",").split(",") if a.strip()]
+
+    # friends who asked to be added, deduped against the core list
+    seen = {a.lower() for a in to}
+    for extra in subscribers():
+        if extra.lower() not in seen:
+            seen.add(extra.lower())
+            to.append(extra)
+
     if not (user and pw and to):
         print("missing GMAIL_USER / GMAIL_APP_PASSWORD / MAIL_TO")
+        sys.exit(1)
+
+    if len(to) > 400:      # Gmail's daily ceiling is ~500; stop well short of it
+        print(f"refusing to send: {len(to)} recipients is past what a Gmail "
+              f"app password can safely carry — move to a mailing provider first")
         sys.exit(1)
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = user
+    # one-click unsubscribe for mail clients that offer it, which also keeps
+    # Gmail from reading a 20-way BCC as bulk mail
+    msg["List-Unsubscribe"] = f"<mailto:{user}?subject=Unsubscribe%20from%20BAWA%20Radar>"
     # BCC, not To — otherwise every recipient sees every other address, which is
     # fine for three brothers and not fine once friends are on the list.
     msg["To"] = user
@@ -210,7 +257,8 @@ def main():
 
     syd_sat = (now.astimezone(SYD) + timedelta(days=1)).strftime("%d %b")
     prefix = "[TEST] " if test else ""
-    send(f"{prefix}BAWA Fight Radar — weekend of {syd_sat}", build_html(events))
+    owner = os.environ.get("GMAIL_USER", "").strip()
+    send(f"{prefix}BAWA Fight Radar — weekend of {syd_sat}", build_html(events, owner))
     if test:
         print("test send — marker left untouched")
         return
