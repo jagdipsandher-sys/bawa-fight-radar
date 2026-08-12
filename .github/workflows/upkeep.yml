@@ -1,0 +1,26 @@
+name: Radar Upkeep
+
+# The Other Action tab is the one part of the radar with no live feed behind it,
+# so it can only go stale quietly. This checks its shelf life once a week and
+# emails a reminder when it is running low. Silent when there is plenty ahead.
+on:
+  schedule:
+    - cron: "0 22 * * 0"    # 8am Sydney Monday (9am AEDT)
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the hand-maintained tab
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          # set MAINTENANCE_TO to keep the nag off the family list
+          MAIL_TO: ${{ secrets.MAINTENANCE_TO || secrets.MAIL_TO }}
+        run: python check_stale.py

@@ -504,6 +504,7 @@ function imgFail(img, initials){
   <div class="hero">
 
     <!-- NEXT GAME HERO -->
+<!--BUILD:NRL-HERO-->
     <div class="card" data-slot="nrl" data-ends="2026-08-13T22:00:00+10:00">
       <div class="sport">NRL Round 24 &nbsp;<span class="badge home">Home</span> <span class="badge soon"><span class="cd" data-until="2026-08-13"></span></span></div>
       <div class="crest dark">
@@ -528,6 +529,7 @@ function imgFail(img, initials){
       </div>
     </div>
 
+<!--/BUILD:NRL-HERO-->
     <!-- SEASON HERO -->
     <div class="card" data-slot="season">
       <div class="sport">Season Run Home &nbsp;<span class="badge live">1st on the Ladder</span></div>
@@ -561,6 +563,7 @@ function imgFail(img, initials){
       <tr><th>Sydney date</th><th></th><th>Match</th><th>Venue</th><th>Tickets</th></tr>
     </thead>
     <tbody>
+<!--BUILD:NRL-ROWS-->
       <tr class="big" data-sport="nrl" data-ends="2026-08-13T22:00:00+10:00" data-card="panR24">
         <td class="d">Thu 13 Aug<small>7:50pm</small></td>
         <td><span class="sporttag n">R24</span></td>
@@ -603,6 +606,7 @@ function imgFail(img, initials){
         <td>Accor Stadium, Sydney Olympic Park</td>
         <td><a class="mini buy" href="https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals">Grand Final Info</a><button class="mini" onclick="addCal('panGF')">+ Cal</button></td>
       </tr>
+    <!--/BUILD:NRL-ROWS-->
     </tbody>
   </table>
 
@@ -824,6 +828,10 @@ const MANUAL_CARDS = {
     note:"Register on the official site to get the 2027 on-sale email — this show sells its Sydney weekend out well before the date."
   },
 
+};
+
+const NRL_CARDS = {
+/*BUILD:NRL-CARDS*/
   /* ===== PANTHERS ===== */
   panR24: {
     emoji:"🐾",
@@ -947,9 +955,10 @@ const MANUAL_CARDS = {
     ],
     note:"Placeholder entry — dates confirmed, kick-off and pricing are not."
   }
+/*/BUILD:NRL-CARDS*/
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS);
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS);
 
 let curCardId = null;
 function openCard(id){
