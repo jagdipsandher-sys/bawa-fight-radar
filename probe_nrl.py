@@ -1,38 +1,43 @@
 #!/usr/bin/env python3
-"""Throwaway: find out whether ESPN exposes an NRL fixture feed we can use."""
+"""Throwaway: what fields does the ESPN NRL feed give us for a Panthers game?"""
 import json
 import urllib.request
 
-CANDIDATES = [
-    "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/scoreboard?dates=20260813-20260910",
-    "https://site.api.espn.com/apis/site/v2/sports/rugby-league/nrl/scoreboard?dates=20260813-20260910",
-    "https://site.api.espn.com/apis/site/v2/sports/rugby/3/scoreboard?dates=20260813-20260910",
-    "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/teams",
-]
+FEED = "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/scoreboard?dates={}"
 
-for url in CANDIDATES:
-    print("\n" + "=" * 70)
-    print(url)
+
+def get(rng):
+    with urllib.request.urlopen(FEED.format(rng), timeout=25) as r:
+        return json.load(r)
+
+
+# 1. how far ahead will it serve?
+for rng in ["20260813-20260910", "20260813-20261012", "20260813-20261231"]:
     try:
-        with urllib.request.urlopen(url, timeout=25) as r:
-            data = json.load(r)
+        d = get(rng)
+        evs = d.get("events", [])
+        print(f"{rng}: {len(evs)} events, last = {evs[-1]['date'] if evs else '-'}")
     except Exception as e:
-        print("  FAILED:", type(e).__name__, e)
+        print(f"{rng}: FAILED {e}")
+
+# 2. every field on one Panthers fixture
+d = get("20260813-20261012")
+for ev in d.get("events", []):
+    if "Panthers" in ev.get("name", ""):
+        print("\n=== FULL EVENT KEYS ===", list(ev))
+        print(json.dumps(ev, indent=1)[:2600])
+        break
+
+# 3. all Panthers fixtures in the window
+print("\n=== PANTHERS FIXTURES ===")
+for ev in d.get("events", []):
+    if "Panthers" not in ev.get("name", ""):
         continue
-    print("  top-level keys:", list(data)[:12])
-    evs = data.get("events") or []
-    print("  events:", len(evs))
-    for ev in evs[:3]:
-        comps = ev.get("competitions", [{}])
-        c = comps[0] if comps else {}
-        print("   -", ev.get("date"), "|", ev.get("name"))
-        print("     shortName:", ev.get("shortName"))
-        print("     venue:", (c.get("venue") or {}).get("fullName"))
-        for t in c.get("competitors", []):
-            print("       ", t.get("homeAway"), (t.get("team") or {}).get("displayName"))
-    if "sports" in data:
-        try:
-            teams = data["sports"][0]["leagues"][0]["teams"]
-            print("  teams:", [t["team"]["displayName"] for t in teams][:20])
-        except Exception as e:
-            print("  team parse failed:", e)
+    c = (ev.get("competitions") or [{}])[0]
+    home = next((t for t in c.get("competitors", []) if t.get("homeAway") == "home"), {})
+    away = next((t for t in c.get("competitors", []) if t.get("homeAway") == "away"), {})
+    print(" ", ev["date"], "|", ev.get("name"),
+          "| venue:", (c.get("venue") or {}).get("fullName"),
+          "| home:", (home.get("team") or {}).get("displayName"),
+          "| away:", (away.get("team") or {}).get("displayName"),
+          "| status:", ((ev.get("status") or {}).get("type") or {}).get("name"))
