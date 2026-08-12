@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BAWA Fight Radar — 9 Aug to 6 Sep 2026</title>
+<title>BAWA Radar — Fights · Other Action · Panthers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -42,6 +42,20 @@
   .range{color:#bbb;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
   .redline{height:4px;background:var(--red)}
 
+  /* ===== TAB BAR ===== */
+  .tabs{background:#111}
+  .tabs .wrap{display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tabs button{
+    background:transparent;border:0;color:#8f8f8f;cursor:pointer;white-space:nowrap;
+    padding:13px 20px 10px;font-size:.86rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+    border-bottom:4px solid transparent;
+  }
+  .tabs button:hover{color:#fff}
+  .tabs button.active{color:#fff;border-bottom-color:var(--red)}
+  .pane{display:none}
+  .pane.on{display:block}
+
   h2{
     font-size:1.15rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);
     margin:34px 0 14px;font-weight:800;
@@ -65,6 +79,26 @@
   .badge.live{background:#000;color:#fff}
   .badge.tbc{background:#fff;border:1px solid var(--grey);color:var(--grey)}
   .badge.aus{background:#00247d;color:#fff}
+  .badge.home{background:#0b6e35;color:#fff}
+  .badge.away{background:#ececec;color:#555}
+  .badge.soon{background:#e07b00;color:#fff}
+
+  /* wordmark plate — the non-fight equivalent of the .faces headshot strip */
+  .crest{
+    background:linear-gradient(180deg,#f2f2f2,#e2e2e2);border-bottom:1px solid #ececec;
+    margin-bottom:14px;padding:20px 16px;min-height:138px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:7px;
+  }
+  .crest.dark{background:linear-gradient(180deg,#0d0d0d,#2e2e2e);border-bottom:1px solid #000}
+  .crest .big{
+    font-size:2.5rem;line-height:.92;color:#141414;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+    font-weight:800;text-transform:uppercase;letter-spacing:.01em;
+  }
+  .crest.dark .big{color:#fff}
+  .crest .big em{font-style:normal;color:var(--red)}
+  .crest .lil{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--grey);font-weight:700}
+  .crest.dark .lil{color:#bbb}
 
   /* fighter photos on light grey like ufc.com fight cards */
   .faces{
@@ -136,6 +170,9 @@
   .sporttag{font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:2px 7px;text-transform:uppercase}
   .sporttag.u{background:#000;color:#fff}
   .sporttag.b{background:#00247d;color:#fff}
+  .sporttag.m{background:#e07b00;color:#fff}
+  .sporttag.n{background:#111;color:#fff}
+  .sporttag.f{background:var(--red);color:#fff}
   td a.mini,td button.mini{
     display:inline-block;margin:6px 8px 0 0;color:var(--ink);background:#fff;border:1px solid #bbb;
     padding:4px 10px;text-decoration:none;cursor:pointer;
@@ -188,8 +225,15 @@
   footer{margin-top:34px;color:var(--grey);font-size:.8rem;border-top:1px solid var(--faint);padding-top:14px}
   @media(max-width:600px){
     .fight{font-size:1.45rem}
+    .crest .big{font-size:1.75rem}
     h1{font-size:1.6rem}
     th:nth-child(4),td:nth-child(4){display:none}
+    .d{white-space:normal}
+    td,th{padding-left:7px;padding-right:7px}
+    th:nth-child(1),td:nth-child(1){width:21%}
+    th:nth-child(2),td:nth-child(2){width:1%}
+    th:nth-child(5),td:nth-child(5){width:24%}
+    td a.mini,td button.mini{font-size:.62rem;padding:4px 7px;margin-right:5px}
     .thumbs{display:none}
     .faces img,.faces .av{width:84px;height:84px}
   }
@@ -216,12 +260,23 @@ function imgFail(img, initials){
 <div class="topbar">
   <div class="wrap">
     <h1 class="hd"><span class="r">BAWA</span> Fight Radar</h1>
-    <div class="range">Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)</div>
+    <div class="range" id="rangeText">Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)</div>
   </div>
 </div>
 <div class="redline"></div>
 
+<div class="tabs">
+  <div class="wrap">
+    <button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button>
+    <button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button>
+    <button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button>
+  </div>
+</div>
+
 <div class="wrap">
+
+<!-- ================= TAB 1 · FIGHTS ================= -->
+<div class="pane on" id="pane-fights">
 
   <h2>This Weekend</h2>
   <div class="hero">
@@ -359,7 +414,243 @@ function imgFail(img, initials){
   <footer>
     All times Sydney (AEST, UTC+10). Broadcast details for later weeks may firm up closer to the date. Fighter photos load from ufc.com / promoter sites and need an internet connection. On the horizon: <b>Fury vs Joshua</b> is signed for November on Netflix.
   </footer>
-</div>
+</div><!-- /pane-fights -->
+
+<!-- ================= TAB 2 · OTHER ACTION ================= -->
+<div class="pane" id="pane-other">
+
+  <h2>Next Up</h2>
+  <div class="hero">
+
+    <!-- MONSTER JAM HERO -->
+    <div class="card">
+      <div class="sport">Monster Trucks &nbsp;<span class="badge ppv">Next in Sydney</span> <span class="badge soon"><span class="cd" data-until="2026-10-10"></span></span></div>
+      <div class="crest">
+        <div class="big">Monster <em>Jam</em></div>
+        <div class="lil">Stadium World Tour · Accor Stadium</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Monster Jam — Sydney
+          <small>Grave Digger · Son-uva Digger · Sparkle Smash · Earth Shaker · Monster Mutt Dalmatian · ThunderROARus — 10 trucks</small>
+        </div>
+        <div class="when">Sat 10 Oct · <span class="t">Show 6:00pm</span></div>
+        <div class="meta">Gates 4:30pm · Accor Stadium, Sydney Olympic Park · one show only</div>
+        <ul class="mc">
+          <li><b>Tickets from $34</b> — on sale now through Ticketmaster. It's a single Saturday night, so it's worth booking well ahead.</li>
+          <li><b>Pit Party</b> — walk the floor, meet the drivers, get autographs before the show. Needs a separate Pit Party pass <i>on top of</i> a same-day event ticket; everyone aged 2+ needs both.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.ticketmaster.com.au/event/250064B4EB7976F1">Tickets · from $34</a>
+          <button class="btn ghost" onclick="openCard('monsterjam')">Full Details</button>
+          <button class="btn ghost" onclick="addCal('monsterjam')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BATHURST HERO -->
+    <div class="card">
+      <div class="sport">Supercars &nbsp;<span class="badge fn">The Great Race</span> <span class="badge aus">NSW</span></div>
+      <div class="crest dark">
+        <div class="big">Bathurst <em>1000</em></div>
+        <div class="lil">Mount Panorama · 8–11 October</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Repco Bathurst 1000
+          <small>Four days at Mount Panorama — about 3 hours' drive west of Sydney</small>
+        </div>
+        <div class="when">Thu 8 – Sun 11 Oct · <span class="t">Race day Sunday</span></div>
+        <div class="meta">Mount Panorama Circuit, Bathurst · camping, grandstand and hill options</div>
+        <ul class="mc">
+          <li>Single-day and four-day passes sell direct through Supercars. Ticket + accommodation packages start around <b>$467pp</b> and are the easy option — Bathurst beds go early.</li>
+          <li>Lands the same weekend as Monster Jam (Sat 10 Oct), so it's one or the other unless you're driving back Sunday morning.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.supercars.com/events/2026-bathurst-1000">Tickets · Supercars</a>
+          <button class="btn ghost" onclick="openCard('bathurst')">Full Details</button>
+          <button class="btn ghost" onclick="addCal('bathurst')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Lookahead — Sydney &amp; NSW</h2>
+  <table>
+    <thead>
+      <tr><th>Date</th><th></th><th>Event</th><th>Venue</th><th>Tickets</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="d">Sat 29 – Sun 30 Aug<small>this month</small></td>
+        <td><span class="sporttag m">Motor</span></td>
+        <td><span class="ev">Muscle Car Masters</span> <span class="badge fn">2 Days</span><br><span class="sub">Australia's muscle-car history on track — Group C/A, Torana, Falcon GT, plus paddock access</span></td>
+        <td>Sydney Motorsport Park, Eastern Creek</td>
+        <td><a class="mini buy" href="https://www.sydneymotorsportpark.com.au/pages/calendar">Tickets · SMP</a><button class="mini" onclick="openCard('musclecar')">Details</button><button class="mini" onclick="addCal('musclecar')">+ Cal</button></td>
+      </tr>
+      <tr>
+        <td class="d">Sat 26 – Sun 27 Sep<small>weekend</small></td>
+        <td><span class="sporttag m">Drags</span></td>
+        <td><span class="ev">Naughty Corner Motorsports</span> <span class="badge fn">Drag Racing</span><br><span class="sub">Street and sport-compact drag racing — the cheapest loud-motorsport night going</span></td>
+        <td>Sydney Dragway, Eastern Creek</td>
+        <td><a class="mini buy" href="https://sydneydragway.oztix.com.au/">Tickets · Oztix</a><button class="mini" onclick="openCard('dragway')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sat 10 Oct<small>show 6:00pm</small></td>
+        <td><span class="sporttag m">Trucks</span></td>
+        <td><span class="ev">Monster Jam · Stadium World Tour</span> <span class="badge ppv">The One You Keep Missing</span><br><span class="sub">10 trucks incl. Grave Digger · gates 4:30pm · Pit Party pass sold separately · <b>from $34</b></span></td>
+        <td>Accor Stadium, Sydney Olympic Park</td>
+        <td><a class="mini buy" href="https://www.ticketmaster.com.au/event/250064B4EB7976F1">Buy <span class="price">from $34</span></a><button class="mini" onclick="openCard('monsterjam')">Details</button><button class="mini" onclick="addCal('monsterjam')">+ Cal</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Thu 8 – Sun 11 Oct<small>race day Sun</small></td>
+        <td><span class="sporttag m">Motor</span></td>
+        <td><span class="ev">Repco Bathurst 1000</span> <span class="badge fn">4-Day Event</span><br><span class="sub">Mount Panorama · ~3hr drive · packages from $467pp incl. accommodation</span></td>
+        <td>Bathurst, NSW</td>
+        <td><a class="mini buy" href="https://www.supercars.com/events/2026-bathurst-1000">Tickets</a><a class="mini" href="https://events.com.au/supercars/bathurst-1000-2026/">Packages</a><button class="mini" onclick="openCard('bathurst')">Details</button><button class="mini" onclick="addCal('bathurst')">+ Cal</button></td>
+      </tr>
+      <tr>
+        <td class="d">Sat 17 Oct · Sat 14 Nov · Sat 12 Dec<small>race nights</small></td>
+        <td><span class="sporttag m">Drags</span></td>
+        <td><span class="ev">Sydney Dragway Race Nights</span> <span class="badge tbc">Program TBC</span><br><span class="sub">Dates confirmed on the Dragway calendar; event line-ups announced closer to each night</span></td>
+        <td>Sydney Dragway, Eastern Creek</td>
+        <td><a class="mini buy" href="https://sydneydragway.oztix.com.au/">Tickets · Oztix</a><button class="mini" onclick="openCard('dragway')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sat 28 Nov<small>evening</small></td>
+        <td><span class="sporttag m">SX</span></td>
+        <td><span class="ev">AUSX Supercross Grand Final</span> <span class="badge ppv">Title Decider</span><br><span class="sub">Champions crowned · FMX stunts, pyro, Monster Energy Fan Fest · kids under 3 free</span></td>
+        <td>McDonald Jones Stadium, Newcastle</td>
+        <td><a class="mini buy" href="https://ausxsupercross.com.au/events/newcastle/event-information/">Tickets</a><button class="mini" onclick="openCard('supercross')">Details</button><button class="mini" onclick="addCal('supercross')">+ Cal</button></td>
+      </tr>
+      <tr>
+        <td class="d">Autumn 2027<small>dates TBC</small></td>
+        <td><span class="sporttag m">Trucks</span></td>
+        <td><span class="ev">Monster Truck Mania Live</span> <span class="badge tbc">Not Yet On Sale</span><br><span class="sub">The indoor one — monster trucks, FMX, jet car, VIP pit party. Sydney run was 25–26 Apr 2026; returns 2027</span></td>
+        <td>Qudos Bank Arena, Olympic Park</td>
+        <td><a class="mini" href="https://monstertruckmanialive.com.au/">Register for Dates</a><button class="mini" onclick="openCard('mania')">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <b>Short answer on monster trucks:</b> the next one in Sydney is <b>Monster Jam at Accor Stadium, Saturday 10 October 2026</b> — on sale now from $34. The indoor show, Monster Truck Mania Live at Qudos, already ran on 25–26 April 2026 and isn't back until 2027, so Monster Jam is the one to book. All times Sydney (AEST). Prices shown are the advertised "from" price and rise by seating category; anything marked TBC hasn't been published yet and is deliberately not guessed.
+  </footer>
+</div><!-- /pane-other -->
+
+<!-- ================= TAB 3 · PANTHERS ================= -->
+<div class="pane" id="pane-panthers">
+
+  <h2>Next Game</h2>
+  <div class="hero">
+
+    <!-- NEXT GAME HERO -->
+    <div class="card">
+      <div class="sport">NRL Round 24 &nbsp;<span class="badge home">Home</span> <span class="badge soon"><span class="cd" data-until="2026-08-13"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Panthers <em>v</em> Roosters</div>
+        <div class="lil">CommBank Stadium · Indigenous Round</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Top of the Table
+          <small>1st v 2nd — Penrith and the Roosters are level on <b>36 competition points</b> with four rounds to go</small>
+        </div>
+        <div class="when">Thu 13 Aug · <span class="t">Kick-off 7:50pm AEST</span></div>
+        <div class="meta">CommBank Stadium, Parramatta · gates usually open two hours before kick-off</div>
+        <ul class="mc">
+          <li>Biggest home game of the run home — the winner takes the outright competition lead and the inside run to a top-two finish.</li>
+          <li><b>Getting there:</b> every pre-purchased ticket includes free travel on Sydney trains, buses, light rail and ferries on match day. Parramatta station is about a 10-minute walk from the ground.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Tickets · Ticketmaster</a>
+          <button class="btn ghost" onclick="openCard('panR24')">Match Details</button>
+          <button class="btn ghost" onclick="addCal('panR24')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEASON HERO -->
+    <div class="card">
+      <div class="sport">Season Run Home &nbsp;<span class="badge live">1st on the Ladder</span></div>
+      <div class="crest">
+        <div class="big">4 Rounds <em>Left</em></div>
+        <div class="lil">Then finals · Grand Final Sun 4 Oct</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Where They Sit
+          <small>1st, 36 points — level with the Roosters. Regular season ends Sun 6 Sep, finals run through September.</small>
+        </div>
+        <div class="when">Home games left · <span class="t">Two, both at CommBank</span></div>
+        <div class="meta">R26 v Bulldogs (Fri 28 Aug) and R27 v Wests Tigers (Sun 6 Sep) — the two easiest ones to actually get to</div>
+        <ul class="mc">
+          <li><b>Sun 6 Sep, 4:05pm</b> v Wests Tigers is the pick for a family afternoon — Sunday daylight kick-off, home ground, last round of the year.</li>
+          <li><b>Finals:</b> four weeks from mid-September, <b>Grand Final Sun 4 Oct at Accor Stadium</b>. Finals venues, dates and times are only set once the ladder locks in after Round 27.</li>
+          <li>A general-admission membership covers every CommBank home game for <b>$225 adult</b> — worth a look for next season rather than buying game by game.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">All Panthers Tickets</a>
+          <button class="btn ghost" onclick="openCard('panFinals')">Finals Explained</button>
+          <button class="btn ghost" onclick="addCal('panGF')">+ GF Calendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Fixtures — Rest of Season</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Match</th><th>Venue</th><th>Tickets</th></tr>
+    </thead>
+    <tbody>
+      <tr class="big">
+        <td class="d">Thu 13 Aug<small>7:50pm</small></td>
+        <td><span class="sporttag n">R24</span></td>
+        <td><span class="ev">Panthers v Sydney Roosters</span> <span class="badge home">Home</span> <span class="badge ppv">1st v 2nd</span><br><span class="sub">Indigenous Round · both sides on 36 points · winner leads the competition outright</span></td>
+        <td>CommBank Stadium, Parramatta</td>
+        <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('panR24')">Details</button><button class="mini" onclick="addCal('panR24')">+ Cal</button></td>
+      </tr>
+      <tr>
+        <td class="d">Thu 20 Aug<small>time TBC</small></td>
+        <td><span class="sporttag n">R25</span></td>
+        <td><span class="ev">Melbourne Storm v Panthers</span> <span class="badge away">Away</span><br><span class="sub">Interstate — one for the telly. Kick-off time not confirmed yet (Thursday-night slot)</span></td>
+        <td>AAMI Park, Melbourne</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('panR25')">Details</button><button class="mini" onclick="addCal('panR25')">+ Cal</button><br><span class="sub"><span class="badge tbc">Kick-off TBC</span></span></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Fri 28 Aug<small>8:00pm</small></td>
+        <td><span class="sporttag n">R26</span></td>
+        <td><span class="ev">Panthers v Canterbury Bulldogs</span> <span class="badge home">Home</span> <span class="badge fn">Friday Night</span><br><span class="sub">Second-last round · late finish, so a school-night call for the young fella</span></td>
+        <td>CommBank Stadium, Parramatta</td>
+        <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('panR26')">Details</button><button class="mini" onclick="addCal('panR26')">+ Cal</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sun 6 Sep<small>4:05pm ☀️</small></td>
+        <td><span class="sporttag n">R27</span></td>
+        <td><span class="ev">Panthers v Wests Tigers</span> <span class="badge home">Home</span> <span class="badge aus">Best For Kids</span><br><span class="sub">Final round · Sunday afternoon daylight kick-off, home at a reasonable hour — the one to go to</span></td>
+        <td>CommBank Stadium, Parramatta</td>
+        <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('panR27')">Details</button><button class="mini" onclick="addCal('panR27')">+ Cal</button></td>
+      </tr>
+      <tr>
+        <td class="d">Mid-Sep<small>4-week series</small></td>
+        <td><span class="sporttag f">Finals</span></td>
+        <td><span class="ev">NRL Finals Series</span> <span class="badge tbc">Draw Set After Round 27</span><br><span class="sub">Top 4 get a qualifying final and a second life; 5th–8th are sudden death. Venues, dates and prices confirmed the week the ladder locks</span></td>
+        <td>TBC — Sydney venues likely</td>
+        <td><a class="mini buy" href="https://www.nrl.com/draw/">NRL Draw</a><button class="mini" onclick="openCard('panFinals')">How It Works</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Sun 4 Oct<small>grand final</small></td>
+        <td><span class="sporttag f">GF</span></td>
+        <td><span class="ev">NRL Grand Final</span> <span class="badge ppv">Accor Stadium</span><br><span class="sub">The last Sunday of the season. Public ticket ballot and general sale open once the two finalists are known</span></td>
+        <td>Accor Stadium, Sydney Olympic Park</td>
+        <td><a class="mini buy" href="https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals">Grand Final Info</a><button class="mini" onclick="addCal('panGF')">+ Cal</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    All times Sydney (AEST). Penrith are playing 2026 home games at <b>CommBank Stadium, Parramatta</b> while Penrith Stadium is redeveloped, and all home-game tickets are sold exclusively through <b>Ticketmaster</b> — pre-purchased tickets include free public transport to the ground on match day. Single-game prices vary by seating category and by how big the fixture is, so the live price sits on the Ticketmaster page rather than being guessed here. Finals kick-off times are confirmed only after Round 27.
+  </footer>
+</div><!-- /pane-panthers -->
+
+</div><!-- /wrap -->
 
 <!-- RIGHT PANEL -->
 <div id="overlay" onclick="closeDrawer()"></div>
@@ -531,6 +822,263 @@ const CARDS = {
       ]}
     ],
     note:"Full undercard to be announced closer to the date."
+  },
+
+  /* ===== OTHER ACTION ===== */
+  monsterjam: {
+    emoji:"🚚",
+    cal:{s:"2026-10-10T07:00:00Z",e:"2026-10-10T10:00:00Z",loc:"Accor Stadium, Sydney Olympic Park"},
+    title:"Monster Jam — Sydney",
+    when:"Sat 10 Oct · Gates 4:30pm · Show 6:00pm · Accor Stadium",
+    link:"https://www.ticketmaster.com.au/event/250064B4EB7976F1",
+    linkLabel:"Buy Tickets · Ticketmaster ↗",
+    secs:[
+      {h:"The Trucks — 10 on the floor",b:[
+        ["Grave Digger","The famous one — black and green, most-recognised truck in the sport",1],
+        ["Son-uva Digger","Grave Digger's stablemate"],
+        ["Sparkle Smash","Crowd favourite"],
+        ["Earth Shaker",""],
+        ["Monster Mutt Dalmatian","The kids' pick"],
+        ["ThunderROARus","Dinosaur truck"]
+      ]},
+      {h:"Running Order",b:[
+        ["4:30pm — Gates open","Get in early if you have Pit Party passes"],
+        ["6:00pm — Show starts","Racing, two-wheel skills, donuts, then freestyle"],
+        ["Freestyle finale","The one everyone comes for — fans vote the winner"]
+      ]},
+      {h:"Tickets",b:[
+        ["From $34","Cheapest general seating — price climbs by category",1],
+        ["Pit Party pass — sold separately","Must be bought WITH a same-day event ticket. Everyone 2 and over needs both.",1],
+        ["Sold through Ticketmaster AU","On sale now"]
+      ]}
+    ],
+    note:"One show only — Sydney gets a single Saturday night on this tour, so it isn't a case of catching it the following weekend."
+  },
+  bathurst: {
+    emoji:"🏁",
+    cal:{s:"2026-10-11T00:00:00Z",e:"2026-10-11T07:30:00Z",loc:"Mount Panorama Circuit, Bathurst NSW"},
+    title:"Repco Bathurst 1000",
+    when:"Thu 8 – Sun 11 Oct · Race day Sunday · Mount Panorama, Bathurst",
+    link:"https://www.supercars.com/events/2026-bathurst-1000",
+    linkLabel:"Supercars Event Page ↗",
+    secs:[
+      {h:"The Weekend",b:[
+        ["Thu 8 Oct — Practice","Track opens, support categories"],
+        ["Fri 9 Oct — Practice & support races",""],
+        ["Sat 10 Oct — Top Ten Shootout","One-lap qualifying dash, the best atmosphere of the weekend outside race day"],
+        ["Sun 11 Oct — The Great Race","1000km, roughly six hours",1]
+      ]},
+      {h:"Tickets",b:[
+        ["General admission","Walk the mountain — cheapest way in, and the way most people do it",1],
+        ["Grandstands","Reserved seating at pit straight and the Chase"],
+        ["Packages from ~$467pp","Ticket + accommodation through the official travel agents — Bathurst beds sell out months ahead",1]
+      ]}
+    ],
+    note:"Same weekend as Monster Jam in Sydney (Sat 10 Oct). Pick one, or drive back Sunday morning."
+  },
+  supercross: {
+    emoji:"🏍️",
+    cal:{s:"2026-11-28T08:00:00Z",e:"2026-11-28T11:30:00Z",loc:"McDonald Jones Stadium, Newcastle NSW"},
+    title:"AUSX Supercross Grand Final",
+    when:"Sat 28 Nov · Evening (exact time TBC) · McDonald Jones Stadium, Newcastle",
+    link:"https://ausxsupercross.com.au/events/newcastle/event-information/",
+    linkLabel:"Official Event Info ↗",
+    secs:[
+      {h:"What's On",b:[
+        ["Championship deciders","AUSX and Australian Supercross titles both settled on the night",1],
+        ["FMX freestyle","Big-air stunt riding between races"],
+        ["Monster Energy Fan Fest","Rider signings, activations, entertainment in the precinct"],
+        ["Full stadium production","Lights, pyro, the lot"]
+      ]},
+      {h:"Practical",b:[
+        ["About 2 hours from Sydney","Drive or the Newcastle train line"],
+        ["Kids under 3 free","With a paying adult"],
+        ["GA and premium seating","Premium adds early access and rider appearances"]
+      ]}
+    ],
+    note:"Start time hadn't been published when this was put together — check the event info page before booking travel."
+  },
+  musclecar: {
+    emoji:"🏎️",
+    cal:{s:"2026-08-29T00:00:00Z",e:"2026-08-29T07:00:00Z",loc:"Sydney Motorsport Park, Eastern Creek"},
+    title:"Muscle Car Masters",
+    when:"Sat 29 – Sun 30 Aug · Sydney Motorsport Park, Eastern Creek",
+    link:"https://www.sydneymotorsportpark.com.au/pages/calendar",
+    linkLabel:"Sydney Motorsport Park Calendar ↗",
+    secs:[
+      {h:"What It Is",b:[
+        ["Two days of Australian muscle cars","Group C and Group A touring cars, Toranas, Falcon GTs, Monaros",1],
+        ["Paddock access","Walk among the cars between sessions — good with kids"],
+        ["45 minutes from the city","Eastern Creek, off the M7 — easy parking"]
+      ]}
+    ],
+    note:"Session times and the final entry list go up on the Sydney Motorsport Park calendar closer to the weekend."
+  },
+  dragway: {
+    emoji:"🏁",
+    title:"Sydney Dragway",
+    when:"Race nights: Sat 26–Sun 27 Sep · Sat 17 Oct · Sat 14 Nov · Sat 12 Dec",
+    link:"https://sydneydragway.oztix.com.au/",
+    linkLabel:"Sydney Dragway Tickets · Oztix ↗",
+    secs:[
+      {h:"Confirmed Dates",b:[
+        ["Sat 26 – Sun 27 Sep","Naughty Corner Motorsports — street and sport-compact drag racing",1],
+        ["Sat 17 Oct","Program to be announced"],
+        ["Sat 14 Nov","Program to be announced"],
+        ["Sat 12 Dec","Program to be announced"]
+      ]},
+      {h:"Worth Knowing",b:[
+        ["Eastern Creek, next to Sydney Motorsport Park","Same precinct, 45 min from the city"],
+        ["Cheapest loud motorsport in Sydney","Usually well under $50 a head"],
+        ["Ear protection for kids","It is genuinely very loud"]
+      ]}
+    ],
+    note:"Line-ups for the October–December nights are published on Oztix as each event is locked in."
+  },
+  mania: {
+    emoji:"🚚",
+    title:"Monster Truck Mania Live",
+    when:"Sydney return expected 2027 — dates not yet announced",
+    link:"https://monstertruckmanialive.com.au/",
+    linkLabel:"Official Site — Register for Dates ↗",
+    secs:[
+      {h:"Why It's Here",b:[
+        ["This is the indoor monster truck show","Qudos Bank Arena, Sydney Olympic Park — the alternative to Monster Jam"],
+        ["Sydney run was 25–26 Apr 2026","Already gone for this year",1],
+        ["Returns to Sydney in 2027","Dates and on-sale not yet published"]
+      ]},
+      {h:"What The 2026 Show Cost",b:[
+        ["Adults from $67.30","2026 Sydney pricing, as a guide only"],
+        ["Juniors (3–14) from $45",""],
+        ["Family deals (2 adults + 2 juniors)","Under 3s free"],
+        ["Trucks: Wacky Doo, Wicked, Buddy, Raptor's Rampage, Blazed, Miss Mayhem","Plus FMX riders and a flame-throwing jet car"]
+      ]}
+    ],
+    note:"Register on the official site to get the 2027 on-sale email — this show sells its Sydney weekend out well before the date."
+  },
+
+  /* ===== PANTHERS ===== */
+  panR24: {
+    emoji:"🐾",
+    cal:{s:"2026-08-13T09:50:00Z",e:"2026-08-13T11:50:00Z",loc:"CommBank Stadium, Parramatta"},
+    title:"R24 · Panthers v Roosters",
+    when:"Thu 13 Aug · Kick-off 7:50pm AEST · CommBank Stadium, Parramatta",
+    link:"https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218",
+    linkLabel:"Buy Tickets · Ticketmaster ↗",
+    secs:[
+      {h:"The Match",b:[
+        ["Penrith Panthers v Sydney Roosters","Round 24 · Indigenous Round",1],
+        ["1st v 2nd","Both clubs on 36 competition points — the winner leads outright",1],
+        ["Home game","Penrith's 2026 home ground while Penrith Stadium is redeveloped"]
+      ]},
+      {h:"Going",b:[
+        ["Tickets through Ticketmaster only","Penrith sell all 2026 home games exclusively through Ticketmaster"],
+        ["Free public transport included","Pre-purchased tickets cover trains, buses, light rail and ferries on match day",1],
+        ["Parramatta station → 10 min walk",""],
+        ["Gates typically two hours before kick-off","Early in, if you want the merch queue done"]
+      ]}
+    ],
+    note:"Thursday-night kick-off at 7:50pm means a full-time whistle around 9:45pm — late for a school night."
+  },
+  panR25: {
+    emoji:"🐾",
+    cal:{s:"2026-08-20T09:50:00Z",e:"2026-08-20T11:50:00Z",loc:"AAMI Park, Melbourne — or watch at home"},
+    title:"R25 · Storm v Panthers",
+    when:"Thu 20 Aug · Kick-off time TBC · AAMI Park, Melbourne",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    linkLabel:"NRL Tickets · Ticketek ↗",
+    secs:[
+      {h:"The Match",b:[
+        ["Melbourne Storm v Penrith Panthers","Round 25 · away game",1],
+        ["AAMI Park, Melbourne","Interstate — realistically a TV game"]
+      ]},
+      {h:"Heads Up",b:[
+        ["Kick-off time not confirmed","Listed as Thursday 20 August; the exact time hadn't been published. The calendar entry uses the standard 7:50pm Thursday slot as a placeholder.",1],
+        ["Melbourne home games sell through Ticketek","Not Ticketmaster — different platform to the Penrith home games"]
+      ]}
+    ],
+    note:"Check the time on nrl.com before setting anything in stone."
+  },
+  panR26: {
+    emoji:"🐾",
+    cal:{s:"2026-08-28T10:00:00Z",e:"2026-08-28T12:00:00Z",loc:"CommBank Stadium, Parramatta"},
+    title:"R26 · Panthers v Bulldogs",
+    when:"Fri 28 Aug · Kick-off 8:00pm AEST · CommBank Stadium, Parramatta",
+    link:"https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218",
+    linkLabel:"Buy Tickets · Ticketmaster ↗",
+    secs:[
+      {h:"The Match",b:[
+        ["Penrith Panthers v Canterbury-Bankstown Bulldogs","Round 26 · home game",1],
+        ["Second-last round","Ladder positions and top-four seeding on the line"]
+      ]},
+      {h:"Going",b:[
+        ["Friday night, 8:00pm kick-off","Full time around 9:55pm — the latest finish of the remaining home games"],
+        ["Tickets via Ticketmaster","Transport to the ground included in the ticket"],
+        ["Big away crowd expected","Canterbury travel well; book earlier than you would for a quiet round"]
+      ]}
+    ]
+  },
+  panR27: {
+    emoji:"🐾",
+    cal:{s:"2026-09-06T06:05:00Z",e:"2026-09-06T08:05:00Z",loc:"CommBank Stadium, Parramatta"},
+    title:"R27 · Panthers v Wests Tigers",
+    when:"Sun 6 Sep · Kick-off 4:05pm AEST · CommBank Stadium, Parramatta",
+    link:"https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218",
+    linkLabel:"Buy Tickets · Ticketmaster ↗",
+    secs:[
+      {h:"The Match",b:[
+        ["Penrith Panthers v Wests Tigers","Round 27 · final round of the regular season",1],
+        ["Last home game before finals","Last guaranteed chance to see them live this year",1]
+      ]},
+      {h:"Why This Is The One",b:[
+        ["Sunday 4:05pm kick-off","Finished around 6pm — daylight, and home at a sensible hour",1],
+        ["Home ground, easy transport","Ticket includes trains and buses on match day"],
+        ["Usually the softest ticket of the run home","Final-round fixtures against lower-ladder sides are the easiest to get seats together for"]
+      ]}
+    ],
+    note:"If you're only going to one game with the young fella, this is the pick."
+  },
+  panFinals: {
+    emoji:"🏆",
+    title:"NRL Finals — How It Works",
+    when:"Four weeks from mid-September · Grand Final Sun 4 Oct, Accor Stadium",
+    link:"https://www.nrl.com/draw/",
+    linkLabel:"NRL Draw & Finals ↗",
+    secs:[
+      {h:"The Format",b:[
+        ["Week 1 — Qualifying Finals","1st v 4th and 2nd v 3rd. Winners go straight to a Preliminary Final; losers get a second life.",1],
+        ["Week 1 — Elimination Finals","5th v 8th and 6th v 7th. Lose and you're out."],
+        ["Week 2 — Semi Finals","Qualifying losers v Elimination winners. Sudden death."],
+        ["Week 3 — Preliminary Finals","Winners go to the Grand Final."],
+        ["Week 4 — Grand Final","Sun 4 Oct, Accor Stadium",1]
+      ]},
+      {h:"What It Means For Penrith",b:[
+        ["Sitting 1st with four rounds left","A top-four finish means a qualifying final and a second chance if they lose it",1],
+        ["Dates, venues and times aren't set until after Round 27","The NRL confirms the finals draw the week the ladder locks in"],
+        ["Tickets go on sale within days of each draw","Fast turnaround — worth watching nrl.com the Monday after Round 27"]
+      ]}
+    ],
+    note:"Nothing about the finals is bookable yet. This tab will need a refresh after Sunday 6 September."
+  },
+  panGF: {
+    emoji:"🏆",
+    cal:{s:"2026-10-04T08:30:00Z",e:"2026-10-04T10:30:00Z",loc:"Accor Stadium, Sydney Olympic Park"},
+    title:"NRL Grand Final 2026",
+    when:"Sun 4 Oct · Accor Stadium, Sydney Olympic Park · kick-off TBC",
+    link:"https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals",
+    linkLabel:"Accor Stadium — Grand Final ↗",
+    secs:[
+      {h:"The Day",b:[
+        ["NRL and NRLW Grand Finals","Both played at Accor Stadium on the same day",1],
+        ["Kick-off time not yet confirmed","Traditionally early evening — the calendar entry uses 7:30pm as a placeholder"]
+      ]},
+      {h:"Tickets",b:[
+        ["Members' ballots first","Club members of the qualifying teams get first access"],
+        ["General public sale after the Preliminary Finals","Only once the two finalists are known, so late September"],
+        ["Accor Stadium is on the Olympic Park line","Same station as Monster Jam three weeks later"]
+      ]}
+    ],
+    note:"Placeholder entry — dates confirmed, kick-off and pricing are not."
   }
 };
 
@@ -541,7 +1089,10 @@ function openCard(id){
   curCardId = id;
   document.getElementById('drTitle').textContent = c.title;
   document.getElementById('drWhen').textContent = c.when;
-  document.getElementById('drOpen').href = c.link;
+  const open = document.getElementById('drOpen');
+  open.href = c.link;
+  open.textContent = c.linkLabel || 'Official Website Card ↗';
+  document.getElementById('drCal').style.display = c.cal ? 'block' : 'none';
   const body = document.getElementById('drBody');
   body.innerHTML = '';
   c.secs.forEach(s=>{
@@ -569,7 +1120,7 @@ function addCal(id){
   if(!c || !c.cal) return;
   const body = c.title + "\n" + c.when + "\nWatch: " + c.cal.loc + "\nFull card: " + c.link + "\n(times auto-convert to your timezone)";
   const u = "https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent"
-    + "&subject=" + encodeURIComponent("🥊 " + c.title)
+    + "&subject=" + encodeURIComponent((c.emoji || "🥊") + " " + c.title)
     + "&startdt=" + encodeURIComponent(c.cal.s)
     + "&enddt="   + encodeURIComponent(c.cal.e)
     + "&location="+ encodeURIComponent(c.cal.loc)
@@ -581,6 +1132,37 @@ function closeDrawer(){
   document.body.classList.remove('drawer-open');
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+
+/* ===== TABS ===== */
+const RANGES = {
+  fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
+  other:    "Monster trucks & motorsport · Sydney & NSW",
+  panthers: "Round 24 → Grand Final Sun 4 Oct 2026"
+};
+function showTab(id){
+  if(!RANGES[id]) id = 'fights';
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+  document.getElementById('rangeText').textContent = RANGES[id];
+  closeDrawer();
+  if(location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
+}
+
+/* "58 days away" / "Tomorrow" next to the events you keep missing */
+function fillCountdowns(){
+  const now = new Date();
+  document.querySelectorAll('.cd').forEach(el=>{
+    const target = new Date(el.dataset.until + 'T00:00:00+10:00');
+    const days = Math.ceil((target - now) / 86400000);
+    el.textContent = days > 1 ? days + ' days away'
+                   : days === 1 ? 'Tomorrow'
+                   : days === 0 ? 'Today'
+                   : 'Been and gone';
+  });
+}
+
+fillCountdowns();
+showTab(location.hash.slice(1) || 'fights');
 </script>
 </body>
 </html>
