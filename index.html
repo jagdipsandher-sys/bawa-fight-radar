@@ -308,7 +308,7 @@ function imgFail(img, initials){
         </div>
         <div class="when">Sun 30 Aug · <span class="t">From 7am AEST</span></div>
         <div class="meta">O2 Arena, London · AU broadcaster not confirmed</div>
-        <ul class="mc"><li>Sam Noakes vs Denys Berinchyk (Lightweight)</li><li>Constantin Ursu vs Ben Vaughan (British & Commonwealth WW Title)</li></ul>
+        <ul class="mc"><li>Sam Noakes vs Denys Berinchyk (Lightweight)</li><li>Constantin Ursu vs Ben Vaughan (British &amp; Commonwealth WW Title)</li></ul>
         <div class="btns">
           <span class="badge tbc">AU Broadcaster TBC</span>
           <button class="btn ghost" onclick="openCard('itaumavshrgovicibfheav0829')">Full Card</button>
@@ -865,6 +865,48 @@ const NRL_CARDS = {
     link:"https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218",
     secs:[{h:"The Match",b:[["Panthers v Wests Tigers", "Round 27 \u00b7 home game", 1],["Venue", "CommBank Stadium"],["Tickets", "Ticketmaster \u2014 Penrith sell all home games there"],["Getting there", "Ticket includes trains, buses, light rail and ferries on match day"]]}],
     note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  panFinals: {
+    emoji:"🏆",
+    title:"NRL Finals — How It Works",
+    when:"Four weeks from mid-September · Grand Final Sun 4 Oct, Accor Stadium",
+    link:"https://www.nrl.com/draw/",
+    linkLabel:"NRL Draw & Finals ↗",
+    secs:[
+      {h:"The Format",b:[
+        ["Week 1 — Qualifying Finals","1st v 4th and 2nd v 3rd. Winners go straight to a Preliminary Final; losers get a second life.",1],
+        ["Week 1 — Elimination Finals","5th v 8th and 6th v 7th. Lose and you're out."],
+        ["Week 2 — Semi Finals","Qualifying losers v Elimination winners. Sudden death."],
+        ["Week 3 — Preliminary Finals","Winners go to the Grand Final."],
+        ["Week 4 — Grand Final","Sun 4 Oct, Accor Stadium",1]
+      ]},
+      {h:"What It Means For Penrith",b:[
+        ["A top-four finish means a second chance","Lose a qualifying final and you still get another week",1],
+        ["Fixtures appear on this tab automatically","They are pulled from the NRL feed as soon as the draw is published"],
+        ["Tickets go on sale within days of each draw","Worth watching nrl.com the Monday after the last round"]
+      ]}
+    ],
+    note:"Nothing about the finals is bookable until the ladder locks in."
+  },
+  panGF: {
+    emoji:"🏆",
+    cal:{s:"2026-10-04T08:30:00Z",e:"2026-10-04T10:30:00Z",loc:"Accor Stadium, Sydney Olympic Park"},
+    title:"NRL Grand Final 2026",
+    when:"Sun 4 Oct · Accor Stadium, Sydney Olympic Park · kick-off TBC",
+    link:"https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals",
+    linkLabel:"Accor Stadium — Grand Final ↗",
+    secs:[
+      {h:"The Day",b:[
+        ["NRL and NRLW Grand Finals","Both played at Accor Stadium on the same day",1],
+        ["Kick-off time not yet confirmed","Traditionally early evening — the calendar entry uses 7:30pm as a placeholder"]
+      ]},
+      {h:"Tickets",b:[
+        ["Members' ballots first","Club members of the qualifying teams get first access"],
+        ["General sale after the Preliminary Finals","Only once the two finalists are known"],
+        ["Accor Stadium is on the Olympic Park line","Same station as Monster Jam"]
+      ]}
+    ],
+    note:"Placeholder entry — the date is confirmed, kick-off and pricing are not."
   }
 /*/BUILD:NRL-CARDS*/
 };
