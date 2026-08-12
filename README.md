@@ -49,15 +49,15 @@ Tabs are linkable: `index.html#other`, `index.html#panthers`.
 | --- | --- | --- |
 | Fights | ESPN MMA feed + `boxing.json` | `build_radar.py`, daily — rolling 4 weeks |
 | Panthers | ESPN NRL feed | `build_panthers.py`, daily — finals appear when published |
-| Other Action | Human web search | Scheduled Claude session, Mondays 6am Sydney |
+| Other Action | Human web search | Scheduled Claude session, Sun night 1am Sydney |
 
 The two builders rewrite only the blocks between the `BUILD:` markers in
 `index.html` and commit when the output changes (`.github/workflows/radar.yml`).
 **Never hand-edit inside those markers** — it gets overwritten next morning.
 
 Monster trucks and motorsport have no feed worth trusting, so Other Action is
-researched by a **weekly scheduled Claude session** (a Routine, Mondays 6am
-Sydney) that searches for newly announced Sydney dates, updates that tab and
+researched by a **weekly scheduled Claude session** (a Routine, 1am Monday
+Sydney — i.e. Sunday night, off-peak) that searches for newly announced Sydney dates, updates that tab and
 pushes. As a backstop, `check_stale.py` runs Mondays 8am
 (`.github/workflows/upkeep.yml`) and emails only if that tab drops below three
 events or its last one comes inside six weeks — so a silent failure still
