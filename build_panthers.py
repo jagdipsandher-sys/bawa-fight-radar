@@ -187,6 +187,29 @@ def card(g):
   }}"""
 
 
+def finals_tail(games):
+    """The finals draw is only published once the ladder locks, so the feed has
+    nothing there yet. Keep the known end-of-season markers visible until real
+    fixtures arrive to replace them."""
+    if any(g["round"] and g["round"] > LAST_REGULAR_ROUND for g in games):
+        return ""                                   # feed has the real finals now
+    return """
+      <tr data-sport="nrl" data-ends="2026-09-28T23:59:00+10:00">
+        <td class="d">Mid-Sep<small>4-week series</small></td>
+        <td><span class="sporttag f">Finals</span></td>
+        <td><span class="ev">NRL Finals Series</span> <span class="badge tbc">Draw Set After Round 27</span><br><span class="sub">Top 4 get a qualifying final and a second life; 5th–8th are sudden death. Fixtures appear here automatically once the NRL publishes them</span></td>
+        <td>TBC — Sydney venues likely</td>
+        <td><a class="mini buy" href="https://www.nrl.com/draw/">NRL Draw</a></td>
+      </tr>
+      <tr class="big" data-sport="nrl" data-ends="2026-10-04T23:00:00+11:00">
+        <td class="d">Sun 4 Oct<small>grand final</small></td>
+        <td><span class="sporttag f">GF</span></td>
+        <td><span class="ev">NRL Grand Final</span> <span class="badge ppv">Accor Stadium</span><br><span class="sub">The last Sunday of the season. Ballot and public sale open once the finalists are known</span></td>
+        <td>Accor Stadium, Sydney Olympic Park</td>
+        <td><a class="mini buy" href="https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals">Grand Final Info</a></td>
+      </tr>"""
+
+
 def splice(page, marker, block):
     pat = re.compile(rf"(<!--BUILD:{marker}-->|/\*BUILD:{marker}\*/).*?(<!--/BUILD:{marker}-->|/\*/BUILD:{marker}\*/)", re.S)
     if not pat.search(page):
@@ -207,7 +230,7 @@ def main():
     page = open(PAGE).read()
     before = page
     page = splice(page, "NRL-HERO", hero(games[0]))
-    page = splice(page, "NRL-ROWS", "\n".join(row(g) for g in games))
+    page = splice(page, "NRL-ROWS", "\n".join(row(g) for g in games) + finals_tail(games))
     page = splice(page, "NRL-CARDS", ",\n".join(card(g) for g in games))
 
     if page == before:
