@@ -111,6 +111,22 @@ def is_ppv(ev):
     return "ppv" in (ev.get("watch") or "").lower() or "main event" in (ev.get("watch") or "").lower()
 
 
+def order_fights(ev):
+    """Make sure the real headliner is first.
+
+    Reversing ESPN's running order usually does it, but the event name is the
+    reliable signal — "UFC 330: Makhachev vs Machado Garry" names its own main
+    event — so promote the bout whose surnames both appear in the title.
+    """
+    title = ev["name"].lower()
+    for i, bout in enumerate(ev["fights"]):
+        parts = re.split(r"\s+vs\.?\s+", bout)
+        if len(parts) == 2 and all(p.strip().split()[-1].lower() in title for p in parts if p.strip()):
+            ev["fights"].insert(0, ev["fights"].pop(i))
+            break
+    return ev
+
+
 def fighters(ev):
     """Names in the headline bout, for photos and flags."""
     if not ev["fights"]:
@@ -240,13 +256,14 @@ def main():
     now = datetime.now(timezone.utc)
     end = now + timedelta(weeks=WEEKS_AHEAD)
 
-    events = fetch_ufc(now, end) + load_boxing(now, end)
+    events = fetch_ufc(now, end, limit=16) + load_boxing(now, end)
     events = [e for e in events if now <= e["when_utc"] <= end]
     events.sort(key=lambda e: e["when_utc"])
     for e in events:
         e.setdefault("watch", "")
         if e["sport"].startswith("UFC") and not e["watch"]:
             e["watch"] = au_watch(e["name"])
+        order_fights(e)
 
     if not events:
         sys.exit("no events in the next four weeks — refusing to blank the radar")

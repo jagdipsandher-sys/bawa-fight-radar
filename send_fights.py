@@ -38,7 +38,7 @@ def sydney(dt_utc: datetime) -> str:
     return d.strftime("%a %d %b · %I:%M%p AEST").replace(" 0", " ").replace("AM", "am").replace("PM", "pm")
 
 
-def fetch_ufc(start: datetime, end: datetime):
+def fetch_ufc(start: datetime, end: datetime, limit: int = 6):
     url = (
         "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates="
         f"{start:%Y%m%d}-{end:%Y%m%d}"
@@ -55,7 +55,9 @@ def fetch_ufc(start: datetime, end: datetime):
         except (KeyError, ValueError):
             continue
         fights = []
-        for comp in ev.get("competitions", [])[:6]:  # headline fights only
+        # ESPN lists a card in running order, so the MAIN EVENT IS LAST. Take
+        # it from the end, or the "headline" bouts are actually early prelims.
+        for comp in list(reversed(ev.get("competitions", [])))[:limit]:
             names = [c.get("athlete", {}).get("displayName", "") for c in comp.get("competitors", [])]
             names = [n for n in names if n]
             if len(names) == 2:
