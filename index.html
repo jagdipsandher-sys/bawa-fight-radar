@@ -668,8 +668,44 @@ function imgFail(img, initials){
   <h2>Next Match</h2>
   <div class="hero">
 <!--BUILD:UTD-HERO-->
-    <div class="card"><div class="sport">Loading</div><div class="inner"><div class="fight hd">Not built yet
-      <small>This tab fills itself from the live feed on the next rebuild.</small></div></div></div>
+    <div class="card" data-slot="utd" data-ends="2026-08-22T23:30:00+10:00">
+      <div class="sport">Next Match &nbsp;<span class="badge away">Away</span> <span class="badge home">Good Time</span> <span class="badge soon"><span class="cd" data-until="2026-08-22"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Man Utd <em>v</em> Hull City</div>
+        <div class="lil">Premier League · The MKM Stadium</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Hull City v Man Utd
+          <small>Saturday 9:30PM Sydney — a civilised one for once</small>
+        </div>
+        <div class="when">Sat 22 Aug · <span class="t">9:30PM Sydney</span></div>
+        <div class="meta">The MKM Stadium · Premier League · 9:30PM AEST</div>
+        <div class="btns">
+          <a class="btn red" href="https://www.stan.com.au/sport">Watch · Stan Sport</a>
+          <button class="btn ghost" onclick="openCard('utd08222130')">Match Details</button>
+          <button class="btn ghost" onclick="addCal('utd08222130')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-slot="utd" data-ends="2026-08-31T03:30:00+10:00">
+      <div class="sport">And Then &nbsp;<span class="badge home">Home</span> <span class="badge soon">Late Night</span> <span class="badge soon"><span class="cd" data-until="2026-08-31"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Man Utd <em>v</em> Ipswich Town</div>
+        <div class="lil">Premier League · Old Trafford</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Man Utd v Ipswich Town
+          <small>Kicks off 1:30AM Monday Sydney time — a proper late one</small>
+        </div>
+        <div class="when">Mon 31 Aug · <span class="t">1:30AM Sydney</span></div>
+        <div class="meta">Old Trafford · Premier League · 1:30AM AEST</div>
+        <div class="btns">
+          <a class="btn red" href="https://www.stan.com.au/sport">Watch · Stan Sport</a>
+          <button class="btn ghost" onclick="openCard('utd08310130')">Match Details</button>
+          <button class="btn ghost" onclick="addCal('utd08310130')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
 <!--/BUILD:UTD-HERO-->
   </div>
 
@@ -680,7 +716,97 @@ function imgFail(img, initials){
     </thead>
     <tbody>
 <!--BUILD:UTD-ROWS-->
-      <tr><td colspan="5" class="gone">Not built yet — this fills in on the next rebuild.</td></tr>
+      <tr class="big" data-sport="utd" data-ends="2026-08-22T23:30:00+10:00" data-card="utd08222130">
+        <td class="d">Sat 22 Aug<small>9:30PM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Hull City v Man Utd</span> <span class="badge away">Away</span> <span class="badge home">Good Time</span><br><span class="sub">Saturday 9:30PM Sydney — a civilised one for once · Premier League</span></td>
+        <td>The MKM Stadium</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd08222130')">Details</button><button class="mini" onclick="addCal('utd08222130')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-08-31T03:30:00+10:00" data-card="utd08310130">
+        <td class="d">Mon 31 Aug<small>1:30AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Man Utd v Ipswich Town</span> <span class="badge home">Home</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 1:30AM Monday Sydney time — a proper late one · Premier League</span></td>
+        <td>Old Trafford</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd08310130')">Details</button><button class="mini" onclick="addCal('utd08310130')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-09-07T01:00:00+10:00" data-card="utd09062300">
+        <td class="d">Sun 6 Sep<small>11:00PM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Everton v Man Utd</span> <span class="badge away">Away</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 11:00PM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Hill Dickinson Stadium</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd09062300')">Details</button><button class="mini" onclick="addCal('utd09062300')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-09-14T03:30:00+10:00" data-card="utd09140130">
+        <td class="d">Mon 14 Sep<small>1:30AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Man Utd v Manchester City</span> <span class="badge home">Home</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 1:30AM Monday Sydney time — a proper late one · Premier League</span></td>
+        <td>Old Trafford</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd09140130')">Details</button><button class="mini" onclick="addCal('utd09140130')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-09-21T03:30:00+10:00" data-card="utd09210130">
+        <td class="d">Mon 21 Sep<small>1:30AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Fulham v Man Utd</span> <span class="badge away">Away</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 1:30AM Monday Sydney time — a proper late one · Premier League</span></td>
+        <td>Craven Cottage</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd09210130')">Details</button><button class="mini" onclick="addCal('utd09210130')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-10-11T03:00:00+11:00" data-card="utd10110100">
+        <td class="d">Sun 11 Oct<small>1:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Man Utd v Tottenham Hotspur</span> <span class="badge home">Home</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 1:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Old Trafford</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd10110100')">Details</button><button class="mini" onclick="addCal('utd10110100')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-10-18T03:00:00+11:00" data-card="utd10180100">
+        <td class="d">Sun 18 Oct<small>1:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Leeds United v Man Utd</span> <span class="badge away">Away</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 1:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Elland Road</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd10180100')">Details</button><button class="mini" onclick="addCal('utd10180100')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-10-25T03:00:00+11:00" data-card="utd10250100">
+        <td class="d">Sun 25 Oct<small>1:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Man Utd v AFC Bournemouth</span> <span class="badge home">Home</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 1:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Old Trafford</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd10250100')">Details</button><button class="mini" onclick="addCal('utd10250100')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-11-01T04:00:00+11:00" data-card="utd11010200">
+        <td class="d">Sun 1 Nov<small>2:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Chelsea v Man Utd</span> <span class="badge away">Away</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 2:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Stamford Bridge</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd11010200')">Details</button><button class="mini" onclick="addCal('utd11010200')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-11-08T04:00:00+11:00" data-card="utd11080200">
+        <td class="d">Sun 8 Nov<small>2:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Man Utd v Aston Villa</span> <span class="badge home">Home</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 2:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Old Trafford</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd11080200')">Details</button><button class="mini" onclick="addCal('utd11080200')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-11-22T04:00:00+11:00" data-card="utd11220200">
+        <td class="d">Sun 22 Nov<small>2:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Liverpool v Man Utd</span> <span class="badge away">Away</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 2:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Anfield</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd11220200')">Details</button><button class="mini" onclick="addCal('utd11220200')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="utd" data-ends="2026-11-29T04:00:00+11:00" data-card="utd11290200">
+        <td class="d">Sun 29 Nov<small>2:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Man Utd v Brentford</span> <span class="badge home">Home</span> <span class="badge soon">Late Night</span><br><span class="sub">Kicks off 2:00AM Sunday Sydney time — a proper late one · Premier League</span></td>
+        <td>Old Trafford</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd11290200')">Details</button><button class="mini" onclick="addCal('utd11290200')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="utd" data-ends="2026-12-03T09:00:00+11:00" data-card="utd12030700">
+        <td class="d">Thu 3 Dec<small>7:00AM AEST</small></td>
+        <td><span class="sporttag b">PRE</span></td>
+        <td><span class="ev">Newcastle United v Man Utd</span> <span class="badge away">Away</span> <span class="badge home">Good Time</span><br><span class="sub">Thursday morning here — coffee and a replay-free watch · Premier League</span></td>
+        <td>St. James&#x27; Park</td>
+        <td><a class="mini buy" href="https://www.stan.com.au/sport">Watch · Stan Sport</a><button class="mini" onclick="openCard('utd12030700')">Details</button><button class="mini" onclick="addCal('utd12030700')">+ Cal</button></td>
+      </tr>
 <!--/BUILD:UTD-ROWS-->
     </tbody>
   </table>
@@ -694,8 +820,46 @@ function imgFail(img, initials){
   <h2>Next Race Weekend</h2>
   <div class="hero">
 <!--BUILD:F1-HERO-->
-    <div class="card"><div class="sport">Loading</div><div class="inner"><div class="fight hd">Not built yet
-      <small>This tab fills itself from the live feed on the next rebuild.</small></div></div></div>
+    <div class="card" data-slot="f1" data-ends="2026-08-24T02:00:00+10:00">
+      <div class="sport">Next Race Weekend &nbsp;<span class="badge fn">Round 14</span> <span class="badge ppv">Set An Alarm</span> <span class="badge soon"><span class="cd" data-until="2026-08-23"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Dutch <em>GP</em></div>
+        <div class="lil">Round 14 · Race Sun 23 Aug</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Dutch Grand Prix
+          <small>Middle of the night in Sydney — all times below are Sydney</small>
+        </div>
+        <div class="when">Race · <span class="t">Sun 23 Aug, 11:00PM AEST</span></div>
+        <div class="meta">Full weekend, converted from the circuit's local time</div>
+        <ul class="mc"><li><b>Practice 1</b> — Fri 21 Aug, 8:30PM</li><li><b>Practice 2</b> — Sat 22 Aug, 12:30AM</li><li><b>Practice 3</b> — Sat 22 Aug, 8:00PM</li><li><b>Qualifying</b> — Sun 23 Aug, 12:00AM</li><li><b>Race</b> — Sun 23 Aug, 11:00PM</li></ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.kayosports.com.au/">Watch · Kayo</a>
+          <button class="btn ghost" onclick="openCard('f1r14')">All Sessions</button>
+          <button class="btn ghost" onclick="addCal('f1r14')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" data-slot="f1" data-ends="2026-09-07T02:00:00+10:00">
+      <div class="sport">The Round After &nbsp;<span class="badge fn">Round 15</span> <span class="badge ppv">Set An Alarm</span> <span class="badge soon"><span class="cd" data-until="2026-09-06"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Italian <em>GP</em></div>
+        <div class="lil">Round 15 · Race Sun 6 Sep</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Italian Grand Prix
+          <small>Middle of the night in Sydney — all times below are Sydney</small>
+        </div>
+        <div class="when">Race · <span class="t">Sun 6 Sep, 11:00PM AEST</span></div>
+        <div class="meta">Full weekend, converted from the circuit's local time</div>
+        <ul class="mc"><li><b>Practice 1</b> — Fri 4 Sep, 8:30PM</li><li><b>Practice 2</b> — Sat 5 Sep, 12:00AM</li><li><b>Practice 3</b> — Sat 5 Sep, 8:30PM</li><li><b>Qualifying</b> — Sun 6 Sep, 12:00AM</li><li><b>Race</b> — Sun 6 Sep, 11:00PM</li></ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.kayosports.com.au/">Watch · Kayo</a>
+          <button class="btn ghost" onclick="openCard('f1r15')">All Sessions</button>
+          <button class="btn ghost" onclick="addCal('f1r15')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
 <!--/BUILD:F1-HERO-->
   </div>
 
@@ -706,7 +870,90 @@ function imgFail(img, initials){
     </thead>
     <tbody>
 <!--BUILD:F1-ROWS-->
-      <tr><td colspan="5" class="gone">Not built yet — this fills in on the next rebuild.</td></tr>
+      <tr data-sport="f1" data-ends="2026-08-24T02:00:00+10:00" data-card="f1r14">
+        <td class="d">Sun 23 Aug<small>race 11:00PM</small></td>
+        <td><span class="sporttag m">R14</span></td>
+        <td><span class="ev">Dutch Grand Prix</span> <span class="badge ppv">Set An Alarm</span><br><span class="sub">Middle of the night in Sydney · qualifying Sun 12:00AM</span></td>
+        <td>Round 14</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r14')">Sessions</button><button class="mini" onclick="addCal('f1r14')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-09-07T02:00:00+10:00" data-card="f1r15">
+        <td class="d">Sun 6 Sep<small>race 11:00PM</small></td>
+        <td><span class="sporttag m">R15</span></td>
+        <td><span class="ev">Italian Grand Prix</span> <span class="badge ppv">Set An Alarm</span><br><span class="sub">Middle of the night in Sydney · qualifying Sun 12:00AM</span></td>
+        <td>Round 15</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r15')">Sessions</button><button class="mini" onclick="addCal('f1r15')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-09-14T02:00:00+10:00" data-card="f1r16">
+        <td class="d">Sun 13 Sep<small>race 11:00PM</small></td>
+        <td><span class="sporttag m">R16</span></td>
+        <td><span class="ev">Spanish Grand Prix</span> <span class="badge ppv">Set An Alarm</span><br><span class="sub">Middle of the night in Sydney · qualifying Sun 12:00AM</span></td>
+        <td>Round 16</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r16')">Sessions</button><button class="mini" onclick="addCal('f1r16')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-09-27T00:00:00+10:00" data-card="f1r17">
+        <td class="d">Sat 26 Sep<small>race 9:00PM</small></td>
+        <td><span class="sporttag m">R17</span></td>
+        <td><span class="ev">Azerbaijan Grand Prix</span> <span class="badge soon">Early Start</span><br><span class="sub">Early hours here · qualifying Fri 10:00PM</span></td>
+        <td>Round 17</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r17')">Sessions</button><button class="mini" onclick="addCal('f1r17')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="f1" data-ends="2026-10-04T21:00:00+11:00" data-card="f1r18">
+        <td class="d">Sun 4 Oct<small>race 6:00PM</small></td>
+        <td><span class="sporttag m">R18</span></td>
+        <td><span class="ev">Gulf Air Bahrain Grand Prix in Malaysia</span> <span class="badge home">Good Time</span><br><span class="sub">Afternoon or evening in Sydney — easy watching · qualifying Sat 6:00PM</span></td>
+        <td>Round 18</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r18')">Sessions</button><button class="mini" onclick="addCal('f1r18')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-10-12T02:00:00+11:00" data-card="f1r19">
+        <td class="d">Sun 11 Oct<small>race 11:00PM</small></td>
+        <td><span class="sporttag m">R19</span></td>
+        <td><span class="ev">Singapore Grand Prix</span> <span class="badge ppv">Set An Alarm</span><br><span class="sub">Middle of the night in Sydney · qualifying Sun 12:00AM</span></td>
+        <td>Round 19</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r19')">Sessions</button><button class="mini" onclick="addCal('f1r19')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="f1" data-ends="2026-10-26T10:00:00+11:00" data-card="f1r20">
+        <td class="d">Mon 26 Oct<small>race 7:00AM</small></td>
+        <td><span class="sporttag m">R20</span></td>
+        <td><span class="ev">States Grand Prix</span> <span class="badge home">Good Time</span><br><span class="sub">Sunday morning here — the good ones · qualifying Sun 8:00AM</span></td>
+        <td>Round 20</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r20')">Sessions</button><button class="mini" onclick="addCal('f1r20')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="f1" data-ends="2026-11-02T10:00:00+11:00" data-card="f1r21">
+        <td class="d">Mon 2 Nov<small>race 7:00AM</small></td>
+        <td><span class="sporttag m">R21</span></td>
+        <td><span class="ev">City Grand Prix</span> <span class="badge home">Good Time</span><br><span class="sub">Sunday morning here — the good ones · qualifying Sun 8:00AM</span></td>
+        <td>Round 21</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r21')">Sessions</button><button class="mini" onclick="addCal('f1r21')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-11-09T07:00:00+11:00" data-card="f1r22">
+        <td class="d">Mon 9 Nov<small>race 4:00AM</small></td>
+        <td><span class="sporttag m">R22</span></td>
+        <td><span class="ev">Paulo Grand Prix</span> <span class="badge soon">Early Start</span><br><span class="sub">Early hours here · qualifying Sun 5:00AM</span></td>
+        <td>Round 22</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r22')">Sessions</button><button class="mini" onclick="addCal('f1r22')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="f1" data-ends="2026-11-22T18:00:00+11:00" data-card="f1r23">
+        <td class="d">Sun 22 Nov<small>race 3:00PM</small></td>
+        <td><span class="sporttag m">R23</span></td>
+        <td><span class="ev">Vegas Grand Prix</span> <span class="badge home">Good Time</span><br><span class="sub">Afternoon or evening in Sydney — easy watching · qualifying Sat 3:00PM</span></td>
+        <td>Round 23</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r23')">Sessions</button><button class="mini" onclick="addCal('f1r23')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-11-30T06:00:00+11:00" data-card="f1r24">
+        <td class="d">Mon 30 Nov<small>race 3:00AM</small></td>
+        <td><span class="sporttag m">R24</span></td>
+        <td><span class="ev">Qatar Grand Prix</span> <span class="badge ppv">Set An Alarm</span><br><span class="sub">Middle of the night in Sydney · qualifying Sun 5:00AM</span></td>
+        <td>Round 24</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r24')">Sessions</button><button class="mini" onclick="addCal('f1r24')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="f1" data-ends="2026-12-07T03:00:00+11:00" data-card="f1r25">
+        <td class="d">Mon 7 Dec<small>race 12:00AM</small></td>
+        <td><span class="sporttag m">R25</span></td>
+        <td><span class="ev">Dhabi Grand Prix</span> <span class="badge ppv">Set An Alarm</span><br><span class="sub">Middle of the night in Sydney · qualifying Sun 1:00AM</span></td>
+        <td>Round 25</td>
+        <td><a class="mini buy" href="https://www.kayosports.com.au/">Watch · Kayo</a><button class="mini" onclick="openCard('f1r25')">Sessions</button><button class="mini" onclick="addCal('f1r25')">+ Cal</button></td>
+      </tr>
 <!--/BUILD:F1-ROWS-->
     </tbody>
   </table>
@@ -1014,11 +1261,261 @@ const NRL_CARDS = {
 
 const UTD_CARDS = {
 /*BUILD:UTD-CARDS*/
+  utd08222130: {
+    emoji:"⚽",
+    cal:{s:"2026-08-22T11:30:00Z",e:"2026-08-22T13:30:00Z",loc:"The MKM Stadium"},
+    title:"Hull City v Man Utd",
+    when:"Sat 22 Aug \u00b7 9:30PM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Hull City v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Saturday 22 August, 9:30PM Sydney time"],["Local kick-off", "11:30AM UK"],["Ground", "The MKM Stadium"],["The verdict", "Saturday 9:30PM Sydney \u2014 a civilised one for once"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd08310130: {
+    emoji:"⚽",
+    cal:{s:"2026-08-30T15:30:00Z",e:"2026-08-30T17:30:00Z",loc:"Old Trafford"},
+    title:"Man Utd v Ipswich Town",
+    when:"Mon 31 Aug \u00b7 1:30AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Man Utd v Ipswich Town", "Premier League \u00b7 home", 1],["Kick-off", "Monday 31 August, 1:30AM Sydney time"],["Local kick-off", "3:30PM UK"],["Ground", "Old Trafford"],["The verdict", "Kicks off 1:30AM Monday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd09062300: {
+    emoji:"⚽",
+    cal:{s:"2026-09-06T13:00:00Z",e:"2026-09-06T15:00:00Z",loc:"Hill Dickinson Stadium"},
+    title:"Everton v Man Utd",
+    when:"Sun 6 Sep \u00b7 11:00PM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Everton v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Sunday 6 September, 11:00PM Sydney time"],["Local kick-off", "1:00PM UK"],["Ground", "Hill Dickinson Stadium"],["The verdict", "Kicks off 11:00PM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd09140130: {
+    emoji:"⚽",
+    cal:{s:"2026-09-13T15:30:00Z",e:"2026-09-13T17:30:00Z",loc:"Old Trafford"},
+    title:"Man Utd v Manchester City",
+    when:"Mon 14 Sep \u00b7 1:30AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Man Utd v Manchester City", "Premier League \u00b7 home", 1],["Kick-off", "Monday 14 September, 1:30AM Sydney time"],["Local kick-off", "3:30PM UK"],["Ground", "Old Trafford"],["The verdict", "Kicks off 1:30AM Monday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd09210130: {
+    emoji:"⚽",
+    cal:{s:"2026-09-20T15:30:00Z",e:"2026-09-20T17:30:00Z",loc:"Craven Cottage"},
+    title:"Fulham v Man Utd",
+    when:"Mon 21 Sep \u00b7 1:30AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Fulham v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Monday 21 September, 1:30AM Sydney time"],["Local kick-off", "3:30PM UK"],["Ground", "Craven Cottage"],["The verdict", "Kicks off 1:30AM Monday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd10110100: {
+    emoji:"⚽",
+    cal:{s:"2026-10-10T14:00:00Z",e:"2026-10-10T16:00:00Z",loc:"Old Trafford"},
+    title:"Man Utd v Tottenham Hotspur",
+    when:"Sun 11 Oct \u00b7 1:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Man Utd v Tottenham Hotspur", "Premier League \u00b7 home", 1],["Kick-off", "Sunday 11 October, 1:00AM Sydney time"],["Local kick-off", "2:00PM UK"],["Ground", "Old Trafford"],["The verdict", "Kicks off 1:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd10180100: {
+    emoji:"⚽",
+    cal:{s:"2026-10-17T14:00:00Z",e:"2026-10-17T16:00:00Z",loc:"Elland Road"},
+    title:"Leeds United v Man Utd",
+    when:"Sun 18 Oct \u00b7 1:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Leeds United v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Sunday 18 October, 1:00AM Sydney time"],["Local kick-off", "2:00PM UK"],["Ground", "Elland Road"],["The verdict", "Kicks off 1:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd10250100: {
+    emoji:"⚽",
+    cal:{s:"2026-10-24T14:00:00Z",e:"2026-10-24T16:00:00Z",loc:"Old Trafford"},
+    title:"Man Utd v AFC Bournemouth",
+    when:"Sun 25 Oct \u00b7 1:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Man Utd v AFC Bournemouth", "Premier League \u00b7 home", 1],["Kick-off", "Sunday 25 October, 1:00AM Sydney time"],["Local kick-off", "2:00PM UK"],["Ground", "Old Trafford"],["The verdict", "Kicks off 1:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd11010200: {
+    emoji:"⚽",
+    cal:{s:"2026-10-31T15:00:00Z",e:"2026-10-31T17:00:00Z",loc:"Stamford Bridge"},
+    title:"Chelsea v Man Utd",
+    when:"Sun 1 Nov \u00b7 2:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Chelsea v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Sunday 1 November, 2:00AM Sydney time"],["Local kick-off", "3:00PM UK"],["Ground", "Stamford Bridge"],["The verdict", "Kicks off 2:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd11080200: {
+    emoji:"⚽",
+    cal:{s:"2026-11-07T15:00:00Z",e:"2026-11-07T17:00:00Z",loc:"Old Trafford"},
+    title:"Man Utd v Aston Villa",
+    when:"Sun 8 Nov \u00b7 2:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Man Utd v Aston Villa", "Premier League \u00b7 home", 1],["Kick-off", "Sunday 8 November, 2:00AM Sydney time"],["Local kick-off", "3:00PM UK"],["Ground", "Old Trafford"],["The verdict", "Kicks off 2:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd11220200: {
+    emoji:"⚽",
+    cal:{s:"2026-11-21T15:00:00Z",e:"2026-11-21T17:00:00Z",loc:"Anfield"},
+    title:"Liverpool v Man Utd",
+    when:"Sun 22 Nov \u00b7 2:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Liverpool v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Sunday 22 November, 2:00AM Sydney time"],["Local kick-off", "3:00PM UK"],["Ground", "Anfield"],["The verdict", "Kicks off 2:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd11290200: {
+    emoji:"⚽",
+    cal:{s:"2026-11-28T15:00:00Z",e:"2026-11-28T17:00:00Z",loc:"Old Trafford"},
+    title:"Man Utd v Brentford",
+    when:"Sun 29 Nov \u00b7 2:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Man Utd v Brentford", "Premier League \u00b7 home", 1],["Kick-off", "Sunday 29 November, 2:00AM Sydney time"],["Local kick-off", "3:00PM UK"],["Ground", "Old Trafford"],["The verdict", "Kicks off 2:00AM Sunday Sydney time \u2014 a proper late one"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  },
+  utd12030700: {
+    emoji:"⚽",
+    cal:{s:"2026-12-02T20:00:00Z",e:"2026-12-02T22:00:00Z",loc:"St. James' Park"},
+    title:"Newcastle United v Man Utd",
+    when:"Thu 3 Dec \u00b7 7:00AM Sydney \u00b7 Premier League",
+    link:"https://www.stan.com.au/sport",
+    linkLabel:"Watch on Stan Sport ↗",
+    secs:[{h:"The Match",b:[["Newcastle United v Man Utd", "Premier League \u00b7 away", 1],["Kick-off", "Thursday 3 December, 7:00AM Sydney time"],["Local kick-off", "8:00PM UK"],["Ground", "St. James' Park"],["The verdict", "Thursday morning here \u2014 coffee and a replay-free watch"]]}],
+    note:"Kick-off times move when games are picked for TV — this follows the live feed, so check back closer to the date."
+  }
 /*/BUILD:UTD-CARDS*/
 };
 
 const F1_CARDS = {
 /*BUILD:F1-CARDS*/
+  f1r14: {
+    emoji:"🏎️",
+    cal:{s:"2026-08-23T13:00:00Z",e:"2026-08-23T15:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 14 \u00b7 Dutch Grand Prix",
+    when:"Race Sun 23 Aug, 11:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 21 Aug, 8:30PM Sydney", 0],["Practice 2", "Sat 22 Aug, 12:30AM Sydney", 0],["Practice 3", "Sat 22 Aug, 8:00PM Sydney", 0],["Qualifying", "Sun 23 Aug, 12:00AM Sydney", 0],["Race", "Sun 23 Aug, 11:00PM Sydney", 1]]}],
+    note:"Middle of the night in Sydney. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r15: {
+    emoji:"🏎️",
+    cal:{s:"2026-09-06T13:00:00Z",e:"2026-09-06T15:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 15 \u00b7 Italian Grand Prix",
+    when:"Race Sun 6 Sep, 11:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 4 Sep, 8:30PM Sydney", 0],["Practice 2", "Sat 5 Sep, 12:00AM Sydney", 0],["Practice 3", "Sat 5 Sep, 8:30PM Sydney", 0],["Qualifying", "Sun 6 Sep, 12:00AM Sydney", 0],["Race", "Sun 6 Sep, 11:00PM Sydney", 1]]}],
+    note:"Middle of the night in Sydney. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r16: {
+    emoji:"🏎️",
+    cal:{s:"2026-09-13T13:00:00Z",e:"2026-09-13T15:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 16 \u00b7 Spanish Grand Prix",
+    when:"Race Sun 13 Sep, 11:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 11 Sep, 9:30PM Sydney", 0],["Practice 2", "Sat 12 Sep, 1:00AM Sydney", 0],["Practice 3", "Sat 12 Sep, 8:30PM Sydney", 0],["Qualifying", "Sun 13 Sep, 12:00AM Sydney", 0],["Race", "Sun 13 Sep, 11:00PM Sydney", 1]]}],
+    note:"Middle of the night in Sydney. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r17: {
+    emoji:"🏎️",
+    cal:{s:"2026-09-26T11:00:00Z",e:"2026-09-26T13:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 17 \u00b7 Azerbaijan Grand Prix",
+    when:"Race Sat 26 Sep, 9:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Thu 24 Sep, 6:30PM Sydney", 0],["Practice 2", "Thu 24 Sep, 10:00PM Sydney", 0],["Practice 3", "Fri 25 Sep, 6:30PM Sydney", 0],["Qualifying", "Fri 25 Sep, 10:00PM Sydney", 0],["Race", "Sat 26 Sep, 9:00PM Sydney", 1]]}],
+    note:"Early hours here. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r18: {
+    emoji:"🏎️",
+    cal:{s:"2026-10-04T07:00:00Z",e:"2026-10-04T09:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 18 \u00b7 Gulf Air Bahrain Grand Prix in Malaysia",
+    when:"Race Sun 4 Oct, 6:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 2 Oct, 2:30PM Sydney", 0],["Practice 2", "Fri 2 Oct, 6:00PM Sydney", 0],["Practice 3", "Sat 3 Oct, 2:30PM Sydney", 0],["Qualifying", "Sat 3 Oct, 6:00PM Sydney", 0],["Race", "Sun 4 Oct, 6:00PM Sydney", 1]]}],
+    note:"Afternoon or evening in Sydney \u2014 easy watching. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r19: {
+    emoji:"🏎️",
+    cal:{s:"2026-10-11T12:00:00Z",e:"2026-10-11T14:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 19 \u00b7 Singapore Grand Prix",
+    when:"Race Sun 11 Oct, 11:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 9 Oct, 7:30PM Sydney", 0],["Practice 2", "Fri 9 Oct, 11:30PM Sydney", 0],["Practice 3", "Sat 10 Oct, 8:00PM Sydney", 0],["Qualifying", "Sun 11 Oct, 12:00AM Sydney", 0],["Race", "Sun 11 Oct, 11:00PM Sydney", 1]]}],
+    note:"Middle of the night in Sydney. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r20: {
+    emoji:"🏎️",
+    cal:{s:"2026-10-25T20:00:00Z",e:"2026-10-25T22:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 20 \u00b7 States Grand Prix",
+    when:"Race Mon 26 Oct, 7:00AM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Sat 24 Oct, 4:30AM Sydney", 0],["Practice 2", "Sat 24 Oct, 8:00AM Sydney", 0],["Practice 3", "Sun 25 Oct, 4:30AM Sydney", 0],["Qualifying", "Sun 25 Oct, 8:00AM Sydney", 0],["Race", "Mon 26 Oct, 7:00AM Sydney", 1]]}],
+    note:"Sunday morning here \u2014 the good ones. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r21: {
+    emoji:"🏎️",
+    cal:{s:"2026-11-01T20:00:00Z",e:"2026-11-01T22:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 21 \u00b7 City Grand Prix",
+    when:"Race Mon 2 Nov, 7:00AM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Sat 31 Oct, 5:30AM Sydney", 0],["Practice 2", "Sat 31 Oct, 9:00AM Sydney", 0],["Practice 3", "Sun 1 Nov, 4:30AM Sydney", 0],["Qualifying", "Sun 1 Nov, 8:00AM Sydney", 0],["Race", "Mon 2 Nov, 7:00AM Sydney", 1]]}],
+    note:"Sunday morning here \u2014 the good ones. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r22: {
+    emoji:"🏎️",
+    cal:{s:"2026-11-08T17:00:00Z",e:"2026-11-08T19:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 22 \u00b7 Paulo Grand Prix",
+    when:"Race Mon 9 Nov, 4:00AM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Sat 7 Nov, 2:30AM Sydney", 0],["Practice 2", "Sat 7 Nov, 6:00AM Sydney", 0],["Practice 3", "Sun 8 Nov, 1:30AM Sydney", 0],["Qualifying", "Sun 8 Nov, 5:00AM Sydney", 0],["Race", "Mon 9 Nov, 4:00AM Sydney", 1]]}],
+    note:"Early hours here. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r23: {
+    emoji:"🏎️",
+    cal:{s:"2026-11-22T04:00:00Z",e:"2026-11-22T06:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 23 \u00b7 Vegas Grand Prix",
+    when:"Race Sun 22 Nov, 3:00PM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 20 Nov, 11:30AM Sydney", 0],["Practice 2", "Fri 20 Nov, 3:00PM Sydney", 0],["Practice 3", "Sat 21 Nov, 11:30AM Sydney", 0],["Qualifying", "Sat 21 Nov, 3:00PM Sydney", 0],["Race", "Sun 22 Nov, 3:00PM Sydney", 1]]}],
+    note:"Afternoon or evening in Sydney \u2014 easy watching. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r24: {
+    emoji:"🏎️",
+    cal:{s:"2026-11-29T16:00:00Z",e:"2026-11-29T18:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 24 \u00b7 Qatar Grand Prix",
+    when:"Race Mon 30 Nov, 3:00AM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Sat 28 Nov, 12:30AM Sydney", 0],["Practice 2", "Sat 28 Nov, 4:00AM Sydney", 0],["Practice 3", "Sun 29 Nov, 1:30AM Sydney", 0],["Qualifying", "Sun 29 Nov, 5:00AM Sydney", 0],["Race", "Mon 30 Nov, 3:00AM Sydney", 1]]}],
+    note:"Middle of the night in Sydney. Session times occasionally shift; this follows the live calendar."
+  },
+  f1r25: {
+    emoji:"🏎️",
+    cal:{s:"2026-12-06T13:00:00Z",e:"2026-12-06T15:00:00Z",loc:"Watch on Kayo"},
+    title:"Round 25 \u00b7 Dhabi Grand Prix",
+    when:"Race Mon 7 Dec, 12:00AM Sydney",
+    link:"https://www.kayosports.com.au/",
+    linkLabel:"Watch on Kayo ↗",
+    secs:[{h:"The Weekend, In Sydney Time",b:[["Practice 1", "Fri 4 Dec, 8:30PM Sydney", 0],["Practice 2", "Sat 5 Dec, 12:00AM Sydney", 0],["Practice 3", "Sat 5 Dec, 9:30PM Sydney", 0],["Qualifying", "Sun 6 Dec, 1:00AM Sydney", 0],["Race", "Mon 7 Dec, 12:00AM Sydney", 1]]}],
+    note:"Middle of the night in Sydney. Session times occasionally shift; this follows the live calendar."
+  }
 /*/BUILD:F1-CARDS*/
 };
 
