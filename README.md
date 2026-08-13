@@ -102,6 +102,21 @@ Every email carries sender identification, a one-click unsubscribe, and a
 refuses to run past 400 and tells you to move to a mailing provider. Twenty
 friends is nowhere near it.
 
+## Feedback
+
+Three buttons at the bottom of every tab open a pre-filled email tagged
+`[BAWA FEEDBACK]`. `collect_feedback.py` reads that mailbox over IMAP every
+Monday 7am (`.github/workflows/feedback.yml`), appends anything new to
+`feedback/log.md`, and emails a digest. It says nothing when nobody wrote in.
+
+The buttons' address is rewritten from the `GMAIL_USER` secret on every radar
+build, so the mailbox that gets read is always the mailbox people write to.
+
+`feedback/log.md` records the request and a **first name only** — the repo is
+public, so no addresses, surnames or personal details go in it. Read the
+"asked for repeatedly" counts before deciding what to build; one person wanting
+cricket is a note, four people wanting it is the next tab.
+
 ## Updating boxing
 
 No reliable free boxing API exists, so `boxing.json` is the source of truth.
