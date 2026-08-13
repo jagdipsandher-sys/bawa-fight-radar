@@ -25,6 +25,15 @@ jobs:
         run: python build_radar.py
       - name: Rebuild the Panthers draw
         run: python build_panthers.py
+      - name: Point the feedback buttons at the mailbox we can actually read
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+        run: |
+          # collect_feedback.py reads this mailbox over IMAP. Rewriting whatever
+          # address is currently there makes this a no-op once it is correct.
+          sed -i "s|mailto:[^?\"]*?subject=%5BBAWA%20FEEDBACK%5D|mailto:${GMAIL_USER}?subject=%5BBAWA%20FEEDBACK%5D|g" index.html
+          grep -c "BAWA%20FEEDBACK" index.html
+
       - name: Commit if the radar changed
         run: |
           if [ -n "$(git status --porcelain index.html)" ]; then
