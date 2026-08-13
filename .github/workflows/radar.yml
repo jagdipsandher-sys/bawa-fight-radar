@@ -25,6 +25,10 @@ jobs:
         run: python build_radar.py
       - name: Rebuild the Panthers draw
         run: python build_panthers.py
+      - name: Rebuild the Man Utd fixtures
+        run: python build_united.py
+      - name: Rebuild the F1 calendar
+        run: python build_f1.py
       - name: Point the feedback buttons at the mailbox we can actually read
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}

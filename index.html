@@ -282,6 +282,8 @@ function imgFail(img, initials){
     <button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button>
     <button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button>
     <button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button>
+    <button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button>
+    <button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button>
   </div>
 </div>
 
@@ -659,6 +661,59 @@ function imgFail(img, initials){
   </div>
 </div>
 
+
+<!-- ================= TAB · UNITED ================= -->
+<div class="pane" id="pane-united">
+
+  <h2>Next Match</h2>
+  <div class="hero">
+<!--BUILD:UTD-HERO-->
+    <div class="card"><div class="sport">Loading</div><div class="inner"><div class="fight hd">Not built yet
+      <small>This tab fills itself from the live feed on the next rebuild.</small></div></div></div>
+<!--/BUILD:UTD-HERO-->
+  </div>
+
+  <h2>Fixtures — What's Coming</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Match</th><th>Ground</th><th>Kick-off</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:UTD-ROWS-->
+      <tr><td colspan="5" class="gone">Not built yet — this fills in on the next rebuild.</td></tr>
+<!--/BUILD:UTD-ROWS-->
+    </tbody>
+  </table>
+
+  <footer>All times converted to <b>Sydney</b>, which is the whole point — a 3pm Saturday kick-off at Old Trafford is midnight here, and an early game is a very civilised Saturday night. Fixtures come from the live Premier League feed and are rebuilt every morning; kick-off times move when games get picked for TV, so the page follows the feed rather than being typed once.</footer>
+</div><!-- /pane-united -->
+
+<!-- ================= TAB · F1 ================= -->
+<div class="pane" id="pane-f1">
+
+  <h2>Next Race Weekend</h2>
+  <div class="hero">
+<!--BUILD:F1-HERO-->
+    <div class="card"><div class="sport">Loading</div><div class="inner"><div class="fight hd">Not built yet
+      <small>This tab fills itself from the live feed on the next rebuild.</small></div></div></div>
+<!--/BUILD:F1-HERO-->
+  </div>
+
+  <h2>The Rest Of The Season</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Grand Prix</th><th>Round</th><th>Sessions</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:F1-ROWS-->
+      <tr><td colspan="5" class="gone">Not built yet — this fills in on the next rebuild.</td></tr>
+<!--/BUILD:F1-ROWS-->
+    </tbody>
+  </table>
+
+  <footer>All times Sydney. European races land late at night here, the Asian and Middle East rounds are the friendly ones. Session times come from the live F1 calendar and are rebuilt every morning. Race results and championship standings aren't shown — say the word if you want them added.</footer>
+</div><!-- /pane-f1 -->
+
 </div><!-- /wrap -->
 
 <!-- RIGHT PANEL -->
@@ -957,7 +1012,17 @@ const NRL_CARDS = {
 /*/BUILD:NRL-CARDS*/
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS);
+const UTD_CARDS = {
+/*BUILD:UTD-CARDS*/
+/*/BUILD:UTD-CARDS*/
+};
+
+const F1_CARDS = {
+/*BUILD:F1-CARDS*/
+/*/BUILD:F1-CARDS*/
+};
+
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, UTD_CARDS, F1_CARDS);
 
 let curCardId = null;
 function openCard(id){
@@ -1014,7 +1079,9 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 const RANGES = {
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
-  panthers: "Round 24 → Grand Final Sun 4 Oct 2026"
+  panthers: "Round 24 → Grand Final Sun 4 Oct 2026",
+  united:   "Premier League · kick-offs in Sydney time",
+  f1:       "Formula 1 2026 · every round in Sydney time"
 };
 function showTab(id){
   if(!RANGES[id]) id = 'fights';
