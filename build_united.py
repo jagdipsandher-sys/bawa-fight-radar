@@ -134,7 +134,7 @@ def hero(g, label):
     return f"""    <div class="card" data-slot="utd" data-ends="{ends(g)}">
       <div class="sport">{esc(label)} &nbsp;{ha} {BADGE[band]} <span class="badge soon"><span class="cd" data-until="{syd(g['when']):%Y-%m-%d}"></span></span></div>
       <div class="crest dark">
-        <div class="big">{esc('Man Utd')} <em>v</em> {esc(g['opponent'])}</div>
+        <div class="big">{esc(g['opponent'] if not g['home'] else 'Man Utd')} <em>v</em> {esc('Man Utd' if not g['home'] else g['opponent'])}</div>
         <div class="lil">{esc(g['comp'])} · {esc(g['venue'] or 'venue TBC')}</div>
       </div>
       <div class="inner">
