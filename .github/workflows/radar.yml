@@ -29,6 +29,8 @@ jobs:
         run: python build_united.py
       - name: Rebuild the F1 calendar
         run: python build_f1.py
+      - name: Rebuild the standings panels
+        run: python build_standings.py
       - name: Point the feedback buttons at the mailbox we can actually read
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}

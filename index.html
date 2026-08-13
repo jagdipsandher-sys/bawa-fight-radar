@@ -234,6 +234,21 @@
   .join .fine{font-size:.74rem;color:#8a8a8a;margin-top:12px;max-width:70ch}
   .join.fb{border-top-color:#1b1b1b}
   .join.fb h3::after{content:" ";}
+
+  /* ===== STANDINGS PANEL ===== */
+  .ladder{width:100%;border:0;font-size:.86rem;margin-top:2px}
+  .ladder th{font-size:.6rem;letter-spacing:.14em;padding:6px 4px;border-bottom:2px solid #000;background:transparent}
+  .ladder td{padding:6px 4px;border-bottom:1px solid #f0f0f0;vertical-align:middle}
+  .ladder tr:last-child td{border-bottom:none}
+  .ladder .pos{color:var(--grey);font-weight:800;width:1.6rem;font-variant-numeric:tabular-nums}
+  .ladder .who{font-weight:700}
+  .ladder .pts{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+  .ladder .num{text-align:right;color:var(--grey);font-variant-numeric:tabular-nums}
+  .ladder tr.me td{background:#fdf1f1}
+  .ladder tr.me .who{color:var(--red)}
+  .ladder tr.lead .pos{color:var(--red)}
+  .ladder .gap{border-bottom:1px dashed #d5d5d5!important;height:6px;padding:0}
+  .nostart{color:var(--grey);font-size:.9rem;padding:14px 0;line-height:1.6}
   footer{margin-top:34px;color:var(--grey);font-size:.8rem;border-top:1px solid var(--faint);padding-top:14px}
   @media(max-width:600px){
     .fight{font-size:1.45rem}
@@ -634,6 +649,8 @@ function imgFail(img, initials){
 
   <h2>Next Match</h2>
   <div class="hero">
+<!--BUILD:UTD-TABLE-->
+<!--/BUILD:UTD-TABLE-->
 <!--BUILD:UTD-HERO-->
     <div class="card" data-slot="utd" data-ends="2026-08-22T23:30:00+10:00">
       <div class="sport">Next Match &nbsp;<span class="badge away">Away</span> <span class="badge home">Good Time</span> <span class="badge soon"><span class="cd" data-until="2026-08-22"></span></span></div>
@@ -786,6 +803,8 @@ function imgFail(img, initials){
 
   <h2>Next Race Weekend</h2>
   <div class="hero">
+<!--BUILD:F1-TABLE-->
+<!--/BUILD:F1-TABLE-->
 <!--BUILD:F1-HERO-->
     <div class="card" data-slot="f1" data-ends="2026-08-24T02:00:00+10:00">
       <div class="sport">Next Race Weekend &nbsp;<span class="badge fn">Round 14</span> <span class="badge soon">Late Night</span> <span class="badge soon"><span class="cd" data-until="2026-08-23"></span></span></div>

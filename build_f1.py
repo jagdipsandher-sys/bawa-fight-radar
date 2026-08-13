@@ -202,9 +202,8 @@ def main():
     for r in upcoming[:6]:
         print(f"  R{r['round']:2d} {syd(r['race']):%a %d %b %-I:%M%p}  {gp_name(r)}")
 
+    # one hero only — the championship panel takes the left half of the grid
     heroes = [hero(upcoming[0], "Next Race Weekend")]
-    if len(upcoming) > 1:
-        heroes.append(hero(upcoming[1], "The Round After"))
 
     page = open(PAGE).read()
     before = page

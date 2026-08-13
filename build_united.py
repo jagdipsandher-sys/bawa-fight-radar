@@ -191,9 +191,8 @@ def main():
         print(f"  {syd(g['when']):%a %d %b %-I:%M%p} {'v' if g['home'] else 'away to'} "
               f"{g['opponent']} ({g['comp']})")
 
+    # one hero only — the standings panel takes the left half of the grid
     heroes = [hero(games[0], "Next Match")]
-    if len(games) > 1:
-        heroes.append(hero(games[1], "And Then"))
 
     page = open(PAGE).read()
     before = page

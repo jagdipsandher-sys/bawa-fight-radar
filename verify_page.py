@@ -18,7 +18,8 @@ import tempfile
 
 PAGE = "index.html"
 MARKERS = ["FIGHT-HERO", "FIGHT-ROWS", "FIGHT-CARDS", "NRL-HERO", "NRL-ROWS", "NRL-CARDS",
-           "UTD-HERO", "UTD-ROWS", "UTD-CARDS", "F1-HERO", "F1-ROWS", "F1-CARDS"]
+           "UTD-HERO", "UTD-ROWS", "UTD-CARDS", "F1-HERO", "F1-ROWS", "F1-CARDS",
+           "UTD-TABLE", "F1-TABLE"]
 problems = []
 
 
