@@ -27,6 +27,8 @@ PL = ["https://site.web.api.espn.com/apis/v2/sports/soccer/eng.1/standings?seaso
       "https://site.api.espn.com/apis/v2/sports/soccer/eng.1/standings"]
 F1 = ["https://site.web.api.espn.com/apis/v2/sports/racing/f1/standings?season={year}",
       "https://site.api.espn.com/apis/v2/sports/racing/f1/standings"]
+SRC_PL = "https://www.espn.com.au/football/standings/_/league/eng.1"
+SRC_F1 = "https://www.espn.com.au/f1/standings"
 ME = "Manchester United"
 SHORT = {"Manchester United": "Man Utd", "Manchester City": "Man City",
          "Tottenham Hotspur": "Spurs", "Brighton & Hove Albion": "Brighton",
@@ -39,8 +41,8 @@ def esc(t):
     return html.escape(str(t or ""), quote=True)
 
 
-def get(urls):
-    year = datetime.now(timezone.utc).year
+def get(urls, year=None):
+    year = year or datetime.now(timezone.utc).year
     for u in urls:
         try:
             req = urllib.request.Request(u.format(year=year), headers=UA)
@@ -94,114 +96,174 @@ def not_started(title, sub, message):
     return card(title, sub, f'<div class="fight hd">Not Started Yet<small>{esc(message)}</small></div>')
 
 
-# ---------------------------------------------------------------- premier league
-def premier_league():
-    data = get(PL)
+def pl_rows(data):
+    """Flatten a standings payload into rows, or None if it has no table."""
     if not data:
-        return not_started("Premier League", "Table", "Standings feed unavailable right now.")
+        return None, ""
     group = (data.get("children") or [data])[0]
     entries = (group.get("standings") or {}).get("entries") or []
     if not entries:
-        return not_started("Premier League", "Table", "No table published yet.")
-
-    rows = []
-    for e in entries:
-        rows.append({
-            "name": name_of(e),
-            "rank": int(stat(e, "rank") or 0),
-            "pts": points_of(e) or "0",
-            "played": stat(e, "gamesPlayed", "GP") or "0",
-            "gd": stat(e, "pointDifferential", "GD") or "0",
-        })
-    if all(r["played"] in ("0", "", None) for r in rows):
-        season = group.get("name", "the season")
-        return not_started(
-            "Premier League", "Table",
-            f"{season} hasn't kicked off — the table fills in from the first round. "
-            f"Until then every club sits on nothing, so showing a ladder would just be alphabetical order.")
-
+        return None, ""
+    rows = [{
+        "name": name_of(e),
+        "rank": int(stat(e, "rank") or 0),
+        "pts": points_of(e) or "0",
+        "played": stat(e, "gamesPlayed", "GP") or "0",
+        "won": stat(e, "wins", "W") or "0",
+        "drawn": stat(e, "ties", "D") or "0",
+        "lost": stat(e, "losses", "L") or "0",
+        "gd": stat(e, "pointDifferential", "GD") or "0",
+    } for e in entries]
     rows.sort(key=lambda r: r["rank"])
+    return rows, group.get("name", "")
+
+
+def played_any(rows):
+    return any(r["played"] not in ("0", "", None) for r in rows or [])
+
+
+def source_note(url, label):
+    return (f'<div class="dr-note2" style="margin-top:12px">Numbers from '
+            f'<a href="{url}" style="color:var(--grey)">{esc(label)}</a> — click through for '
+            f'the full detail, form guide and results.</div>')
+
+
+# ---------------------------------------------------------------- premier league
+def pl_data():
+    """This season's table, or last season's final one if it hasn't kicked off.
+
+    A brand-new season returns twenty clubs on nil in alphabetical order, which
+    looks like a real ladder and isn't. Last season's finish is at least true,
+    and it answers "who's actually winning" better than an empty box.
+    """
+    year = datetime.now(timezone.utc).year
+    rows, season = pl_rows(get(PL, year))
+    if played_any(rows):
+        return rows, season, False
+    prev, prev_season = pl_rows(get(PL, year - 1))
+    if played_any(prev):
+        return prev, prev_season, True
+    return rows, season, False
+
+
+def pl_panel(rows, season, is_last):
+    if not played_any(rows):
+        return not_started("Premier League", "Table",
+                           f"{season or 'The season'} hasn't kicked off yet and there is no "
+                           f"previous table to fall back on.")
     top = rows[:6]
     mine = next((r for r in rows if r["name"] == ME), None)
     show, gapped = list(top), False
     if mine and mine not in top:
-        gapped = True
-        show.append(mine)
+        gapped, show = True, top + [mine]
 
     body = ""
     for i, r in enumerate(show):
         if gapped and i == len(top):
             body += '<tr><td class="gap" colspan="5"></td></tr>'
-        cls = " class=\"me\"" if r["name"] == ME else (" class=\"lead\"" if r["rank"] == 1 else "")
+        cls = ' class="me"' if r["name"] == ME else (' class="lead"' if r["rank"] == 1 else "")
         body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
                  f'<td class="who">{esc(SHORT.get(r["name"], r["name"]))}</td>'
                  f'<td class="num">{esc(r["played"])}</td>'
                  f'<td class="num">{esc(r["gd"])}</td>'
                  f'<td class="pts">{esc(r["pts"])}</td></tr>')
 
-    leader = rows[0]
-    gap = ""
+    leader, gap = rows[0], ""
     if mine:
         try:
             d = int(leader["pts"]) - int(mine["pts"])
-            gap = (f"United are {d} point{'s' if d != 1 else ''} behind {SHORT.get(leader['name'], leader['name'])}"
-                   if d > 0 else "United are top of the league")
+            gap = (f"United finished {d} behind {SHORT.get(leader['name'], leader['name'])}." if is_last
+                   else f"United are {d} point{'s' if d != 1 else ''} behind "
+                        f"{SHORT.get(leader['name'], leader['name'])}." if d > 0
+                   else "United are top of the league.")
         except ValueError:
             pass
 
     table = ('<table class="ladder"><thead><tr><th></th><th>Club</th>'
              '<th class="num">P</th><th class="num">GD</th><th class="pts">Pts</th></tr></thead>'
              f'<tbody>{body}</tbody></table>')
-    return card("Premier League", f"After {leader['played']} games", table, gap)
+    sub = "Last Season" if is_last else f"After {leader['played']} games"
+    note = (gap + (" New season starts from zero on 22 August." if is_last else "")).strip()
+    return card("Premier League", sub, table, note)
+
+
+def pl_full(rows, season, is_last):
+    """The whole twenty, full width, at the bottom of the tab."""
+    if not played_any(rows):
+        return ('<table><tbody><tr><td class="gone">No table yet — the season hasn\'t started '
+                'and there is nothing to show.</td></tr></tbody></table>')
+    body = ""
+    for r in rows:
+        cls = ' class="me"' if r["name"] == ME else (' class="lead"' if r["rank"] == 1 else "")
+        body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
+                 f'<td class="who">{esc(r["name"])}</td>'
+                 f'<td class="num">{esc(r["played"])}</td><td class="num">{esc(r["won"])}</td>'
+                 f'<td class="num">{esc(r["drawn"])}</td><td class="num">{esc(r["lost"])}</td>'
+                 f'<td class="num">{esc(r["gd"])}</td><td class="pts">{esc(r["pts"])}</td></tr>')
+    label = f"{season} — final table" if is_last else season
+    return (f'<div class="meta" style="margin-bottom:8px">{esc(label)}</div>'
+            '<table class="ladder" style="border:1px solid var(--faint);padding:0 10px">'
+            '<thead><tr><th></th><th>Club</th><th class="num">P</th><th class="num">W</th>'
+            '<th class="num">D</th><th class="num">L</th><th class="num">GD</th>'
+            '<th class="pts">Pts</th></tr></thead>'
+            f'<tbody>{body}</tbody></table>'
+            + source_note(SRC_PL, "ESPN Premier League standings"))
 
 
 # ---------------------------------------------------------------------------- f1
-def formula_one():
+def f1_data():
     data = get(F1)
-    if not data:
-        return not_started("Formula 1", "Championship", "Standings feed unavailable right now.")
-
     groups = {g.get("name", ""): (g.get("standings") or {}).get("entries") or []
-              for g in (data.get("children") or [])}
-    drivers = next((v for k, v in groups.items() if "driver" in k.lower()), [])
-    teams = next((v for k, v in groups.items() if "constructor" in k.lower()), [])
-    if not drivers:
-        return not_started("Formula 1", "Championship", "No championship table published yet.")
+              for g in ((data or {}).get("children") or [])}
+    def rows(kind):
+        ents = next((v for k, v in groups.items() if kind in k.lower()), [])
+        out = [{"name": name_of(e), "rank": int(stat(e, "rank") or 0), "pts": points_of(e)}
+               for e in ents]
+        return sorted(out, key=lambda r: r["rank"])
+    return rows("driver"), rows("constructor")
 
-    rows = sorted(
-        ({"name": name_of(e), "rank": int(stat(e, "rank") or 0), "pts": points_of(e)} for e in drivers),
-        key=lambda r: r["rank"])
-    if all(r["pts"] in (None, "", "0") for r in rows):
-        return not_started("Formula 1", "Championship",
-                           "No races run yet this season — the championship starts from round one.")
 
+def f1_ladder(rows, head, limit=None):
     body = ""
-    for r in rows[:8]:
+    for r in (rows[:limit] if limit else rows):
         cls = ' class="lead"' if r["rank"] == 1 else ""
         body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
                  f'<td class="who">{esc(r["name"])}</td>'
                  f'<td class="pts">{esc(r["pts"] or "—")}</td></tr>')
-    table = ('<table class="ladder"><thead><tr><th></th><th>Driver</th>'
-             '<th class="pts">Pts</th></tr></thead>'
-             f'<tbody>{body}</tbody></table>')
+    return (f'<table class="ladder"><thead><tr><th></th><th>{esc(head)}</th>'
+            f'<th class="pts">Pts</th></tr></thead><tbody>{body}</tbody></table>')
 
+
+def f1_panel(drivers, teams):
+    if not drivers or all(r["pts"] in (None, "", "0") for r in drivers):
+        return not_started("Formula 1", "Championship",
+                           "No races run yet this season — the championship starts from round one.")
+    inner = f1_ladder(drivers, "Driver", limit=8)
     if teams:
-        trows = sorted(({"name": name_of(e), "rank": int(stat(e, "rank") or 0), "pts": points_of(e)}
-                        for e in teams), key=lambda r: r["rank"])[:3]
-        tbody = "".join(f'<tr><td class="pos">{r["rank"]}</td><td class="who">{esc(r["name"])}</td>'
-                        f'<td class="pts">{esc(r["pts"] or "—")}</td></tr>' for r in trows)
-        table += ('<div class="when" style="margin-top:16px">Constructors</div>'
-                  f'<table class="ladder"><tbody>{tbody}</tbody></table>')
-
-    lead = rows[0]
-    note = ""
-    if len(rows) > 1 and lead["pts"] and rows[1]["pts"]:
+        inner += ('<div class="when" style="margin-top:16px">Constructors</div>'
+                  + f1_ladder(teams, "Team", limit=3))
+    lead, note = drivers[0], ""
+    if len(drivers) > 1 and lead["pts"] and drivers[1]["pts"]:
         try:
-            note = (f"{lead['name']} leads by {int(lead['pts']) - int(rows[1]['pts'])} points "
-                    f"from {rows[1]['name']}.")
+            note = (f"{lead['name']} leads by {int(lead['pts']) - int(drivers[1]['pts'])} points "
+                    f"from {drivers[1]['name']}.")
         except ValueError:
             pass
-    return card("Formula 1", "Championship", table, note)
+    return card("Formula 1", "Championship", inner, note)
+
+
+def f1_full(drivers, teams):
+    if not drivers:
+        return ('<table><tbody><tr><td class="gone">No championship table published yet.'
+                '</td></tr></tbody></table>')
+    out = ('<div class="meta" style="margin-bottom:8px">Drivers\' championship — every driver</div>'
+           + f1_ladder(drivers, "Driver").replace('class="ladder"',
+             'class="ladder" style="border:1px solid var(--faint);padding:0 10px"'))
+    if teams:
+        out += ('<div class="meta" style="margin:20px 0 8px">Constructors\' championship</div>'
+                + f1_ladder(teams, "Team").replace('class="ladder"',
+                  'class="ladder" style="border:1px solid var(--faint);padding:0 10px"'))
+    return out + source_note(SRC_F1, "ESPN F1 standings")
 
 
 def splice(page, marker, block):
@@ -213,14 +275,18 @@ def splice(page, marker, block):
 
 def main():
     print("Premier League:")
-    pl = premier_league()
+    pl_r, pl_season, is_last = pl_data()
+    print(f"  {len(pl_r or [])} clubs, season {pl_season!r}, using last season: {is_last}")
     print("Formula 1:")
-    f1 = formula_one()
+    drivers, teams = f1_data()
+    print(f"  {len(drivers)} drivers, {len(teams)} constructors")
 
     page = open(PAGE).read()
     before = page
-    page = splice(page, "UTD-TABLE", pl)
-    page = splice(page, "F1-TABLE", f1)
+    page = splice(page, "UTD-TABLE", pl_panel(pl_r, pl_season, is_last))
+    page = splice(page, "F1-TABLE", f1_panel(drivers, teams))
+    page = splice(page, "UTD-FULL", pl_full(pl_r, pl_season, is_last))
+    page = splice(page, "F1-FULL", f1_full(drivers, teams))
     if page == before:
         print("standings already current")
         return
