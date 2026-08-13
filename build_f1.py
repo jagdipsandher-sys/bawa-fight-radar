@@ -66,9 +66,28 @@ def collect():
     return rounds
 
 
+TWO_WORD_GP = ("Saudi Arabian", "United States", "Abu Dhabi", "Las Vegas",
+               "Mexico City", "Emilia Romagna", "Sao Paulo", "S\u00e3o Paulo",
+               "Great Britain", "Great Britain")
+
+
 def gp_name(r):
-    """Strip the sponsor off the front — 'Heineken Dutch Grand Prix' -> 'Dutch Grand Prix'."""
-    return re.sub(r"^(.*?)\b(\w+ Grand Prix)$", r"\2", r["name"]).strip() or r["name"]
+    """Drop the title sponsor: 'Heineken Dutch Grand Prix' -> 'Dutch Grand Prix'.
+
+    Country names are one word except for a known handful, so the sponsor is
+    everything before that. Anything unexpected is left alone rather than
+    mangled — a wordy name beats a wrong one.
+    """
+    name = r["name"]
+    i = name.find("Grand Prix")
+    if i <= 0:
+        return name
+    before, after = name[:i].strip(), name[i:].strip()
+    for two in TWO_WORD_GP:
+        if before.endswith(two):
+            return f"{two} {after}"
+    words = before.split()
+    return f"{words[-1]} {after}" if words else name
 
 
 def cid(r):

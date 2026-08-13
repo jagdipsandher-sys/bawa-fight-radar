@@ -42,7 +42,7 @@ def syd(dt):
     return dt.astimezone(SYD)
 
 
-def fetch(code, label, start):
+def fetch(code, label, abbr, start):
     end = start + timedelta(days=13)
     url = FEED.format(code, start.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
     try:
@@ -64,7 +64,7 @@ def fetch(code, label, start):
             continue
         home = teams.get("home", "") == TEAM
         out.append({
-            "when": when, "comp": label,
+            "when": when, "comp": label, "abbr": abbr,
             "home": home,
             "opponent": teams.get("away" if home else "home", "TBC"),
             "venue": (comp.get("venue") or {}).get("fullName", ""),
@@ -75,9 +75,9 @@ def fetch(code, label, start):
 def collect():
     now = datetime.now(timezone.utc)
     games, seen = [], set()
-    for code, label, _ in COMPS:
+    for code, label, abbr in COMPS:
         for w in range(0, WEEKS_AHEAD, 2):
-            for g in fetch(code, label, now + timedelta(weeks=w)):
+            for g in fetch(code, label, abbr, now + timedelta(weeks=w)):
                 key = g["when"].isoformat()
                 if key not in seen and g["when"] > now:
                     seen.add(key)
@@ -121,7 +121,7 @@ def row(g):
     ha = '<span class="badge home">Home</span>' if g["home"] else '<span class="badge away">Away</span>'
     return f"""      <tr{' class="big"' if band == 'good' else ''} data-sport="utd" data-ends="{ends(g)}" data-card="{cid(g)}">
         <td class="d">{syd(g['when']):%a %-d %b}<small>{syd(g['when']):%-I:%M%p} AEST</small></td>
-        <td><span class="sporttag b">{esc(g['comp'][:3].upper())}</span></td>
+        <td><span class="sporttag b">{esc(g['abbr'])}</span></td>
         <td><span class="ev">{esc(title(g))}</span> {ha} {BADGE[band]}<br><span class="sub">{esc(verdict)} · {esc(g['comp'])}</span></td>
         <td>{esc(g['venue'])}</td>
         <td><a class="mini buy" href="{WATCH}">Watch · Stan Sport</a><button class="mini" onclick="openCard('{cid(g)}')">Details</button><button class="mini" onclick="addCal('{cid(g)}')">+ Cal</button></td>
