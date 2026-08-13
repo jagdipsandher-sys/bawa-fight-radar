@@ -133,11 +133,22 @@ def collect():
                 if word in low:
                     flag = iso_flag(iso)
                     break
+        # Race day is the SUNDAY of the weekend, not the last day of the window:
+        # several European rounds run an official test on the Monday, so the
+        # feed's end date is a day late for them.
+        race, only_r = end, only_e
+        if start and end and end > start:
+            span = (end.date() - start.date()).days
+            for back in range(span + 1):
+                cand = end - timedelta(days=back)
+                if cand.weekday() == 6:
+                    race, only_r = cand, only_e
+                    break
         out.append({
             "round": rnd, "name": str(name), "flag": flag,
             "circuit": text_of(ev.get("circuit"), "name", "shortname"),
-            "start": start, "race": end or start, "date_only": only_e,
-            "done": (end or start) < now,
+            "start": start, "race": race or end or start, "date_only": only_r,
+            "done": (race or end or start) < now,
         })
     if not out:
         sys.exit("no MotoGP rounds found in the feed — leaving the tab alone")
