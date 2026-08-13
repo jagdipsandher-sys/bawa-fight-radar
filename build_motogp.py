@@ -53,9 +53,13 @@ def syd(dt):
 
 
 def day(r, which="race"):
-    """The event's own calendar day — never re-zoned when it came date-only."""
-    d = r[which]
-    return d if r["date_only"] else syd(d)
+    """The event's own calendar day.
+
+    This feed publishes a calendar window, not race times. Converting those to
+    Sydney moved every European round a day forward, so the date is shown
+    exactly as the calendar states it and never re-zoned.
+    """
+    return r[which]
 
 
 def text_of(v, *keys):
@@ -145,7 +149,7 @@ def collect():
                     race, only_r = cand, only_e
                     break
         out.append({
-            "round": rnd, "name": str(name), "flag": flag,
+            "round": rnd, "name": str(name), "flag": flag, "iso": country.upper()[:2],
             "circuit": text_of(ev.get("circuit"), "name", "shortname"),
             "start": start, "race": race or end or start, "date_only": only_r,
             "done": (race or end or start) < now,
@@ -184,20 +188,20 @@ def ends(r):
     return (d.replace(hour=23, minute=59) if r["date_only"] else d + timedelta(hours=6)).isoformat()
 
 
+# Distances from Sydney, which is the only honest thing we can say about the
+# viewing time when the feed gives us no session times at all.
+NEAR = {"AU", "JP", "MY", "TH", "ID", "IN", "QA"}
+
+
 def slot(r):
-    h = day(r).hour
-    if 6 <= h < 13:
-        return "Morning here — the good ones", "good"
-    if 13 <= h < 20:
-        return "Afternoon or evening in Sydney — easy watching", "good"
-    if 20 <= h < 24:
-        return "Late night in Sydney, but you can stay up for it", "late"
-    return "Small hours in Sydney — set an alarm or watch the replay", "brutal"
+    """No start times in this feed, so no late-night verdict — just the region."""
+    if r["iso"] in NEAR:
+        return "Asia-Pacific round — the friendly ones for a Sydney viewer", "good"
+    return "European round — expect a late night or an early morning here", "late"
 
 
-BADGE = {"good": '<span class="badge home">Good Time</span>',
-         "late": '<span class="badge soon">Late Night</span>',
-         "brutal": '<span class="badge ppv">Set An Alarm</span>'}
+BADGE = {"good": '<span class="badge home">Good For Us</span>',
+         "late": '<span class="badge soon">Late Here</span>'}
 
 
 def weekend(r):
