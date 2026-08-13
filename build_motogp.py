@@ -52,6 +52,12 @@ def syd(dt):
     return dt.astimezone(SYD)
 
 
+def day(r, which="race"):
+    """The event's own calendar day — never re-zoned when it came date-only."""
+    d = r[which]
+    return d if r["date_only"] else syd(d)
+
+
 def text_of(v, *keys):
     """A field that is sometimes a string and sometimes an object."""
     if isinstance(v, str):
@@ -64,16 +70,30 @@ def text_of(v, *keys):
 
 
 def parse(d):
+    """Returns (datetime, date_only).
+
+    The feed sends plain calendar dates for the event window. Treating those as
+    UTC midnight and converting to Sydney moves every Sunday race to Monday, so
+    a date-only value is anchored to midday in SYDNEY and flagged, and the day
+    is then printed exactly as the calendar says it.
+    """
     if not d:
-        return None
-    s = str(d).replace("Z", "+00:00")
-    for cut in (s, s[:19]):
+        return None, False
+    raw = str(d)
+    if "T" not in raw and len(raw) >= 10:
+        try:
+            y, m, dd = (int(x) for x in raw[:10].split("-"))
+            return datetime(y, m, dd, 12, 0, tzinfo=SYD), True
+        except ValueError:
+            return None, False
+    s2 = raw.replace("Z", "+00:00")
+    for cut in (s2, s2[:19]):
         try:
             dt = datetime.fromisoformat(cut)
-            return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+            return (dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)), False
         except ValueError:
             continue
-    return None
+    return None, False
 
 
 def collect():
@@ -96,8 +116,10 @@ def collect():
         kind = str(ev.get("kind") or ev.get("type") or "").upper()
         if "TEST" in kind or ev.get("test") is True:
             continue                                    # pre-season tests are not rounds
-        start = parse(ev.get("date_start") or ev.get("dateStart") or ev.get("date"))
-        end = parse(ev.get("date_end") or ev.get("dateEnd")) or start
+        start, only_s = parse(ev.get("date_start") or ev.get("dateStart") or ev.get("date"))
+        end, only_e = parse(ev.get("date_end") or ev.get("dateEnd"))
+        if not end:
+            end, only_e = start, only_s
         if not start:
             continue
         rnd += 1                                        # round number = order in the season
@@ -114,7 +136,7 @@ def collect():
         out.append({
             "round": rnd, "name": str(name), "flag": flag,
             "circuit": text_of(ev.get("circuit"), "name", "shortname"),
-            "start": start, "race": end or start,
+            "start": start, "race": end or start, "date_only": only_e,
             "done": (end or start) < now,
         })
     if not out:
@@ -122,11 +144,23 @@ def collect():
     return out
 
 
+SPONSORS = ("motul", "michelin", "red bull", "monster energy", "pertamina", "liqui moly",
+            "gryfyn", "animoca", "bmw m", "qatar airways", "estrella galicia", "tissot",
+            "motogp", "grande premio", "gran premio")
+
+
 def clean_name(r):
-    """Strip the title sponsor, leave the race name exactly as it reads."""
-    n = re.sub(r"^(?:\d{4}\s+)?(?:Motul|Michelin|Red Bull|Monster Energy|Pertamina|Liqui Moly|"
-               r"Gryfyn|Animoca|BMW M|Qatar Airways|Estrella Galicia|Tissot|MotoGP)\s+",
-               "", str(r["name"])).strip()
+    """Strip the title sponsor and tame the feed's block capitals."""
+    n = re.sub(r"[\u00ae\u2122]", "", str(r["name"])).strip()
+    low = n.lower()
+    for sp in sorted(SPONSORS, key=len, reverse=True):
+        if low.startswith(sp):
+            n = n[len(sp):].strip()
+            break
+    if n.isupper():                      # the feed shouts; the page has its own caps
+        n = " ".join(w.capitalize() for w in n.split())
+        n = re.sub(r"\b(Of|And|The|De|Del|Du|Di|La|Le)\b",
+                   lambda mm: mm.group(1).lower(), n)
     return n or str(r["name"])
 
 
@@ -135,11 +169,12 @@ def cid(r):
 
 
 def ends(r):
-    return (syd(r["race"]) + timedelta(hours=6)).isoformat()
+    d = r["race"] if r["date_only"] else syd(r["race"])
+    return (d.replace(hour=23, minute=59) if r["date_only"] else d + timedelta(hours=6)).isoformat()
 
 
 def slot(r):
-    h = syd(r["race"]).hour
+    h = day(r).hour
     if 6 <= h < 13:
         return "Morning here — the good ones", "good"
     if 13 <= h < 20:
@@ -155,14 +190,14 @@ BADGE = {"good": '<span class="badge home">Good Time</span>',
 
 
 def weekend(r):
-    a, b = syd(r["start"]), syd(r["race"])
+    a, b = day(r, "start"), day(r, "race")
     return f"{a:%a %-d}–{b:%a %-d %b}" if a.date() != b.date() else f"{b:%a %-d %b}"
 
 
 def row(r):
     verdict, band = slot(r)
     return f"""      <tr{' class="big"' if band == 'good' else ''} data-sport="motogp" data-ends="{ends(r)}" data-card="{cid(r)}">
-        <td class="d">{syd(r['race']):%a %-d %b}<small>{weekend(r)}</small></td>
+        <td class="d">{day(r):%a %-d %b}<small>{weekend(r)}</small></td>
         <td><span class="sporttag m">R{r['round']}</span></td>
         <td><span class="flag" style="margin-right:6px">{r['flag']}</span><span class="ev">{esc(clean_name(r))}</span> {BADGE[band]}<br><span class="sub">{esc(verdict)}</span></td>
         <td>{esc(r['circuit'])}</td>
@@ -173,7 +208,7 @@ def row(r):
 def hero(r, label):
     verdict, band = slot(r)
     return f"""    <div class="card" data-slot="motogp" data-ends="{ends(r)}">
-      <div class="sport">{esc(label)} &nbsp;<span class="badge fn">Round {r['round']}</span> {BADGE[band]} <span class="badge soon"><span class="cd" data-until="{syd(r['race']):%Y-%m-%d}"></span></span></div>
+      <div class="sport">{esc(label)} &nbsp;<span class="badge fn">Round {r['round']}</span> {BADGE[band]} <span class="badge soon"><span class="cd" data-until="{day(r):%Y-%m-%d}"></span></span></div>
       <div class="crest dark">
         <div class="big"><span style="font-size:2.2rem;vertical-align:middle">{r['flag']}</span> {esc(clean_name(r).replace(' Grand Prix', ''))} <em>GP</em></div>
         <div class="lil">Round {r['round']} · {esc(r['circuit'] or 'circuit TBC')}</div>
@@ -182,7 +217,7 @@ def hero(r, label):
         <div class="fight hd">{esc(clean_name(r))}
           <small>{esc(verdict)}</small>
         </div>
-        <div class="when">Race day · <span class="t">{syd(r['race']):%a %-d %b} Sydney</span></div>
+        <div class="when">Race day · <span class="t">{day(r):%a %-d %b}</span></div>
         <div class="meta">Weekend runs {weekend(r)}{' · ' + esc(r['circuit']) if r['circuit'] else ''}</div>
         <div class="btns">
           <a class="btn red" href="{WATCH}">Where To Watch</a>
@@ -199,7 +234,7 @@ def card(r):
     end = start + timedelta(hours=3)
     b = ",".join(json.dumps(x) for x in [
         [clean_name(r), f"Round {r['round']}", 1],
-        ["Race day", f"{syd(r['race']):%A %-d %B} Sydney time"],
+        ["Race day", f"{day(r):%A %-d %B}"],
         ["Weekend", weekend(r)],
         ["Circuit", r["circuit"] or "TBC"],
         ["The verdict", verdict],
@@ -268,7 +303,7 @@ def main():
     upcoming = [r for r in rounds if not r["done"]]
     print(f"  {len(rounds)} rounds, {len(upcoming)} still to come")
     for r in upcoming[:5]:
-        print(f"    R{r['round']:2d} {syd(r['race']):%a %d %b}  {r['flag']} {clean_name(r)}")
+        print(f"    R{r['round']:2d} {day(r):%a %d %b}  {r['flag']} {clean_name(r)}")
     if not upcoming:
         print("season finished — nothing to show")
         return
