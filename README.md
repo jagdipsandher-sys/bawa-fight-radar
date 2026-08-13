@@ -109,8 +109,22 @@ Three buttons at the bottom of every tab open a pre-filled email tagged
 Monday 7am (`.github/workflows/feedback.yml`), appends anything new to
 `feedback/log.md`, and emails a digest. It says nothing when nobody wrote in.
 
-The buttons' address is rewritten from the `GMAIL_USER` secret on every radar
-build, so the mailbox that gets read is always the mailbox people write to.
+The address printed on the buttons comes from a `FEEDBACK_TO` secret, falling
+back to `GMAIL_USER` when it isn't set. Two secrets, two jobs:
+
+| Secret | What it is | Where it shows |
+| --- | --- | --- |
+| `GMAIL_USER` | the account SMTP and IMAP log into | the From: on the Friday email |
+| `FEEDBACK_TO` | the address printed on the public page | the feedback buttons |
+
+`FEEDBACK_TO` can be a plus-alias of the same account (`you+bawa@gmail.com`) —
+mail still arrives in the same inbox, so `collect_feedback.py` still finds it,
+and you can filter or bin the alias later if it ever attracts spam. Gmail will
+not accept an alias as a *login*, so `GMAIL_USER` has to stay a real account.
+
+To keep your name off the page entirely, make a separate free Gmail, set it to
+forward to your main inbox, and put it in both secrets with its own app
+password.
 
 `feedback/log.md` records the request and a **first name only** — the repo is
 public, so no addresses, surnames or personal details go in it. Read the

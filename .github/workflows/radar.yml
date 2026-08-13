@@ -31,13 +31,16 @@ jobs:
         run: python build_f1.py
       - name: Rebuild the standings panels
         run: python build_standings.py
-      - name: Point the feedback buttons at the mailbox we can actually read
+      - name: Point the feedback buttons at the public address
         env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          # FEEDBACK_TO is what the world sees. It can be a plus-alias of the
+          # login account (jack+bawa@gmail.com) or a separate address that
+          # forwards there — either way collect_feedback.py still reads it,
+          # because it logs into GMAIL_USER's mailbox. Falls back to the login
+          # address when FEEDBACK_TO is not set.
+          PUBLIC_ADDR: ${{ secrets.FEEDBACK_TO || secrets.GMAIL_USER }}
         run: |
-          # collect_feedback.py reads this mailbox over IMAP. Rewriting whatever
-          # address is currently there makes this a no-op once it is correct.
-          sed -i "s|mailto:[^?\"]*?subject=%5BBAWA%20FEEDBACK%5D|mailto:${GMAIL_USER}?subject=%5BBAWA%20FEEDBACK%5D|g" index.html
+          sed -i "s|mailto:[^?\"]*?subject=%5BBAWA%20FEEDBACK%5D|mailto:${PUBLIC_ADDR}?subject=%5BBAWA%20FEEDBACK%5D|g" index.html
           grep -c "BAWA%20FEEDBACK" index.html
 
       - name: Commit if the radar changed
