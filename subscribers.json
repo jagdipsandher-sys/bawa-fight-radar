@@ -14,12 +14,12 @@
   ],
   "subscribers": [
     {
-      "email": "example@example.com",
-      "name": "Example Mate",
-      "active": false,
+      "email": "Jfouard2@gmail.com",
+      "name": "",
+      "active": true,
       "consent": {
-        "source": "placeholder — delete this entry when the first real friend signs up",
-        "date": "2026-08-12"
+        "source": "added by Jack — the mate who asked for the Man Utd and F1 tabs",
+        "date": "2026-08-13"
       }
     }
   ]
