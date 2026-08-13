@@ -66,6 +66,44 @@ def collect():
     return rounds
 
 
+# Host nation per Grand Prix. Emoji rather than images so they survive any
+# host, and keyed on the country adjective in the race name.
+FLAGS = {
+    "australian": "\U0001F1E6\U0001F1FA", "chinese": "\U0001F1E8\U0001F1F3",
+    "japanese": "\U0001F1EF\U0001F1F5", "bahrain": "\U0001F1E7\U0001F1ED",
+    "saudi arabian": "\U0001F1F8\U0001F1E6", "miami": "\U0001F1FA\U0001F1F8",
+    "emilia romagna": "\U0001F1EE\U0001F1F9", "monaco": "\U0001F1F2\U0001F1E8",
+    "spanish": "\U0001F1EA\U0001F1F8", "madrid": "\U0001F1EA\U0001F1F8",
+    "canadian": "\U0001F1E8\U0001F1E6", "austrian": "\U0001F1E6\U0001F1F9",
+    "british": "\U0001F1EC\U0001F1E7", "great britain": "\U0001F1EC\U0001F1E7",
+    "hungarian": "\U0001F1ED\U0001F1FA", "belgian": "\U0001F1E7\U0001F1EA",
+    "dutch": "\U0001F1F3\U0001F1F1", "italian": "\U0001F1EE\U0001F1F9",
+    "azerbaijan": "\U0001F1E6\U0001F1FF", "singapore": "\U0001F1F8\U0001F1EC",
+    "united states": "\U0001F1FA\U0001F1F8", "mexico city": "\U0001F1F2\U0001F1FD",
+    "mexican": "\U0001F1F2\U0001F1FD", "sao paulo": "\U0001F1E7\U0001F1F7",
+    "s\u00e3o paulo": "\U0001F1E7\U0001F1F7", "brazilian": "\U0001F1E7\U0001F1F7",
+    "las vegas": "\U0001F1FA\U0001F1F8", "qatar": "\U0001F1F6\U0001F1E6",
+    "abu dhabi": "\U0001F1E6\U0001F1EA", "malaysia": "\U0001F1F2\U0001F1FE",
+    "portuguese": "\U0001F1F5\U0001F1F9", "french": "\U0001F1EB\U0001F1F7",
+    "german": "\U0001F1E9\U0001F1EA", "korean": "\U0001F1F0\U0001F1F7",
+}
+
+
+def flag(r):
+    """Flag of the host nation. A relocated race ('... in Malaysia') is hosted
+    where it is actually run, not where the name says."""
+    low = r["name"].lower()
+    tail = re.search(r"\bin ([a-z\u00e0-\u00ff ]+)$", low)
+    if tail:
+        for key, f in FLAGS.items():
+            if key in tail.group(1):
+                return f
+    for key in sorted(FLAGS, key=len, reverse=True):
+        if key in low:
+            return FLAGS[key]
+    return ""
+
+
 TWO_WORD_GP = ("Saudi Arabian", "United States", "Abu Dhabi", "Las Vegas",
                "Mexico City", "Emilia Romagna", "Sao Paulo", "S\u00e3o Paulo",
                "Great Britain", "Great Britain")
@@ -134,7 +172,7 @@ def row(r):
     return f"""      <tr{' class="big"' if band == 'good' else ''} data-sport="f1" data-ends="{ends(r)}" data-card="{cid(r)}">
         <td class="d">{syd(r['race']):%a %-d %b}<small>race {syd(r['race']):%-I:%M%p}</small></td>
         <td><span class="sporttag m">R{r['round']}</span></td>
-        <td><span class="ev">{esc(gp_name(r))}</span> {BADGE[band]}<br><span class="sub">{esc(verdict)}{' · qualifying ' + syd(quali).strftime('%a %-I:%M%p') if quali else ''}</span></td>
+        <td><span class="flag" style="margin-right:6px">{flag(r)}</span><span class="ev">{esc(gp_name(r))}</span> {BADGE[band]}<br><span class="sub">{esc(verdict)}{' · qualifying ' + syd(quali).strftime('%a %-I:%M%p') if quali else ''}</span></td>
         <td>Round {r['round']}</td>
         <td><a class="mini buy" href="{WATCH}">Watch · Kayo</a><button class="mini" onclick="openCard('{cid(r)}')">Sessions</button><button class="mini" onclick="addCal('{cid(r)}')">+ Cal</button></td>
       </tr>"""
@@ -147,7 +185,7 @@ def hero(r, label):
     return f"""    <div class="card" data-slot="f1" data-ends="{ends(r)}">
       <div class="sport">{esc(label)} &nbsp;<span class="badge fn">Round {r['round']}</span> {BADGE[band]} <span class="badge soon"><span class="cd" data-until="{syd(r['race']):%Y-%m-%d}"></span></span></div>
       <div class="crest dark">
-        <div class="big">{esc(gp_name(r).replace(' Grand Prix', ''))} <em>GP</em></div>
+        <div class="big"><span style="font-size:2.2rem;vertical-align:middle">{flag(r)}</span> {esc(gp_name(r).replace(' Grand Prix', ''))} <em>GP</em></div>
         <div class="lil">Round {r['round']} · Race {syd(r['race']):%a %-d %b}</div>
       </div>
       <div class="inner">
@@ -175,7 +213,7 @@ def card(r):
     return f"""  {cid(r)}: {{
     emoji:"🏎️",
     cal:{{s:"{start:%Y-%m-%dT%H:%M:%S}Z",e:"{end:%Y-%m-%dT%H:%M:%S}Z",loc:"Watch on Kayo"}},
-    title:{json.dumps(f"Round {r['round']} · {gp_name(r)}")},
+    title:{json.dumps((flag(r) + " " if flag(r) else "") + f"Round {r['round']} · {gp_name(r)}")},
     when:{json.dumps(f"Race {syd(start):%a %-d %b, %-I:%M%p} Sydney")},
     link:{json.dumps(WATCH)},
     linkLabel:"Watch on Kayo ↗",

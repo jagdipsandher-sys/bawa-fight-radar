@@ -62,12 +62,17 @@ def fetch(code, label, abbr, start):
             when = datetime.fromisoformat(ev["date"].replace("Z", "+00:00"))
         except (KeyError, ValueError):
             continue
+        logos = {t_.get("homeAway"): ((t_.get("team") or {}).get("logo")
+                 or (((t_.get("team") or {}).get("logos") or [{}])[0] or {}).get("href") or "")
+                 for t_ in comp.get("competitors", [])}
         home = teams.get("home", "") == TEAM
         out.append({
             "when": when, "comp": label, "abbr": abbr,
             "home": home,
             "opponent": teams.get("away" if home else "home", "TBC"),
             "venue": (comp.get("venue") or {}).get("fullName", ""),
+            "logo": logos.get("away" if home else "home", ""),
+            "mylogo": logos.get("home" if home else "away", ""),
         })
     return out
 
@@ -112,6 +117,15 @@ def ends(g):
     return (syd(g["when"]) + timedelta(hours=2)).isoformat()
 
 
+def crest(url, name, size=""):
+    """Club crest with an initials fallback."""
+    if not url:
+        return ""
+    ini = "".join(w[0] for w in str(name).split()[:2]).upper()
+    style = f' style="{size}"' if size else ""
+    return f'<img class="crest-ico"{style} src="{esc(url)}" alt="" onerror="imgFail(this,\'{ini}\')">'
+
+
 def title(g):
     return f"Man Utd v {g['opponent']}" if g["home"] else f"{g['opponent']} v Man Utd"
 
@@ -122,7 +136,7 @@ def row(g):
     return f"""      <tr{' class="big"' if band == 'good' else ''} data-sport="utd" data-ends="{ends(g)}" data-card="{cid(g)}">
         <td class="d">{syd(g['when']):%a %-d %b}<small>{syd(g['when']):%-I:%M%p} AEST</small></td>
         <td><span class="sporttag b">{esc(g['abbr'])}</span></td>
-        <td><span class="ev">{esc(title(g))}</span> {ha} {BADGE[band]}<br><span class="sub">{esc(verdict)} · {esc(g['comp'])}</span></td>
+        <td>{crest(g['logo'], g['opponent'])}<span class="ev">{esc(title(g))}</span> {ha} {BADGE[band]}<br><span class="sub">{esc(verdict)} · {esc(g['comp'])}</span></td>
         <td>{esc(g['venue'])}</td>
         <td><a class="mini buy" href="{WATCH}">Watch · Stan Sport</a><button class="mini" onclick="openCard('{cid(g)}')">Details</button><button class="mini" onclick="addCal('{cid(g)}')">+ Cal</button></td>
       </tr>"""
@@ -134,7 +148,7 @@ def hero(g, label):
     return f"""    <div class="card" data-slot="utd" data-ends="{ends(g)}">
       <div class="sport">{esc(label)} &nbsp;{ha} {BADGE[band]} <span class="badge soon"><span class="cd" data-until="{syd(g['when']):%Y-%m-%d}"></span></span></div>
       <div class="crest dark">
-        <div class="big">{esc(g['opponent'] if not g['home'] else 'Man Utd')} <em>v</em> {esc('Man Utd' if not g['home'] else g['opponent'])}</div>
+        <div class="big">{crest(g['mylogo'] if g['home'] else g['logo'], 'x', 'width:34px;height:34px;vertical-align:middle;margin-right:8px')}{esc(g['opponent'] if not g['home'] else 'Man Utd')} <em>v</em> {esc('Man Utd' if not g['home'] else g['opponent'])}{crest(g['logo'] if g['home'] else g['mylogo'], 'x', 'width:34px;height:34px;vertical-align:middle;margin-left:8px')}</div>
         <div class="lil">{esc(g['comp'])} · {esc(g['venue'] or 'venue TBC')}</div>
       </div>
       <div class="inner">

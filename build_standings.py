@@ -74,6 +74,27 @@ def points_of(entry):
     return None
 
 
+def logo_of(entry):
+    """Club crest, if the feed ships one. Optional — a missing crest just means
+    no icon, never a broken build."""
+    team = entry.get("team") or {}
+    logos = team.get("logos") or []
+    if logos and isinstance(logos, list):
+        href = (logos[0] or {}).get("href")
+        if href:
+            return href
+    return team.get("logo") or ""
+
+
+def crest(row):
+    """Crest image with an initials fallback, so a dead CDN degrades quietly."""
+    if not row.get("logo"):
+        return ""
+    ini = "".join(w[0] for w in row["name"].split()[:2]).upper()
+    return (f'<img class="crest-ico" src="{esc(row["logo"])}" alt="" '
+            f'onerror="imgFail(this,\'{ini}\')">')
+
+
 def name_of(entry):
     for key in ("team", "athlete"):
         n = (entry.get(key) or {}).get("displayName")
@@ -113,6 +134,7 @@ def pl_rows(data):
         "drawn": stat(e, "ties", "D") or "0",
         "lost": stat(e, "losses", "L") or "0",
         "gd": stat(e, "pointDifferential", "GD") or "0",
+        "logo": logo_of(e),
     } for e in entries]
     rows.sort(key=lambda r: r["rank"])
     return rows, group.get("name", "")
@@ -163,7 +185,7 @@ def pl_panel(rows, season, is_last):
             body += '<tr><td class="gap" colspan="5"></td></tr>'
         cls = ' class="me"' if r["name"] == ME else (' class="lead"' if r["rank"] == 1 else "")
         body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
-                 f'<td class="who">{esc(SHORT.get(r["name"], r["name"]))}</td>'
+                 f'<td class="who">{crest(r)}{esc(SHORT.get(r["name"], r["name"]))}</td>'
                  f'<td class="num">{esc(r["played"])}</td>'
                  f'<td class="num">{esc(r["gd"])}</td>'
                  f'<td class="pts">{esc(r["pts"])}</td></tr>')
@@ -196,7 +218,7 @@ def pl_full(rows, season, is_last):
     for r in rows:
         cls = ' class="me"' if r["name"] == ME else (' class="lead"' if r["rank"] == 1 else "")
         body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
-                 f'<td class="who">{esc(r["name"])}</td>'
+                 f'<td class="who">{crest(r)}{esc(r["name"])}</td>'
                  f'<td class="num">{esc(r["played"])}</td><td class="num">{esc(r["won"])}</td>'
                  f'<td class="num">{esc(r["drawn"])}</td><td class="num">{esc(r["lost"])}</td>'
                  f'<td class="num">{esc(r["gd"])}</td><td class="pts">{esc(r["pts"])}</td></tr>')
