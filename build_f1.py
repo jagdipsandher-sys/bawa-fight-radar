@@ -99,19 +99,23 @@ def ends(r):
 
 
 def slot(r):
-    """When a Sydney viewer actually has to be awake."""
-    d = syd(r["race"])
-    if 6 <= d.hour < 13:
-        return "Sunday morning here — the good ones", "good"
-    if d.hour >= 22 or d.hour < 4:
-        return "Middle of the night in Sydney", "brutal"
-    if 13 <= d.hour < 20:
+    """When a Sydney viewer actually has to be awake.
+
+    Staying up late and setting a 3am alarm are very different asks, so they
+    get different labels.
+    """
+    h = syd(r["race"]).hour
+    if 6 <= h < 13:
+        return "Morning here — the good ones", "good"
+    if 13 <= h < 20:
         return "Afternoon or evening in Sydney — easy watching", "good"
-    return "Early hours here", "late"
+    if 20 <= h < 24:
+        return "Late night in Sydney, but you can stay up for it", "late"
+    return "Small hours in Sydney — set an alarm or watch the replay", "brutal"
 
 
 BADGE = {"good": '<span class="badge home">Good Time</span>',
-         "late": '<span class="badge soon">Early Start</span>',
+         "late": '<span class="badge soon">Late Night</span>',
          "brutal": '<span class="badge ppv">Set An Alarm</span>'}
 
 
