@@ -21,7 +21,8 @@ MARKERS = ["FIGHT-HERO", "FIGHT-ROWS", "FIGHT-CARDS", "NRL-HERO", "NRL-ROWS", "N
            "RAI-HERO", "RAI-ROWS", "RAI-CARDS",
            "UTD-HERO", "UTD-ROWS", "UTD-CARDS", "F1-HERO", "F1-ROWS", "F1-CARDS",
            "UTD-TABLE", "F1-TABLE", "UTD-FULL", "F1-FULL",
-           "MGP-HERO", "MGP-ROWS", "MGP-CARDS", "MGP-TABLE", "MGP-FULL"]
+           "MGP-HERO", "MGP-ROWS", "MGP-CARDS", "MGP-TABLE", "MGP-FULL",
+           "WOLVES-HERO", "WOLVES-ROWS", "WOLVES-CARDS", "WOLVES-TABLE", "WOLVES-FULL"]
 problems = []
 
 
@@ -99,7 +100,7 @@ for ref in set(re.findall(r"(?:openCard|addCal)\('([^']+)'\)", page)):
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-fights", "pane-other", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp"]:
+for pane in ["pane-fights", "pane-other", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp", "pane-wolves"]:
     if f'id="{pane}"' not in page:
         fail(f"tab {pane} has gone missing")
 

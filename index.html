@@ -305,6 +305,7 @@ function imgFail(img, initials){
     <button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button>
     <button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button>
     <button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button>
+    <button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button>
   </div>
 </div>
 
@@ -1163,6 +1164,36 @@ function imgFail(img, initials){
   Australian rounds are the friendly ones.</footer>
 </div><!-- /pane-motogp -->
 
+<!-- ================= TAB · WOLVES (NBA) ================= -->
+<div class="pane" id="pane-wolves">
+
+  <h2>Next Game</h2>
+  <div class="hero">
+<!--BUILD:WOLVES-TABLE-->
+<!--/BUILD:WOLVES-TABLE-->
+<!--BUILD:WOLVES-HERO-->
+<!--/BUILD:WOLVES-HERO-->
+  </div>
+
+  <h2>Fixtures — What's Coming</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Match</th><th>Arena</th><th>Watch</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:WOLVES-ROWS-->
+<!--/BUILD:WOLVES-ROWS-->
+    </tbody>
+  </table>
+
+  <h2>Western Conference</h2>
+<!--BUILD:WOLVES-FULL-->
+<!--/BUILD:WOLVES-FULL-->
+
+  <footer>All times Sydney. NBA tip-offs run through the US evening, which lands anywhere from a Sydney lunchtime to the small hours depending on the time zone — the schedule comes from the live NBA feed and is rebuilt every morning. Australian games are shown on Kayo Sports.</footer>
+</div><!-- /pane-wolves -->
+
+
 
 <div class="join">
   <h3>Get It Every Friday</h3>
@@ -1916,7 +1947,12 @@ const MGP_CARDS = {
 /*/BUILD:MGP-CARDS*/
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS);
+const WOLVES_CARDS = {
+/*BUILD:WOLVES-CARDS*/
+/*/BUILD:WOLVES-CARDS*/
+};
+
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS);
 
 let curCardId = null;
 function openCard(id){
@@ -1977,7 +2013,8 @@ const RANGES = {
   raiders:  "Round 24 → Grand Final Sun 4 Oct 2026",
   united:   "Premier League · kick-offs in Sydney time",
   f1:       "Formula 1 2026 · every round in Sydney time",
-  motogp:   "MotoGP 2026 · every round in Sydney time"
+  motogp:   "MotoGP 2026 · every round in Sydney time",
+  wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 function showTab(id){
   if(!RANGES[id]) id = 'fights';
