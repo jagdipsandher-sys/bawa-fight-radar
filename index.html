@@ -301,6 +301,7 @@ function imgFail(img, initials){
     <button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button>
     <button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button>
     <button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button>
+    <button class="tab" data-tab="raiders" onclick="showTab('raiders')">Raiders</button>
     <button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button>
     <button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button>
     <button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button>
@@ -638,6 +639,58 @@ function imgFail(img, initials){
     All times Sydney (AEST). Penrith are playing 2026 home games at <b>CommBank Stadium, Parramatta</b> while Penrith Stadium is redeveloped, and all home-game tickets are sold exclusively through <b>Ticketmaster</b> — pre-purchased tickets include free public transport to the ground on match day. Single-game prices vary by seating category and by how big the fixture is, so the live price sits on the Ticketmaster page rather than being guessed here. Finals kick-off times are confirmed only after Round 27.
   </footer>
 </div><!-- /pane-panthers -->
+
+<!-- ================= TAB · RAIDERS ================= -->
+<div class="pane" id="pane-raiders">
+
+  <h2>Next Game</h2>
+  <div class="hero">
+
+    <!-- NEXT GAME HERO -->
+<!--BUILD:RAI-HERO-->
+<!--/BUILD:RAI-HERO-->
+    <!-- SEASON HERO -->
+    <div class="card" data-slot="season">
+      <div class="sport">Season Run Home &nbsp;<span class="badge live">2026 Season</span></div>
+      <div class="crest">
+        <div class="big"><span id="raiRounds">0</span> Rounds <em>Left</em></div>
+        <div class="lil">Then finals · Grand Final Sun 4 Oct</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Where They Sit
+          <small>Regular season ends Sun 6 Sep, finals run through September. Ladder position moves round to round, so check the live table for exactly where the Raiders sit rather than trusting a fixed number here.</small>
+        </div>
+        <div class="when">Home games left · <span class="t" id="raiHome">—</span></div>
+        <div class="meta" id="raiHomeList"></div>
+        <ul class="mc">
+          <li><b>Grand Final:</b> four weeks from mid-September, <b>Sun 4 Oct at Accor Stadium</b>. Finals venues, dates and times are only set once the ladder locks in after Round 27.</li>
+          <li>Tickets for Raiders games, home and away, are sold through <b>Ticketek</b> — price and category depend on the fixture.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.nrl.com/ladder/">Live NRL Ladder ↗</a>
+          <button class="btn ghost" onclick="openCard('raiFinals')">Finals Explained</button>
+          <button class="btn ghost" onclick="addCal('raiGF')">+ GF Calendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Fixtures — Rest of Season</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Match</th><th>Venue</th><th>Tickets</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:RAI-ROWS-->
+<!--/BUILD:RAI-ROWS-->
+    </tbody>
+  </table>
+
+  <footer>
+    All times Sydney (AEST). Canberra play home games at <b>GIO Stadium, Canberra</b>. Tickets, home and away, are sold through <b>Ticketek</b> — single-game prices vary by seating category and by how big the fixture is, so the live price sits on the Ticketek page rather than being guessed here. Finals kick-off times are confirmed only after Round 27.
+  </footer>
+</div><!-- /pane-raiders -->
+
 
 
 
@@ -1383,6 +1436,53 @@ const NRL_CARDS = {
 /*/BUILD:NRL-CARDS*/
 };
 
+const RAI_CARDS = {
+/*BUILD:RAI-CARDS*/
+  raiFinals: {
+    emoji:"🏆",
+    title:"NRL Finals — How It Works",
+    when:"Four weeks from mid-September · Grand Final Sun 4 Oct, Accor Stadium",
+    link:"https://www.nrl.com/draw/",
+    linkLabel:"NRL Draw & Finals ↗",
+    secs:[
+      {h:"The Format",b:[
+        ["Week 1 — Qualifying Finals","1st v 4th and 2nd v 3rd. Winners go straight to a Preliminary Final; losers get a second life.",1],
+        ["Week 1 — Elimination Finals","5th v 8th and 6th v 7th. Lose and you're out."],
+        ["Week 2 — Semi Finals","Qualifying losers v Elimination winners. Sudden death."],
+        ["Week 3 — Preliminary Finals","Winners go to the Grand Final."],
+        ["Week 4 — Grand Final","Sun 4 Oct, Accor Stadium",1]
+      ]},
+      {h:"What It Means For Canberra",b:[
+        ["A top-eight finish keeps the season alive","Miss the eight and the year ends after Round 27",1],
+        ["A top-four finish means a second chance","Lose a qualifying final and you still get another week"],
+        ["Fixtures appear on this tab automatically","They are pulled from the NRL feed as soon as the draw is published"]
+      ]}
+    ],
+    note:"Nothing about the finals is bookable until the ladder locks in. Check the live NRL ladder for where the Raiders currently sit."
+  },
+  raiGF: {
+    emoji:"🏆",
+    cal:{s:"2026-10-04T08:30:00Z",e:"2026-10-04T10:30:00Z",loc:"Accor Stadium, Sydney Olympic Park"},
+    title:"NRL Grand Final 2026",
+    when:"Sun 4 Oct · Accor Stadium, Sydney Olympic Park · kick-off TBC",
+    link:"https://www.accorstadium.com.au/events/n2026_nrl_nrlw_grand_finals",
+    linkLabel:"Accor Stadium — Grand Final ↗",
+    secs:[
+      {h:"The Day",b:[
+        ["NRL and NRLW Grand Finals","Both played at Accor Stadium on the same day",1],
+        ["Kick-off time not yet confirmed","Traditionally early evening — the calendar entry uses 7:30pm as a placeholder"]
+      ]},
+      {h:"Tickets",b:[
+        ["Members' ballots first","Club members of the qualifying teams get first access"],
+        ["General sale after the Preliminary Finals","Only once the two finalists are known"],
+        ["Accor Stadium is on the Olympic Park line","Same station as Monster Jam"]
+      ]}
+    ],
+    note:"Placeholder entry — the date is confirmed, kick-off and pricing are not."
+  }
+/*/BUILD:RAI-CARDS*/
+};
+
 const UTD_CARDS = {
 /*BUILD:UTD-CARDS*/
   utd08222130: {
@@ -1748,7 +1848,7 @@ const MGP_CARDS = {
 /*/BUILD:MGP-CARDS*/
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS);
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS);
 
 let curCardId = null;
 function openCard(id){
@@ -1806,6 +1906,7 @@ const RANGES = {
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
   panthers: "Round 24 → Grand Final Sun 4 Oct 2026",
+  raiders:  "Round 24 → Grand Final Sun 4 Oct 2026",
   united:   "Premier League · kick-offs in Sydney time",
   f1:       "Formula 1 2026 · every round in Sydney time",
   motogp:   "MotoGP 2026 · every round in Sydney time"
@@ -2014,6 +2115,35 @@ function refreshRadar(){
                                  ' (' + tr.querySelector('.d').childNodes[0].textContent.trim() + ')');
     listEl.textContent = names.length
       ? (names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0]) +
+        ' — the easiest ones to actually get to'
+      : 'The regular season is over — anything further depends on the finals draw.';
+  }
+
+  // 5b. Raiders — same counters, same logic, different pane
+  const raiRows  = document.querySelectorAll('#pane-raiders tbody tr[data-sport="nrl"]');
+  const firstRai = raiRows.length ? raiRows[0].querySelector('.sporttag') : null;
+  const raiRound = firstRai && /^R\d+$/.test(firstRai.textContent.trim())
+                     ? firstRai.textContent.trim().slice(1) : null;
+  RANGES.raiders = raiRound ? 'Round ' + raiRound + ' → Grand Final Sun 4 Oct 2026'
+                  : raiRows.length ? 'Finals series → Grand Final Sun 4 Oct 2026'
+                  : '2026 season complete';
+  const raiRoundsCount = [...document.querySelectorAll('#pane-raiders tbody tr[data-sport="nrl"] .sporttag')]
+                   .filter(t => /^R\d+$/.test(t.textContent.trim())).length;
+  const raiRoundsEl = document.getElementById('raiRounds');
+  if (raiRoundsEl) raiRoundsEl.textContent = raiRoundsCount;
+  const raiHomeRows = [...document.querySelectorAll('#pane-raiders tbody tr[data-sport="nrl"]')]
+                 .filter(tr => [...tr.querySelectorAll('.badge')].some(b => b.textContent.trim() === 'Home'));
+  const raiHomeEl = document.getElementById('raiHome');
+  if (raiHomeEl) raiHomeEl.textContent = raiHomeRows.length === 0 ? 'None left — regular season done'
+    : raiHomeRows.length === 1 ? 'One, at GIO Stadium'
+    : raiHomeRows.length === 2 ? 'Two, both at GIO Stadium'
+    : raiHomeRows.length + ', all at GIO Stadium';
+  const raiListEl = document.getElementById('raiHomeList');
+  if (raiListEl){
+    const raiNames = raiHomeRows.map(tr => tr.querySelector('.ev').textContent.replace('Raiders v ', 'v ') +
+                                 ' (' + tr.querySelector('.d').childNodes[0].textContent.trim() + ')');
+    raiListEl.textContent = raiNames.length
+      ? (raiNames.length > 1 ? raiNames.slice(0, -1).join(', ') + ' and ' + raiNames[raiNames.length - 1] : raiNames[0]) +
         ' — the easiest ones to actually get to'
       : 'The regular season is over — anything further depends on the finals draw.';
   }
