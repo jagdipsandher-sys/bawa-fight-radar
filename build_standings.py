@@ -361,15 +361,22 @@ def nba_played_any(rows):
 
 def nba_data():
     """This season's Western Conference table, or last season's final one if
-    the new season hasn't tipped off yet — same reasoning as pl_data()."""
+    the new season hasn't tipped off yet — same reasoning as pl_data().
+
+    ESPN's NBA "season" parameter is the year the season ENDS, not starts
+    (season=2026 is the 2025-26 season), the opposite of the Premier League's
+    own convention. So the season in progress right now is season=year+1, and
+    what just finished is season=year. season_year returned here is always
+    that end year, for both branches, so callers can label consistently.
+    """
     year = datetime.now(timezone.utc).year
-    rows, group = nba_rows(get(NBA, year))
+    rows, group = nba_rows(get(NBA, year + 1))
     if nba_played_any(rows):
-        return rows, group, False, year
-    prev, prev_group = nba_rows(get(NBA, year - 1))
+        return rows, group, False, year + 1
+    prev, prev_group = nba_rows(get(NBA, year))
     if nba_played_any(prev):
-        return prev, prev_group, True, year - 1
-    return rows, group, False, year
+        return prev, prev_group, True, year
+    return rows, group, False, year + 1
 
 
 def nba_panel(rows, group, is_last, season_year):
@@ -408,7 +415,7 @@ def nba_panel(rows, group, is_last, season_year):
     table = ('<table class="ladder"><thead><tr><th></th><th>Team</th>'
              '<th class="num">W-L</th><th class="pts">Pct</th></tr></thead>'
              f'<tbody>{body}</tbody></table>')
-    sub = f"{season_year}-{str(season_year + 1)[-2:]}" + (" Final" if is_last else "")
+    sub = f"{season_year - 1}-{str(season_year)[-2:]}" + (" Final" if is_last else "")
     return card(group or "Western Conference", sub, table, note)
 
 
@@ -423,7 +430,7 @@ def nba_full(rows, group, is_last, season_year):
                  f'<td class="who">{crest(r)}{esc(r["name"])}</td>'
                  f'<td class="num">{esc(r["won"])}</td><td class="num">{esc(r["lost"])}</td>'
                  f'<td class="num">{esc(r["pct"])}</td><td class="pts">{esc(r["gb"])}</td></tr>')
-    label = f"{group or 'Western Conference'} — {season_year}-{str(season_year + 1)[-2:]}" + \
+    label = f"{group or 'Western Conference'} — {season_year - 1}-{str(season_year)[-2:]}" + \
             (" final standings" if is_last else "")
     return (f'<div class="meta" style="margin-bottom:8px">{esc(label)}</div>'
             '<table class="ladder" style="border:1px solid var(--faint);padding:0 10px">'

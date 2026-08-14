@@ -61,7 +61,12 @@ def fetch_week(start):
         logos = {t_.get("homeAway"): ((t_.get("team") or {}).get("logo")
                  or (((t_.get("team") or {}).get("logos") or [{}])[0] or {}).get("href") or "")
                  for t_ in comp.get("competitors", [])}
-        home = teams.get("home", "") == TEAM
+        # ESPN's NBA feed uses full "Minnesota Timberwolves" as the display
+        # name, not the short form TEAM is matched against, so this has to be
+        # a substring test — an exact-equality check here left every game
+        # reading as "away" and, for actual home games, showed the Wolves'
+        # own name back as the "opponent".
+        home = TEAM in teams.get("home", "")
         out.append({
             "when": when,
             "home": home,
