@@ -174,6 +174,7 @@
   .sporttag.m{background:#e07b00;color:#fff}
   .sporttag.n{background:#111;color:#fff}
   .sporttag.f{background:var(--red);color:#fff}
+  .sporttag.c{background:var(--red);color:#fff}
   td a.mini,td button.mini{
     display:inline-block;margin:6px 8px 0 0;color:var(--ink);background:#fff;border:1px solid #bbb;
     padding:4px 10px;text-decoration:none;cursor:pointer;
@@ -300,6 +301,7 @@ function imgFail(img, initials){
   <div class="wrap">
     <button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button>
     <button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button>
+    <button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button>
     <button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button>
     <button class="tab" data-tab="raiders" onclick="showTab('raiders')">Raiders</button>
     <button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button>
@@ -1388,6 +1390,115 @@ function imgFail(img, initials){
   <footer>All times Sydney. NBA tip-offs run through the US evening, which lands anywhere from a Sydney lunchtime to the small hours depending on the time zone — the schedule comes from the live NBA feed and is rebuilt every morning. Australian games are shown on Kayo Sports.</footer>
 </div><!-- /pane-wolves -->
 
+<!-- ================= TAB · COMEDY ================= -->
+<div class="pane" id="pane-comedy">
+
+  <h2>This Week — Sydney Comedy</h2>
+  <div class="hero">
+
+    <div class="card" data-slot="comedy-run" data-ends="2026-08-30T18:30:00+10:00">
+      <div class="sport">Stand-up &nbsp;<span class="badge ppv">Sydney Run</span> <span class="badge tbc">Sold Out</span> <span class="badge soon"><span class="cd" data-until="2026-08-18"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Carl <em>Barron</em></div>
+        <div class="lil">Just Wondering Why · State Theatre</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Carl Barron
+          <small>Just Wondering Why · ten Sydney shows across two weeks</small>
+        </div>
+        <div class="when">Tue 18–Sun 30 Aug · <span class="t">8:00pm / Sundays 5:00pm</span></div>
+        <div class="meta">State Theatre, Sydney · recommended 18+ · $79.90–$99.90</div>
+        <ul class="mc">
+          <li><b>Next show:</b> Tue 18 Aug at 8:00pm. Sunday shows start at 5:00pm; the other dates start at 8:00pm.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn ghost" href="https://www.statetheatre.com.au/show-calendar/carl-barron/">Sold Out · Official Info</a>
+          <button class="btn ghost" onclick="openCard('carl')">All Dates</button>
+          <button class="btn ghost" onclick="addCal('carl')">+ Next Show</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-slot="comedy-night" data-ends="2026-08-20T22:00:00+10:00">
+      <div class="sport">Stand-up &nbsp;<span class="badge ppv">One Night</span> <span class="badge aus">US Tour</span> <span class="badge soon"><span class="cd" data-until="2026-08-20"></span></span></div>
+      <div class="crest">
+        <div class="big">Bobby <em>Lee</em></div>
+        <div class="lil">The Finally Tour · ICC Sydney</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Bobby Lee
+          <small>The Finally Tour 2026 · American comedian, actor and podcaster</small>
+        </div>
+        <div class="when">Thu 20 Aug · <span class="t">7:30pm AEST</span></div>
+        <div class="meta">Darling Harbour Theatre, ICC Sydney · doors 6:30pm · all ages</div>
+        <ul class="mc">
+          <li><b>Venue change:</b> moved from TikTok Entertainment Centre to Darling Harbour Theatre; existing tickets are being reissued.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://premier.ticketek.com.au/shows/show.aspx?sh=ROYBLUES26">Tickets · Ticketek</a>
+          <button class="btn ghost" onclick="openCard('bobby')">Show Info</button>
+          <button class="btn ghost" onclick="addCal('bobby')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Lookahead — Next 4 Weeks</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Comedian / Show</th><th>Venue</th><th>Tickets / Info</th></tr>
+    </thead>
+    <tbody>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-08-30T18:30:00+10:00" data-card="carl">
+        <td class="d">Tue 18–Sun 30 Aug<small>8pm; Sundays 5pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="ev">Carl Barron: Just Wondering Why</span> <span class="badge tbc">Sold Out</span><br><span class="sub">Ten Sydney dates · recommended 18+ · $79.90–$99.90</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini" href="https://www.statetheatre.com.au/show-calendar/carl-barron/">Official Info</a><button class="mini" onclick="openCard('carl')">All Dates</button><button class="mini" onclick="addCal('carl')">+ Next</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-night" data-ends="2026-08-20T22:00:00+10:00" data-card="bobby">
+        <td class="d">Thu 20 Aug<small>7:30pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="ev">Bobby Lee: The Finally Tour</span> <span class="badge ppv">One Night</span><br><span class="sub">Venue changed to Darling Harbour Theatre · doors 6:30pm</span></td>
+        <td>ICC Sydney</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=ROYBLUES26">Tickets</a><button class="mini" onclick="openCard('bobby')">Info</button><button class="mini" onclick="addCal('bobby')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2026-08-21T21:00:00+10:00" data-card="heggie">
+        <td class="d">Fri 21 Aug<small>7:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="ev">Luke Heggie: I Won't Say It Again</span> <span class="badge fn">Encore</span><br><span class="sub">A curated set from the last five years · unreserved seating · $35</span></td>
+        <td>Comedy Store</td>
+        <td><a class="mini buy" href="https://www.sydneycomedyfest.com.au/event/luke-heggie-2/">Tickets</a><button class="mini" onclick="addCal('heggie')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2026-08-28T21:00:00+10:00" data-card="alright">
+        <td class="d">Fri 28 Aug<small>7:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="ev">Alright Hey: Bring Back Glamour</span> <span class="badge fn">Encore</span><br><span class="sub">Stand-up and storytelling · general admission seated · $39.90</span></td>
+        <td>Comedy Store</td>
+        <td><a class="mini buy" href="https://www.sydneycomedyfest.com.au/event/alright-hey-bring-back-glamour-encore-show/">Tickets</a><button class="mini" onclick="addCal('alright')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2026-08-29T22:30:00+10:00" data-card="neel">
+        <td class="d">Sat 29 Aug<small>8:45pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="ev">Neel Kolhatkar: Black Belt Comedy</span> <span class="badge fn">Encore</span><br><span class="sub">Stand-up on culture, relationships and modern life · unreserved seating · $40</span></td>
+        <td>Comedy Store</td>
+        <td><a class="mini buy" href="https://www.sydneycomedyfest.com.au/event/neel-kolhatkar-black-belt-comedy-encore/">Tickets</a><button class="mini" onclick="addCal('neel')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-09-11T22:00:00+10:00" data-card="aaron">
+        <td class="d">Tue 8–Fri 11 Sep<small>7:30pm; Fri 5pm &amp; 8:30pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="ev">Aaron Chen: Technology</span> <span class="badge aus">Sydney Run</span><br><span class="sub">New stand-up hour · reserve seating · $71.10</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/aaron-chen/">Tickets</a><button class="mini" onclick="openCard('aaron')">All Dates</button><button class="mini" onclick="addCal('aaron')">+ Next</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    Sydney shows only. Dates, times, venues, prices and availability are included only when confirmed by the official venue, promoter or ticket seller. Where no finish time is published, calendar holds use a clearly marked placeholder. Ticket status can change, so check the linked official page before travelling.
+  </footer>
+</div><!-- /pane-comedy -->
+
 
 
 <div class="join">
@@ -2388,7 +2499,77 @@ const WOLVES_CARDS = {
 /*/BUILD:WOLVES-CARDS*/
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS);
+const COMEDY_CARDS = {
+  carl: {
+    emoji:"🎤",
+    cal:{s:"2026-08-18T10:00:00Z",e:"2026-08-18T11:25:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW"},
+    title:"Carl Barron: Just Wondering Why",
+    when:"Tue 18–Sun 30 Aug · State Theatre, Sydney · sold out",
+    link:"https://www.statetheatre.com.au/show-calendar/carl-barron/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Sydney dates — sold out",b:[
+      ["Tue 18, Wed 19 & Thu 20 Aug","8:00pm AEST"],
+      ["Sat 22 Aug","8:00pm AEST"],
+      ["Sun 23 Aug","5:00pm AEST"],
+      ["Tue 25 & Wed 26 Aug","8:00pm AEST"],
+      ["Fri 28 & Sat 29 Aug","8:00pm AEST"],
+      ["Sun 30 Aug","5:00pm AEST"]
+    ]}],
+    note:"The calendar button adds the next performance on Tue 18 Aug. All listed August Sydney performances are currently sold out."
+  },
+  bobby: {
+    emoji:"🎤",
+    cal:{s:"2026-08-20T09:30:00Z",e:"2026-08-20T11:00:00Z",loc:"Darling Harbour Theatre, ICC Sydney",approx:true},
+    title:"Bobby Lee: The Finally Tour 2026",
+    when:"Thu 20 Aug · doors 6:30pm · show 7:30pm AEST",
+    link:"https://iccsydney.com.au/events/bobby-lee/",
+    linkLabel:"Official Event Page ↗",
+    secs:[
+      {h:"Show details",b:[["Doors","6:30pm AEST"],["Show starts","7:30pm AEST"],["Venue","Darling Harbour Theatre, ICC Sydney"]]},
+      {h:"Venue update",b:[["Relocated","Moved from TikTok Entertainment Centre"],["Existing tickets","Reissued for the new venue; no action required"]]}
+    ],
+    note:"All ages. Patrons aged 15 or under must be accompanied by an adult."
+  },
+  heggie: {
+    emoji:"🎤",
+    cal:{s:"2026-08-21T09:00:00Z",e:"2026-08-21T10:00:00Z",loc:"Comedy Store, Entertainment Quarter, Moore Park",approx:true},
+    title:"Luke Heggie: I Won't Say It Again — Encore",
+    when:"Fri 21 Aug · 7:00pm AEST · Comedy Store",
+    link:"https://www.sydneycomedyfest.com.au/event/luke-heggie-2/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Fri 21 Aug · 7:00pm AEST"],["Seating","Unreserved · $35"]]}]
+  },
+  alright: {
+    emoji:"🎤",
+    cal:{s:"2026-08-28T09:00:00Z",e:"2026-08-28T10:00:00Z",loc:"Comedy Store, Entertainment Quarter, Moore Park",approx:true},
+    title:"Alright Hey: Bring Back Glamour — Encore",
+    when:"Fri 28 Aug · 7:00pm AEST · Comedy Store",
+    link:"https://www.sydneycomedyfest.com.au/event/alright-hey-bring-back-glamour-encore-show/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Fri 28 Aug · 7:00pm AEST"],["Seating","General admission seated · $39.90"]]}]
+  },
+  neel: {
+    emoji:"🎤",
+    cal:{s:"2026-08-29T10:45:00Z",e:"2026-08-29T11:45:00Z",loc:"Comedy Store, Entertainment Quarter, Moore Park",approx:true},
+    title:"Neel Kolhatkar: Black Belt Comedy — Encore",
+    when:"Sat 29 Aug · 8:45pm AEST · Comedy Store",
+    link:"https://www.sydneycomedyfest.com.au/event/neel-kolhatkar-black-belt-comedy-encore/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Sat 29 Aug · 8:45pm AEST"],["Seating","Unreserved · $40"]]}]
+  },
+  aaron: {
+    emoji:"🎤",
+    cal:{s:"2026-09-08T09:30:00Z",e:"2026-09-08T10:30:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Aaron Chen: Technology",
+    when:"Tue 8–Fri 11 Sep · State Theatre, Sydney",
+    link:"https://www.statetheatre.com.au/show-calendar/aaron-chen/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Sydney dates",b:[["Tue 8, Wed 9 & Thu 10 Sep","7:30pm AEST"],["Fri 11 Sep","5:00pm AEST"],["Fri 11 Sep","8:30pm AEST"]]}],
+    note:"The calendar button adds the first performance on Tue 8 Sep."
+  }
+};
+
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS, COMEDY_CARDS);
 
 let curCardId = null;
 function openCard(id){
@@ -2426,7 +2607,11 @@ function openCard(id){
 function addCal(id){
   const c = CARDS[id];
   if(!c || !c.cal) return;
-  const body = c.title + "\n" + c.when + "\nWatch: " + c.cal.loc + "\nFull card: " + c.link + "\n(times auto-convert to your timezone)";
+  const isComedy = c.emoji === "🎤";
+  const body = c.title + "\n" + c.when + "\n" + (isComedy ? "Venue: " : "Watch: ") + c.cal.loc
+    + "\n" + (isComedy ? "Official event page: " : "Full card: ") + c.link
+    + (c.cal.approx ? "\nFinish time is a calendar placeholder; confirm it with the venue." : "")
+    + "\n(times auto-convert to your timezone)";
   const u = "https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent"
     + "&subject=" + encodeURIComponent((c.emoji || "🥊") + " " + c.title)
     + "&startdt=" + encodeURIComponent(c.cal.s)
@@ -2445,6 +2630,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 const RANGES = {
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
+  comedy:   "Sun 16 Aug – Sun 13 Sep 2026 · Sydney comedy",
   panthers: "Round 24 → Grand Final Sun 4 Oct 2026",
   raiders:  "Round 24 → Grand Final Sun 4 Oct 2026",
   united:   "Premier League · kick-offs in Sydney time",

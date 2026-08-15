@@ -32,16 +32,24 @@ the usual culprit is the app password (check the spaces are stripped).
 
 ## The radar page (`index.html`)
 
-Three tabs, all in the one file — same layout on each (hero cards, lookahead
+Nine tabs, all in the one file — same layout on each (hero cards, lookahead
 table, slide-out detail panel, calendar buttons):
 
 - **Fights** — UFC and boxing, as before.
 - **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
   that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
+- **Comedy** — confirmed headline stand-up shows in Sydney over the next four
+  weeks, using official venue, promoter and ticket-seller details only.
 - **Panthers** — Penrith's remaining 2026 fixtures with venues, kick-off times
   and where to buy.
+- **Raiders** — Canberra's remaining NRL fixtures and finals path.
+- **Man Utd** — Manchester United fixtures in Sydney time and the league table.
+- **F1** and **MotoGP** — race weekends, Sydney session times and standings.
+- **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
 
-Tabs are linkable: `index.html#other`, `index.html#panthers`.
+Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#panthers`,
+`index.html#raiders`, `index.html#united`, `index.html#f1`, `index.html#motogp`,
+`index.html#wolves`.
 
 ### How each tab stays current
 
@@ -49,7 +57,13 @@ Tabs are linkable: `index.html#other`, `index.html#panthers`.
 | --- | --- | --- |
 | Fights | ESPN MMA feed + `boxing.json` | `build_radar.py`, daily — rolling 4 weeks |
 | Panthers | ESPN NRL feed | `build_panthers.py`, daily — finals appear when published |
+| Raiders | ESPN NRL feed | `build_raiders.py`, daily — finals appear when published |
+| Man Utd | ESPN football feed | `build_united.py`, daily |
+| F1 | ESPN motorsport feed | `build_f1.py`, daily |
+| MotoGP | Official MotoGP feed | `build_motogp.py`, daily |
+| Wolves | ESPN NBA feed | `build_wolves.py`, daily |
 | Other Action | Human web search | Scheduled Claude session, Sun night 1am Sydney |
+| Comedy | Official venue, promoter and ticket pages | Human web search; four-week Sydney lookahead |
 
 The two builders rewrite only the blocks between the `BUILD:` markers in
 `index.html` and commit when the output changes (`.github/workflows/radar.yml`).

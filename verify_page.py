@@ -100,7 +100,7 @@ for ref in set(re.findall(r"(?:openCard|addCal)\('([^']+)'\)", page)):
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-fights", "pane-other", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp", "pane-wolves"]:
+for pane in ["pane-fights", "pane-other", "pane-comedy", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp", "pane-wolves"]:
     if f'id="{pane}"' not in page:
         fail(f"tab {pane} has gone missing")
 
