@@ -38,8 +38,8 @@ table, slide-out detail panel, calendar buttons):
 - **Fights** — UFC and boxing, as before.
 - **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
   that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
-- **Comedy** — confirmed headline stand-up shows in Sydney over the next four
-  weeks, using official venue, promoter and ticket-seller details only.
+- **Comedy** — confirmed headline stand-up shows across a 12-month Sydney watch
+  window, with official event artwork and ticket details only.
 - **Panthers** — Penrith's remaining 2026 fixtures with venues, kick-off times
   and where to buy.
 - **Raiders** — Canberra's remaining NRL fixtures and finals path.
@@ -63,7 +63,7 @@ Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#panthers
 | MotoGP | Official MotoGP feed | `build_motogp.py`, daily |
 | Wolves | ESPN NBA feed | `build_wolves.py`, daily |
 | Other Action | Human web search | Scheduled Claude session, Sun night 1am Sydney |
-| Comedy | Official venue, promoter and ticket pages | Human web search; four-week Sydney lookahead |
+| Comedy | Official venue, promoter and ticket pages | Human web search; 12-month Sydney watch window |
 
 The two builders rewrite only the blocks between the `BUILD:` markers in
 `index.html` and commit when the output changes (`.github/workflows/radar.yml`).

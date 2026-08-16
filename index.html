@@ -114,6 +114,13 @@
     color:var(--red);font-weight:800;font-size:1rem;margin:0 10px;align-self:center;
     font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
   }
+  .promo-art{
+    height:200px;padding:0;background:#171717;overflow:hidden;align-items:center;
+  }
+  .faces.promo-art img,.faces.promo-art .av{
+    width:100%;height:100%;object-fit:contain;object-position:center;background:#171717;
+  }
+  .faces.promo-art .av{color:#bbb;font-size:2.3rem}
   .thumbs{display:inline-flex;align-items:center;vertical-align:middle;margin-right:8px}
   .thumbs img,.thumbs .av{
     width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;
@@ -122,6 +129,9 @@
   .thumbs img+img,.thumbs .av+.av,.thumbs img+.av,.thumbs .av+img{margin-left:-9px}
   .thumbs img.oz,.thumbs .av.oz{border-color:var(--red);z-index:1;position:relative}
   .thumbs img.poster{width:52px;border-radius:3px}
+  .thumbs.comedy-art img,.thumbs.comedy-art .av{
+    width:48px;height:48px;border-radius:3px;object-fit:cover;object-position:center;
+  }
   .av{display:inline-flex;align-items:center;justify-content:center;color:#888;font-weight:800;font-size:.72rem;letter-spacing:.05em}
   .faces .av{font-size:1.6rem;background:#dcdcdc;color:#999;align-items:center}
 
@@ -267,7 +277,11 @@
     th:nth-child(5),td:nth-child(5){width:24%}
     td a.mini,td button.mini{font-size:.62rem;padding:4px 7px;margin-right:5px}
     .thumbs{display:none}
+    .thumbs.comedy-art{display:inline-flex;margin:0 6px 3px 0}
+    .thumbs.comedy-art img,.thumbs.comedy-art .av{width:38px;height:38px}
     .faces img,.faces .av{width:84px;height:84px}
+    .faces.promo-art{height:175px}
+    .faces.promo-art img,.faces.promo-art .av{width:100%;height:100%}
   }
 </style>
 <script>
@@ -282,7 +296,9 @@ function imgFail(img, initials){
   if(img.classList.contains('oz')) s.classList.add('oz');
   s.style.width = getComputedStyle(img).width;
   s.style.height = getComputedStyle(img).height;
-  if(img.parentElement && img.parentElement.classList.contains('thumbs')) s.style.borderRadius = '50%';
+  if(img.parentElement && img.parentElement.classList.contains('thumbs')){
+    s.style.borderRadius = img.parentElement.classList.contains('comedy-art') ? '3px' : '50%';
+  }
   img.replaceWith(s);
 }
 </script>
@@ -1393,14 +1409,13 @@ function imgFail(img, initials){
 <!-- ================= TAB · COMEDY ================= -->
 <div class="pane" id="pane-comedy">
 
-  <h2>This Week — Sydney Comedy</h2>
+  <h2>Next Up — Sydney Comedy</h2>
   <div class="hero">
 
     <div class="card" data-slot="comedy-run" data-ends="2026-08-30T18:30:00+10:00">
       <div class="sport">Stand-up &nbsp;<span class="badge ppv">Sydney Run</span> <span class="badge tbc">Sold Out</span> <span class="badge soon"><span class="cd" data-until="2026-08-18"></span></span></div>
-      <div class="crest dark">
-        <div class="big">Carl <em>Barron</em></div>
-        <div class="lil">Just Wondering Why · State Theatre</div>
+      <div class="faces promo-art">
+        <img src="https://cdn.statetheatre.com.au/wp-content/uploads/2025/10/16133112/CarlBarron_JustWonderingWhy_750x750.jpg" alt="Carl Barron: Just Wondering Why official poster" onerror="imgFail(this,'CB')">
       </div>
       <div class="inner">
         <div class="fight hd">Carl Barron
@@ -1421,9 +1436,8 @@ function imgFail(img, initials){
 
     <div class="card" data-slot="comedy-night" data-ends="2026-08-20T22:00:00+10:00">
       <div class="sport">Stand-up &nbsp;<span class="badge ppv">One Night</span> <span class="badge aus">US Tour</span> <span class="badge soon"><span class="cd" data-until="2026-08-20"></span></span></div>
-      <div class="crest">
-        <div class="big">Bobby <em>Lee</em></div>
-        <div class="lil">The Finally Tour · ICC Sydney</div>
+      <div class="faces promo-art">
+        <img src="https://iccsydney.com.au/wp-content/uploads/2026/04/BobbyLee_570x334_syd.jpg" alt="Bobby Lee: The Finally Tour official Sydney artwork" onerror="imgFail(this,'BL')">
       </div>
       <div class="inner">
         <div class="fight hd">Bobby Lee
@@ -1443,7 +1457,10 @@ function imgFail(img, initials){
     </div>
   </div>
 
-  <h2>Lookahead — Next 4 Weeks</h2>
+  <h2>Book Ahead — 12-Month Sydney Watch</h2>
+  <div class="dr-note2" style="margin-bottom:12px">
+    Tracking officially announced Sydney shows through <b>Mon 16 Aug 2027</b>. Confirmed tickets currently reach April 2027; later dates will be added as venues and the 2027 Sydney Comedy Festival publish them.
+  </div>
   <table>
     <thead>
       <tr><th>Sydney date</th><th></th><th>Comedian / Show</th><th>Venue</th><th>Tickets / Info</th></tr>
@@ -1452,50 +1469,127 @@ function imgFail(img, initials){
       <tr class="big" data-sport="comedy-run" data-ends="2026-08-30T18:30:00+10:00" data-card="carl">
         <td class="d">Tue 18–Sun 30 Aug<small>8pm; Sundays 5pm</small></td>
         <td><span class="sporttag c">Com</span></td>
-        <td><span class="ev">Carl Barron: Just Wondering Why</span> <span class="badge tbc">Sold Out</span><br><span class="sub">Ten Sydney dates · recommended 18+ · $79.90–$99.90</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2025/10/16133112/CarlBarron_JustWonderingWhy_750x750.jpg" alt="Carl Barron poster" onerror="imgFail(this,'CB')"></span><span class="ev">Carl Barron: Just Wondering Why</span> <span class="badge tbc">Sold Out</span><br><span class="sub">Ten Sydney dates · recommended 18+ · $79.90–$99.90</span></td>
         <td>State Theatre</td>
         <td><a class="mini" href="https://www.statetheatre.com.au/show-calendar/carl-barron/">Official Info</a><button class="mini" onclick="openCard('carl')">All Dates</button><button class="mini" onclick="addCal('carl')">+ Next</button></td>
       </tr>
       <tr class="big" data-sport="comedy-night" data-ends="2026-08-20T22:00:00+10:00" data-card="bobby">
         <td class="d">Thu 20 Aug<small>7:30pm</small></td>
         <td><span class="sporttag c">Com</span></td>
-        <td><span class="ev">Bobby Lee: The Finally Tour</span> <span class="badge ppv">One Night</span><br><span class="sub">Venue changed to Darling Harbour Theatre · doors 6:30pm</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://iccsydney.com.au/wp-content/uploads/2026/04/BobbyLee_570x334_syd.jpg" alt="Bobby Lee tour artwork" onerror="imgFail(this,'BL')"></span><span class="ev">Bobby Lee: The Finally Tour</span> <span class="badge ppv">One Night</span><br><span class="sub">Venue changed to Darling Harbour Theatre · doors 6:30pm</span></td>
         <td>ICC Sydney</td>
         <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=ROYBLUES26">Tickets</a><button class="mini" onclick="openCard('bobby')">Info</button><button class="mini" onclick="addCal('bobby')">+ Cal</button></td>
       </tr>
       <tr data-sport="comedy-night" data-ends="2026-08-21T21:00:00+10:00" data-card="heggie">
         <td class="d">Fri 21 Aug<small>7:00pm</small></td>
         <td><span class="sporttag c">Com</span></td>
-        <td><span class="ev">Luke Heggie: I Won't Say It Again</span> <span class="badge fn">Encore</span><br><span class="sub">A curated set from the last five years · unreserved seating · $35</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://corewp.century.com.au/wp-content/uploads/gravity_forms/16-7509ceac79035a2b04422908c5c4f130/2026/05/Luke-Heggie_1600x900_SCF-PCF-11.png" alt="Luke Heggie encore artwork" onerror="imgFail(this,'LH')"></span><span class="ev">Luke Heggie: I Won't Say It Again</span> <span class="badge fn">Encore</span><br><span class="sub">A curated set from the last five years · unreserved seating · $35</span></td>
         <td>Comedy Store</td>
         <td><a class="mini buy" href="https://www.sydneycomedyfest.com.au/event/luke-heggie-2/">Tickets</a><button class="mini" onclick="addCal('heggie')">+ Cal</button></td>
       </tr>
       <tr data-sport="comedy-night" data-ends="2026-08-28T21:00:00+10:00" data-card="alright">
         <td class="d">Fri 28 Aug<small>7:00pm</small></td>
         <td><span class="sporttag c">Com</span></td>
-        <td><span class="ev">Alright Hey: Bring Back Glamour</span> <span class="badge fn">Encore</span><br><span class="sub">Stand-up and storytelling · general admission seated · $39.90</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://corewp.century.com.au/wp-content/uploads/gravity_forms/16-7509ceac79035a2b04422908c5c4f130/2026/05/1600x900-Alright-Hey-text-free.jpg" alt="Alright Hey encore artwork" onerror="imgFail(this,'AH')"></span><span class="ev">Alright Hey: Bring Back Glamour</span> <span class="badge fn">Encore</span><br><span class="sub">Stand-up and storytelling · general admission seated · $39.90</span></td>
         <td>Comedy Store</td>
         <td><a class="mini buy" href="https://www.sydneycomedyfest.com.au/event/alright-hey-bring-back-glamour-encore-show/">Tickets</a><button class="mini" onclick="addCal('alright')">+ Cal</button></td>
       </tr>
       <tr data-sport="comedy-night" data-ends="2026-08-29T22:30:00+10:00" data-card="neel">
         <td class="d">Sat 29 Aug<small>8:45pm</small></td>
         <td><span class="sporttag c">Com</span></td>
-        <td><span class="ev">Neel Kolhatkar: Black Belt Comedy</span> <span class="badge fn">Encore</span><br><span class="sub">Stand-up on culture, relationships and modern life · unreserved seating · $40</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://corewp.century.com.au/wp-content/uploads/gravity_forms/16-7509ceac79035a2b04422908c5c4f130/2026/06/NK-SYD-1920x1080.jpg" alt="Neel Kolhatkar encore artwork" onerror="imgFail(this,'NK')"></span><span class="ev">Neel Kolhatkar: Black Belt Comedy</span> <span class="badge fn">Encore</span><br><span class="sub">Stand-up on culture, relationships and modern life · unreserved seating · $40</span></td>
         <td>Comedy Store</td>
         <td><a class="mini buy" href="https://www.sydneycomedyfest.com.au/event/neel-kolhatkar-black-belt-comedy-encore/">Tickets</a><button class="mini" onclick="addCal('neel')">+ Cal</button></td>
       </tr>
-      <tr class="big" data-sport="comedy-run" data-ends="2026-09-11T22:00:00+10:00" data-card="aaron">
-        <td class="d">Tue 8–Fri 11 Sep<small>7:30pm; Fri 5pm &amp; 8:30pm</small></td>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-10-08T21:00:00+11:00" data-card="aaron">
+        <td class="d">8–11 Sep + Thu 8 Oct<small>7:30pm; Fri 11 Sep 5pm &amp; 8:30pm</small></td>
         <td><span class="sporttag c">Com</span></td>
-        <td><span class="ev">Aaron Chen: Technology</span> <span class="badge aus">Sydney Run</span><br><span class="sub">New stand-up hour · reserve seating · $71.10</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2023/11/31110543/aaron_clean_750x750.jpg" alt="Aaron Chen: Technology official artwork" onerror="imgFail(this,'AC')"></span><span class="ev">Aaron Chen: Technology</span> <span class="badge aus">Sydney Run</span><br><span class="sub">New stand-up hour · reserve seating · $71.10</span></td>
         <td>State Theatre</td>
         <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/aaron-chen/">Tickets</a><button class="mini" onclick="openCard('aaron')">All Dates</button><button class="mini" onclick="addCal('aaron')">+ Next</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-night" data-ends="2026-09-19T22:00:00+10:00" data-card="em">
+        <td class="d">Sat 19 Sep<small>8:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2019/04/03151245/AddictedToLove_State_750x750.jpg" alt="Em Rusciano: Addicted to Love official poster" onerror="imgFail(this,'ER')"></span><span class="ev">Em Rusciano: Addicted to Love</span> <span class="badge ppv">Cabaret</span><br><span class="sub">Comedy, cabaret and powerhouse vocals · recommended 15+ · from $69.90</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/em-rusciano/">Tickets</a><button class="mini" onclick="openCard('em')">Info</button><button class="mini" onclick="addCal('em')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-09-30T22:00:00+10:00" data-card="bill">
+        <td class="d">Mon 28–Wed 30 Sep<small>8:00pm nightly</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2021/05/08123300/BB-750x750-2.jpg" alt="Bill Bailey: Vaudevillean official poster" onerror="imgFail(this,'BB')"></span><span class="ev">Bill Bailey: Vaudevillean</span> <span class="badge aus">3 Shows</span><br><span class="sub">Comedy, songs and multi-instrumental mayhem · from $101.68</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/bill-bailey/">Tickets</a><button class="mini" onclick="openCard('bill')">All Dates</button><button class="mini" onclick="addCal('bill')">+ Next</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-10-18T20:30:00+11:00" data-card="morgan">
+        <td class="d">Sun 18 Oct<small>4:00pm &amp; 7:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2025/12/13211824/MJ-SYD-750x750-1.jpg" alt="Morgan Jay: The Goofy Guy Tour official poster" onerror="imgFail(this,'MJ')"></span><span class="ev">Morgan Jay: The Goofy Guy Tour</span> <span class="badge ppv">2 Shows</span><br><span class="sub">Musical comedy and crowd work · 16+ · $79.90</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/morgan-jay/">Tickets</a><button class="mini" onclick="openCard('morgan')">Info</button><button class="mini" onclick="addCal('morgan')">+ First</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-10-31T22:00:00+11:00" data-card="kitty">
+        <td class="d">23, 24, 30 &amp; 31 Oct<small>8:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2026/03/13082557/KittyFlanagan_GladGame_750x750.jpg" alt="Kitty Flanagan: Glad Game official poster" onerror="imgFail(this,'KF')"></span><span class="ev">Kitty Flanagan: Glad Game</span> <span class="badge aus">4 Shows</span><br><span class="sub">New stand-up show · recommended 15+ · from $69</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/kitty-flanagan/">Tickets</a><button class="mini" onclick="openCard('kitty')">All Dates</button><button class="mini" onclick="addCal('kitty')">+ Next</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2026-11-06T21:20:00+11:00" data-card="lawrence">
+        <td class="d">Fri 6 Nov<small>8:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2026/05/17224232/LawrenceMooney_FullMoonParty_750x750.jpg" alt="Lawrence Mooney: Full Moon Party official poster" onerror="imgFail(this,'LM')"></span><span class="ev">Lawrence Mooney: Full Moon Party</span> <span class="badge ppv">One Night</span><br><span class="sub">Moonman and his best-known characters live · from $64.90</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/lawrence-mooney/">Tickets</a><button class="mini" onclick="openCard('lawrence')">Info</button><button class="mini" onclick="addCal('lawrence')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="comedy-run" data-ends="2026-11-09T22:00:00+11:00" data-card="greg">
+        <td class="d">Sat 7–Mon 9 Nov<small>8:00pm nightly</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2026/02/25104948/GregDavies25-StateTheatre-750x750-TF.jpg" alt="Greg Davies: Full Fat Legend official poster" onerror="imgFail(this,'GD')"></span><span class="ev">Greg Davies: Full Fat Legend</span> <span class="badge aus">3 Shows</span><br><span class="sub">First Australian tour · from $101.68</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/greg-davies/">Tickets</a><button class="mini" onclick="openCard('greg')">All Dates</button><button class="mini" onclick="addCal('greg')">+ Next</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2026-11-11T22:00:00+11:00" data-card="dara">
+        <td class="d">Wed 11 Nov<small>8:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2023/08/06134615/DaraOBriain2026-StateTheatre-750x750-TF.jpg" alt="Dara Ó Briain: Re:Creation official poster" onerror="imgFail(this,'DO')"></span><span class="ev">Dara Ó Briain: Re:Creation</span> <span class="badge ppv">One Night</span><br><span class="sub">Irish storytelling and audience interaction · from $87.90</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/dara-o-briain/">Tickets</a><button class="mini" onclick="openCard('dara')">Info</button><button class="mini" onclick="addCal('dara')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2026-12-09T20:45:00+11:00" data-card="wankernomics">
+        <td class="d">Wed 9 Dec<small>7:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2026/06/16114755/WNK26-Website-750x750-1.jpg" alt="Wankernomics official poster" onerror="imgFail(this,'WK')"></span><span class="ev">Wankernomics: Show_v4.1_Final_USETHIS</span> <span class="badge tbc">Final Sydney</span><br><span class="sub">Extended workplace-satire show · from $45</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/wankernomics/">Tickets</a><button class="mini" onclick="openCard('wankernomics')">Info</button><button class="mini" onclick="addCal('wankernomics')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2027-01-15T21:00:00+11:00" data-card="matt">
+        <td class="d">Fri 15 Jan 2027<small>7:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2026/05/17231941/MATTMATHEWS-750x750-Clean.jpg" alt="Matt Mathews: Not What I Ordered official artwork" onerror="imgFail(this,'MM')"></span><span class="ev">Matt Mathews: Not What I Ordered</span> <span class="badge aus">2027</span><br><span class="sub">World tour · recommended 18+ · from $81.46</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/matt-mathews/">Tickets</a><button class="mini" onclick="openCard('matt')">Info</button><button class="mini" onclick="addCal('matt')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2027-01-23T21:30:00+11:00" data-card="troy">
+        <td class="d">Sat 23 Jan 2027<small>7:30pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://cdn.statetheatre.com.au/wp-content/uploads/2026/05/28115604/TH-SYD-750x750-1.jpg" alt="Troy Hawke: Never Stop, Never Change official poster" onerror="imgFail(this,'TH')"></span><span class="ev">Troy Hawke: Never Stop, Never Change</span> <span class="badge aus">2027</span><br><span class="sub">New world-tour show · strictly 14+ · from $71.10</span></td>
+        <td>State Theatre</td>
+        <td><a class="mini buy" href="https://www.statetheatre.com.au/show-calendar/troy-hawke/">Tickets</a><button class="mini" onclick="openCard('troy')">Info</button><button class="mini" onclick="addCal('troy')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="comedy-night" data-ends="2027-04-16T22:00:00+10:00" data-card="joe">
+        <td class="d">Fri 16 Apr 2027<small>8:00pm</small></td>
+        <td><span class="sporttag c">Com</span></td>
+        <td><span class="thumbs comedy-art"><img class="poster" loading="lazy" src="https://www.trybooking.com/UserData/Homepage/G/EHI1578121-019877096532415189acf18f2b470206.jpeg" alt="Joe Avati official Sydney show artwork" onerror="imgFail(this,'JA')"></span><span class="ev">Joe Avati: Brand-New Show</span> <span class="badge aus">2027</span><br><span class="sub">One Sydney night · ages 16+ · $69.90</span></td>
+        <td>Ryde-Eastwood Leagues Club</td>
+        <td><a class="mini buy" href="https://www.trybooking.com/events/landing/1578121">Tickets</a><button class="mini" onclick="openCard('joe')">Info</button><button class="mini" onclick="addCal('joe')">+ Cal</button></td>
       </tr>
     </tbody>
   </table>
 
   <footer>
-    Sydney shows only. Dates, times, venues, prices and availability are included only when confirmed by the official venue, promoter or ticket seller. Where no finish time is published, calendar holds use a clearly marked placeholder. Ticket status can change, so check the linked official page before travelling.
+    Sydney shows only. The radar looks 12 months ahead, but lists an event only after an official venue, promoter or ticket seller publishes it. Posters come from those same official pages; if an image disappears, the comedian's initials replace it automatically. Where no finish time is published, calendar holds use a clearly marked placeholder. Ticket status can change, so check the linked official page before travelling.
   </footer>
 </div><!-- /pane-comedy -->
 
@@ -2561,11 +2655,114 @@ const COMEDY_CARDS = {
     emoji:"🎤",
     cal:{s:"2026-09-08T09:30:00Z",e:"2026-09-08T10:30:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
     title:"Aaron Chen: Technology",
-    when:"Tue 8–Fri 11 Sep · State Theatre, Sydney",
+    when:"8–11 Sep + Thu 8 Oct · State Theatre, Sydney",
     link:"https://www.statetheatre.com.au/show-calendar/aaron-chen/",
     linkLabel:"Official Event Page ↗",
-    secs:[{h:"Sydney dates",b:[["Tue 8, Wed 9 & Thu 10 Sep","7:30pm AEST"],["Fri 11 Sep","5:00pm AEST"],["Fri 11 Sep","8:30pm AEST"]]}],
+    secs:[{h:"Sydney dates",b:[["Tue 8, Wed 9 & Thu 10 Sep","7:30pm AEST"],["Fri 11 Sep","5:00pm AEST"],["Fri 11 Sep","8:30pm AEST"],["Thu 8 Oct","7:30pm AEDT"]]}],
     note:"The calendar button adds the first performance on Tue 8 Sep."
+  },
+  em: {
+    emoji:"🎤",
+    cal:{s:"2026-09-19T10:00:00Z",e:"2026-09-19T11:45:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Em Rusciano: Addicted to Love",
+    when:"Sat 19 Sep · 8:00pm AEST · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/em-rusciano/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Sat 19 Sep · 8:00pm AEST"],["Style","Comedy, cabaret and live vocals"],["Tickets","$69.90–$149.90 · recommended 15+"]]}]
+  },
+  bill: {
+    emoji:"🎤",
+    cal:{s:"2026-09-28T10:00:00Z",e:"2026-09-28T12:00:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Bill Bailey: Vaudevillean",
+    when:"Mon 28–Wed 30 Sep · 8:00pm AEST · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/bill-bailey/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Sydney dates",b:[["Mon 28 Sep","8:00pm AEST"],["Tue 29 Sep","8:00pm AEST"],["Wed 30 Sep","8:00pm AEST"],["Tickets","$101.68–$111.88"]]}],
+    note:"The calendar button adds the first Sydney performance on Mon 28 Sep."
+  },
+  morgan: {
+    emoji:"🎤",
+    cal:{s:"2026-10-18T05:00:00Z",e:"2026-10-18T06:30:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW"},
+    title:"Morgan Jay: The Goofy Guy Tour",
+    when:"Sun 18 Oct · 4:00pm & 7:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/morgan-jay/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Two Sydney shows",b:[["Early show","4:00pm AEDT"],["Evening show","7:00pm AEDT"],["Running time","Approximately 90 minutes"],["Tickets","$79.90 · ages 16+"]]}],
+    note:"The calendar button adds the 4:00pm performance."
+  },
+  kitty: {
+    emoji:"🎤",
+    cal:{s:"2026-10-23T09:00:00Z",e:"2026-10-23T10:30:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Kitty Flanagan: Glad Game",
+    when:"23, 24, 30 & 31 Oct · 8:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/kitty-flanagan/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Sydney dates",b:[["Fri 23 & Sat 24 Oct","8:00pm AEDT"],["Fri 30 & Sat 31 Oct","8:00pm AEDT"],["Tickets","$69–$89 · recommended 15+"]]}],
+    note:"The calendar button adds the first performance on Fri 23 Oct."
+  },
+  lawrence: {
+    emoji:"🎤",
+    cal:{s:"2026-11-06T09:00:00Z",e:"2026-11-06T10:20:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW"},
+    title:"Lawrence Mooney: Full Moon Party",
+    when:"Fri 6 Nov · 8:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/lawrence-mooney/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Fri 6 Nov · 8:00pm AEDT"],["Approximate finish","9:20pm AEDT"],["Tickets","$64.90–$74.90"]]}]
+  },
+  greg: {
+    emoji:"🎤",
+    cal:{s:"2026-11-07T09:00:00Z",e:"2026-11-07T11:00:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Greg Davies: Full Fat Legend",
+    when:"Sat 7–Mon 9 Nov · 8:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/greg-davies/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Sydney dates",b:[["Sat 7 Nov","8:00pm AEDT"],["Sun 8 Nov","8:00pm AEDT"],["Mon 9 Nov","8:00pm AEDT"],["Tickets","$101.68–$111.88"]]}],
+    note:"The calendar button adds the first performance on Sat 7 Nov."
+  },
+  dara: {
+    emoji:"🎤",
+    cal:{s:"2026-11-11T09:00:00Z",e:"2026-11-11T11:00:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Dara Ó Briain: Re:Creation",
+    when:"Wed 11 Nov · 8:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/dara-o-briain/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Wed 11 Nov · 8:00pm AEDT"],["Tickets","$87.90–$99.90"],["Tour","Australian and New Zealand leg of Re:Creation"]]}]
+  },
+  wankernomics: {
+    emoji:"🎤",
+    cal:{s:"2026-12-09T08:00:00Z",e:"2026-12-09T09:45:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW"},
+    title:"Wankernomics: Show_v4.1_Final_USETHIS",
+    when:"Wed 9 Dec · 7:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/wankernomics/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Wed 9 Dec · 7:00pm AEDT"],["Approximate finish","8:45pm AEDT"],["Tickets","$45–$79"],["Billing","Final Sydney performance of the extended show"]]}]
+  },
+  matt: {
+    emoji:"🎤",
+    cal:{s:"2027-01-15T08:00:00Z",e:"2027-01-15T09:30:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Matt Mathews: Not What I Ordered",
+    when:"Fri 15 Jan 2027 · 7:00pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/matt-mathews/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Fri 15 Jan 2027 · 7:00pm AEDT"],["Tickets","$81.46–$291.07"],["Age recommendation","18+"]]}]
+  },
+  troy: {
+    emoji:"🎤",
+    cal:{s:"2027-01-23T08:30:00Z",e:"2027-01-23T10:00:00Z",loc:"State Theatre, 49 Market Street, Sydney NSW",approx:true},
+    title:"Troy Hawke: Never Stop, Never Change",
+    when:"Sat 23 Jan 2027 · 7:30pm AEDT · State Theatre",
+    link:"https://www.statetheatre.com.au/show-calendar/troy-hawke/",
+    linkLabel:"Official Event Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Sat 23 Jan 2027 · 7:30pm AEDT"],["Tickets","$71.10–$106.78"],["Age restriction","Strictly 14+"]]}]
+  },
+  joe: {
+    emoji:"🎤",
+    cal:{s:"2027-04-16T10:00:00Z",e:"2027-04-16T12:00:00Z",loc:"Ryde-Eastwood Leagues Club, 117 Ryedale Road, West Ryde NSW"},
+    title:"Joe Avati: Brand-New Show",
+    when:"Fri 16 Apr 2027 · 8:00pm AEST · West Ryde",
+    link:"https://www.trybooking.com/events/landing/1578121",
+    linkLabel:"Official Ticket Page ↗",
+    secs:[{h:"Show details",b:[["Performance","Fri 16 Apr 2027 · 8:00–10:00pm AEST"],["Venue","Ryde-Eastwood Leagues Club"],["Tickets","$69.90"],["Age restriction","16+; under 18s with a responsible adult"]]}]
   }
 };
 
@@ -2630,7 +2827,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 const RANGES = {
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
-  comedy:   "Sun 16 Aug – Sun 13 Sep 2026 · Sydney comedy",
+  comedy:   "Sun 16 Aug 2026 – Mon 16 Aug 2027 · Sydney comedy",
   panthers: "Round 24 → Grand Final Sun 4 Oct 2026",
   raiders:  "Round 24 → Grand Final Sun 4 Oct 2026",
   united:   "Premier League · kick-offs in Sydney time",
@@ -2693,9 +2890,10 @@ function heroFromRow(card, row){
   const thumbs = row.querySelector('.thumbs');
   if (thumbs && thumbs.children.length){
     const faces = document.createElement('div');
-    faces.className = 'faces';
+    const isComedyArt = thumbs.classList.contains('comedy-art');
+    faces.className = isComedyArt ? 'faces promo-art' : 'faces';
     [...thumbs.children].forEach((k, i) => {
-      if (i === 1){
+      if (i === 1 && !isComedyArt){
         const vs = document.createElement('span');
         vs.className = 'vs'; vs.textContent = 'VS';
         faces.appendChild(vs);
