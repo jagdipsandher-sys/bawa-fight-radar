@@ -100,9 +100,15 @@ for ref in set(re.findall(r"(?:openCard|addCal)\('([^']+)'\)", page)):
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-fights", "pane-other", "pane-comedy", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp", "pane-wolves"]:
+for pane in ["pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
+             "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
+             "pane-wolves"]:
     if f'id="{pane}"' not in page:
         fail(f"tab {pane} has gone missing")
+
+for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1"]:
+    if control not in page:
+        fail(f"reorderable left navigation is missing {control}")
 
 
 # 7. the subscriber list must be well-formed, or the Friday email breaks

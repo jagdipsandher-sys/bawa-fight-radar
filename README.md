@@ -32,14 +32,22 @@ the usual culprit is the app password (check the spaces are stripped).
 
 ## The radar page (`index.html`)
 
-Nine tabs, all in the one file — same layout on each (hero cards, lookahead
-table, slide-out detail panel, calendar buttons):
+Eleven tabs, all in the one file. On desktop they sit in a left-hand rail; on
+mobile the **Sections** button opens that same rail. Drag them into a new order,
+or tap **Reorder** and use the arrows. The choice is saved on that device.
+
+Each tab follows the same layout (hero cards, lookahead table and slide-out
+detail panel; event tabs also include calendar buttons):
 
 - **Fights** — UFC and boxing, as before.
 - **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
   that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
 - **Comedy** — confirmed headline stand-up shows across a 12-month Sydney watch
   window, with official event artwork and ticket details only.
+- **Movies** — current and imminent Australian cinema releases, official poster
+  art, details and links to live Sydney session times.
+- **Series** — personalised streaming recommendations built around Game of
+  Thrones, The Sopranos, Mayor of Kingstown and gritty British crime drama.
 - **Panthers** — Penrith's remaining 2026 fixtures with venues, kick-off times
   and where to buy.
 - **Raiders** — Canberra's remaining NRL fixtures and finals path.
@@ -47,9 +55,9 @@ table, slide-out detail panel, calendar buttons):
 - **F1** and **MotoGP** — race weekends, Sydney session times and standings.
 - **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
 
-Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#panthers`,
-`index.html#raiders`, `index.html#united`, `index.html#f1`, `index.html#motogp`,
-`index.html#wolves`.
+Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#movies`,
+`index.html#series`, `index.html#panthers`, `index.html#raiders`,
+`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`.
 
 ### How each tab stays current
 
@@ -64,8 +72,10 @@ Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#panthers
 | Wolves | ESPN NBA feed | `build_wolves.py`, daily |
 | Other Action | Human web search | Scheduled Claude session, Sun night 1am Sydney |
 | Comedy | Official venue, promoter and ticket pages | Human web search; 12-month Sydney watch window |
+| Movies | Official studio and Australian cinema listings | Human web search; current and coming-soon releases |
+| Series | Official Australian streamer and network pages | Human web search; new seasons plus personalised essentials |
 
-The two builders rewrite only the blocks between the `BUILD:` markers in
+The automated builders rewrite only the blocks between the `BUILD:` markers in
 `index.html` and commit when the output changes (`.github/workflows/radar.yml`).
 **Never hand-edit inside those markers** — it gets overwritten next morning.
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BAWA Radar — Fights · Other Action · Panthers</title>
+<title>BAWA Radar — Fights · Sport · Comedy · Movies · Series</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
   :root{
     --red:#d20a0a; --red2:#b00808;
     --ink:#1b1b1b; --grey:#6b6b6b; --faint:#d5d5d5; --panelbg:#f5f5f5;
-    --dw:460px;
+    --dw:460px; --navw:224px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   body{
@@ -42,17 +42,48 @@
   .range{color:#bbb;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
   .redline{height:4px;background:var(--red)}
 
-  /* ===== TAB BAR ===== */
-  .tabs{background:#111}
-  .tabs .wrap{display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .tabs button{
-    background:transparent;border:0;color:#8f8f8f;cursor:pointer;white-space:nowrap;
-    padding:13px 20px 10px;font-size:.86rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
-    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
-    border-bottom:4px solid transparent;
+  /* ===== LEFT TAB RAIL ===== */
+  .app-shell{display:grid;grid-template-columns:var(--navw) minmax(0,1fr);align-items:start}
+  .content{min-width:0}
+  .tabs{
+    position:sticky;top:0;height:100vh;overflow-y:auto;background:#111;color:#fff;
+    border-right:1px solid #272727;z-index:25;padding:14px 0 18px;
   }
-  .tabs button:hover{color:#fff}
-  .tabs button.active{color:#fff;border-bottom-color:var(--red)}
+  .tabs .wrap{display:flex;flex-direction:column;gap:2px;padding:0 10px;overflow:visible}
+  .nav-head{padding:0 14px 12px;border-bottom:1px solid #303030;margin-bottom:8px}
+  .nav-title{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;font-weight:800}
+  .nav-tools{display:flex;gap:6px;margin-top:9px}
+  .nav-tools button,.order-controls button{
+    border:1px solid #4d4d4d;background:#1c1c1c;color:#c9c9c9;cursor:pointer;
+    font:800 .68rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;
+  }
+  .nav-tools button:hover,.order-controls button:hover{border-color:#fff;color:#fff}
+  .nav-close{display:none!important;margin-left:auto}
+  .tab-item{display:flex;align-items:center;min-width:0;border-left:3px solid transparent}
+  .tab-item.dragging{opacity:.38}
+  .tab-item.drag-over{background:#2a2a2a}
+  .tab-grip{color:#666;cursor:grab;font-size:.9rem;line-height:1;padding:0 3px 0 1px;user-select:none}
+  .tab-item:active .tab-grip{cursor:grabbing}
+  .tabs button.tab{
+    flex:1;min-width:0;background:transparent;border:0;color:#9e9e9e;cursor:pointer;white-space:nowrap;
+    padding:11px 5px 10px;text-align:left;font-size:.88rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-stretch:condensed;
+  }
+  .tabs button.tab:hover{color:#fff}
+  .tab-item.active{border-left-color:var(--red);background:#1a1a1a}
+  .tabs button.tab.active{color:#fff}
+  .order-controls{display:none;gap:3px;padding-right:2px}
+  .tabs.reorder-mode .order-controls{display:flex}
+  .tabs.reorder-mode .tab-grip{color:#bbb}
+  .order-controls button{width:25px;height:25px;padding:0;font-size:.8rem;line-height:1}
+  .nav-hint{padding:13px 14px 0;color:#727272;font-size:.68rem;line-height:1.35;border-top:1px solid #262626;margin-top:10px}
+  .nav-toggle{
+    display:none;align-items:center;gap:7px;border:1px solid #444;background:#111;color:#fff;cursor:pointer;
+    padding:7px 9px;font:800 .72rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    letter-spacing:.1em;text-transform:uppercase;
+  }
+  #navOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:23}
   .pane{display:none}
   .pane.on{display:block}
 
@@ -129,9 +160,12 @@
   .thumbs img+img,.thumbs .av+.av,.thumbs img+.av,.thumbs .av+img{margin-left:-9px}
   .thumbs img.oz,.thumbs .av.oz{border-color:var(--red);z-index:1;position:relative}
   .thumbs img.poster{width:52px;border-radius:3px}
-  .thumbs.comedy-art img,.thumbs.comedy-art .av{
+  .thumbs.comedy-art img,.thumbs.comedy-art .av,
+  .thumbs.media-art img,.thumbs.media-art .av{
     width:48px;height:48px;border-radius:3px;object-fit:cover;object-position:center;
   }
+  .streaming-note{border-left:4px solid var(--red);background:#f5f5f5;padding:13px 15px;margin:0 0 15px;color:#555;font-size:.86rem}
+  .match{color:var(--red);font-weight:800}
   .av{display:inline-flex;align-items:center;justify-content:center;color:#888;font-weight:800;font-size:.72rem;letter-spacing:.05em}
   .faces .av{font-size:1.6rem;background:#dcdcdc;color:#999;align-items:center}
 
@@ -277,11 +311,24 @@
     th:nth-child(5),td:nth-child(5){width:24%}
     td a.mini,td button.mini{font-size:.62rem;padding:4px 7px;margin-right:5px}
     .thumbs{display:none}
-    .thumbs.comedy-art{display:inline-flex;margin:0 6px 3px 0}
-    .thumbs.comedy-art img,.thumbs.comedy-art .av{width:38px;height:38px}
+    .thumbs.comedy-art,.thumbs.media-art{display:inline-flex;margin:0 6px 3px 0}
+    .thumbs.comedy-art img,.thumbs.comedy-art .av,
+    .thumbs.media-art img,.thumbs.media-art .av{width:38px;height:38px}
     .faces img,.faces .av{width:84px;height:84px}
     .faces.promo-art{height:175px}
     .faces.promo-art img,.faces.promo-art .av{width:100%;height:100%}
+  }
+  @media(max-width:850px){
+    .app-shell{display:block}
+    .nav-toggle{display:inline-flex}
+    .tabs{
+      position:fixed;left:calc(-1 * var(--navw) - 24px);top:0;width:var(--navw);height:100vh;
+      transition:left .22s ease;box-shadow:12px 0 30px rgba(0,0,0,.28);
+    }
+    .tabs.open{left:0}
+    #navOverlay.open{display:block}
+    .nav-close{display:block!important}
+    .tabs .wrap{padding-bottom:12px}
   }
 </style>
 <script>
@@ -297,7 +344,8 @@ function imgFail(img, initials){
   s.style.width = getComputedStyle(img).width;
   s.style.height = getComputedStyle(img).height;
   if(img.parentElement && img.parentElement.classList.contains('thumbs')){
-    s.style.borderRadius = img.parentElement.classList.contains('comedy-art') ? '3px' : '50%';
+    const art = img.parentElement.classList.contains('comedy-art') || img.parentElement.classList.contains('media-art');
+    s.style.borderRadius = art ? '3px' : '50%';
   }
   img.replaceWith(s);
 }
@@ -307,26 +355,41 @@ function imgFail(img, initials){
 
 <div class="topbar">
   <div class="wrap">
+    <button class="nav-toggle" type="button" onclick="toggleNav()" aria-controls="tabNav" aria-expanded="false"><span aria-hidden="true">☰</span> Sections</button>
     <h1 class="hd"><span class="r">BAWA</span> Fight Radar</h1>
     <div class="range" id="rangeText">Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)</div>
   </div>
 </div>
 <div class="redline"></div>
 
-<div class="tabs">
-  <div class="wrap">
-    <button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button>
-    <button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button>
-    <button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button>
-    <button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button>
-    <button class="tab" data-tab="raiders" onclick="showTab('raiders')">Raiders</button>
-    <button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button>
-    <button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button>
-    <button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button>
-    <button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button>
+<div id="navOverlay" onclick="closeNav()"></div>
+<div class="app-shell">
+<nav class="tabs" id="tabNav" aria-label="Radar sections">
+  <div class="nav-head">
+    <div class="nav-title hd">Your Radar</div>
+    <div class="nav-tools">
+      <button id="reorderToggle" type="button" onclick="toggleReorder()" aria-pressed="false">Reorder</button>
+      <button type="button" onclick="resetTabOrder()">Reset</button>
+      <button class="nav-close" type="button" onclick="closeNav()" aria-label="Close sections">✕</button>
+    </div>
   </div>
-</div>
+  <div class="wrap" id="tabList">
+    <div class="tab-item" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="comedy"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button><span class="order-controls"><button type="button" onclick="moveTab('comedy',-1)" aria-label="Move Comedy up">↑</button><button type="button" onclick="moveTab('comedy',1)" aria-label="Move Comedy down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="movies"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="movies" onclick="showTab('movies')">Movies 🎥</button><span class="order-controls"><button type="button" onclick="moveTab('movies',-1)" aria-label="Move Movies up">↑</button><button type="button" onclick="moveTab('movies',1)" aria-label="Move Movies down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="series"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="series" onclick="showTab('series')">Series</button><span class="order-controls"><button type="button" onclick="moveTab('series',-1)" aria-label="Move Series up">↑</button><button type="button" onclick="moveTab('series',1)" aria-label="Move Series down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="panthers"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button><span class="order-controls"><button type="button" onclick="moveTab('panthers',-1)" aria-label="Move Panthers up">↑</button><button type="button" onclick="moveTab('panthers',1)" aria-label="Move Panthers down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="raiders"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="raiders" onclick="showTab('raiders')">Raiders</button><span class="order-controls"><button type="button" onclick="moveTab('raiders',-1)" aria-label="Move Raiders up">↑</button><button type="button" onclick="moveTab('raiders',1)" aria-label="Move Raiders down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="united"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button><span class="order-controls"><button type="button" onclick="moveTab('united',-1)" aria-label="Move Man Utd up">↑</button><button type="button" onclick="moveTab('united',1)" aria-label="Move Man Utd down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
+  </div>
+  <div class="nav-hint">Drag sections into your order, or tap Reorder and use the arrows. Your order is saved on this device.</div>
+</nav>
 
+<main class="content">
 <div class="wrap">
 
 <!-- ================= TAB 1 · FIGHTS ================= -->
@@ -1593,6 +1656,203 @@ function imgFail(img, initials){
   </footer>
 </div><!-- /pane-comedy -->
 
+<!-- ================= TAB · MOVIES ================= -->
+<div class="pane" id="pane-movies">
+
+  <h2>Latest Movies — Sydney Cinemas</h2>
+  <div class="hero">
+    <div class="card">
+      <div class="sport">Now Showing &nbsp;<span class="badge ppv">Big-Screen Pick</span></div>
+      <div class="faces promo-art">
+        <img src="https://www.sonypictures.com/sites/default/files/styles/max_860x460/public/title-key-art/spidermanbrandnewday_onesheet_1400x2100.jpg?itok=Nh6VAAh-" alt="Spider-Man: Brand New Day official poster" onerror="imgFail(this,'SM')">
+      </div>
+      <div class="inner">
+        <div class="fight hd">Spider-Man: Brand New Day
+          <small>Tom Holland begins a new chapter as a Peter Parker the world has forgotten</small>
+        </div>
+        <div class="when">In cinemas now · <span class="t">Released Thu 30 Jul</span></div>
+        <div class="meta">Action / adventure · M · 145 min</div>
+        <ul class="mc"><li><b>Cast:</b> Tom Holland, Zendaya, Sadie Sink, Jon Bernthal and Mark Ruffalo.</li></ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.hoyts.com.au/movies/spider-man-brand-new-day">Session Times</a>
+          <button class="btn ghost" onclick="openCard('movie_spider')">Movie Info</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sport">Now Showing &nbsp;<span class="badge live">IMAX Pick</span></div>
+      <div class="faces promo-art">
+        <img src="https://imgix.hoyts.com.au/mx/posters/au/the-odyssey-a7141c99.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="The Odyssey official cinema poster" onerror="imgFail(this,'TO')">
+      </div>
+      <div class="inner">
+        <div class="fight hd">The Odyssey
+          <small>Christopher Nolan takes Homer’s mythic voyage to IMAX</small>
+        </div>
+        <div class="when">In cinemas now · <span class="t">Released Thu 16 Jul</span></div>
+        <div class="meta">Mythic action epic · M · 172 min</div>
+        <ul class="mc"><li><b>Cast:</b> Matt Damon, Tom Holland, Anne Hathaway, Robert Pattinson, Lupita Nyong’o and Zendaya.</li></ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.hoyts.com.au/movies/the-odyssey">Session Times</a>
+          <button class="btn ghost" onclick="openCard('movie_odyssey')">Movie Info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Now Showing &amp; Coming Soon</h2>
+  <div class="streaming-note"><b>No stale session guesses:</b> release dates and film details are fixed here, while every red button opens the cinema’s live Sydney session finder.</div>
+  <table>
+    <thead><tr><th>Release</th><th></th><th>Movie</th><th>Genre / Runtime</th><th>Sessions / Info</th></tr></thead>
+    <tbody>
+      <tr class="big">
+        <td class="d">Thu 30 Jul<small>Now showing</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://www.sonypictures.com/sites/default/files/styles/max_860x460/public/title-key-art/spidermanbrandnewday_onesheet_1400x2100.jpg?itok=Nh6VAAh-" alt="Spider-Man: Brand New Day poster" onerror="imgFail(this,'SM')"></span><span class="ev">Spider-Man: Brand New Day</span> <span class="badge ppv">New</span><br><span class="sub">Tom Holland · Zendaya · a fresh start after No Way Home</span></td>
+        <td>Action / Adventure<br><span class="sub">M · 145 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/spider-man-brand-new-day">Sessions</a><button class="mini" onclick="openCard('movie_spider')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Thu 16 Jul<small>Now showing</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/the-odyssey-a7141c99.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="The Odyssey poster" onerror="imgFail(this,'TO')"></span><span class="ev">The Odyssey</span> <span class="badge live">IMAX</span><br><span class="sub">Christopher Nolan · Matt Damon · Tom Holland</span></td>
+        <td>Drama / Epic<br><span class="sub">M · 172 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/the-odyssey">Sessions</a><button class="mini" onclick="openCard('movie_odyssey')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Thu 13 Aug<small>Now showing</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/one-night-only-04d69e50.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="One Night Only poster" onerror="imgFail(this,'ON')"></span><span class="ev">One Night Only</span> <span class="badge fn">New</span><br><span class="sub">Monica Barbaro and Callum Turner in a one-night New York rom-com</span></td>
+        <td>Comedy / Romance<br><span class="sub">M · 102 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/one-night-only">Sessions</a><button class="mini" onclick="openCard('movie_one_night')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Thu 6 Aug<small>Now showing</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/super-troopers-3-fdedce03.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="Super Troopers 3 poster" onerror="imgFail(this,'ST')"></span><span class="ev">Super Troopers 3</span> <span class="badge fn">New</span><br><span class="sub">Broken Lizard’s cult cops return for more chaos</span></td>
+        <td>Action / Comedy<br><span class="sub">MA15+ · 100 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/super-troopers-3">Sessions</a><button class="mini" onclick="openCard('movie_troopers')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Wed 8 Jul<small>Now showing</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/moana-2026-f3e28c64.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="Moana live-action poster" onerror="imgFail(this,'MO')"></span><span class="ev">Moana</span><br><span class="sub">Disney’s live-action voyage with Catherine Lagaʻaia and Dwayne Johnson</span></td>
+        <td>Family / Fantasy<br><span class="sub">PG · 115 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/moana">Sessions</a><button class="mini" onclick="openCard('movie_moana')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Thu 18 Jun<small>Now showing</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/toy-story-5-b04333b7.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="Toy Story 5 poster" onerror="imgFail(this,'TS')"></span><span class="ev">Toy Story 5</span><br><span class="sub">Woody, Buzz and Jessie face a new threat to playtime: technology</span></td>
+        <td>Animation / Comedy<br><span class="sub">G · 102 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/toy-story-5">Sessions</a><button class="mini" onclick="openCard('movie_toy_story')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Thu 20 Aug<small>Coming next</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/mutiny-65779d81.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="Mutiny poster" onerror="imgFail(this,'MU')"></span><span class="ev">Mutiny</span> <span class="badge soon">Coming</span><br><span class="sub">Jason Statham is framed for murder and hunted through an international conspiracy</span></td>
+        <td>Action / Thriller<br><span class="sub">MA15+ · 95 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/mutiny">Sessions</a><button class="mini" onclick="openCard('movie_mutiny')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Thu 20 Aug<small>Coming next</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/spa-weekend-81f84961.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="Spa Weekend poster" onerror="imgFail(this,'SW')"></span><span class="ev">Spa Weekend</span> <span class="badge soon">Coming</span><br><span class="sub">Isla Fisher, Anna Faris, Leslie Mann and Michelle Buteau</span></td>
+        <td>Comedy<br><span class="sub">M · 97 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/spa-weekend">Sessions</a><button class="mini" onclick="openCard('movie_spa')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Thu 27 Aug<small>Book ahead</small></td><td><span class="sporttag m">Film</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://imgix.hoyts.com.au/mx/posters/au/the-dog-stars-340e9dc1.jpg?auto=compress%2Cformat&amp;fit=crop&amp;h=720&amp;w=480" alt="The Dog Stars poster" onerror="imgFail(this,'DS')"></span><span class="ev">The Dog Stars</span> <span class="badge soon">Coming</span><br><span class="sub">Ridley Scott · Jacob Elordi · Josh Brolin · post-apocalyptic survival</span></td>
+        <td>Action / Sci-Fi<br><span class="sub">MA15+ · 118 min</span></td><td><a class="mini buy" href="https://www.hoyts.com.au/movies/the-dog-stars">Sessions</a><button class="mini" onclick="openCard('movie_dog_stars')">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <footer>Australian theatrical dates and classifications checked against current HOYTS listings on Sun 16 Aug 2026. Posters come from Sony Pictures or HOYTS; missing artwork falls back to initials. Session times change by cinema and day, so the live cinema link is always the source of truth.</footer>
+</div><!-- /pane-movies -->
+
+<!-- ================= TAB · SERIES ================= -->
+<div class="pane" id="pane-series">
+
+  <h2>Latest Series — Picked For You</h2>
+  <div class="streaming-note"><b>Built around your taste:</b> <i>Game of Thrones</i> scale, <i>The Sopranos</i> family power games, <i>Mayor of Kingstown</i> pressure, and gritty British gangsters. Start with the two cards below.</div>
+  <div class="hero">
+    <div class="card">
+      <div class="sport">New Series &nbsp;<span class="badge ppv">Best Match</span> <span class="badge live">Stream Now</span></div>
+      <div class="faces promo-art">
+        <img src="https://streamcoimg-a.akamaihd.net/000/185/006/185006-Banner-L1-61424848caa84316b031e8c0538e881a.jpg?quality=85&amp;resize=1440px%3A%2A" alt="Fightland official Stan promotional artwork" onerror="imgFail(this,'FL')">
+      </div>
+      <div class="inner">
+        <div class="fight hd">Fightland
+          <small>British boxing, prison, revenge and a London crime syndicate</small>
+        </div>
+        <div class="when">Season 1 · <span class="t">Streaming now on Stan</span></div>
+        <div class="meta">MA15+ · crime / sports drama · Howard Charles, Nicholas Pinnock, Deborah Ayorinde</div>
+        <ul class="mc"><li><span class="match">Why you’ll like it:</span> the pressure-cooker world of <i>Mayor of Kingstown</i>, but transported into brutal London boxing and organised crime.</li></ul>
+        <div class="btns"><a class="btn red" href="https://www.stan.com.au/watch/fightland">Watch · Stan</a><button class="btn ghost" onclick="openCard('series_fightland')">Why It Fits</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sport">New Season &nbsp;<span class="badge ppv">Action Pick</span> <span class="badge live">Weekly</span></div>
+      <div class="faces promo-art">
+        <img src="https://assets.aboutamazon.com/fb/a1/07e683054dff8f197c8f408eda7d/reacher-s4-amazon-news-nb-073126.JPG" alt="Reacher season 4 official Prime Video artwork" onerror="imgFail(this,'R4')">
+      </div>
+      <div class="inner">
+        <div class="fight hd">Reacher — Season 4
+          <small>A subway encounter pulls Reacher into a conspiracy at the highest levels</small>
+        </div>
+        <div class="when">Premiered 12 Aug · <span class="t">New episodes on Prime Video</span></div>
+        <div class="meta">Action / conspiracy thriller · based on Lee Child’s Gone Tomorrow</div>
+        <ul class="mc"><li><span class="match">Why you’ll like it:</span> direct, violent and relentlessly paced—the cleanest current match for the hard edge of <i>Mayor of Kingstown</i>.</li></ul>
+        <div class="btns"><a class="btn red" href="https://www.primevideo.com/detail/Reacher/0K16R3PLUFGC2JUE457C26O4OD">Watch · Prime</a><button class="btn ghost" onclick="openCard('series_reacher')">Why It Fits</button></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Your Watchlist — New First, Then Essentials</h2>
+  <table>
+    <thead><tr><th>Status</th><th></th><th>Series / Why It Fits</th><th>Where</th><th>Watch / Info</th></tr></thead>
+    <tbody>
+      <tr class="big">
+        <td class="d">Stream now<small>New · 2026</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://streamcoimg-a.akamaihd.net/000/185/006/185006-Banner-L1-61424848caa84316b031e8c0538e881a.jpg?quality=85&amp;resize=1440px%3A%2A" alt="Fightland artwork" onerror="imgFail(this,'FL')"></span><span class="ev">Fightland</span> <span class="badge ppv">Start Here</span><br><span class="sub"><span class="match">Why:</span> London crime family, ex-boxer, prison history and revenge—from Curtis “50 Cent” Jackson.</span></td>
+        <td>Stan</td><td><a class="mini buy" href="https://www.stan.com.au/watch/fightland">Watch</a><button class="mini" onclick="openCard('series_fightland')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">New weekly<small>From 12 Aug</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://assets.aboutamazon.com/fb/a1/07e683054dff8f197c8f408eda7d/reacher-s4-amazon-news-nb-073126.JPG" alt="Reacher season 4 artwork" onerror="imgFail(this,'R4')"></span><span class="ev">Reacher — Season 4</span> <span class="badge ppv">Latest</span><br><span class="sub"><span class="match">Why:</span> lone-wolf muscle, corrupt power and a deadly conspiracy with no wasted time.</span></td>
+        <td>Prime Video</td><td><a class="mini buy" href="https://www.primevideo.com/detail/Reacher/0K16R3PLUFGC2JUE457C26O4OD">Watch</a><button class="mini" onclick="openCard('series_reacher')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Binge now<small>Season 3 complete</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://i.ytimg.com/vi/TXgtkeOKShU/maxresdefault.jpg" alt="House of the Dragon season 3 official HBO Max artwork" onerror="imgFail(this,'HD')"></span><span class="ev">House of the Dragon — Season 3</span> <span class="badge aus">GOT Pick</span><br><span class="sub"><span class="match">Why:</span> the obvious one—dynasty, betrayal, armies and dragons with the civil war fully ignited.</span></td>
+        <td>HBO Max</td><td><a class="mini buy" href="https://www.hbo.com/house-of-the-dragon">Watch</a><button class="mini" onclick="openCard('series_hotd')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Thu 3 Sep<small>Season 2</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://dnm.nflximg.net/api/v6/2DuQlx0fM4wd1nzqm5BFBi6ILa8/AAAAQfSQrY2ItGHQ24_-WtWLl60vSLIo9qI8wl1HLZIDKlovMbRoD5H3icSn1J9ZYNPLYJhOTGGDbECnkkCEQsNpOvbKvR2ck4O2_5XoysMpPo6BmByIMiCdRryEi1JlPhRZSoGtwr1G19chFGMvz6cnPrXn.jpg?r=c28" alt="The Gentlemen season 2 official Netflix artwork" onerror="imgFail(this,'TG')"></span><span class="ev">The Gentlemen — Season 2</span> <span class="badge soon">Coming</span><br><span class="sub"><span class="match">Why:</span> Guy Ritchie’s stylish British underworld goes international, with Eddie and Susie chasing everything.</span></td>
+        <td>Netflix</td><td><a class="mini buy" href="https://www.netflix.com/tudum/articles/the-gentlemen-season-2-release-date-photos">Official Info</a><button class="mini" onclick="openCard('series_gentlemen')">Details</button></td>
+      </tr>
+      <tr class="big">
+        <td class="d">Fri 18 Sep<small>Season 2</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://public-assets-pressexpress.s3.amazonaws.com/assets/pages/images/2026/07/09/image_46388010491783614395745-mjybfq1s.png" alt="MobLand season 2 official Paramount artwork" onerror="imgFail(this,'ML')"></span><span class="ev">MobLand — Season 2</span> <span class="badge soon">Coming</span><br><span class="sub"><span class="match">Why:</span> Tom Hardy fixes a fractured London crime family led by Pierce Brosnan and Helen Mirren—pure Sopranos territory.</span></td>
+        <td>Paramount+</td><td><a class="mini buy" href="https://www.paramountplus.com/au/shows/mobland/">Watch / Info</a><button class="mini" onclick="openCard('series_mobland')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Binge now<small>6 episodes</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://i.ytimg.com/vi/UPFRItMOgPo/maxresdefault.jpg" alt="A Knight of the Seven Kingdoms official HBO Max artwork" onerror="imgFail(this,'AK')"></span><span class="ev">A Knight of the Seven Kingdoms</span> <span class="badge aus">GOT Pick</span><br><span class="sub"><span class="match">Why:</span> Westeros again, but smaller, funnier and more character-led—a hedge knight and his mysterious squire.</span></td>
+        <td>HBO Max</td><td><a class="mini buy" href="https://www.hbo.com/a-knight-of-the-seven-kingdoms">Watch</a><button class="mini" onclick="openCard('series_knight')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Binge now<small>3 seasons</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://streamcoimg-a.akamaihd.net/000/605/57/60557-Banner-L1-6e8e57b4421f12ed0349fb855b814ed4.jpg?quality=85&amp;resize=1440px%3A%2A" alt="Gangs of London official Stan artwork" onerror="imgFail(this,'GL')"></span><span class="ev">Gangs of London</span> <span class="badge tbc">Brutal</span><br><span class="sub"><span class="match">Why:</span> the most violent and cinematic British gang-war series on the list; renewed for season 4.</span></td>
+        <td>Stan</td><td><a class="mini buy" href="https://www.stan.com.au/watch/gangs-of-london">Watch</a><button class="mini" onclick="openCard('series_gangs')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Binge now<small>S2 coming</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://streamcoimg-a.akamaihd.net/000/154/732/154732-Banner-L1-da95f4bc3a949282152cda8e6df89a11.jpg?quality=85&amp;resize=1440px%3A%2A" alt="This City Is Ours official Stan artwork" onerror="imgFail(this,'TC')"></span><span class="ev">This City Is Ours</span> <span class="badge fn">Liverpool</span><br><span class="sub"><span class="match">Why:</span> Sean Bean’s retiring Liverpool crime boss triggers a succession fight—family loyalty versus power.</span></td>
+        <td>Stan</td><td><a class="mini buy" href="https://www.stan.com.au/watch/this-city-is-ours">Watch</a><button class="mini" onclick="openCard('series_city')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Binge now<small>Season 2</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://i.ytimg.com/vi/HItMUcfjw4M/maxresdefault.jpg" alt="A Thousand Blows season 2 official Disney Plus artwork" onerror="imgFail(this,'TB')"></span><span class="ev">A Thousand Blows</span> <span class="badge fn">East London</span><br><span class="sub"><span class="match">Why:</span> <i>Peaky Blinders</i> creator Steven Knight, Stephen Graham, bare-knuckle boxing and an 1880s female crime gang.</span></td>
+        <td>Disney+</td><td><a class="mini buy" href="https://www.disneyplus.com/explore/articles/a-thousand-blows-season-2">Watch / Info</a><button class="mini" onclick="openCard('series_blows')">Details</button></td>
+      </tr>
+      <tr>
+        <td class="d">Binge now<small>8 episodes</small></td><td><span class="sporttag u">TV</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://i.ytimg.com/vi/sfJG6IiA_s8/maxresdefault.jpg" alt="The Penguin official HBO Max artwork" onerror="imgFail(this,'TP')"></span><span class="ev">The Penguin</span> <span class="badge ppv">Sopranos Pick</span><br><span class="sub"><span class="match">Why:</span> a grim mob succession drama wearing a Batman coat—Colin Farrell’s Oz Cobb climbs from soldier to kingpin.</span></td>
+        <td>HBO Max</td><td><a class="mini buy" href="https://www.hbo.com/the-penguin">Watch</a><button class="mini" onclick="openCard('series_penguin')">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <footer>Australian availability checked Sun 16 Aug 2026 against the streamers’ own pages and current Australian listings. “Why you’ll like it” is editorial—not a paid placement. Official promotional artwork is used throughout and falls back to initials if a source removes an image.</footer>
+</div><!-- /pane-series -->
+
 
 
 <div class="join">
@@ -1618,7 +1878,7 @@ function imgFail(img, initials){
      because people asked. If there's a sport, a team or a venue you keep missing,
      say so &mdash; new tabs get added off the back of these.</p>
   <div class="row">
-    <a class="btn red" href="mailto:jagdipsandher@gmail.com?subject=%5BBAWA%20FEEDBACK%5D%20Request%3A%20&amp;body=What%20I'd%20like%20added%20or%20changed%3A%0A%0A%0AWhy%20it'd%20be%20useful%3A%0A%0A%0A(Which%20tab%3A%20Fights%20%2F%20Other%20Action%20%2F%20Panthers)%0A">Request A Change</a>
+    <a class="btn red" href="mailto:jagdipsandher@gmail.com?subject=%5BBAWA%20FEEDBACK%5D%20Request%3A%20&amp;body=What%20I'd%20like%20added%20or%20changed%3A%0A%0A%0AWhy%20it'd%20be%20useful%3A%0A%0A%0AWhich%20tab%3A%20%0A">Request A Change</a>
     <a class="btn ghost" href="mailto:jagdipsandher@gmail.com?subject=%5BBAWA%20FEEDBACK%5D%20Problem%3A%20&amp;body=What%20looks%20wrong%3A%0A%0A%0AWhich%20tab%20and%20which%20event%3A%0A%0A%0AWhat%20I%20expected%20instead%3A%0A%0A">Something's Wrong</a>
     <a class="btn ghost" href="mailto:jagdipsandher@gmail.com?subject=%5BBAWA%20FEEDBACK%5D%20General%3A%20&amp;body=">Just A Thought</a>
   </div>
@@ -1629,6 +1889,8 @@ function imgFail(img, initials){
 </div>
 
 </div><!-- /wrap -->
+</main>
+</div><!-- /app-shell -->
 
 <!-- RIGHT PANEL -->
 <div id="overlay" onclick="closeDrawer()"></div>
@@ -2766,7 +3028,172 @@ const COMEDY_CARDS = {
   }
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS, COMEDY_CARDS);
+const MOVIE_CARDS = {
+  movie_spider: {
+    emoji:"🎥", title:"Spider-Man: Brand New Day", when:"In Australian cinemas now · released Thu 30 Jul 2026",
+    link:"https://www.hoyts.com.au/movies/spider-man-brand-new-day", linkLabel:"Live Session Times ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Action / adventure"],["Rating & runtime","M · 145 minutes"],["Director","Destin Daniel Cretton"]]},
+      {h:"Cast",b:[["Peter Parker","Tom Holland",1],["Also starring","Zendaya, Sadie Sink, Jacob Batalon, Jon Bernthal, Tramell Tillman, Michael Mando and Mark Ruffalo"]]},
+      {h:"What it is",b:[["Fresh start","Peter fights crime full-time in a world that no longer remembers him"],["Threat","A dangerous change in Peter may be the only way to stop an enemy no one can see"]]}
+    ], note:"Australian classification, runtime and release date from HOYTS; synopsis and artwork from Sony Pictures."
+  },
+  movie_odyssey: {
+    emoji:"🎥", title:"The Odyssey", when:"In Australian cinemas now · released Thu 16 Jul 2026",
+    link:"https://www.hoyts.com.au/movies/the-odyssey", linkLabel:"Live Session Times ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Mythic action epic / drama"],["Rating & runtime","M · 172 minutes"],["Director","Christopher Nolan"]]},
+      {h:"Cast",b:[["Odysseus","Matt Damon",1],["Also starring","Tom Holland, Anne Hathaway, Robert Pattinson, Lupita Nyong’o, Zendaya and Charlize Theron"]]},
+      {h:"Why the cinema",b:[["Format","Shot using new IMAX film technology"],["Story","Odysseus battles home from Troy through monsters, gods and temptation"]]}
+    ], note:"For the full-scale version, use an IMAX session where available."
+  },
+  movie_one_night: {
+    emoji:"🎥", title:"One Night Only", when:"In Australian cinemas now · released Thu 13 Aug 2026",
+    link:"https://www.hoyts.com.au/movies/one-night-only", linkLabel:"Live Session Times ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Comedy / drama / romance"],["Rating & runtime","M · 102 minutes"],["Director","Will Gluck"]]},
+      {h:"Cast",b:[["Leads","Monica Barbaro and Callum Turner",1],["Also starring","Maya Hawke, Julia Fox, King Princess, Ziwe, Molly Ringwald and LeVar Burton"]]},
+      {h:"Setup",b:[["One messy night","Two New Yorkers looking for more than a quick encounter keep colliding and losing each other across the city"]]}
+    ]
+  },
+  movie_troopers: {
+    emoji:"🎥", title:"Super Troopers 3", when:"In Australian cinemas now · released Thu 6 Aug 2026",
+    link:"https://www.hoyts.com.au/movies/super-troopers-3", linkLabel:"Live Session Times ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Action comedy"],["Rating & runtime","MA15+ · 100 minutes"],["Director","Jay Chandrasekhar"]]},
+      {h:"What it is",b:[["Broken Lizard returns","Farva’s extravagant engagement collides with a new drug-ring investigation"],["Cast","Jay Chandrasekhar, Paul Soter, Steve Lemme, Erik Stolhanske, Kevin Heffernan and Brian Cox"]]}
+    ]
+  },
+  movie_moana: {
+    emoji:"🎥", title:"Moana", when:"In Australian cinemas now · released Wed 8 Jul 2026",
+    link:"https://www.hoyts.com.au/movies/moana", linkLabel:"Live Session Times ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Adventure / family / fantasy / musical"],["Rating & runtime","PG · 115 minutes"],["Director","Thomas Kail"]]},
+      {h:"Cast",b:[["Moana","Catherine Lagaʻaia",1],["Maui","Dwayne Johnson"],["Also starring","Rena Owen, Frankie Adams and John Tui"]]},
+      {h:"Story",b:[["Beyond the reef","A live-action reimagining of Moana’s voyage with Maui to restore prosperity to Motunui"]]}
+    ]
+  },
+  movie_toy_story: {
+    emoji:"🎥", title:"Toy Story 5", when:"In Australian cinemas now · released Thu 18 Jun 2026",
+    link:"https://www.hoyts.com.au/movies/toy-story-5", linkLabel:"Live Session Times ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Animation / adventure / comedy"],["Rating & runtime","G · 102 minutes"],["Directors","Andrew Stanton and McKenna Harris"]]},
+      {h:"What it is",b:[["Old toys, new problem","Woody, Buzz and Jessie meet Lilypad, a tablet with disruptive ideas about what is best for Bonnie"],["Voices","Tom Hanks, Tim Allen, Joan Cusack, Tony Hale, Greta Lee and Conan O’Brien"]]}
+    ]
+  },
+  movie_mutiny: {
+    emoji:"🎥", title:"Mutiny", when:"Australian cinemas from Thu 20 Aug 2026",
+    link:"https://www.hoyts.com.au/movies/mutiny", linkLabel:"Sessions & Tickets ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Action thriller"],["Rating & runtime","MA15+ · 95 minutes"],["Director","Jean-François Richet"]]},
+      {h:"Cast",b:[["Lead","Jason Statham",1],["Also starring","Annabelle Wallis and Jason Wong"]]},
+      {h:"Setup",b:[["Framed","Cole Reed sees his billionaire boss murdered, takes the blame and runs while unpicking an international conspiracy"]]}
+    ]
+  },
+  movie_spa: {
+    emoji:"🎥", title:"Spa Weekend", when:"Australian cinemas from Thu 20 Aug 2026",
+    link:"https://www.hoyts.com.au/movies/spa-weekend", linkLabel:"Sessions & Tickets ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Comedy"],["Rating & runtime","M · 97 minutes"],["Directors","Jon Lucas and Scott Moore"]]},
+      {h:"Cast",b:[["The group","Isla Fisher, Anna Faris, Leslie Mann and Michelle Buteau",1]]},
+      {h:"Setup",b:[["Relaxation cancelled","Three friends’ spa escape descends into chaos when their trainwreck mate joins them"]]}
+    ]
+  },
+  movie_dog_stars: {
+    emoji:"🎥", title:"The Dog Stars", when:"Australian cinemas from Thu 27 Aug 2026",
+    link:"https://www.hoyts.com.au/movies/the-dog-stars", linkLabel:"Sessions & Tickets ↗",
+    secs:[
+      {h:"The movie",b:[["Genre","Action / adventure / sci-fi thriller"],["Rating & runtime","MA15+ · 118 minutes"],["Director","Ridley Scott"]]},
+      {h:"Cast",b:[["Leads","Jacob Elordi, Josh Brolin and Margaret Qualley",1],["Also starring","Guy Pearce, Benedict Wong and Allison Janney"]]},
+      {h:"Setup",b:[["After the virus","A pilot, his dog and a gun-toting ex-Marine survive at an abandoned airport until a radio transmission suggests hope beyond the horizon"]]}
+    ]
+  }
+};
+
+const SERIES_CARDS = {
+  series_fightland: {
+    emoji:"📺", title:"Fightland", when:"Season 1 · streaming now on Stan",
+    link:"https://www.stan.com.au/watch/fightland", linkLabel:"Watch on Stan ↗",
+    secs:[
+      {h:"Why it fits",b:[["Your strongest match","Mayor of Kingstown pressure plus gritty London gangsters and boxing",1],["Tone","Violent, revenge-driven and family-bound"]]},
+      {h:"The series",b:[["Setup","After eight years in a Nevada prison, former heavyweight Duke Kilroy returns to London to avenge his brother"],["Cast","Howard Charles, Nicholas Pinnock, Deborah Ayorinde, Charles Babalola, Anita-Joy Uwajeh and Tahirah Sharif"],["Format","2026 · MA15+ · one season · crime / sports drama"]]}
+    ], note:"Executive produced by Curtis “50 Cent” Jackson. This is the first one I’d put on for you."
+  },
+  series_reacher: {
+    emoji:"📺", title:"Reacher — Season 4", when:"Premiered 12 Aug 2026 · new episodes on Prime Video",
+    link:"https://www.primevideo.com/detail/Reacher/0K16R3PLUFGC2JUE457C26O4OD", linkLabel:"Watch on Prime Video ↗",
+    secs:[
+      {h:"Why it fits",b:[["Hard edge","Direct, physical and tense like Mayor of Kingstown without the political sprawl",1],["Pace","A mystery that keeps turning into close-quarters trouble"]]},
+      {h:"Season 4",b:[["Based on","Gone Tomorrow, the 13th Jack Reacher novel"],["Setup","A disastrous subway encounter draws Reacher into a deadly game involving ruthless people at the highest levels of power"],["Release","Season began 12 Aug 2026 on Prime Video"]]}
+    ]
+  },
+  series_hotd: {
+    emoji:"📺", title:"House of the Dragon — Season 3", when:"Season 3 complete · binge now on HBO Max",
+    link:"https://www.hbo.com/house-of-the-dragon", linkLabel:"Watch on HBO Max ↗",
+    secs:[
+      {h:"Why it fits",b:[["Game of Thrones match","The closest possible recommendation: Targaryen succession, shifting houses, betrayal and war",1],["This season","The Dance of the Dragons escalates into open conflict"]]},
+      {h:"Where to start",b:[["Already watched S1–2","Go straight into season 3"],["New to it","Start at season 1; the names matter and the betrayals land harder"]]}
+    ]
+  },
+  series_gentlemen: {
+    emoji:"📺", title:"The Gentlemen — Season 2", when:"Premieres Thu 3 Sep 2026 · Netflix",
+    link:"https://www.netflix.com/tudum/articles/the-gentlemen-season-2-release-date-photos", linkLabel:"Official Netflix Preview ↗",
+    secs:[
+      {h:"Why it fits",b:[["British gangster match","Guy Ritchie, old money, cannabis empires, sharp suits and sudden violence",1],["Sopranos streak","Family estate and criminal enterprise become impossible to separate"]]},
+      {h:"Season 2",b:[["Setup","A year after inheriting the estate, Eddie wants everything and takes his operation with Susie into Italy"],["Returning cast","Theo James, Kaya Scodelario, Ray Winstone, Vinnie Jones and Giancarlo Esposito"],["Release","3 Sep 2026 · Netflix"]]}
+    ]
+  },
+  series_mobland: {
+    emoji:"📺", title:"MobLand — Season 2", when:"Premieres Fri 18 Sep 2026 · Paramount+",
+    link:"https://www.paramountplus.com/au/shows/mobland/", linkLabel:"Watch on Paramount+ ↗",
+    secs:[
+      {h:"Why it fits",b:[["Sopranos match","A powerful family tries to look united while ambition and violence split it from within",1],["British muscle","Tom Hardy as the fixer between London crime factions"]]},
+      {h:"Season 2",b:[["Setup","Rivals threaten the fractured Harrigan empire while Harry da Souza walks a tightening line between loyalties"],["Cast","Tom Hardy, Pierce Brosnan, Helen Mirren, Paddy Considine, Joanne Froggatt and Toby Jones"],["Format","Ten episodes · globally from 18 Sep 2026"]]}
+    ]
+  },
+  series_knight: {
+    emoji:"📺", title:"A Knight of the Seven Kingdoms", when:"Season 1 · binge now on HBO Max",
+    link:"https://www.hbo.com/a-knight-of-the-seven-kingdoms", linkLabel:"Watch on HBO Max ↗",
+    secs:[
+      {h:"Why it fits",b:[["Westeros, closer up","Game of Thrones history without a throne room every five minutes",1],["Tone","More warmth and humour, but honour and lineage still carry lethal weight"]]},
+      {h:"The series",b:[["Setup","A century before Game of Thrones, hedge knight Dunk crosses Westeros with a small, secretive squire named Egg"],["Format","Six concise episodes · season 1 complete"]]}
+    ]
+  },
+  series_gangs: {
+    emoji:"📺", title:"Gangs of London", when:"Seasons 1–3 · binge now on Stan · renewed for season 4",
+    link:"https://www.stan.com.au/watch/gangs-of-london", linkLabel:"Watch on Stan ↗",
+    secs:[
+      {h:"Why it fits",b:[["Your grittiest pick","A British gang succession war filmed like a top-tier action movie",1],["Warning","Extremely bloody violence and injury detail"]]},
+      {h:"The series",b:[["Setup","London’s dominant crime boss is murdered, forcing his impulsive son into a war for the city"],["Cast","Joe Cole, Sope Dirisu, Lucian Msamati, Michelle Fairley, Paapa Essiedu and Narges Rashidi"],["Run","Three seasons available; season 4 confirmed"]]}
+    ]
+  },
+  series_city: {
+    emoji:"📺", title:"This City Is Ours", when:"Season 1 on Stan · renewed for season 2",
+    link:"https://www.stan.com.au/watch/this-city-is-ours", linkLabel:"Watch on Stan ↗",
+    secs:[
+      {h:"Why it fits",b:[["Liverpool Sopranos","A veteran boss retires and turns a criminal organisation into a family succession crisis",1],["Tone","Gritty, personal and less glossy than Guy Ritchie"]]},
+      {h:"The series",b:[["Setup","Ronnie Phelan’s retirement leaves his partner Michael and son Jamie fighting for control of Liverpool"],["Cast","Sean Bean, James Nelson-Joyce, Hannah Onslow, Jack McMullen, Darci Shaw and Julie Graham"],["Format","Eight episodes · season 2 coming"]]}
+    ]
+  },
+  series_blows: {
+    emoji:"📺", title:"A Thousand Blows", when:"Two seasons · binge now on Disney+",
+    link:"https://www.disneyplus.com/explore/articles/a-thousand-blows-season-2", linkLabel:"Watch / Official Disney+ Info ↗",
+    secs:[
+      {h:"Why it fits",b:[["Peaky pedigree","Created by Steven Knight with Stephen Graham in 1880s East London",1],["World","Bare-knuckle boxing, immigrant ambition and the Forty Elephants female crime gang"]]},
+      {h:"The series",b:[["Season 2","Hezekiah seeks revenge, Sugar looks for redemption and Mary Carr rebuilds her gang"],["Cast","Malachi Kirby, Stephen Graham and Erin Doherty"],["Format","Two seasons · six hour-long episodes each"]]}
+    ]
+  },
+  series_penguin: {
+    emoji:"📺", title:"The Penguin", when:"Limited series · eight episodes · HBO Max",
+    link:"https://www.hbo.com/the-penguin", linkLabel:"Watch on HBO Max ↗",
+    secs:[
+      {h:"Why it fits",b:[["The Sopranos in Gotham","Mob ambition, a damaged mother-son bond and a soldier clawing his way to the top",1],["No cape required","It plays as a crime drama first and a Batman-world story second"]]},
+      {h:"The series",b:[["Setup","After Carmine Falcone’s death, Oz Cobb exploits the vacuum and makes his play for Gotham’s underworld"],["Cast","Colin Farrell, Cristin Milioti, Rhenzy Feliz, Deirdre O’Connell and Clancy Brown"],["Format","Eight episodes · MA15+ in Australia"]]}
+    ]
+  }
+};
+
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS);
 
 let curCardId = null;
 function openCard(id){
@@ -2828,6 +3255,8 @@ const RANGES = {
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
   comedy:   "Sun 16 Aug 2026 – Mon 16 Aug 2027 · Sydney comedy",
+  movies:   "Latest Australian cinema releases · checked Sun 16 Aug 2026",
+  series:   "New series & personal picks · Australian streaming",
   panthers: "Round 24 → Grand Final Sun 4 Oct 2026",
   raiders:  "Round 24 → Grand Final Sun 4 Oct 2026",
   united:   "Premier League · kick-offs in Sydney time",
@@ -2835,12 +3264,103 @@ const RANGES = {
   motogp:   "MotoGP 2026 · every round in Sydney time",
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
+
+const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves'];
+const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
+
+function tabOrder(){
+  return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
+}
+function saveTabOrder(){
+  try{ localStorage.setItem(TAB_ORDER_KEY, JSON.stringify(tabOrder())); }catch(_e){}
+}
+function restoreTabOrder(){
+  let saved = [];
+  try{ saved = JSON.parse(localStorage.getItem(TAB_ORDER_KEY) || '[]'); }catch(_e){}
+  if(!Array.isArray(saved)) saved = [];
+  const order = [...saved.filter(id => DEFAULT_TAB_ORDER.includes(id)), ...DEFAULT_TAB_ORDER.filter(id => !saved.includes(id))];
+  const list = document.getElementById('tabList');
+  order.forEach(id => {
+    const item = list.querySelector('[data-tab-item="' + id + '"]');
+    if(item) list.appendChild(item);
+  });
+}
+function moveTab(id, direction){
+  const list = document.getElementById('tabList');
+  const item = list.querySelector('[data-tab-item="' + id + '"]');
+  if(!item) return;
+  if(direction < 0 && item.previousElementSibling) list.insertBefore(item, item.previousElementSibling);
+  if(direction > 0 && item.nextElementSibling) list.insertBefore(item.nextElementSibling, item);
+  saveTabOrder();
+  item.querySelector('.tab').focus();
+}
+function resetTabOrder(){
+  const list = document.getElementById('tabList');
+  DEFAULT_TAB_ORDER.forEach(id => {
+    const item = list.querySelector('[data-tab-item="' + id + '"]');
+    if(item) list.appendChild(item);
+  });
+  try{ localStorage.removeItem(TAB_ORDER_KEY); }catch(_e){}
+}
+function toggleReorder(){
+  const nav = document.getElementById('tabNav');
+  const on = nav.classList.toggle('reorder-mode');
+  const button = document.getElementById('reorderToggle');
+  button.setAttribute('aria-pressed', String(on));
+  button.textContent = on ? 'Done' : 'Reorder';
+}
+function toggleNav(){
+  const nav = document.getElementById('tabNav');
+  const on = !nav.classList.contains('open');
+  nav.classList.toggle('open', on);
+  document.getElementById('navOverlay').classList.toggle('open', on);
+  document.querySelector('.nav-toggle').setAttribute('aria-expanded', String(on));
+}
+function closeNav(){
+  document.getElementById('tabNav').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+  document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+}
+function bindTabDrag(){
+  const list = document.getElementById('tabList');
+  let dragging = null;
+  list.addEventListener('dragstart', e => {
+    dragging = e.target.closest('.tab-item');
+    if(!dragging) return;
+    dragging.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', dragging.dataset.tabItem);
+  });
+  list.addEventListener('dragover', e => {
+    if(!dragging) return;
+    e.preventDefault();
+    const over = e.target.closest('.tab-item');
+    list.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    if(!over || over === dragging) return;
+    over.classList.add('drag-over');
+    const before = e.clientY < over.getBoundingClientRect().top + over.offsetHeight / 2;
+    list.insertBefore(dragging, before ? over : over.nextElementSibling);
+  });
+  list.addEventListener('drop', e => {
+    if(!dragging) return;
+    e.preventDefault();
+    saveTabOrder();
+  });
+  list.addEventListener('dragend', () => {
+    if(dragging) dragging.classList.remove('dragging');
+    list.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    saveTabOrder();
+    dragging = null;
+  });
+}
 function showTab(id){
   if(!RANGES[id]) id = 'fights';
   document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.tabItem === id));
   document.getElementById('rangeText').textContent = RANGES[id];
   closeDrawer();
+  closeNav();
   if(location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
 }
 
@@ -2890,10 +3410,10 @@ function heroFromRow(card, row){
   const thumbs = row.querySelector('.thumbs');
   if (thumbs && thumbs.children.length){
     const faces = document.createElement('div');
-    const isComedyArt = thumbs.classList.contains('comedy-art');
-    faces.className = isComedyArt ? 'faces promo-art' : 'faces';
+    const isPromoArt = thumbs.classList.contains('comedy-art') || thumbs.classList.contains('media-art');
+    faces.className = isPromoArt ? 'faces promo-art' : 'faces';
     [...thumbs.children].forEach((k, i) => {
-      if (i === 1 && !isComedyArt){
+      if (i === 1 && !isPromoArt){
         const vs = document.createElement('span');
         vs.className = 'vs'; vs.textContent = 'VS';
         faces.appendChild(vs);
@@ -3085,6 +3605,8 @@ function refreshRadar(){
 
 refreshRadar();
 fillCountdowns();
+restoreTabOrder();
+bindTabDrag();
 showTab(location.hash.slice(1) || 'fights');
 addEventListener('hashchange', () => showTab(location.hash.slice(1) || 'fights'));
 </script>
