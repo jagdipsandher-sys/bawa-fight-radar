@@ -299,6 +299,55 @@
   .ladder .gap{border-bottom:1px dashed #d5d5d5!important;height:6px;padding:0}
   .nostart{color:var(--grey);font-size:.9rem;padding:14px 0;line-height:1.6}
   footer{margin-top:34px;color:var(--grey);font-size:.8rem;border-top:1px solid var(--faint);padding-top:14px}
+
+  /* ===== MY RADAR PERSONALISATION ===== */
+  .radar-intro{border-left:4px solid var(--red);background:var(--panelbg);padding:16px 18px;margin:0 0 18px}
+  .radar-intro strong{display:block;font-size:1.18rem;text-transform:uppercase;margin-bottom:3px;
+    font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif}
+  .radar-intro p{color:var(--grey);font-size:.88rem;max-width:76ch}
+  .radar-window,.sydney-filters,.pref-chips{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 18px}
+  .radar-window button,.sydney-filters button,.pref-chip{
+    border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:7px 11px;
+    font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    letter-spacing:.09em;text-transform:uppercase;
+  }
+  .radar-window button:hover,.sydney-filters button:hover,.pref-chip:hover{border-color:#000}
+  .radar-window button.active,.sydney-filters button.active,.pref-chip.active{
+    background:var(--red);border-color:var(--red);color:#fff;
+  }
+  .radar-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
+  .radar-stat{border:1px solid var(--faint);border-top:4px solid #000;background:#fff;padding:13px 15px}
+  .radar-stat b{display:block;font:800 1.75rem/1 "Barlow Condensed","Arial Narrow",Arial,sans-serif}
+  .radar-stat span{display:block;color:var(--grey);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-top:5px}
+  .radar-rec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .radar-rec-grid .card{min-width:0}
+  .radar-rec-grid .faces.promo-art{height:150px}
+  .radar-rec-grid .fight{font-size:1.35rem}
+  .radar-why{color:var(--red);font-size:.76rem;font-weight:800;margin-top:7px}
+  .radar-empty{border:1px dashed #aaa;background:#fafafa;padding:20px;color:var(--grey);font-size:.9rem}
+  .radar-saved-list{border:1px solid var(--faint);background:#fff}
+  .radar-saved-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:13px;align-items:center;padding:12px;border-bottom:1px solid #ececec}
+  .radar-saved-row:last-child{border-bottom:0}
+  .radar-saved-art{width:56px;height:56px;object-fit:cover;object-position:center;background:#e8e8e8;border:1px solid #d0d0d0}
+  .radar-saved-art.av{font-size:.75rem;color:#888}
+  .radar-saved-copy b{display:block;text-transform:uppercase;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-size:1rem}
+  .radar-saved-copy span{display:block;color:var(--grey);font-size:.78rem;margin-top:2px}
+  .radar-saved-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;align-items:center}
+  .radar-saved-actions select{border:1px solid #aaa;background:#fff;color:var(--ink);padding:5px 7px;font-size:.72rem}
+  .radar-saved-actions button{border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:5px 8px;
+    font:800 .66rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+  .radar-saved-actions button:hover{border-color:#000}
+  .radar-prefs{border:1px solid var(--faint);border-top:4px solid var(--red);background:var(--panelbg);padding:18px}
+  .radar-prefs h3{font:800 1.2rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;margin-bottom:2px}
+  .radar-prefs p{color:var(--grey);font-size:.82rem;max-width:74ch}
+  .radar-pref-label{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
+  .radar-privacy{color:var(--grey);font-size:.74rem;border-top:1px solid #ddd;padding-top:10px;margin-top:12px}
+  .radar-save.is-saved{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important}
+  .sydney-note{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 4px}
+  .sydney-note div{border:1px solid var(--faint);background:#fafafa;padding:12px}
+  .sydney-note b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase}
+  .sydney-note span{display:block;color:var(--grey);font-size:.78rem;margin-top:3px}
+  #sydneyEvents tr.sydney-hidden{display:none}
   @media(max-width:600px){
     .fight{font-size:1.45rem}
     .crest .big{font-size:1.75rem}
@@ -317,6 +366,14 @@
     .faces img,.faces .av{width:84px;height:84px}
     .faces.promo-art{height:175px}
     .faces.promo-art img,.faces.promo-art .av{width:100%;height:100%}
+    .radar-stats{grid-template-columns:1fr 1fr 1fr}
+    .radar-stat{padding:10px}
+    .radar-stat b{font-size:1.35rem}
+    .radar-rec-grid{grid-template-columns:1fr}
+    .radar-saved-row{grid-template-columns:44px minmax(0,1fr)}
+    .radar-saved-art{width:44px;height:44px}
+    .radar-saved-actions{grid-column:1/-1;justify-content:flex-start}
+    .sydney-note{grid-template-columns:1fr}
   }
   @media(max-width:850px){
     .app-shell{display:block}
@@ -374,7 +431,9 @@ function imgFail(img, initials){
     </div>
   </div>
   <div class="wrap" id="tabList">
-    <div class="tab-item" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
+    <div class="tab-item active" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="myradar" onclick="showTab('myradar')">My Radar</button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="comedy"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button><span class="order-controls"><button type="button" onclick="moveTab('comedy',-1)" aria-label="Move Comedy up">↑</button><button type="button" onclick="moveTab('comedy',1)" aria-label="Move Comedy down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="movies"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="movies" onclick="showTab('movies')">Movies 🎥</button><span class="order-controls"><button type="button" onclick="moveTab('movies',-1)" aria-label="Move Movies up">↑</button><button type="button" onclick="moveTab('movies',1)" aria-label="Move Movies down">↓</button></span></div>
@@ -392,8 +451,162 @@ function imgFail(img, initials){
 <main class="content">
 <div class="wrap">
 
-<!-- ================= TAB 1 · FIGHTS ================= -->
-<div class="pane on" id="pane-fights">
+<!-- ================= TAB 1 · MY RADAR ================= -->
+<div class="pane on" id="pane-myradar">
+  <h2>Your Personal Radar</h2>
+  <div class="radar-intro">
+    <strong>Everything you care about, in one place</strong>
+    <p>Save anything across the site, tell the radar what you enjoy, and this page will bring the best matches together. Your choices stay privately on this device.</p>
+  </div>
+
+  <div class="radar-window" aria-label="My Radar time window">
+    <button type="button" aria-pressed="false" data-radar-window="tonight" onclick="setRadarWindow('tonight')">Tonight</button>
+    <button type="button" class="active" aria-pressed="true" data-radar-window="weekend" onclick="setRadarWindow('weekend')">This Weekend</button>
+    <button type="button" aria-pressed="false" data-radar-window="soon" onclick="setRadarWindow('soon')">Coming Soon</button>
+  </div>
+
+  <div class="radar-stats" aria-label="My Radar summary">
+    <div class="radar-stat"><b id="radarPickCount">0</b><span>Top Picks</span></div>
+    <div class="radar-stat"><b id="radarSavedCount">0</b><span>Saved</span></div>
+    <div class="radar-stat"><b id="radarSoonCount">0</b><span>Coming Up</span></div>
+  </div>
+
+  <h2>Recommended For You</h2>
+  <div class="radar-rec-grid" id="radarRecommendations" aria-live="polite"></div>
+
+  <h2>Your Saved Radar</h2>
+  <div id="radarSaved" aria-live="polite"></div>
+
+  <h2>Make It Yours</h2>
+  <div class="radar-prefs">
+    <h3>What are you into?</h3>
+    <p>Choose as many as you like. These choices influence the dashboard but never hide the other sections.</p>
+    <div class="radar-pref-label">Interests</div>
+    <div class="pref-chips" id="radarInterestPrefs"></div>
+    <div class="radar-pref-label">Streaming services</div>
+    <div class="pref-chips" id="radarServicePrefs"></div>
+    <button type="button" class="btn ghost" onclick="resetRadarPreferences()">Reset Preferences</button>
+    <div class="radar-privacy">No account is required. Preferences, saved items and watch status are stored only in this browser using local storage.</div>
+  </div>
+
+  <footer>My Radar is the personalised view; every original section remains available and keeps its existing layout. Save buttons and preferences sync across this page immediately on this device.</footer>
+</div><!-- /pane-myradar -->
+
+<!-- ================= TAB 2 · WHAT'S ON SYDNEY ================= -->
+<div class="pane" id="pane-sydney">
+  <h2>This Weekend In Sydney</h2>
+  <div class="streaming-note"><b>A curated Sydney weekend, not an endless noticeboard:</b> major festivals, food and wine, exhibitions, family days and one-off experiences worth leaving the house for. Official organiser details only.</div>
+
+  <div class="hero">
+    <div class="card" data-slot="sydneyfood" data-ends="2026-08-23T17:00:00+10:00">
+      <div class="sport">Food &amp; Drink &nbsp;<span class="badge ppv">This Weekend</span> <span class="badge soon"><span class="cd" data-until="2026-08-21"></span></span></div>
+      <div class="faces promo-art"><img src="https://carriageworks.com.au/wp-content/uploads/WebTilewinterlfm.png" alt="The Little Food Market official artwork" onerror="imgFail(this,'LF')"></div>
+      <div class="inner">
+        <div class="fight hd">The Little Food Market<small>More than 180 Australian and New Zealand producers, tastings, demonstrations and street food</small></div>
+        <div class="when">Fri 21 – Sun 23 Aug · <span class="t">from $15</span></div>
+        <div class="meta">Carriageworks · Eveleigh</div>
+        <div class="btns"><a class="btn red" href="https://thelittlefoodmarket.com/sydney/tickets">Tickets</a><button class="btn ghost" onclick="openCard('syd_little_food')">Details</button><button class="btn ghost" onclick="addCal('syd_little_food')">+ Calendar</button></div>
+      </div>
+    </div>
+
+    <div class="card" data-slot="sydneyfestival" data-ends="2026-08-23T17:00:00+10:00">
+      <div class="sport">Festival &nbsp;<span class="badge aus">Two For One</span> <span class="badge soon"><span class="cd" data-until="2026-08-22"></span></span></div>
+      <div class="faces promo-art"><img src="https://dogloversfestival.com.au/sydney/wp-content/uploads/sites/2/2025/02/54115061451_00cbb9bf50_k.jpg" alt="Sydney Dog Lovers Festival official photograph" onerror="imgFail(this,'DC')"></div>
+      <div class="inner">
+        <div class="fight hd">Dog &amp; Cat Lovers Festivals<small>Hundreds of animals, breed showcases, adoption zones, demonstrations and food trucks</small></div>
+        <div class="when">Sat 22 – Sun 23 Aug · <span class="t">9:30am–5pm</span></div>
+        <div class="meta">Sydney Showground · Olympic Park · adult $44, children 12 and under free</div>
+        <div class="btns"><a class="btn red" href="https://dogloversfestival.com.au/sydney">Tickets</a><button class="btn ghost" onclick="openCard('syd_pet_festivals')">Details</button><button class="btn ghost" onclick="addCal('syd_pet_festivals')">+ Calendar</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sydney-note">
+    <div><b>Weekend first</b><span>The immediate choices stay at the top and disappear automatically after they finish.</span></div>
+    <div><b>Book ahead</b><span>Large festivals appear early enough to organise tickets, transport and friends.</span></div>
+    <div><b>Free is labelled</b><span>Free public events are clearly separated from ticketed experiences.</span></div>
+  </div>
+
+  <h2>What's Coming Up</h2>
+  <div class="sydney-filters" aria-label="Filter Sydney events">
+    <button type="button" class="active" aria-pressed="true" data-sydney-filter="all" onclick="filterSydney('all')">All</button>
+    <button type="button" aria-pressed="false" data-sydney-filter="weekend" onclick="filterSydney('weekend')">This Weekend</button>
+    <button type="button" aria-pressed="false" data-sydney-filter="food" onclick="filterSydney('food')">Food &amp; Drink</button>
+    <button type="button" aria-pressed="false" data-sydney-filter="festival" onclick="filterSydney('festival')">Festivals</button>
+    <button type="button" aria-pressed="false" data-sydney-filter="free" onclick="filterSydney('free')">Free</button>
+    <button type="button" aria-pressed="false" data-sydney-filter="family" onclick="filterSydney('family')">Family</button>
+  </div>
+  <table id="sydneyEvents">
+    <thead><tr><th>Date</th><th>Type</th><th>Event</th><th>Where</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr class="big" data-sport="sydneyfood" data-ends="2026-08-23T17:00:00+10:00" data-card="syd_little_food" data-syd-cat="weekend food">
+        <td class="d">21–23 Aug<small>Fri–Sun</small></td><td><span class="sporttag c">Food</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://carriageworks.com.au/wp-content/uploads/WebTilewinterlfm.png" alt="The Little Food Market artwork" onerror="imgFail(this,'LF')"></span><span class="ev">The Little Food Market</span> <span class="badge ppv">This Weekend</span><br><span class="sub">180+ producers, tastings, live cooking and street food · tickets from $15</span></td>
+        <td>Carriageworks<br><span class="sub">Eveleigh</span></td><td><a class="mini buy" href="https://thelittlefoodmarket.com/sydney/tickets">Tickets</a><button class="mini" onclick="openCard('syd_little_food')">Details</button><button class="mini" onclick="addCal('syd_little_food')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="sydneyfestival" data-ends="2026-08-23T17:00:00+10:00" data-card="syd_pet_festivals" data-syd-cat="weekend festival family">
+        <td class="d">22–23 Aug<small>9:30am–5pm</small></td><td><span class="sporttag c">Festival</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://dogloversfestival.com.au/sydney/wp-content/uploads/sites/2/2025/02/54115061451_00cbb9bf50_k.jpg" alt="Dog Lovers Festival photograph" onerror="imgFail(this,'DC')"></span><span class="ev">Dog &amp; Cat Lovers Festivals</span> <span class="badge aus">Family</span><br><span class="sub">One ticket covers both festivals · adult $44 · children 12 and under free</span></td>
+        <td>Sydney Showground<br><span class="sub">Olympic Park</span></td><td><a class="mini buy" href="https://dogloversfestival.com.au/sydney">Tickets</a><button class="mini" onclick="openCard('syd_pet_festivals')">Details</button><button class="mini" onclick="addCal('syd_pet_festivals')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyfood" data-ends="2026-08-23T15:30:00+10:00" data-card="syd_taste_house" data-syd-cat="weekend food">
+        <td class="d">Sun 23 Aug<small>11:30am–3:30pm</small></td><td><span class="sporttag c">Food</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://www.sydneyoperahouse.com/sites/default/files/collaborodam_assets/TOTH23-Website-1600x900.jpg" alt="Taste of the House official photograph" onerror="imgFail(this,'TH')"></span><span class="ev">Taste of the House</span> <span class="badge ppv">Limited</span><br><span class="sub">A guided food journey through Opera Bar, Midden, backstage spaces and Bennelong · $395 · 18+</span></td>
+        <td>Sydney Opera House<br><span class="sub">Bennelong Point</span></td><td><a class="mini buy" href="https://www.sydneyoperahouse.com/tours/taste-of-the-house">Book</a><button class="mini" onclick="openCard('syd_taste_house')">Details</button><button class="mini" onclick="addCal('syd_taste_house')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneysport" data-ends="2026-08-30T14:00:00+10:00" data-card="syd_marathon" data-syd-cat="festival family">
+        <td class="d">Sun 30 Aug<small>Start time TBC</small></td><td><span class="sporttag n">Major</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://static.wixstatic.com/media/59d65a_3c5f7cd6bec04a67b8f863e7d69eff62%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/59d65a_3c5f7cd6bec04a67b8f863e7d69eff62%7Emv2.jpg" alt="TCS Sydney Marathon official artwork" onerror="imgFail(this,'SM')"></span><span class="ev">TCS Sydney Marathon</span> <span class="badge aus">World Major</span><br><span class="sub">Cheer from the course as runners cross the Harbour Bridge and finish at the Opera House</span></td>
+        <td>North Sydney →<br><span class="sub">Opera House</span></td><td><a class="mini buy" href="https://www.tcssydneymarathon.com/marathon">Official Info</a><button class="mini" onclick="openCard('syd_marathon')">Details</button></td>
+      </tr>
+      <tr data-sport="sydneyfestival" data-ends="2026-10-11T23:59:00+11:00" data-card="syd_fringe" data-syd-cat="festival">
+        <td class="d">2 Sep–11 Oct<small>Six weeks</small></td><td><span class="sporttag c">Festival</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://sydneyfringe.com/wp-content/uploads/2020/06/Facebook-Share-1200x630_V1.gif" alt="Sydney Fringe official artwork" onerror="imgFail(this,'SF')"></span><span class="ev">Sydney Fringe Festival</span> <span class="badge ppv">Program Live</span><br><span class="sub">Independent theatre, comedy, cabaret, music, circus, drag and immersive work across the city</span></td>
+        <td>Multiple venues<br><span class="sub">Sydney-wide</span></td><td><a class="mini buy" href="https://sydneyfringe.com/">Browse Program</a><button class="mini" onclick="openCard('syd_fringe')">Details</button><button class="mini" onclick="addCal('syd_fringe')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyarts" data-ends="2026-09-06T17:00:00+10:00" data-card="syd_contemporary" data-syd-cat="festival">
+        <td class="d">3–6 Sep<small>Thu–Sun</small></td><td><span class="sporttag b">Art</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://sydneycontemporary.com.au/2015/wp-content/uploads/2026/05/2013-2.png" alt="Sydney Contemporary official artwork" onerror="imgFail(this,'SC')"></span><span class="ev">Sydney Contemporary</span> <span class="badge ppv">10th Edition</span><br><span class="sub">100+ galleries and more than 500 artists, installations, performances and talks · from $30</span></td>
+        <td>Carriageworks<br><span class="sub">Eveleigh</span></td><td><a class="mini buy" href="https://sydneycontemporary.com.au/visit/">Tickets</a><button class="mini" onclick="openCard('syd_contemporary')">Details</button><button class="mini" onclick="addCal('syd_contemporary')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneysport" data-ends="2026-09-05T21:00:00+10:00" data-card="syd_wtac" data-syd-cat="festival family">
+        <td class="d">4–5 Sep<small>Fri–Sat</small></td><td><span class="sporttag m">Motorsport</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://static.wixstatic.com/media/66e0e9_83f8ab42fbe54c03a68516363883aa40~mv2.png/v1/fill/w_1920,h_1080,al_c/66e0e9_83f8ab42fbe54c03a68516363883aa40~mv2.png" alt="World Time Attack Challenge official artwork" onerror="imgFail(this,'WT')"></span><span class="ev">World Time Attack Challenge</span> <span class="badge ppv">On Sale</span><br><span class="sub">Time attack, drifting, demonstrations, Flying 500, show-and-shine and Mayhem After Dark</span></td>
+        <td>Sydney Motorsport Park<br><span class="sub">Eastern Creek</span></td><td><a class="mini buy" href="https://www.worldtimeattack.com/">Tickets</a><button class="mini" onclick="openCard('syd_wtac')">Details</button><button class="mini" onclick="addCal('syd_wtac')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyarts" data-ends="2026-11-02T18:00:00+11:00" data-card="syd_sculpture" data-syd-cat="festival free family">
+        <td class="d">16 Oct–2 Nov<small>Daily</small></td><td><span class="sporttag b">Art</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://www.nsw.gov.au/sites/default/files/styles/_medium/public/atdw/880ec67e055490755313ce88849fa986.jpeg?itok=paLrlMkd" alt="Sculpture by the Sea official event photograph" onerror="imgFail(this,'SS')"></span><span class="ev">Sculpture by the Sea, Bondi</span> <span class="badge home">Free</span><br><span class="sub">Around 100 sculptures transform the two-kilometre Bondi-to-Tamarama coastal walk</span></td>
+        <td>Bondi to Tamarama<br><span class="sub">Coastal walk</span></td><td><a class="mini buy" href="https://sculpturebythesea.com/">Official Info</a><button class="mini" onclick="openCard('syd_sculpture')">Details</button><button class="mini" onclick="addCal('syd_sculpture')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyfood" data-ends="2026-11-22T17:00:00+11:00" data-card="syd_good_food_xmas" data-syd-cat="food festival family">
+        <td class="d">20–22 Nov<small>Fri–Sun</small></td><td><span class="sporttag c">Food</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://goodfoodshow.com.au/wp-content/uploads/2026/03/Untitled-design-33.jpg" alt="Good Food and Wine Show official artwork" onerror="imgFail(this,'GF')"></span><span class="ev">Good Food &amp; Wine Show: Christmas Edition</span> <span class="badge ppv">New Edition</span><br><span class="sub">200+ producers plus the first live Great Australian Bake Off experience</span></td>
+        <td>ICC Sydney<br><span class="sub">Darling Harbour</span></td><td><a class="mini buy" href="https://goodfoodshow.com.au/sydney-christmas-edition/">Official Info</a><button class="mini" onclick="openCard('syd_good_food_xmas')">Details</button><button class="mini" onclick="addCal('syd_good_food_xmas')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyfestival" data-ends="2027-02-14T21:00:00+11:00" data-card="syd_mardi_fair" data-syd-cat="festival free family">
+        <td class="d">Sun 14 Feb<small>10am–9pm</small></td><td><span class="sporttag c">Festival</span></td>
+        <td><span class="thumbs media-art"><span class="av" aria-hidden="true">MG</span></span><span class="ev">Mardi Gras Fair Day 2027</span> <span class="badge home">Free</span><br><span class="sub">Community stages, markets, food, performances and the famous pet festivities in Victoria Park</span></td>
+        <td>Victoria Park<br><span class="sub">Camperdown</span></td><td><a class="mini buy" href="https://www.mardigras.org.au/2027-festival/fair-day-2026-stallholder/">Official Info</a><button class="mini" onclick="openCard('syd_mardi_fair')">Details</button><button class="mini" onclick="addCal('syd_mardi_fair')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyfestival" data-ends="2027-03-30T23:59:00+11:00" data-card="syd_easter_show" data-syd-cat="festival family">
+        <td class="d">19–30 Mar<small>12 days</small></td><td><span class="sporttag c">Festival</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://www.eastershow.com.au/images/brand/sres-logo-color.svg" alt="Sydney Royal Easter Show logo" onerror="imgFail(this,'ES')"></span><span class="ev">Sydney Royal Easter Show 2027</span> <span class="badge aus">Dates Set</span><br><span class="sub">Animals, carnival rides, food, showbags, demonstrations and nightly entertainment</span></td>
+        <td>Sydney Showground<br><span class="sub">Olympic Park</span></td><td><a class="mini buy" href="https://www.eastershow.com.au/">Official Info</a><button class="mini" onclick="openCard('syd_easter_show')">Details</button><button class="mini" onclick="addCal('syd_easter_show')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="sydneyfestival" data-ends="2027-06-19T23:00:00+10:00" data-card="syd_vivid" data-syd-cat="festival free family food">
+        <td class="d">28 May–19 Jun<small>23 nights</small></td><td><span class="sporttag c">Festival</span></td>
+        <td><span class="thumbs media-art"><img class="poster" loading="lazy" src="https://www.vividsydney.com/themes/custom/vivid_frontend/img/vivid-sydney-social.png" alt="Vivid Sydney official artwork" onerror="imgFail(this,'VS')"></span><span class="ev">Vivid Sydney 2027</span> <span class="badge home">Light Walk Free</span><br><span class="sub">Light, Music, Minds and Food return across the harbour foreshore and city</span></td>
+        <td>CBD &amp; harbour<br><span class="sub">Multiple precincts</span></td><td><a class="mini buy" href="https://www.vividsydney.com/info/about-vivid-sydney">Official Info</a><button class="mini" onclick="openCard('syd_vivid')">Details</button><button class="mini" onclick="addCal('syd_vivid')">+ Cal</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>Curated from official organiser pages, City of Sydney What's On and Destination NSW, then linked back to the organiser for final ticket and schedule checks. Dates and prices can change; confirm before travelling. Major annual events are added as soon as official dates are published.</footer>
+</div><!-- /pane-sydney -->
+
+<!-- ================= TAB 3 · FIGHTS ================= -->
+<div class="pane" id="pane-fights">
 
   <h2>This Weekend</h2>
   <div class="hero">
@@ -1105,7 +1318,7 @@ function imgFail(img, initials){
 <div class="meta" style="margin-bottom:8px">Drivers' championship — every driver</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Driver</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Kimi Antonelli</td><td class="pts">219</td></tr><tr><td class="pos">2</td><td class="who">Lewis Hamilton</td><td class="pts">169</td></tr><tr><td class="pos">3</td><td class="who">George Russell</td><td class="pts">160</td></tr><tr><td class="pos">4</td><td class="who">Charles Leclerc</td><td class="pts">138</td></tr><tr><td class="pos">5</td><td class="who">Lando Norris</td><td class="pts">128</td></tr><tr><td class="pos">6</td><td class="who">Max Verstappen</td><td class="pts">109</td></tr><tr><td class="pos">7</td><td class="who">Oscar Piastri</td><td class="pts">92</td></tr><tr><td class="pos">8</td><td class="who">Isack Hadjar</td><td class="pts">68</td></tr><tr><td class="pos">9</td><td class="who">Liam Lawson</td><td class="pts">43</td></tr><tr><td class="pos">10</td><td class="who">Pierre Gasly</td><td class="pts">42</td></tr><tr><td class="pos">11</td><td class="who">Arvid Lindblad</td><td class="pts">23</td></tr><tr><td class="pos">12</td><td class="who">Franco Colapinto</td><td class="pts">19</td></tr><tr><td class="pos">13</td><td class="who">Oliver Bearman</td><td class="pts">18</td></tr><tr><td class="pos">14</td><td class="who">Gabriel Bortoleto</td><td class="pts">10</td></tr><tr><td class="pos">15</td><td class="who">Carlos Sainz</td><td class="pts">6</td></tr><tr><td class="pos">16</td><td class="who">Alexander Albon</td><td class="pts">5</td></tr><tr><td class="pos">17</td><td class="who">Esteban Ocon</td><td class="pts">3</td></tr><tr><td class="pos">18</td><td class="who">Nico Hülkenberg</td><td class="pts">2</td></tr><tr><td class="pos">19</td><td class="who">Fernando Alonso</td><td class="pts">1</td></tr><tr><td class="pos">20</td><td class="who">Lance Stroll</td><td class="pts">0</td></tr><tr><td class="pos">21</td><td class="who">Valtteri Bottas</td><td class="pts">0</td></tr><tr><td class="pos">22</td><td class="who">Sergio Pérez</td><td class="pts">0</td></tr></tbody></table><div class="meta" style="margin:20px 0 8px">Constructors' championship</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Mercedes</td><td class="pts">379</td></tr><tr><td class="pos">2</td><td class="who">Ferrari</td><td class="pts">307</td></tr><tr><td class="pos">3</td><td class="who">McLaren</td><td class="pts">220</td></tr><tr><td class="pos">4</td><td class="who">Red Bull</td><td class="pts">177</td></tr><tr><td class="pos">5</td><td class="who">Racing Bulls</td><td class="pts">66</td></tr><tr><td class="pos">6</td><td class="who">Alpine</td><td class="pts">61</td></tr><tr><td class="pos">7</td><td class="who">Haas</td><td class="pts">21</td></tr><tr><td class="pos">8</td><td class="who">Audi</td><td class="pts">12</td></tr><tr><td class="pos">9</td><td class="who">Williams</td><td class="pts">11</td></tr><tr><td class="pos">10</td><td class="who">Aston Martin</td><td class="pts">1</td></tr><tr><td class="pos">11</td><td class="who">Cadillac</td><td class="pts">0</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/f1/standings" style="color:var(--grey)">ESPN F1 standings</a> — click through for the full detail, form guide and results.</div>
 <!--/BUILD:F1-FULL-->
 
-  <footer>All times Sydney. European races land late at night here, the Asian and Middle East rounds are the friendly ones. Session times come from the live F1 calendar and are rebuilt every morning. Race results and championship standings aren't shown — say the word if you want them added.</footer>
+  <footer>All times Sydney. European races land late at night here, while the Asian and Middle East rounds are the friendly ones. Session times and championship standings are rebuilt every morning.</footer>
 </div><!-- /pane-f1 -->
 
 
@@ -3520,7 +3733,444 @@ const SERIES_CARDS = {
   }
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS);
+const SYDNEY_CARDS = {
+  syd_little_food: {
+    emoji:"🍽️", kind:"event", title:"The Little Food Market", when:"Fri 21–Sun 23 Aug · Carriageworks, Eveleigh",
+    link:"https://thelittlefoodmarket.com/sydney/tickets", linkLabel:"Official Tickets ↗",
+    cal:{s:"2026-08-21T02:00:00Z",e:"2026-08-23T07:00:00Z",loc:"Carriageworks, 245 Wilson Street, Eveleigh NSW"},
+    secs:[
+      {h:"The weekend",b:[["Friday 21 August","12pm–8pm",1],["Saturday 22 August","10am–7pm"],["Sunday 23 August","10am–5pm"]]},
+      {h:"Why it is on the radar",b:[["More than 180 producers","Artisan food, boutique wine, small-batch spirits and pantry discoveries",1],["More than shopping","Live cooking, tastings, conversations and full dishes from Sydney kitchens"],["Tickets","Entry from $15; under-18s must attend with a responsible adult"]]}
+    ],
+    note:"Dates, opening hours and entry prices checked against the official Carriageworks and Little Food Market pages on 16 August 2026."
+  },
+  syd_pet_festivals: {
+    emoji:"🐾", kind:"event", title:"Sydney Dog & Cat Lovers Festivals", when:"Sat 22–Sun 23 Aug · 9:30am–5pm · Sydney Showground",
+    link:"https://dogloversfestival.com.au/sydney", linkLabel:"Official Festival Site ↗",
+    cal:{s:"2026-08-21T23:30:00Z",e:"2026-08-23T07:00:00Z",loc:"Sydney Showground, 1 Showground Road, Sydney Olympic Park NSW"},
+    secs:[
+      {h:"The weekend",b:[["Saturday and Sunday","9:30am–5pm daily",1],["One ticket, two festivals","Dog Lovers tickets include Cat Lovers Festival entry and vice versa"],["Price","Adult $44 · youth $22 · concession $37.10 · children 12 and under free"]]},
+      {h:"What is there",b:[["Meet the animals","Breed showcases, adoption zones and Pat-A-Pooch / Pat-A-Cat sessions"],["Live program","Dog sports, demonstrations, expert talks and a championship cat show"],["Important","Dogs cannot be brought into the festival unless specifically authorised"]]}
+    ],
+    note:"Official event information checked 16 August 2026. Festival entry conditions apply."
+  },
+  syd_taste_house: {
+    emoji:"🥂", kind:"event", title:"Taste of the House", when:"Sun 23 Aug · 11:30am–3:30pm · Sydney Opera House",
+    link:"https://www.sydneyoperahouse.com/tours/taste-of-the-house", linkLabel:"Official Experience Page ↗",
+    cal:{s:"2026-08-23T01:30:00Z",e:"2026-08-23T05:30:00Z",loc:"Stage Door, Sydney Opera House, Bennelong Point NSW"},
+    secs:[
+      {h:"The experience",b:[["Four-hour guided food journey","Opera Bar, Midden, backstage and Bennelong",1],["Highlights","Hot-sauce experience, harbour dining, backstage access and signature dessert"],["Price and age","$395 · adults 18+ only · advance booking required"]]},
+      {h:"Getting there",b:[["Meeting point","Stage Door beneath the Monumental Steps"],["Public transport","Train, light rail or ferry to Circular Quay, then a short walk"],["Accessibility","The official page says the tour is wheelchair accessible"]]}
+    ]
+  },
+  syd_marathon: {
+    emoji:"🏃", kind:"event", title:"TCS Sydney Marathon", when:"Sun 30 Aug · start time TBC · North Sydney to the Opera House",
+    link:"https://www.tcssydneymarathon.com/marathon", linkLabel:"Official Marathon Guide ↗",
+    secs:[
+      {h:"The major event",b:[["Sunday 30 August 2026","The newest Abbott World Marathon Major",1],["Course","42.195km from Miller Street, North Sydney to the Sydney Opera House Forecourt"],["Spectating","Use the official spectator and transport information before choosing a viewing point"]]},
+      {h:"Timing",b:[["Start time","Still officially TBC as checked 16 August"],["Calendar","Not offered until the organiser publishes a confirmed start time"],["Travel","Expect road closures and altered public transport around the course"]]}
+    ],
+    note:"The date and route are confirmed; the official page still lists the start time as TBC, so the radar does not guess it."
+  },
+  syd_fringe: {
+    emoji:"🎭", kind:"event", title:"Sydney Fringe Festival 2026", when:"Wed 2 Sep–Sun 11 Oct · venues across Sydney",
+    link:"https://sydneyfringe.com/", linkLabel:"Browse The Official Program ↗",
+    cal:{s:"2026-09-01T14:00:00Z",e:"2026-10-11T12:59:00Z",loc:"Multiple Sydney venues"},
+    secs:[
+      {h:"The festival",b:[["2 September–11 October","Six weeks of independent performance across the city",1],["Program","Theatre, comedy, cabaret, circus, music, drag, family work and immersive shows"],["How to choose","Use the official daily diary, neighbourhood map and accessibility information"]]},
+      {h:"Radar tip",b:[["Do not wait on a small room","Many Fringe venues have limited capacity"],["Build a night","Use the neighbourhood guide to group nearby shows"],["Program status","The 2026 program is live and tickets are on sale"]]}
+    ]
+  },
+  syd_contemporary: {
+    emoji:"🖼️", kind:"event", title:"Sydney Contemporary 2026", when:"Thu 3–Sun 6 Sep · Carriageworks",
+    link:"https://sydneycontemporary.com.au/visit/", linkLabel:"Official Visit & Tickets ↗",
+    cal:{s:"2026-09-03T01:00:00Z",e:"2026-09-06T07:00:00Z",loc:"Carriageworks, 245 Wilson Street, Eveleigh NSW"},
+    secs:[
+      {h:"The fair",b:[["10th edition","More than 100 galleries and 500 artists",1],["Beyond the booths","Large installations, live performance, talks, workshops and guided tours"],["Tickets","Published from $30; advance offers vary by release"]]},
+      {h:"Opening hours",b:[["Thursday 3 September","11am–9pm, including Art Night"],["Friday 4 September","11am–8pm"],["Saturday 5 September","11am–6pm"],["Sunday 6 September","11am–5pm"]]}
+    ]
+  },
+  syd_wtac: {
+    emoji:"🏁", kind:"event", title:"World Time Attack Challenge 2026", when:"Fri 4–Sat 5 Sep · Sydney Motorsport Park",
+    link:"https://www.worldtimeattack.com/", linkLabel:"Official Event & Tickets ↗",
+    cal:{s:"2026-09-03T22:00:00Z",e:"2026-09-05T11:00:00Z",loc:"Sydney Motorsport Park, Ferrers Road, Eastern Creek NSW",approx:true},
+    secs:[
+      {h:"The event",b:[["4–5 September","Two days of high-speed motorsport and festival entertainment",1],["On track","Time attack, International Drifting Cup, Flying 500 and demonstrations"],["Off track","Show-and-shine, Trader Alley, international guests and Mayhem After Dark"]]},
+      {h:"Before you go",b:[["Venue","Sydney Motorsport Park, Eastern Creek"],["Tickets","On sale through the official WTAC site"],["Session detail","Use the published event schedule before travelling; the calendar hold covers the advertised event window"]]}
+    ],
+    note:"The event dates are confirmed. Individual session and finish times can move; the calendar end is a clearly marked placeholder."
+  },
+  syd_sculpture: {
+    emoji:"🌊", kind:"event", title:"Sculpture by the Sea, Bondi", when:"Fri 16 Oct–Mon 2 Nov · Bondi to Tamarama coastal walk",
+    link:"https://sculpturebythesea.com/", linkLabel:"Official Exhibition Site ↗",
+    cal:{s:"2026-10-15T13:00:00Z",e:"2026-11-02T07:00:00Z",loc:"Bondi to Tamarama coastal walk, Sydney NSW",approx:true},
+    secs:[
+      {h:"The exhibition",b:[["16 October–2 November","The coastal walk becomes a two-kilometre outdoor sculpture park",1],["Cost","Free to visit"],["Scale","Around 100 works by Australian and international artists"]]},
+      {h:"Plan the visit",b:[["Best approach","Allow extra time and expect crowds on fine weekends"],["Accessibility","Check the official access map because parts of the coastal walk include stairs and steep sections"],["Weather","Outdoor dates can be affected by severe weather; check before travelling"]]}
+    ],
+    note:"The organiser asks visitors to confirm details before making travel plans. Calendar hours are a daytime planning hold, not fixed opening gates."
+  },
+  syd_good_food_xmas: {
+    emoji:"🍷", kind:"event", title:"Good Food & Wine Show: Sydney Christmas Edition", when:"Fri 20–Sun 22 Nov · ICC Sydney",
+    link:"https://goodfoodshow.com.au/sydney-christmas-edition/", linkLabel:"Official Show Page ↗",
+    cal:{s:"2026-11-20T05:00:00Z",e:"2026-11-22T06:00:00Z",loc:"ICC Sydney, Darling Harbour NSW"},
+    secs:[
+      {h:"The new edition",b:[["20–22 November","A Sydney Christmas edition of the Good Food & Wine Show",1],["What is inside","More than 200 food, wine and gift producers"],["Special feature","The first live Great Australian Bake Off experience"]]},
+      {h:"Opening hours",b:[["Friday","4pm–9pm"],["Saturday and Sunday","10am–5pm"],["Tickets","The organiser is taking registrations for the on-sale announcement"]]}
+    ],
+    note:"This is the confirmed Christmas Edition at ICC Sydney; it is separate from the regular June Sydney show."
+  },
+  syd_mardi_fair: {
+    emoji:"🌈", kind:"event", title:"Mardi Gras Fair Day 2027", when:"Sun 14 Feb · 10am–9pm · Victoria Park",
+    link:"https://www.mardigras.org.au/2027-festival/signature-events/", linkLabel:"Official 2027 Festival Page ↗",
+    cal:{s:"2027-02-13T23:00:00Z",e:"2027-02-14T10:00:00Z",loc:"Victoria Park, Camperdown NSW"},
+    secs:[
+      {h:"Fair Day",b:[["Sunday 14 February 2027","Sydney's major LGBTQIA+ community day in Victoria Park",1],["Program","Market stalls, food, live performance, community organisations and pet festivities"],["Cost","Free public event"]]},
+      {h:"Also announced",b:[["Mardi Gras Parade","Saturday 6 March 2027"],["Full festival","The complete 2027 program is due later in 2026"],["Radar status","Fair Day and Parade dates are confirmed by Mardi Gras"]]}
+    ]
+  },
+  syd_easter_show: {
+    emoji:"🎡", kind:"event", title:"Sydney Royal Easter Show 2027", when:"Fri 19–Tue 30 Mar · Sydney Showground",
+    link:"https://www.eastershow.com.au/", linkLabel:"Official Easter Show Site ↗",
+    cal:{s:"2027-03-18T13:00:00Z",e:"2027-03-30T12:59:00Z",loc:"Sydney Showground, Sydney Olympic Park NSW",approx:true},
+    secs:[
+      {h:"Save the dates",b:[["19–30 March 2027","Twelve days at Sydney Olympic Park",1],["Good Friday","26 March 2027"],["Program","Animals, agriculture, food, rides, showbags, competitions and nightly entertainment"]]},
+      {h:"Booking watch",b:[["Tickets","Full public ticket information will be added when released"],["Transport","Major-event public transport arrangements normally publish closer to opening"],["Calendar","A date hold only until daily opening hours are confirmed"]]}
+    ]
+  },
+  syd_vivid: {
+    emoji:"✨", kind:"event", title:"Vivid Sydney 2027", when:"Fri 28 May–Sat 19 Jun · Sydney CBD and harbour precincts",
+    link:"https://www.vividsydney.com/info/about-vivid-sydney", linkLabel:"Official Vivid Sydney Page ↗",
+    cal:{s:"2027-05-28T08:00:00Z",e:"2027-06-19T13:00:00Z",loc:"Sydney CBD and harbour precincts",approx:true},
+    secs:[
+      {h:"Official dates",b:[["28 May–19 June 2027","Twenty-three nights of Light, Music, Minds and Food",1],["Free anchor","The Vivid Light Walk and a selection of public music events are free"],["Program","Individual installations, concerts, talks and dining events will be added as announced"]]},
+      {h:"Plan ahead",b:[["Precincts","The final footprint and transport advice publish with the program"],["Busy nights","Friday and Saturday evenings are normally the heaviest; book ticketed experiences early"],["Calendar","A festival-wide evening hold; individual event times will supersede it"]]}
+    ],
+    note:"Dates are confirmed by Destination NSW. The 2027 program is still being assembled, so this card will gain individual highlights later."
+  }
+};
+
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
+
+/* ===== MY RADAR ===== */
+const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
+const RADAR_INTERESTS = [
+  {id:'fights',label:'Fights',tabs:['fights']},
+  {id:'sport',label:'Sport',tabs:['other','panthers','raiders','united','f1','motogp','wolves']},
+  {id:'comedy',label:'Comedy',tabs:['comedy']},
+  {id:'movies',label:'Movies',tabs:['movies']},
+  {id:'series',label:'Series',tabs:['series']},
+  {id:'food',label:'Food & Drink',tabs:['sydney'],tag:'food'},
+  {id:'festivals',label:'Festivals',tabs:['sydney'],tag:'festival'},
+  {id:'free',label:'Free Events',tabs:['sydney'],tag:'free'},
+  {id:'family',label:'Family Days',tabs:['sydney'],tag:'family'}
+];
+const RADAR_SERVICES = ['Netflix','Prime Video','Disney+','Apple TV+','Stan','BINGE','Paramount+','HBO Max'];
+const RADAR_TAB_LABELS = {
+  fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',sydney:"What's On Sydney",
+  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',wolves:'Wolves'
+};
+let radarWindow = 'weekend';
+let radarCatalog = {};
+
+function emptyRadarState(){ return {saved:{},interests:[],services:[]}; }
+function loadRadarState(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(RADAR_STATE_KEY) || 'null');
+    if(!raw || typeof raw !== 'object') return emptyRadarState();
+    return {
+      saved: raw.saved && typeof raw.saved === 'object' ? raw.saved : {},
+      interests: Array.isArray(raw.interests) ? raw.interests : [],
+      services: Array.isArray(raw.services) ? raw.services : []
+    };
+  }catch(_e){ return emptyRadarState(); }
+}
+let radarState = loadRadarState();
+
+function saveRadarState(){
+  try{ localStorage.setItem(RADAR_STATE_KEY, JSON.stringify(radarState)); }catch(_e){}
+}
+function radarInitials(title){
+  return (title || 'Radar').split(/\s+/).filter(Boolean).slice(0,2).map(word => word[0]).join('').toUpperCase();
+}
+function replaceRadarImage(img, title){
+  const fallback = document.createElement('span');
+  fallback.className = img.classList.contains('radar-saved-art') ? 'radar-saved-art av' : 'av';
+  fallback.textContent = radarInitials(title);
+  img.replaceWith(fallback);
+}
+function radarCardIdFromButton(button){
+  const match = (button.getAttribute('onclick') || '').match(/openCard\('([^']+)'\)/);
+  return match ? match[1] : '';
+}
+function radarCategoryFor(node){
+  const pane = node.closest('.pane');
+  return pane ? pane.id.replace('pane-','') : '';
+}
+function annotateRadarItems(){
+  radarCatalog = {};
+  document.querySelectorAll('button[onclick*="openCard"]').forEach(open => {
+    const id = radarCardIdFromButton(open);
+    const c = CARDS[id];
+    const container = open.closest('tr,.card');
+    if(!id || !c || !container || container.closest('#pane-myradar')) return;
+    container.dataset.radarId = id;
+    const category = radarCategoryFor(container);
+    const rowTags = container.dataset.sydCat ? container.dataset.sydCat.split(/\s+/) : [];
+    const image = container.querySelector('img');
+    const sub = container.querySelector('.sub');
+    const existing = radarCatalog[id] || {};
+    radarCatalog[id] = {
+      id,
+      title:c.title,
+      when:c.when || '',
+      category,
+      categoryLabel:RADAR_TAB_LABELS[category] || category,
+      tags:rowTags.length ? rowTags : (existing.tags || []),
+      image:image ? image.src : (existing.image || ''),
+      summary:sub ? sub.textContent.trim() : (existing.summary || ''),
+      start:c.cal && c.cal.s ? c.cal.s : '',
+      end:container.dataset.ends || (c.cal && c.cal.e ? c.cal.e : ''),
+      card:c
+    };
+    const actions = open.parentElement;
+    if(!actions || actions.querySelector('.radar-save[data-radar-save="' + id + '"]')) return;
+    const save = document.createElement('button');
+    save.type = 'button';
+    save.className = open.classList.contains('mini') ? 'mini radar-save' : 'btn ghost radar-save';
+    save.dataset.radarSave = id;
+    save.addEventListener('click', () => toggleRadarSaved(id));
+    actions.appendChild(save);
+  });
+  updateRadarSaveButtons();
+}
+function updateRadarSaveButtons(){
+  document.querySelectorAll('.radar-save').forEach(button => {
+    const saved = Boolean(radarState.saved[button.dataset.radarSave]);
+    button.classList.toggle('is-saved', saved);
+    button.textContent = saved ? '♥ Saved' : '♡ Save';
+    button.setAttribute('aria-pressed', String(saved));
+  });
+}
+function defaultRadarStatus(item){
+  return item && (item.category === 'movies' || item.category === 'series') ? 'want_to_watch' : 'interested';
+}
+function toggleRadarSaved(id){
+  const item = radarCatalog[id];
+  if(!item) return;
+  if(radarState.saved[id]) delete radarState.saved[id];
+  else radarState.saved[id] = {status:defaultRadarStatus(item),savedAt:new Date().toISOString()};
+  saveRadarState();
+  updateRadarSaveButtons();
+  renderMyRadar();
+}
+function setRadarStatus(id, status){
+  if(!radarState.saved[id]) return;
+  radarState.saved[id].status = status;
+  saveRadarState();
+  renderMyRadar();
+}
+function radarMatchesInterest(item, interest){
+  if(!interest.tabs.includes(item.category)) return false;
+  return !interest.tag || item.tags.includes(interest.tag);
+}
+function radarServiceMatch(item, service){
+  const haystack = ((item.when || '') + ' ' + (item.summary || '')).toLowerCase();
+  const needles = service === 'Prime Video' ? ['prime video','prime'] : [service.toLowerCase()];
+  return needles.some(needle => haystack.includes(needle));
+}
+function radarDate(item, field){
+  const raw = item[field];
+  if(!raw) return null;
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+function radarInWindow(item){
+  const now = new Date();
+  const end = radarDate(item,'end');
+  if(end && end < now) return false;
+  const start = radarDate(item,'start');
+  const onDemand = item.category === 'movies' || item.category === 'series';
+  if(!start) return onDemand || radarWindow === 'soon';
+  const days = (start - now) / 86400000;
+  if(radarWindow === 'tonight') return (days >= -0.2 && days <= 1) || onDemand;
+  if(radarWindow === 'weekend') return (days >= -0.2 && days <= 8) || onDemand;
+  return days >= -0.2 && days <= 365;
+}
+function radarWhy(item){
+  if(radarState.saved[item.id]) return 'Saved to your radar';
+  const interest = RADAR_INTERESTS.find(pref => radarState.interests.includes(pref.id) && radarMatchesInterest(item,pref));
+  if(interest) return 'Matches your ' + interest.label.toLowerCase() + ' interest';
+  const service = RADAR_SERVICES.find(name => radarState.services.includes(name) && radarServiceMatch(item,name));
+  if(service) return 'Available on your ' + service + ' service';
+  if(item.category === 'sydney') return 'A standout Sydney event';
+  if(item.category === 'movies' || item.category === 'series') return 'Ready to watch when you are';
+  return 'Coming up on the radar';
+}
+function radarScore(item){
+  let score = 0;
+  const saved = radarState.saved[item.id];
+  if(saved) score += 400;
+  if(saved && ['watched','caught_up','done','not_interested'].includes(saved.status)) score -= 500;
+  RADAR_INTERESTS.forEach(pref => {
+    if(radarState.interests.includes(pref.id) && radarMatchesInterest(item,pref)) score += 180;
+  });
+  RADAR_SERVICES.forEach(service => {
+    if(radarState.services.includes(service) && radarServiceMatch(item,service)) score += 90;
+  });
+  if(item.category === 'sydney') score += 70;
+  if(item.category === 'movies' || item.category === 'series') score += 25;
+  const start = radarDate(item,'start');
+  if(start){
+    const days = Math.max(0,(start - new Date()) / 86400000);
+    score += Math.max(0,70 - Math.min(days,70));
+  }
+  return score;
+}
+function radarRecommendationItems(){
+  return Object.values(radarCatalog)
+    .filter(radarInWindow)
+    .filter(item => !radarState.saved[item.id] || !['watched','caught_up','done','not_interested'].includes(radarState.saved[item.id].status))
+    .sort((a,b) => radarScore(b) - radarScore(a) || a.title.localeCompare(b.title))
+    .slice(0,3);
+}
+function createRadarRecommendation(item){
+  const card = document.createElement('article');
+  card.className = 'card';
+  const sport = document.createElement('div');
+  sport.className = 'sport';
+  sport.textContent = item.categoryLabel + ' ';
+  const badge = document.createElement('span');
+  badge.className = 'badge ' + (radarState.saved[item.id] ? 'ppv' : 'fn');
+  badge.textContent = radarState.saved[item.id] ? 'Saved' : 'For You';
+  sport.appendChild(badge);
+  card.appendChild(sport);
+  if(item.image){
+    const art = document.createElement('div'); art.className = 'faces promo-art';
+    const img = document.createElement('img'); img.src = item.image; img.alt = item.title;
+    img.addEventListener('error', () => replaceRadarImage(img,item.title));
+    art.appendChild(img); card.appendChild(art);
+  }else{
+    const crest = document.createElement('div'); crest.className = 'crest';
+    const big = document.createElement('div'); big.className = 'big'; big.textContent = radarInitials(item.title);
+    const lil = document.createElement('div'); lil.className = 'lil'; lil.textContent = item.categoryLabel;
+    crest.appendChild(big); crest.appendChild(lil); card.appendChild(crest);
+  }
+  const inner = document.createElement('div'); inner.className = 'inner';
+  const title = document.createElement('div'); title.className = 'fight hd'; title.textContent = item.title; inner.appendChild(title);
+  const when = document.createElement('div'); when.className = 'when'; when.textContent = item.when; inner.appendChild(when);
+  const why = document.createElement('div'); why.className = 'radar-why'; why.textContent = 'Why: ' + radarWhy(item); inner.appendChild(why);
+  const actions = document.createElement('div'); actions.className = 'btns';
+  const details = document.createElement('button'); details.type = 'button'; details.className = 'btn ghost'; details.textContent = 'Details'; details.addEventListener('click',() => openCard(item.id));
+  const save = document.createElement('button'); save.type = 'button'; save.className = 'btn ghost radar-save' + (radarState.saved[item.id] ? ' is-saved' : ''); save.dataset.radarSave = item.id; save.textContent = radarState.saved[item.id] ? '♥ Saved' : '♡ Save'; save.setAttribute('aria-pressed',String(Boolean(radarState.saved[item.id]))); save.addEventListener('click',() => toggleRadarSaved(item.id));
+  actions.appendChild(details); actions.appendChild(save); inner.appendChild(actions); card.appendChild(inner);
+  return card;
+}
+function radarStatusOptions(item){
+  if(item.category === 'movies' || item.category === 'series') return [
+    ['want_to_watch','Want to watch'],['watching','Watching'],['watched','Watched'],['caught_up','Caught up'],['not_interested','Not for me']
+  ];
+  return [['interested','Interested'],['booked','Booked'],['done','Done'],['not_interested','Not for me']];
+}
+function renderRadarSaved(){
+  const host = document.getElementById('radarSaved');
+  if(!host) return;
+  host.innerHTML = '';
+  const saved = Object.keys(radarState.saved).map(id => radarCatalog[id]).filter(Boolean);
+  if(!saved.length){
+    const empty = document.createElement('div'); empty.className = 'radar-empty';
+    empty.textContent = 'Nothing saved yet. Tap ♡ Save anywhere on the radar and it will appear here.';
+    host.appendChild(empty); return;
+  }
+  const list = document.createElement('div'); list.className = 'radar-saved-list';
+  saved.sort((a,b) => a.title.localeCompare(b.title)).forEach(item => {
+    const row = document.createElement('div'); row.className = 'radar-saved-row';
+    if(item.image){
+      const img = document.createElement('img'); img.className = 'radar-saved-art'; img.src = item.image; img.alt = '';
+      img.addEventListener('error',() => replaceRadarImage(img,item.title)); row.appendChild(img);
+    }else{
+      const av = document.createElement('span'); av.className = 'radar-saved-art av'; av.textContent = radarInitials(item.title); row.appendChild(av);
+    }
+    const copy = document.createElement('div'); copy.className = 'radar-saved-copy';
+    const title = document.createElement('b'); title.textContent = item.title;
+    const meta = document.createElement('span'); meta.textContent = item.categoryLabel + ' · ' + item.when;
+    copy.appendChild(title); copy.appendChild(meta); row.appendChild(copy);
+    const actions = document.createElement('div'); actions.className = 'radar-saved-actions';
+    const select = document.createElement('select'); select.setAttribute('aria-label','Status for ' + item.title);
+    radarStatusOptions(item).forEach(([value,label]) => {
+      const option = document.createElement('option'); option.value = value; option.textContent = label;
+      option.selected = radarState.saved[item.id].status === value; select.appendChild(option);
+    });
+    select.addEventListener('change',() => setRadarStatus(item.id,select.value));
+    const details = document.createElement('button'); details.type = 'button'; details.textContent = 'Details'; details.addEventListener('click',() => openCard(item.id));
+    const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = 'Remove'; remove.addEventListener('click',() => toggleRadarSaved(item.id));
+    actions.appendChild(select); actions.appendChild(details); actions.appendChild(remove); row.appendChild(actions); list.appendChild(row);
+  });
+  host.appendChild(list);
+}
+function renderRadarPreferences(){
+  const interests = document.getElementById('radarInterestPrefs');
+  const services = document.getElementById('radarServicePrefs');
+  if(!interests || !services) return;
+  interests.innerHTML = ''; services.innerHTML = '';
+  RADAR_INTERESTS.forEach(pref => interests.appendChild(createRadarPrefButton('interest',pref.id,pref.label,radarState.interests.includes(pref.id))));
+  RADAR_SERVICES.forEach(service => services.appendChild(createRadarPrefButton('service',service,service,radarState.services.includes(service))));
+}
+function createRadarPrefButton(kind,id,label,active){
+  const button = document.createElement('button'); button.type = 'button'; button.className = 'pref-chip' + (active ? ' active' : '');
+  button.textContent = (active ? '✓ ' : '+ ') + label; button.setAttribute('aria-pressed',String(active));
+  button.addEventListener('click',() => toggleRadarPreference(kind,id)); return button;
+}
+function toggleRadarPreference(kind,id){
+  const key = kind === 'service' ? 'services' : 'interests';
+  const values = radarState[key]; const index = values.indexOf(id);
+  if(index >= 0) values.splice(index,1); else values.push(id);
+  saveRadarState(); renderMyRadar();
+}
+function resetRadarPreferences(){
+  radarState.interests = []; radarState.services = [];
+  saveRadarState(); renderMyRadar();
+}
+function setRadarWindow(value){
+  radarWindow = value;
+  document.querySelectorAll('[data-radar-window]').forEach(button => {
+    const active = button.dataset.radarWindow === value;
+    button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active));
+  });
+  renderMyRadar();
+}
+function renderMyRadar(){
+  const recHost = document.getElementById('radarRecommendations');
+  if(!recHost) return;
+  const recommendations = radarRecommendationItems();
+  recHost.innerHTML = '';
+  if(recommendations.length) recommendations.forEach(item => recHost.appendChild(createRadarRecommendation(item)));
+  else{
+    const empty = document.createElement('div'); empty.className = 'radar-empty';
+    empty.textContent = 'Nothing matches this time window yet. Try Coming Soon or choose more interests below.'; recHost.appendChild(empty);
+  }
+  renderRadarSaved(); renderRadarPreferences(); updateRadarSaveButtons();
+  const savedIds = Object.keys(radarState.saved).filter(id => radarCatalog[id]);
+  const now = new Date();
+  const soon = savedIds.filter(id => {
+    const start = radarDate(radarCatalog[id],'start');
+    return start && start >= now && (start - now) <= 30 * 86400000;
+  }).length;
+  document.getElementById('radarPickCount').textContent = recommendations.length;
+  document.getElementById('radarSavedCount').textContent = savedIds.length;
+  document.getElementById('radarSoonCount').textContent = soon;
+}
+
+function filterSydney(category){
+  document.querySelectorAll('[data-sydney-filter]').forEach(button => {
+    const active = button.dataset.sydneyFilter === category;
+    button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active));
+  });
+  document.querySelectorAll('#sydneyEvents tbody tr[data-syd-cat]').forEach(row => {
+    const tags = row.dataset.sydCat.split(/\s+/);
+    row.classList.toggle('sydney-hidden',category !== 'all' && !tags.includes(category));
+  });
+}
 
 let curCardId = null;
 function openCard(id){
@@ -3558,9 +4208,9 @@ function openCard(id){
 function addCal(id){
   const c = CARDS[id];
   if(!c || !c.cal) return;
-  const isComedy = c.emoji === "🎤";
-  const body = c.title + "\n" + c.when + "\n" + (isComedy ? "Venue: " : "Watch: ") + c.cal.loc
-    + "\n" + (isComedy ? "Official event page: " : "Full card: ") + c.link
+  const isLiveEvent = c.kind === "event" || c.emoji === "🎤";
+  const body = c.title + "\n" + c.when + "\n" + (isLiveEvent ? "Venue: " : "Watch: ") + c.cal.loc
+    + "\n" + (isLiveEvent ? "Official event page: " : "Full card: ") + c.link
     + (c.cal.approx ? "\nFinish time is a calendar placeholder; confirm it with the venue." : "")
     + "\n(times auto-convert to your timezone)";
   const u = "https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent"
@@ -3579,6 +4229,8 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 
 /* ===== TABS ===== */
 const RANGES = {
+  myradar:  "Your saved picks · personalised on this device",
+  sydney:   "What’s on now through Vivid Sydney 2027 · Sydney & surrounds",
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
   comedy:   "Sun 16 Aug 2026 – Mon 16 Aug 2027 · Sydney comedy",
@@ -3592,7 +4244,7 @@ const RANGES = {
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves'];
+const DEFAULT_TAB_ORDER = ['myradar','sydney','fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
 
 function tabOrder(){
@@ -3605,12 +4257,18 @@ function restoreTabOrder(){
   let saved = [];
   try{ saved = JSON.parse(localStorage.getItem(TAB_ORDER_KEY) || '[]'); }catch(_e){}
   if(!Array.isArray(saved)) saved = [];
-  const order = [...saved.filter(id => DEFAULT_TAB_ORDER.includes(id)), ...DEFAULT_TAB_ORDER.filter(id => !saved.includes(id))];
+  const known = saved.filter(id => DEFAULT_TAB_ORDER.includes(id));
+  const missing = DEFAULT_TAB_ORDER.filter(id => !known.includes(id));
+  const newFront = missing.filter(id => id === 'myradar' || id === 'sydney');
+  const order = saved.length ? [...newFront,...known,...missing.filter(id => !newFront.includes(id))] : DEFAULT_TAB_ORDER;
   const list = document.getElementById('tabList');
   order.forEach(id => {
     const item = list.querySelector('[data-tab-item="' + id + '"]');
     if(item) list.appendChild(item);
   });
+  if(saved.length && order.some(id => !saved.includes(id))){
+    try{ localStorage.setItem(TAB_ORDER_KEY, JSON.stringify(order)); }catch(_e){}
+  }
 }
 function moveTab(id, direction){
   const list = document.getElementById('tabList');
@@ -3681,13 +4339,14 @@ function bindTabDrag(){
   });
 }
 function showTab(id){
-  if(!RANGES[id]) id = 'fights';
+  if(!RANGES[id]) id = 'myradar';
   document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
   document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.tabItem === id));
   document.getElementById('rangeText').textContent = RANGES[id];
   closeDrawer();
   closeNav();
+  if(id === 'myradar') renderMyRadar();
   if(location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
 }
 
@@ -3934,8 +4593,10 @@ refreshRadar();
 fillCountdowns();
 restoreTabOrder();
 bindTabDrag();
-showTab(location.hash.slice(1) || 'fights');
-addEventListener('hashchange', () => showTab(location.hash.slice(1) || 'fights'));
+annotateRadarItems();
+renderMyRadar();
+showTab(location.hash.slice(1) || 'myradar');
+addEventListener('hashchange', () => showTab(location.hash.slice(1) || 'myradar'));
 </script>
 </body>
 </html>

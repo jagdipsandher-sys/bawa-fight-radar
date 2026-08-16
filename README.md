@@ -32,13 +32,21 @@ the usual culprit is the app password (check the spaces are stripped).
 
 ## The radar page (`index.html`)
 
-Eleven tabs, all in the one file. On desktop they sit in a left-hand rail; on
+Thirteen tabs, all in the one file. On desktop they sit in a left-hand rail; on
 mobile the **Sections** button opens that same rail. Drag them into a new order,
 or tap **Reorder** and use the arrows. The choice is saved on that device.
 
 Each tab follows the same layout (hero cards, lookahead table and slide-out
 detail panel; event tabs also include calendar buttons):
 
+- **My Radar** — a private, personalised home screen. Pick interests and
+  streaming services, save anything from any tab, then mark it Interested,
+  Booked or Watched. Recommendations, saved items and statuses stay on that
+  browser only; there is no account or personal-data upload.
+- **What's On Sydney** — a curated city guide spanning food, festivals, art,
+  family events and major annual dates. It launches with 12 verified events
+  from official organisers and includes quick filters such as This Weekend,
+  Free and Food & Drink.
 - **Fights** — UFC and boxing, as before.
 - **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
   that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
@@ -56,7 +64,8 @@ detail panel; event tabs also include calendar buttons):
 - **F1** and **MotoGP** — race weekends, Sydney session times and standings.
 - **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
 
-Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#movies`,
+Tabs are linkable: `index.html#myradar`, `index.html#sydney`,
+`index.html#other`, `index.html#comedy`, `index.html#movies`,
 `index.html#series`, `index.html#panthers`, `index.html#raiders`,
 `index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`.
 
@@ -64,6 +73,8 @@ Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#movies`,
 
 | Tab | Source | Refresh |
 | --- | --- | --- |
+| My Radar | The other tabs + choices stored in the visitor's browser | Immediate, on that device |
+| What's On Sydney | Official organiser pages + City of Sydney and Destination NSW guides | Human web search; current weekend through major forward dates |
 | Fights | ESPN MMA feed + `boxing.json` | `build_radar.py`, daily — rolling 4 weeks |
 | Panthers | ESPN NRL feed | `build_panthers.py`, daily — finals appear when published |
 | Raiders | ESPN NRL feed | `build_raiders.py`, daily — finals appear when published |

@@ -102,15 +102,20 @@ series_cards = {card_id for card_id in ids if card_id.startswith("series_")}
 if len(series_cards) != 33:
     fail(f"Series library should contain 33 recommendations, found {len(series_cards)}")
 
+sydney_cards = {card_id for card_id in ids if card_id.startswith("syd_")}
+if len(sydney_cards) != 12:
+    fail(f"What's On Sydney should contain 12 launch events, found {len(sydney_cards)}")
+
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
+for pane in ["pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
              "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
              "pane-wolves"]:
     if f'id="{pane}"' not in page:
         fail(f"tab {pane} has gone missing")
 
-for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1"]:
+for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
+                "bawaRadar.personal.v1", "data-sydney-filter"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 
