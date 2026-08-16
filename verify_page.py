@@ -119,6 +119,11 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 
+for automatic_radar in ['id="radarRecommendations"', "radarRecommendationItems",
+                        "RADAR_INTERESTS", "RADAR_SERVICES"]:
+    if automatic_radar in page:
+        fail(f"My Radar must remain manual, but automatic recommendation code remains: {automatic_radar}")
+
 
 # 7. the subscriber list must be well-formed, or the Friday email breaks
 try:

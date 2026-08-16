@@ -305,25 +305,21 @@
   .radar-intro strong{display:block;font-size:1.18rem;text-transform:uppercase;margin-bottom:3px;
     font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif}
   .radar-intro p{color:var(--grey);font-size:.88rem;max-width:76ch}
-  .radar-window,.sydney-filters,.pref-chips{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 18px}
-  .radar-window button,.sydney-filters button,.pref-chip{
+  .sydney-filters{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 18px}
+  .sydney-filters button{
     border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:7px 11px;
     font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
     letter-spacing:.09em;text-transform:uppercase;
   }
-  .radar-window button:hover,.sydney-filters button:hover,.pref-chip:hover{border-color:#000}
-  .radar-window button.active,.sydney-filters button.active,.pref-chip.active{
+  .sydney-filters button:hover{border-color:#000}
+  .sydney-filters button.active{
     background:var(--red);border-color:var(--red);color:#fff;
   }
   .radar-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
+  .radar-stats.manual{grid-template-columns:repeat(2,minmax(0,1fr))}
   .radar-stat{border:1px solid var(--faint);border-top:4px solid #000;background:#fff;padding:13px 15px}
   .radar-stat b{display:block;font:800 1.75rem/1 "Barlow Condensed","Arial Narrow",Arial,sans-serif}
   .radar-stat span{display:block;color:var(--grey);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-top:5px}
-  .radar-rec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-  .radar-rec-grid .card{min-width:0}
-  .radar-rec-grid .faces.promo-art{height:150px}
-  .radar-rec-grid .fight{font-size:1.35rem}
-  .radar-why{color:var(--red);font-size:.76rem;font-weight:800;margin-top:7px}
   .radar-empty{border:1px dashed #aaa;background:#fafafa;padding:20px;color:var(--grey);font-size:.9rem}
   .radar-saved-list{border:1px solid var(--faint);background:#fff}
   .radar-saved-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:13px;align-items:center;padding:12px;border-bottom:1px solid #ececec}
@@ -337,10 +333,6 @@
   .radar-saved-actions button{border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:5px 8px;
     font:800 .66rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
   .radar-saved-actions button:hover{border-color:#000}
-  .radar-prefs{border:1px solid var(--faint);border-top:4px solid var(--red);background:var(--panelbg);padding:18px}
-  .radar-prefs h3{font:800 1.2rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;margin-bottom:2px}
-  .radar-prefs p{color:var(--grey);font-size:.82rem;max-width:74ch}
-  .radar-pref-label{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-top:16px}
   .radar-privacy{color:var(--grey);font-size:.74rem;border-top:1px solid #ddd;padding-top:10px;margin-top:12px}
   .radar-save.is-saved{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important}
   .sydney-note{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 4px}
@@ -367,9 +359,9 @@
     .faces.promo-art{height:175px}
     .faces.promo-art img,.faces.promo-art .av{width:100%;height:100%}
     .radar-stats{grid-template-columns:1fr 1fr 1fr}
+    .radar-stats.manual{grid-template-columns:1fr 1fr}
     .radar-stat{padding:10px}
     .radar-stat b{font-size:1.35rem}
-    .radar-rec-grid{grid-template-columns:1fr}
     .radar-saved-row{grid-template-columns:44px minmax(0,1fr)}
     .radar-saved-art{width:44px;height:44px}
     .radar-saved-actions{grid-column:1/-1;justify-content:flex-start}
@@ -431,8 +423,7 @@ function imgFail(img, initials){
     </div>
   </div>
   <div class="wrap" id="tabList">
-    <div class="tab-item active" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="myradar" onclick="showTab('myradar')">My Radar</button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
+    <div class="tab-item active" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="comedy"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button><span class="order-controls"><button type="button" onclick="moveTab('comedy',-1)" aria-label="Move Comedy up">↑</button><button type="button" onclick="moveTab('comedy',1)" aria-label="Move Comedy down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="movies"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="movies" onclick="showTab('movies')">Movies 🎥</button><span class="order-controls"><button type="button" onclick="moveTab('movies',-1)" aria-label="Move Movies up">↑</button><button type="button" onclick="moveTab('movies',1)" aria-label="Move Movies down">↓</button></span></div>
@@ -443,6 +434,7 @@ function imgFail(img, initials){
     <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="myradar" onclick="showTab('myradar')">My Radar</button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
   </div>
   <div class="nav-hint">Drag sections into your order, or tap Reorder and use the arrows. Your order is saved on this device.</div>
@@ -452,44 +444,30 @@ function imgFail(img, initials){
 <div class="wrap">
 
 <!-- ================= TAB 1 · MY RADAR ================= -->
-<div class="pane on" id="pane-myradar">
-  <h2>Your Personal Radar</h2>
+<div class="pane" id="pane-myradar">
+  <h2>Build Your Own Radar</h2>
   <div class="radar-intro">
-    <strong>Everything you care about, in one place</strong>
-    <p>Save anything across the site, tell the radar what you enjoy, and this page will bring the best matches together. Your choices stay privately on this device.</p>
+    <strong>Your list, your call</strong>
+    <p>My Radar starts empty. Add only the fights, shows, films, teams and Sydney events you want by tapping ♡ Save on their original tab. Nothing is recommended or added automatically.</p>
   </div>
 
-  <div class="radar-window" aria-label="My Radar time window">
-    <button type="button" aria-pressed="false" data-radar-window="tonight" onclick="setRadarWindow('tonight')">Tonight</button>
-    <button type="button" class="active" aria-pressed="true" data-radar-window="weekend" onclick="setRadarWindow('weekend')">This Weekend</button>
-    <button type="button" aria-pressed="false" data-radar-window="soon" onclick="setRadarWindow('soon')">Coming Soon</button>
-  </div>
-
-  <div class="radar-stats" aria-label="My Radar summary">
-    <div class="radar-stat"><b id="radarPickCount">0</b><span>Top Picks</span></div>
+  <div class="radar-stats manual" aria-label="My Radar summary">
     <div class="radar-stat"><b id="radarSavedCount">0</b><span>Saved</span></div>
     <div class="radar-stat"><b id="radarSoonCount">0</b><span>Coming Up</span></div>
   </div>
 
-  <h2>Recommended For You</h2>
-  <div class="radar-rec-grid" id="radarRecommendations" aria-live="polite"></div>
-
-  <h2>Your Saved Radar</h2>
+  <h2>What You've Added</h2>
   <div id="radarSaved" aria-live="polite"></div>
 
-  <h2>Make It Yours</h2>
-  <div class="radar-prefs">
-    <h3>What are you into?</h3>
-    <p>Choose as many as you like. These choices influence the dashboard but never hide the other sections.</p>
-    <div class="radar-pref-label">Interests</div>
-    <div class="pref-chips" id="radarInterestPrefs"></div>
-    <div class="radar-pref-label">Streaming services</div>
-    <div class="pref-chips" id="radarServicePrefs"></div>
-    <button type="button" class="btn ghost" onclick="resetRadarPreferences()">Reset Preferences</button>
-    <div class="radar-privacy">No account is required. Preferences, saved items and watch status are stored only in this browser using local storage.</div>
+  <h2>How It Works</h2>
+  <div class="sydney-note">
+    <div><b>1 · Browse</b><span>Open any of the normal radar tabs and find something you care about.</span></div>
+    <div><b>2 · Add</b><span>Tap ♡ Save and it appears here—there are no automatic suggestions.</span></div>
+    <div><b>3 · Control</b><span>Set its status or remove it whenever you no longer want it on your radar.</span></div>
   </div>
+  <div class="radar-privacy">No account is required. Saved items and statuses are stored only in this browser using local storage.</div>
 
-  <footer>My Radar is the personalised view; every original section remains available and keeps its existing layout. Save buttons and preferences sync across this page immediately on this device.</footer>
+  <footer>My Radar is entirely manual. It stays empty until you add something, and removing an item here does not alter the original tabs.</footer>
 </div><!-- /pane-myradar -->
 
 <!-- ================= TAB 2 · WHAT'S ON SYDNEY ================= -->
@@ -606,7 +584,7 @@ function imgFail(img, initials){
 </div><!-- /pane-sydney -->
 
 <!-- ================= TAB 3 · FIGHTS ================= -->
-<div class="pane" id="pane-fights">
+<div class="pane on" id="pane-fights">
 
   <h2>This Weekend</h2>
   <div class="hero">
@@ -3854,35 +3832,18 @@ const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS,
 
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
-const RADAR_INTERESTS = [
-  {id:'fights',label:'Fights',tabs:['fights']},
-  {id:'sport',label:'Sport',tabs:['other','panthers','raiders','united','f1','motogp','wolves']},
-  {id:'comedy',label:'Comedy',tabs:['comedy']},
-  {id:'movies',label:'Movies',tabs:['movies']},
-  {id:'series',label:'Series',tabs:['series']},
-  {id:'food',label:'Food & Drink',tabs:['sydney'],tag:'food'},
-  {id:'festivals',label:'Festivals',tabs:['sydney'],tag:'festival'},
-  {id:'free',label:'Free Events',tabs:['sydney'],tag:'free'},
-  {id:'family',label:'Family Days',tabs:['sydney'],tag:'family'}
-];
-const RADAR_SERVICES = ['Netflix','Prime Video','Disney+','Apple TV+','Stan','BINGE','Paramount+','HBO Max'];
 const RADAR_TAB_LABELS = {
   fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',sydney:"What's On Sydney",
   panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',wolves:'Wolves'
 };
-let radarWindow = 'weekend';
 let radarCatalog = {};
 
-function emptyRadarState(){ return {saved:{},interests:[],services:[]}; }
+function emptyRadarState(){ return {saved:{}}; }
 function loadRadarState(){
   try{
     const raw = JSON.parse(localStorage.getItem(RADAR_STATE_KEY) || 'null');
     if(!raw || typeof raw !== 'object') return emptyRadarState();
-    return {
-      saved: raw.saved && typeof raw.saved === 'object' ? raw.saved : {},
-      interests: Array.isArray(raw.interests) ? raw.interests : [],
-      services: Array.isArray(raw.services) ? raw.services : []
-    };
+    return {saved: raw.saved && typeof raw.saved === 'object' ? raw.saved : {}};
   }catch(_e){ return emptyRadarState(); }
 }
 let radarState = loadRadarState();
@@ -3970,107 +3931,17 @@ function setRadarStatus(id, status){
   saveRadarState();
   renderMyRadar();
 }
-function radarMatchesInterest(item, interest){
-  if(!interest.tabs.includes(item.category)) return false;
-  return !interest.tag || item.tags.includes(interest.tag);
-}
-function radarServiceMatch(item, service){
-  const haystack = ((item.when || '') + ' ' + (item.summary || '')).toLowerCase();
-  const needles = service === 'Prime Video' ? ['prime video','prime'] : [service.toLowerCase()];
-  return needles.some(needle => haystack.includes(needle));
-}
 function radarDate(item, field){
   const raw = item[field];
   if(!raw) return null;
   const date = new Date(raw);
   return Number.isNaN(date.getTime()) ? null : date;
 }
-function radarInWindow(item){
-  const now = new Date();
-  const end = radarDate(item,'end');
-  if(end && end < now) return false;
-  const start = radarDate(item,'start');
-  const onDemand = item.category === 'movies' || item.category === 'series';
-  if(!start) return onDemand || radarWindow === 'soon';
-  const days = (start - now) / 86400000;
-  if(radarWindow === 'tonight') return (days >= -0.2 && days <= 1) || onDemand;
-  if(radarWindow === 'weekend') return (days >= -0.2 && days <= 8) || onDemand;
-  return days >= -0.2 && days <= 365;
-}
-function radarWhy(item){
-  if(radarState.saved[item.id]) return 'Saved to your radar';
-  const interest = RADAR_INTERESTS.find(pref => radarState.interests.includes(pref.id) && radarMatchesInterest(item,pref));
-  if(interest) return 'Matches your ' + interest.label.toLowerCase() + ' interest';
-  const service = RADAR_SERVICES.find(name => radarState.services.includes(name) && radarServiceMatch(item,name));
-  if(service) return 'Available on your ' + service + ' service';
-  if(item.category === 'sydney') return 'A standout Sydney event';
-  if(item.category === 'movies' || item.category === 'series') return 'Ready to watch when you are';
-  return 'Coming up on the radar';
-}
-function radarScore(item){
-  let score = 0;
-  const saved = radarState.saved[item.id];
-  if(saved) score += 400;
-  if(saved && ['watched','caught_up','done','not_interested'].includes(saved.status)) score -= 500;
-  RADAR_INTERESTS.forEach(pref => {
-    if(radarState.interests.includes(pref.id) && radarMatchesInterest(item,pref)) score += 180;
-  });
-  RADAR_SERVICES.forEach(service => {
-    if(radarState.services.includes(service) && radarServiceMatch(item,service)) score += 90;
-  });
-  if(item.category === 'sydney') score += 70;
-  if(item.category === 'movies' || item.category === 'series') score += 25;
-  const start = radarDate(item,'start');
-  if(start){
-    const days = Math.max(0,(start - new Date()) / 86400000);
-    score += Math.max(0,70 - Math.min(days,70));
-  }
-  return score;
-}
-function radarRecommendationItems(){
-  return Object.values(radarCatalog)
-    .filter(radarInWindow)
-    .filter(item => !radarState.saved[item.id] || !['watched','caught_up','done','not_interested'].includes(radarState.saved[item.id].status))
-    .sort((a,b) => radarScore(b) - radarScore(a) || a.title.localeCompare(b.title))
-    .slice(0,3);
-}
-function createRadarRecommendation(item){
-  const card = document.createElement('article');
-  card.className = 'card';
-  const sport = document.createElement('div');
-  sport.className = 'sport';
-  sport.textContent = item.categoryLabel + ' ';
-  const badge = document.createElement('span');
-  badge.className = 'badge ' + (radarState.saved[item.id] ? 'ppv' : 'fn');
-  badge.textContent = radarState.saved[item.id] ? 'Saved' : 'For You';
-  sport.appendChild(badge);
-  card.appendChild(sport);
-  if(item.image){
-    const art = document.createElement('div'); art.className = 'faces promo-art';
-    const img = document.createElement('img'); img.src = item.image; img.alt = item.title;
-    img.addEventListener('error', () => replaceRadarImage(img,item.title));
-    art.appendChild(img); card.appendChild(art);
-  }else{
-    const crest = document.createElement('div'); crest.className = 'crest';
-    const big = document.createElement('div'); big.className = 'big'; big.textContent = radarInitials(item.title);
-    const lil = document.createElement('div'); lil.className = 'lil'; lil.textContent = item.categoryLabel;
-    crest.appendChild(big); crest.appendChild(lil); card.appendChild(crest);
-  }
-  const inner = document.createElement('div'); inner.className = 'inner';
-  const title = document.createElement('div'); title.className = 'fight hd'; title.textContent = item.title; inner.appendChild(title);
-  const when = document.createElement('div'); when.className = 'when'; when.textContent = item.when; inner.appendChild(when);
-  const why = document.createElement('div'); why.className = 'radar-why'; why.textContent = 'Why: ' + radarWhy(item); inner.appendChild(why);
-  const actions = document.createElement('div'); actions.className = 'btns';
-  const details = document.createElement('button'); details.type = 'button'; details.className = 'btn ghost'; details.textContent = 'Details'; details.addEventListener('click',() => openCard(item.id));
-  const save = document.createElement('button'); save.type = 'button'; save.className = 'btn ghost radar-save' + (radarState.saved[item.id] ? ' is-saved' : ''); save.dataset.radarSave = item.id; save.textContent = radarState.saved[item.id] ? '♥ Saved' : '♡ Save'; save.setAttribute('aria-pressed',String(Boolean(radarState.saved[item.id]))); save.addEventListener('click',() => toggleRadarSaved(item.id));
-  actions.appendChild(details); actions.appendChild(save); inner.appendChild(actions); card.appendChild(inner);
-  return card;
-}
 function radarStatusOptions(item){
   if(item.category === 'movies' || item.category === 'series') return [
-    ['want_to_watch','Want to watch'],['watching','Watching'],['watched','Watched'],['caught_up','Caught up'],['not_interested','Not for me']
+    ['want_to_watch','Want to watch'],['watching','Watching'],['watched','Watched'],['caught_up','Caught up']
   ];
-  return [['interested','Interested'],['booked','Booked'],['done','Done'],['not_interested','Not for me']];
+  return [['interested','Interested'],['booked','Booked'],['done','Done']];
 }
 function renderRadarSaved(){
   const host = document.getElementById('radarSaved');
@@ -4108,55 +3979,14 @@ function renderRadarSaved(){
   });
   host.appendChild(list);
 }
-function renderRadarPreferences(){
-  const interests = document.getElementById('radarInterestPrefs');
-  const services = document.getElementById('radarServicePrefs');
-  if(!interests || !services) return;
-  interests.innerHTML = ''; services.innerHTML = '';
-  RADAR_INTERESTS.forEach(pref => interests.appendChild(createRadarPrefButton('interest',pref.id,pref.label,radarState.interests.includes(pref.id))));
-  RADAR_SERVICES.forEach(service => services.appendChild(createRadarPrefButton('service',service,service,radarState.services.includes(service))));
-}
-function createRadarPrefButton(kind,id,label,active){
-  const button = document.createElement('button'); button.type = 'button'; button.className = 'pref-chip' + (active ? ' active' : '');
-  button.textContent = (active ? '✓ ' : '+ ') + label; button.setAttribute('aria-pressed',String(active));
-  button.addEventListener('click',() => toggleRadarPreference(kind,id)); return button;
-}
-function toggleRadarPreference(kind,id){
-  const key = kind === 'service' ? 'services' : 'interests';
-  const values = radarState[key]; const index = values.indexOf(id);
-  if(index >= 0) values.splice(index,1); else values.push(id);
-  saveRadarState(); renderMyRadar();
-}
-function resetRadarPreferences(){
-  radarState.interests = []; radarState.services = [];
-  saveRadarState(); renderMyRadar();
-}
-function setRadarWindow(value){
-  radarWindow = value;
-  document.querySelectorAll('[data-radar-window]').forEach(button => {
-    const active = button.dataset.radarWindow === value;
-    button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active));
-  });
-  renderMyRadar();
-}
 function renderMyRadar(){
-  const recHost = document.getElementById('radarRecommendations');
-  if(!recHost) return;
-  const recommendations = radarRecommendationItems();
-  recHost.innerHTML = '';
-  if(recommendations.length) recommendations.forEach(item => recHost.appendChild(createRadarRecommendation(item)));
-  else{
-    const empty = document.createElement('div'); empty.className = 'radar-empty';
-    empty.textContent = 'Nothing matches this time window yet. Try Coming Soon or choose more interests below.'; recHost.appendChild(empty);
-  }
-  renderRadarSaved(); renderRadarPreferences(); updateRadarSaveButtons();
+  renderRadarSaved(); updateRadarSaveButtons();
   const savedIds = Object.keys(radarState.saved).filter(id => radarCatalog[id]);
   const now = new Date();
   const soon = savedIds.filter(id => {
     const start = radarDate(radarCatalog[id],'start');
     return start && start >= now && (start - now) <= 30 * 86400000;
   }).length;
-  document.getElementById('radarPickCount').textContent = recommendations.length;
   document.getElementById('radarSavedCount').textContent = savedIds.length;
   document.getElementById('radarSoonCount').textContent = soon;
 }
@@ -4229,7 +4059,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
 
 /* ===== TABS ===== */
 const RANGES = {
-  myradar:  "Your saved picks · personalised on this device",
+  myradar:  "Your manually saved picks · private on this device",
   sydney:   "What’s on now through Vivid Sydney 2027 · Sydney & surrounds",
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
@@ -4244,9 +4074,9 @@ const RANGES = {
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['myradar','fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves','sydney'];
+const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves','myradar','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
-const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.sydneyLast.v1';
+const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.manualRadarTail.v1';
 
 function tabOrder(){
   return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
@@ -4264,8 +4094,8 @@ function restoreTabOrder(){
   let migrated = false;
   try{ migrated = localStorage.getItem(TAB_LAYOUT_KEY) === 'done'; }catch(_e){}
   if(!migrated){
-    order = order.filter(id => id !== 'sydney');
-    order.push('sydney');
+    order = order.filter(id => id !== 'myradar' && id !== 'sydney');
+    order.push('myradar','sydney');
     try{ localStorage.setItem(TAB_LAYOUT_KEY,'done'); }catch(_e){}
   }
   const list = document.getElementById('tabList');
@@ -4346,7 +4176,7 @@ function bindTabDrag(){
   });
 }
 function showTab(id){
-  if(!RANGES[id]) id = 'myradar';
+  if(!RANGES[id]) id = 'fights';
   document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
   document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.tabItem === id));
@@ -4602,8 +4432,8 @@ restoreTabOrder();
 bindTabDrag();
 annotateRadarItems();
 renderMyRadar();
-showTab(location.hash.slice(1) || 'myradar');
-addEventListener('hashchange', () => showTab(location.hash.slice(1) || 'myradar'));
+showTab(location.hash.slice(1) || 'fights');
+addEventListener('hashchange', () => showTab(location.hash.slice(1) || 'fights'));
 </script>
 </body>
 </html>
