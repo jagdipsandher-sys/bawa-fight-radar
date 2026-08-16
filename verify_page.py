@@ -98,6 +98,10 @@ for ref in set(re.findall(r"(?:openCard|addCal)\('([^']+)'\)", page)):
     if ref not in ids:
         fail(f"openCard/addCal references '{ref}', which is not defined in any CARDS object")
 
+series_cards = {card_id for card_id in ids if card_id.startswith("series_")}
+if len(series_cards) != 33:
+    fail(f"Series library should contain 33 recommendations, found {len(series_cards)}")
+
 
 # 6. the tabs themselves must be intact
 for pane in ["pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",

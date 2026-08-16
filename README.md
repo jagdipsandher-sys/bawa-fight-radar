@@ -46,8 +46,9 @@ detail panel; event tabs also include calendar buttons):
   window, with official event artwork and ticket details only.
 - **Movies** — current and imminent Australian cinema releases, official poster
   art, details and links to live Sydney session times.
-- **Series** — personalised streaming recommendations built around Game of
-  Thrones, The Sopranos, Mayor of Kingstown and gritty British crime drama.
+- **Series** — a 33-show personalised library built around Game of Thrones,
+  The Sopranos, Mayor of Kingstown and gritty British/Irish crime drama. It is
+  grouped by mood and mixes new releases with older essentials.
 - **Panthers** — Penrith's remaining 2026 fixtures with venues, kick-off times
   and where to buy.
 - **Raiders** — Canberra's remaining NRL fixtures and finals path.
@@ -73,7 +74,7 @@ Tabs are linkable: `index.html#other`, `index.html#comedy`, `index.html#movies`,
 | Other Action | Human web search | Scheduled Claude session, Sun night 1am Sydney |
 | Comedy | Official venue, promoter and ticket pages | Human web search; 12-month Sydney watch window |
 | Movies | Official studio and Australian cinema listings | Human web search; current and coming-soon releases |
-| Series | Official Australian streamer and network pages | Human web search; new seasons plus personalised essentials |
+| Series | Official streamer pages + current Australian availability listings | Human web search; new seasons plus a 33-show classic library |
 
 The automated builders rewrite only the blocks between the `BUILD:` markers in
 `index.html` and commit when the output changes (`.github/workflows/radar.yml`).
