@@ -115,7 +115,9 @@ for pane in ["pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-c
         fail(f"tab {pane} has gone missing")
 
 for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
-                "bawaRadar.personal.v1", "data-sydney-filter"]:
+                "bawaRadar.personal.v1", "data-sydney-filter", 'id="radarAlerts"',
+                'id="radarAlertBadge"', "radarActiveAlerts", "setRadarAlertMode",
+                "dismissRadarAlert"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 

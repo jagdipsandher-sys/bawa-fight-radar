@@ -57,8 +57,8 @@ detail panel; event tabs also include calendar buttons):
 - **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
 - **My Radar** — a private, completely manual shortlist. It starts empty and
   contains only items the visitor deliberately saves from another tab. Saved
-  items and statuses stay on that browser; there are no automatic recommendations
-  and no account or personal-data upload.
+  items, statuses and optional alert settings stay on that browser; there are
+  no automatic recommendations and no account or personal-data upload.
 - **What's On Sydney** — a curated city guide spanning food, festivals, art,
   family events and major annual dates. It launches with 12 verified events
   from official organisers and includes quick filters such as This Weekend,
@@ -86,6 +86,18 @@ Tabs are linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`,
 | Comedy | Official venue, promoter and ticket pages | Human web search; 12-month Sydney watch window |
 | Movies | Official studio and Australian cinema listings | Human web search; current and coming-soon releases |
 | Series | Official streamer pages + current Australian availability listings | Human web search; new seasons plus a 33-show classic library |
+
+### My Radar alerts
+
+Alerts are off by default and can be enabled separately for each manually saved
+item. **Changes only** watches for updated dates, times, booking links and listing
+details. **Changes + reminders** also flags saved events that begin within seven
+days or 24 hours. Active alerts appear inside My Radar and as a count on its tab;
+they stay visible until dismissed.
+
+This first version checks when the visitor opens the page. It does not send email
+or phone push notifications, and its saved state does not follow the visitor to a
+different browser or device.
 
 The automated builders rewrite only the blocks between the `BUILD:` markers in
 `index.html` and commit when the output changes (`.github/workflows/radar.yml`).
