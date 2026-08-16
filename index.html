@@ -432,7 +432,6 @@ function imgFail(img, initials){
   </div>
   <div class="wrap" id="tabList">
     <div class="tab-item active" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="myradar" onclick="showTab('myradar')">My Radar</button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="comedy"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button><span class="order-controls"><button type="button" onclick="moveTab('comedy',-1)" aria-label="Move Comedy up">↑</button><button type="button" onclick="moveTab('comedy',1)" aria-label="Move Comedy down">↓</button></span></div>
@@ -444,6 +443,7 @@ function imgFail(img, initials){
     <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
   </div>
   <div class="nav-hint">Drag sections into your order, or tap Reorder and use the arrows. Your order is saved on this device.</div>
 </nav>
@@ -4244,8 +4244,9 @@ const RANGES = {
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['myradar','sydney','fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves'];
+const DEFAULT_TAB_ORDER = ['myradar','fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
+const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.sydneyLast.v1';
 
 function tabOrder(){
   return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
@@ -4259,14 +4260,20 @@ function restoreTabOrder(){
   if(!Array.isArray(saved)) saved = [];
   const known = saved.filter(id => DEFAULT_TAB_ORDER.includes(id));
   const missing = DEFAULT_TAB_ORDER.filter(id => !known.includes(id));
-  const newFront = missing.filter(id => id === 'myradar' || id === 'sydney');
-  const order = saved.length ? [...newFront,...known,...missing.filter(id => !newFront.includes(id))] : DEFAULT_TAB_ORDER;
+  let order = saved.length ? [...known,...missing] : [...DEFAULT_TAB_ORDER];
+  let migrated = false;
+  try{ migrated = localStorage.getItem(TAB_LAYOUT_KEY) === 'done'; }catch(_e){}
+  if(!migrated){
+    order = order.filter(id => id !== 'sydney');
+    order.push('sydney');
+    try{ localStorage.setItem(TAB_LAYOUT_KEY,'done'); }catch(_e){}
+  }
   const list = document.getElementById('tabList');
   order.forEach(id => {
     const item = list.querySelector('[data-tab-item="' + id + '"]');
     if(item) list.appendChild(item);
   });
-  if(saved.length && order.some(id => !saved.includes(id))){
+  if(saved.length && (order.some(id => !saved.includes(id)) || !migrated)){
     try{ localStorage.setItem(TAB_ORDER_KEY, JSON.stringify(order)); }catch(_e){}
   }
 }

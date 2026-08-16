@@ -43,10 +43,6 @@ detail panel; event tabs also include calendar buttons):
   streaming services, save anything from any tab, then mark it Interested,
   Booked or Watched. Recommendations, saved items and statuses stay on that
   browser only; there is no account or personal-data upload.
-- **What's On Sydney** — a curated city guide spanning food, festivals, art,
-  family events and major annual dates. It launches with 12 verified events
-  from official organisers and includes quick filters such as This Weekend,
-  Free and Food & Drink.
 - **Fights** — UFC and boxing, as before.
 - **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
   that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
@@ -63,11 +59,16 @@ detail panel; event tabs also include calendar buttons):
 - **Man Utd** — Manchester United fixtures in Sydney time and the league table.
 - **F1** and **MotoGP** — race weekends, Sydney session times and standings.
 - **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
+- **What's On Sydney** — a curated city guide spanning food, festivals, art,
+  family events and major annual dates. It launches with 12 verified events
+  from official organisers and includes quick filters such as This Weekend,
+  Free and Food & Drink.
 
-Tabs are linkable: `index.html#myradar`, `index.html#sydney`,
-`index.html#other`, `index.html#comedy`, `index.html#movies`,
+Tabs are linkable: `index.html#myradar`, `index.html#other`,
+`index.html#comedy`, `index.html#movies`,
 `index.html#series`, `index.html#panthers`, `index.html#raiders`,
-`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`.
+`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`,
+`index.html#sydney`.
 
 ### How each tab stays current
 
