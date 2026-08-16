@@ -120,7 +120,10 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 "dismissRadarAlert", 'id="navSearchInput"', 'id="radarSearchInput"',
                 'id="radarSearchResults"', 'id="radarSearchService"',
                 'data-search-filter="week"', "openRadarSearch", "renderRadarSearch",
-                "setRadarSearchService"]:
+                "setRadarSearchService", 'id="radarViewSaved"',
+                'id="radarViewAlerts"', 'id="radarViewPlanner"',
+                'data-radar-view="planner"', 'data-planner-window="weekend"',
+                "renderRadarPlanner", "radarPlannerClashes"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 

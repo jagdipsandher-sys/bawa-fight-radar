@@ -324,6 +324,12 @@
   .radar-stat{border:1px solid var(--faint);border-top:4px solid #000;background:#fff;padding:13px 15px}
   .radar-stat b{display:block;font:800 1.75rem/1 "Barlow Condensed","Arial Narrow",Arial,sans-serif}
   .radar-stat span{display:block;color:var(--grey);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-top:5px}
+  .radar-views{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid #aaa;margin:0 0 20px}
+  .radar-views button{border:0;border-right:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:10px;
+    font:800 .75rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em}
+  .radar-views button:last-child{border-right:0}
+  .radar-views button.active{background:#111;color:#fff;box-shadow:inset 0 -4px 0 var(--red)}
+  .radar-view-panel[hidden]{display:none}
   .radar-empty{border:1px dashed #aaa;background:#fafafa;padding:20px;color:var(--grey);font-size:.9rem}
   .radar-saved-list{border:1px solid var(--faint);background:#fff}
   .radar-saved-row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:13px;align-items:center;padding:12px;border-bottom:1px solid #ececec}
@@ -355,6 +361,27 @@
   .radar-alert-actions button{border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:5px 8px;
     font:800 .66rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
   .radar-alert-actions button:hover{border-color:#000}
+  .planner-controls{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+  .planner-controls button{border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:7px 10px;
+    font:800 .68rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.07em}
+  .planner-controls button.active{background:var(--red);border-color:var(--red);color:#fff}
+  .planner-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px}
+  .planner-summary div{border:1px solid var(--faint);background:#fafafa;padding:10px 12px}
+  .planner-summary b{display:block;font:800 1.3rem "Barlow Condensed","Arial Narrow",Arial,sans-serif}
+  .planner-summary span{display:block;color:var(--grey);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em}
+  .planner-list{border:1px solid var(--faint);background:#fff}
+  .planner-row{display:grid;grid-template-columns:105px minmax(0,1fr) auto;gap:14px;align-items:center;padding:13px;border-bottom:1px solid #ececec;border-left:4px solid #000}
+  .planner-row:last-child{border-bottom:0}
+  .planner-row.has-conflict{border-left-color:var(--red);background:#fffafa}
+  .planner-when b{display:block;font:800 1rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase}
+  .planner-when span{display:block;color:var(--grey);font-size:.72rem}
+  .planner-copy .planner-cat{display:block;color:var(--red);font:800 .64rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em}
+  .planner-copy b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-size:1.05rem;text-transform:uppercase}
+  .planner-copy span{display:block;color:var(--grey);font-size:.76rem;margin-top:2px}
+  .planner-clash{display:inline-block!important;width:max-content;background:var(--red);color:#fff!important;padding:2px 6px;margin-top:5px!important;font-size:.62rem!important;font-weight:800;text-transform:uppercase}
+  .planner-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}
+  .planner-actions button{border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:5px 8px;
+    font:800 .66rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
   .nav-alert-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:.62rem;line-height:1;margin-left:6px;padding:0 5px}
   .search-toolbar{display:flex;gap:7px;margin-bottom:12px}
   .search-toolbar input{min-width:0;flex:1;border:1px solid #888;background:#fff;color:var(--ink);padding:11px 12px;font-size:.92rem;outline:none}
@@ -411,6 +438,8 @@
     .radar-saved-actions{grid-column:1/-1;justify-content:flex-start}
     .radar-alert-row{grid-template-columns:36px minmax(0,1fr)}
     .radar-alert-actions{grid-column:1/-1;justify-content:flex-start}
+    .planner-row{grid-template-columns:1fr;gap:7px}
+    .planner-actions{justify-content:flex-start}
     .search-result{grid-template-columns:48px minmax(0,1fr)}
     .search-result-art{width:48px;height:48px}
     .search-result-actions{grid-column:1/-1;justify-content:flex-start;max-width:none}
@@ -540,22 +569,48 @@ function imgFail(img, initials){
     <div class="radar-stat"><b id="radarSoonCount">0</b><span>Coming Up</span></div>
   </div>
 
-  <div class="radar-section-head"><h2>Your Alerts</h2><button type="button" id="radarDismissAll" onclick="dismissAllRadarAlerts()" hidden>Dismiss All</button></div>
-  <div class="radar-alert-note">Alerts are checked when you revisit this site on this browser. They do not send email or phone push notifications, and they only watch items for which you switch alerts on.</div>
-  <div id="radarAlerts" aria-live="polite"></div>
-
-  <h2>What You've Added</h2>
-  <div id="radarSaved" aria-live="polite"></div>
-
-  <h2>How It Works</h2>
-  <div class="sydney-note">
-    <div><b>1 · Browse</b><span>Open any of the normal radar tabs and find something you care about.</span></div>
-    <div><b>2 · Add</b><span>Tap ♡ Save and it appears here—there are no automatic suggestions.</span></div>
-    <div><b>3 · Control</b><span>Choose alerts, set its status, dismiss updates or remove it whenever you like.</span></div>
+  <div class="radar-views" aria-label="My Radar views">
+    <button type="button" class="active" aria-pressed="true" data-radar-view="saved" onclick="showRadarView('saved')">Saved</button>
+    <button type="button" aria-pressed="false" data-radar-view="alerts" onclick="showRadarView('alerts')">Alerts</button>
+    <button type="button" aria-pressed="false" data-radar-view="planner" onclick="showRadarView('planner')">Planner</button>
   </div>
+
+  <section class="radar-view-panel" id="radarViewSaved">
+    <h2>What You've Added</h2>
+    <div id="radarSaved" aria-live="polite"></div>
+    <h2>How It Works</h2>
+    <div class="sydney-note">
+      <div><b>1 · Browse</b><span>Open any of the normal radar tabs and find something you care about.</span></div>
+      <div><b>2 · Add</b><span>Tap ♡ Save and it appears here—there are no automatic suggestions.</span></div>
+      <div><b>3 · Control</b><span>Choose alerts, set its status, plan dated items or remove it whenever you like.</span></div>
+    </div>
+  </section>
+
+  <section class="radar-view-panel" id="radarViewAlerts" hidden>
+    <div class="radar-section-head"><h2>Your Alerts</h2><button type="button" id="radarDismissAll" onclick="dismissAllRadarAlerts()" hidden>Dismiss All</button></div>
+    <div class="radar-alert-note">Alerts are checked when you revisit this site on this browser. They do not send email or phone push notifications, and they only watch items for which you switch alerts on.</div>
+    <div id="radarAlerts" aria-live="polite"></div>
+  </section>
+
+  <section class="radar-view-panel" id="radarViewPlanner" hidden>
+    <h2>Your Planner</h2>
+    <div class="radar-alert-note">Only manually saved items with confirmed dates appear here. Movies and series without a scheduled time remain safely in Saved.</div>
+    <div class="planner-controls" aria-label="Planner date range">
+      <button type="button" aria-pressed="false" data-planner-window="today" onclick="setRadarPlannerWindow('today')">Today</button>
+      <button type="button" class="active" aria-pressed="true" data-planner-window="weekend" onclick="setRadarPlannerWindow('weekend')">This Weekend</button>
+      <button type="button" aria-pressed="false" data-planner-window="month" onclick="setRadarPlannerWindow('month')">Next 30 Days</button>
+      <button type="button" aria-pressed="false" data-planner-window="all" onclick="setRadarPlannerWindow('all')">All Upcoming</button>
+    </div>
+    <div class="planner-summary" aria-label="Planner summary">
+      <div><b id="radarPlannerCount">0</b><span>Scheduled</span></div>
+      <div><b id="radarPlannerClashCount">0</b><span>Time Clashes</span></div>
+    </div>
+    <div id="radarPlanner" aria-live="polite"></div>
+  </section>
+
   <div class="radar-privacy">No account is required. Saved items, alert choices and statuses are stored only in this browser using local storage.</div>
 
-  <footer>My Radar is entirely manual. It stays empty until you add something, and alerts remain off until you switch them on for a saved item.</footer>
+  <footer>My Radar is entirely manual. Saved, Alerts and Planner contain only items you choose; nothing is added or recommended automatically.</footer>
 </div><!-- /pane-myradar -->
 
 <!-- ================= TAB 2 · WHAT'S ON SYDNEY ================= -->
@@ -3935,6 +3990,8 @@ function loadRadarState(){
   }catch(_e){ return emptyRadarState(); }
 }
 let radarState = loadRadarState();
+let radarActiveView = 'saved';
+let radarPlannerWindow = 'weekend';
 
 function saveRadarState(){
   try{ localStorage.setItem(RADAR_STATE_KEY, JSON.stringify(radarState)); }catch(_e){}
@@ -4199,9 +4256,130 @@ function updateRadarAlertBadge(count){
   badge.textContent = count > 9 ? '9+' : String(count);
   badge.setAttribute('aria-label',count + (count === 1 ? ' unread alert' : ' unread alerts'));
 }
+function applyRadarViewState(){
+  const names = ['saved','alerts','planner'];
+  names.forEach(name => {
+    const active = name === radarActiveView;
+    const panel = document.getElementById('radarView' + name[0].toUpperCase() + name.slice(1));
+    if(panel) panel.hidden = !active;
+  });
+  document.querySelectorAll('[data-radar-view]').forEach(button => {
+    const active = button.dataset.radarView === radarActiveView;
+    button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active));
+  });
+}
+function showRadarView(view){
+  if(!['saved','alerts','planner'].includes(view)) view = 'saved';
+  radarActiveView = view; applyRadarViewState();
+  if(view === 'planner') renderRadarPlanner();
+}
+function setRadarPlannerWindow(value){
+  if(!['today','weekend','month','all'].includes(value)) value = 'weekend';
+  radarPlannerWindow = value;
+  document.querySelectorAll('[data-planner-window]').forEach(button => {
+    const active = button.dataset.plannerWindow === value;
+    button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active));
+  });
+  renderRadarPlanner();
+}
+function radarSydneyDayNumber(date){
+  const parts = new Intl.DateTimeFormat('en-CA',{timeZone:'Australia/Sydney',year:'numeric',month:'2-digit',day:'2-digit'})
+    .formatToParts(date).reduce((out,part) => { if(part.type !== 'literal') out[part.type] = Number(part.value); return out; },{});
+  return Date.UTC(parts.year,parts.month - 1,parts.day) / 86400000;
+}
+function radarPlannerInterval(item){
+  const start = radarDate(item,'start');
+  if(!start) return null;
+  const listedEnd = radarDate(item,'end');
+  return {start,end:listedEnd && listedEnd > start ? listedEnd : new Date(start.getTime() + 2 * 3600000)};
+}
+function radarPlannerMatchesWindow(interval){
+  const now = new Date();
+  if(interval.end < now) return false;
+  if(radarPlannerWindow === 'all') return true;
+  if(radarPlannerWindow === 'month') return interval.start <= new Date(now.getTime() + 30 * 86400000);
+  const nowDay = radarSydneyDayNumber(now);
+  const startDay = radarSydneyDayNumber(interval.start);
+  const endDay = radarSydneyDayNumber(interval.end);
+  if(radarPlannerWindow === 'today') return startDay <= nowDay && endDay >= nowDay;
+  const weekday = new Date(nowDay * 86400000).getUTCDay();
+  const friday = nowDay + (weekday === 0 ? -2 : 5 - weekday);
+  return startDay <= friday + 2 && endDay >= friday;
+}
+function radarPlannerItems(){
+  return Object.keys(radarState.saved).map(id => radarCatalog[id]).filter(Boolean)
+    .filter(item => !['done','watched','caught_up'].includes((radarState.saved[item.id] || {}).status))
+    .map(item => ({item,interval:radarPlannerInterval(item)})).filter(entry => entry.interval && radarPlannerMatchesWindow(entry.interval))
+    .sort((a,b) => a.interval.start - b.interval.start);
+}
+function radarPlannerClashes(entries){
+  const ids = new Set(); let pairs = 0;
+  for(let i = 0; i < entries.length; i++){
+    for(let j = i + 1; j < entries.length; j++){
+      const a = entries[i]; const b = entries[j];
+      if(b.interval.start >= a.interval.end) break;
+      if(a.interval.start < b.interval.end && b.interval.start < a.interval.end){
+        ids.add(a.item.id); ids.add(b.item.id); pairs++;
+      }
+    }
+  }
+  return {ids,pairs};
+}
+function radarPlannerDateLabel(interval){
+  const date = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Sydney',weekday:'short',day:'numeric',month:'short',year:'numeric'});
+  const time = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Sydney',hour:'numeric',minute:'2-digit'});
+  const startDay = radarSydneyDayNumber(interval.start); const endDay = radarSydneyDayNumber(interval.end);
+  return {
+    date:startDay === endDay ? date.format(interval.start) : date.format(interval.start) + ' – ' + date.format(interval.end),
+    time:time.format(interval.start) + ' – ' + time.format(interval.end)
+  };
+}
+function renderRadarPlanner(){
+  const host = document.getElementById('radarPlanner');
+  const count = document.getElementById('radarPlannerCount');
+  const clashCount = document.getElementById('radarPlannerClashCount');
+  if(!host || !count || !clashCount) return;
+  host.innerHTML = '';
+  const entries = radarPlannerItems(); const clashes = radarPlannerClashes(entries);
+  count.textContent = entries.length; clashCount.textContent = clashes.pairs;
+  if(!entries.length){
+    const empty = document.createElement('div'); empty.className = 'radar-empty';
+    const dated = Object.keys(radarState.saved).map(id => radarCatalog[id]).filter(item => item && radarPlannerInterval(item)).length;
+    empty.textContent = dated
+      ? 'None of your saved dated items fall inside this view. Try Next 30 Days or All Upcoming.'
+      : 'No dated items saved yet. Save a fight, match, comedy show or Sydney event and it will appear here.';
+    host.appendChild(empty); return;
+  }
+  const list = document.createElement('div'); list.className = 'planner-list';
+  entries.forEach(({item,interval}) => {
+    const row = document.createElement('article'); row.className = 'planner-row' + (clashes.ids.has(item.id) ? ' has-conflict' : '');
+    const timing = radarPlannerDateLabel(interval);
+    const when = document.createElement('div'); when.className = 'planner-when';
+    const date = document.createElement('b'); date.textContent = timing.date;
+    const time = document.createElement('span'); time.textContent = timing.time;
+    when.appendChild(date); when.appendChild(time); row.appendChild(when);
+    const copy = document.createElement('div'); copy.className = 'planner-copy';
+    const category = document.createElement('span'); category.className = 'planner-cat'; category.textContent = item.categoryLabel;
+    const title = document.createElement('b'); title.textContent = item.title;
+    const detail = document.createElement('span'); detail.textContent = item.when;
+    copy.appendChild(category); copy.appendChild(title); copy.appendChild(detail);
+    if(clashes.ids.has(item.id)){
+      const clash = document.createElement('span'); clash.className = 'planner-clash'; clash.textContent = 'Time clash'; copy.appendChild(clash);
+    }
+    row.appendChild(copy);
+    const actions = document.createElement('div'); actions.className = 'planner-actions';
+    const details = document.createElement('button'); details.type = 'button'; details.textContent = 'Details'; details.addEventListener('click',() => openCard(item.id)); actions.appendChild(details);
+    if(item.card.cal){
+      const calendar = document.createElement('button'); calendar.type = 'button'; calendar.textContent = '+ Calendar'; calendar.addEventListener('click',() => addCal(item.id)); actions.appendChild(calendar);
+    }
+    const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = 'Remove'; remove.addEventListener('click',() => toggleRadarSaved(item.id)); actions.appendChild(remove);
+    row.appendChild(actions); list.appendChild(row);
+  });
+  host.appendChild(list);
+}
 function renderMyRadar(){
   const alerts = radarActiveAlerts();
-  renderRadarAlerts(alerts); renderRadarSaved(); updateRadarSaveButtons(); updateRadarAlertBadge(alerts.length);
+  renderRadarAlerts(alerts); renderRadarSaved(); renderRadarPlanner(); updateRadarSaveButtons(); updateRadarAlertBadge(alerts.length); applyRadarViewState();
   const savedIds = Object.keys(radarState.saved).filter(id => radarCatalog[id]);
   const now = new Date();
   const soon = savedIds.filter(id => {

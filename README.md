@@ -95,7 +95,16 @@ viewing.
 | Movies | Official studio and Australian cinema listings | Human web search; current and coming-soon releases |
 | Series | Official streamer pages + current Australian availability listings | Human web search; new seasons plus a 33-show classic library |
 
-### My Radar alerts
+### My Radar views
+
+My Radar has three internal views without adding another sidebar tab:
+
+- **Saved** — every item the visitor deliberately added, with status and alert
+  controls.
+- **Alerts** — current changes and approaching-event notices, all dismissible.
+- **Planner** — only saved items with confirmed dates, filtered by Today, This
+  Weekend, Next 30 Days or All Upcoming. It flags overlapping times and provides
+  individual calendar buttons. Undated movies and series remain in Saved.
 
 Alerts are off by default and can be enabled separately for each manually saved
 item. **Changes only** watches for updated dates, times, booking links and listing
