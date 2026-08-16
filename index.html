@@ -78,7 +78,12 @@
   .tabs.reorder-mode .tab-grip{color:#bbb}
   .order-controls button{width:25px;height:25px;padding:0;font-size:.8rem;line-height:1}
   .nav-hint{padding:13px 14px 0;color:#727272;font-size:.68rem;line-height:1.35;border-top:1px solid #262626;margin-top:10px}
-  .nav-toggle{
+  .nav-search{display:flex;gap:5px;padding:2px 10px 10px}
+  .nav-search input{min-width:0;flex:1;border:1px solid #454545;background:#1b1b1b;color:#fff;padding:8px 9px;font-size:.76rem;outline:none}
+  .nav-search input:focus{border-color:#fff}
+  .nav-search button{border:1px solid var(--red);background:var(--red);color:#fff;cursor:pointer;padding:7px 8px;
+    font:800 .68rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+  .nav-toggle,.search-toggle{
     display:none;align-items:center;gap:7px;border:1px solid #444;background:#111;color:#fff;cursor:pointer;
     padding:7px 9px;font:800 .72rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
     letter-spacing:.1em;text-transform:uppercase;
@@ -351,6 +356,28 @@
     font:800 .66rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
   .radar-alert-actions button:hover{border-color:#000}
   .nav-alert-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:.62rem;line-height:1;margin-left:6px;padding:0 5px}
+  .search-toolbar{display:flex;gap:7px;margin-bottom:12px}
+  .search-toolbar input{min-width:0;flex:1;border:1px solid #888;background:#fff;color:var(--ink);padding:11px 12px;font-size:.92rem;outline:none}
+  .search-toolbar input:focus{border-color:#000;box-shadow:inset 0 -2px 0 var(--red)}
+  .search-toolbar button{border:1px solid #777;background:#fff;color:var(--ink);cursor:pointer;padding:8px 12px;
+    font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.07em}
+  .search-filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 16px}
+  .search-filters button,.search-filters select{border:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:7px 10px;
+    font:800 .68rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.07em}
+  .search-filters button.active{background:var(--red);border-color:var(--red);color:#fff}
+  .search-summary{color:var(--grey);font-size:.78rem;margin-bottom:9px}
+  .search-results{border:1px solid var(--faint);background:#fff}
+  .search-result{display:grid;grid-template-columns:66px minmax(0,1fr) auto;gap:14px;align-items:center;padding:13px;border-bottom:1px solid #ececec}
+  .search-result:last-child{border-bottom:0}
+  .search-result-art{width:66px;height:66px;object-fit:cover;object-position:center;background:#e8e8e8;border:1px solid #d0d0d0}
+  .search-result-art.av{font-size:.85rem;color:#777}
+  .search-result-copy .search-cat{display:block;color:var(--red);font:800 .66rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.1em}
+  .search-result-copy b{display:block;font-family:"Barlow Condensed","Arial Narrow",Arial,sans-serif;font-size:1.05rem;text-transform:uppercase}
+  .search-result-copy span{display:block;color:var(--grey);font-size:.78rem;margin-top:2px}
+  .search-result-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;align-items:center;max-width:285px}
+  .search-result-actions select,.search-result-actions button{border:1px solid #aaa;background:#fff;color:var(--ink);padding:5px 7px;font-size:.7rem}
+  .search-result-actions button{cursor:pointer;font-weight:800;text-transform:uppercase}
+  .search-result-actions button.is-saved{background:var(--red);border-color:var(--red);color:#fff}
   .radar-privacy{color:var(--grey);font-size:.74rem;border-top:1px solid #ddd;padding-top:10px;margin-top:12px}
   .radar-save.is-saved{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important}
   .sydney-note{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 4px}
@@ -384,16 +411,20 @@
     .radar-saved-actions{grid-column:1/-1;justify-content:flex-start}
     .radar-alert-row{grid-template-columns:36px minmax(0,1fr)}
     .radar-alert-actions{grid-column:1/-1;justify-content:flex-start}
+    .search-result{grid-template-columns:48px minmax(0,1fr)}
+    .search-result-art{width:48px;height:48px}
+    .search-result-actions{grid-column:1/-1;justify-content:flex-start;max-width:none}
     .sydney-note{grid-template-columns:1fr}
   }
   @media(max-width:850px){
     .app-shell{display:block}
-    .nav-toggle{display:inline-flex}
+    .nav-toggle,.search-toggle{display:inline-flex}
     .tabs{
       position:fixed;left:calc(-1 * var(--navw) - 24px);top:0;width:var(--navw);height:100vh;
       transition:left .22s ease;box-shadow:12px 0 30px rgba(0,0,0,.28);
     }
     .tabs.open{left:0}
+    .tabs .nav-search{display:none}
     #navOverlay.open{display:block}
     .nav-close{display:block!important}
     .tabs .wrap{padding-bottom:12px}
@@ -424,6 +455,7 @@ function imgFail(img, initials){
 <div class="topbar">
   <div class="wrap">
     <button class="nav-toggle" type="button" onclick="toggleNav()" aria-controls="tabNav" aria-expanded="false"><span aria-hidden="true">☰</span> Sections</button>
+    <button class="search-toggle" type="button" onclick="openRadarSearch('',true)"><span aria-hidden="true">⌕</span> Search</button>
     <h1 class="hd"><span class="r">BAWA</span> Fight Radar</h1>
     <div class="range" id="rangeText">Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)</div>
   </div>
@@ -441,6 +473,10 @@ function imgFail(img, initials){
       <button class="nav-close" type="button" onclick="closeNav()" aria-label="Close sections">✕</button>
     </div>
   </div>
+  <form class="nav-search" role="search" onsubmit="submitRadarSearch(event)">
+    <input id="navSearchInput" type="search" aria-label="Search the entire radar" placeholder="Search everything…" autocomplete="off" oninput="openRadarSearch(this.value,false)">
+    <button type="submit">Go</button>
+  </form>
   <div class="wrap" id="tabList">
     <div class="tab-item active" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
@@ -461,6 +497,34 @@ function imgFail(img, initials){
 
 <main class="content">
 <div class="wrap">
+
+<!-- ================= UNIVERSAL SEARCH ================= -->
+<div class="pane" id="pane-search">
+  <h2>Search Everything</h2>
+  <div class="streaming-note"><b>One search across the whole radar:</b> find fighters, teams, comedians, movies, series, venues, streaming services and Sydney events. Results come only from the existing tabs—there are no recommendations.</div>
+  <form class="search-toolbar" role="search" onsubmit="submitRadarSearch(event)">
+    <input id="radarSearchInput" type="search" aria-label="Search all radar sections" placeholder="Try a name, team, venue or streaming service…" autocomplete="off" oninput="runRadarSearch(this.value)">
+    <button type="submit">Search</button>
+    <button type="button" id="searchBackButton" onclick="closeRadarSearch()">Back</button>
+  </form>
+  <div class="search-filters" aria-label="Filter search results">
+    <button type="button" class="active" aria-pressed="true" data-search-filter="all" onclick="setRadarSearchFilter('all')">All</button>
+    <button type="button" aria-pressed="false" data-search-filter="sport" onclick="setRadarSearchFilter('sport')">Sport &amp; Fights</button>
+    <button type="button" aria-pressed="false" data-search-filter="comedy" onclick="setRadarSearchFilter('comedy')">Comedy</button>
+    <button type="button" aria-pressed="false" data-search-filter="movies" onclick="setRadarSearchFilter('movies')">Movies</button>
+    <button type="button" aria-pressed="false" data-search-filter="series" onclick="setRadarSearchFilter('series')">Series</button>
+    <button type="button" aria-pressed="false" data-search-filter="sydney" onclick="setRadarSearchFilter('sydney')">Sydney</button>
+    <button type="button" aria-pressed="false" data-search-filter="week" onclick="setRadarSearchFilter('week')">This Week</button>
+    <button type="button" aria-pressed="false" data-search-filter="month" onclick="setRadarSearchFilter('month')">This Month</button>
+    <button type="button" aria-pressed="false" data-search-filter="free" onclick="setRadarSearchFilter('free')">Free</button>
+    <select id="radarSearchService" aria-label="Filter by streaming service" onchange="setRadarSearchService(this.value)">
+      <option value="">All Streaming</option><option>Netflix</option><option>Prime Video</option><option>Disney+</option><option>Apple TV+</option><option>Stan</option><option>BINGE</option><option>Paramount+</option><option>HBO Max</option>
+    </select>
+  </div>
+  <div class="search-summary" id="radarSearchSummary" aria-live="polite">Start typing to search every section.</div>
+  <div id="radarSearchResults" aria-live="polite"></div>
+  <footer>Search is local to this page. It does not send queries anywhere, and saving a result adds only that chosen item to My Radar.</footer>
+</div><!-- /pane-search -->
 
 <!-- ================= TAB 1 · MY RADAR ================= -->
 <div class="pane" id="pane-myradar">
@@ -4149,6 +4213,142 @@ function renderMyRadar(){
   document.getElementById('radarSoonCount').textContent = soon;
 }
 
+/* ===== UNIVERSAL SEARCH ===== */
+const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','wolves'];
+let radarSearchQuery = '';
+let radarSearchFilter = 'all';
+let radarSearchService = '';
+let searchPreviousTab = 'fights';
+
+function radarSearchText(item){
+  const details = (item.card.secs || []).flatMap(section => section.b || [])
+    .map(part => part.slice(0,2).join(' ')).join(' ');
+  return [item.title,item.when,item.categoryLabel,item.summary,item.statusText,details]
+    .join(' ').toLowerCase();
+}
+function radarSearchMatchesFilter(item){
+  let matches = true;
+  if(radarSearchFilter === 'sport') matches = SEARCH_SPORT_TABS.includes(item.category);
+  else if(['comedy','movies','series','sydney'].includes(radarSearchFilter)) matches = item.category === radarSearchFilter;
+  else if(radarSearchFilter === 'week' || radarSearchFilter === 'month'){
+    const start = radarDate(item,'start');
+    const days = start ? (start - new Date()) / 86400000 : Infinity;
+    matches = Boolean(start) && days >= 0 && days <= (radarSearchFilter === 'week' ? 7 : 31);
+  }else if(radarSearchFilter === 'free') matches = /(^|\W)free(\W|$)/i.test(radarSearchText(item));
+  if(!matches) return false;
+  if(!radarSearchService) return true;
+  const text = radarSearchText(item); const service = radarSearchService.toLowerCase();
+  return service === 'stan' ? /(^|\W)stan(\W|$)/i.test(text) : text.includes(service);
+}
+function radarSearchResults(){
+  const words = radarSearchQuery.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  if(!words.length && radarSearchFilter === 'all' && !radarSearchService) return [];
+  return Object.values(radarCatalog)
+    .filter(item => radarSearchMatchesFilter(item) && words.every(word => radarSearchText(item).includes(word)))
+    .sort((a,b) => {
+      const q = radarSearchQuery.toLowerCase().trim();
+      const aTitle = a.title.toLowerCase(); const bTitle = b.title.toLowerCase();
+      const aRank = q && aTitle.startsWith(q) ? 0 : q && aTitle.includes(q) ? 1 : 2;
+      const bRank = q && bTitle.startsWith(q) ? 0 : q && bTitle.includes(q) ? 1 : 2;
+      return aRank - bRank || a.title.localeCompare(b.title);
+    });
+}
+function syncRadarSearchInputs(value){
+  ['navSearchInput','radarSearchInput'].forEach(id => {
+    const input = document.getElementById(id);
+    if(input && input.value !== value) input.value = value;
+  });
+}
+function openRadarSearch(value, focusMain){
+  const searchPane = document.getElementById('pane-search');
+  if(!searchPane.classList.contains('on')){
+    const active = document.querySelector('.tab.active');
+    searchPreviousTab = active ? active.dataset.tab : 'fights';
+  }
+  if(typeof value === 'string') radarSearchQuery = value;
+  syncRadarSearchInputs(radarSearchQuery);
+  document.querySelectorAll('.pane').forEach(pane => pane.classList.toggle('on',pane === searchPane));
+  document.getElementById('rangeText').textContent = 'Search every radar section';
+  document.getElementById('searchBackButton').textContent = 'Back to ' + (RADAR_TAB_LABELS[searchPreviousTab] || 'Radar');
+  closeDrawer(); closeNav(); renderRadarSearch();
+  if(focusMain) setTimeout(() => document.getElementById('radarSearchInput').focus(),0);
+}
+function closeRadarSearch(){
+  showTab(searchPreviousTab || 'fights');
+}
+function submitRadarSearch(event){
+  event.preventDefault();
+  const input = event.currentTarget.querySelector('input[type="search"]');
+  openRadarSearch(input ? input.value : radarSearchQuery,true);
+}
+function runRadarSearch(value){
+  radarSearchQuery = value;
+  syncRadarSearchInputs(value);
+  renderRadarSearch();
+}
+function setRadarSearchFilter(filter){
+  radarSearchFilter = filter;
+  document.querySelectorAll('[data-search-filter]').forEach(button => {
+    const active = button.dataset.searchFilter === filter;
+    button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active));
+  });
+  renderRadarSearch();
+}
+function setRadarSearchService(service){
+  radarSearchService = service;
+  renderRadarSearch();
+}
+function createRadarSearchResult(item){
+  const row = document.createElement('article'); row.className = 'search-result';
+  if(item.image){
+    const img = document.createElement('img'); img.className = 'search-result-art'; img.src = item.image; img.alt = '';
+    img.addEventListener('error',() => {
+      const fallback = document.createElement('span'); fallback.className = 'search-result-art av'; fallback.textContent = radarInitials(item.title); img.replaceWith(fallback);
+    });
+    row.appendChild(img);
+  }else{
+    const fallback = document.createElement('span'); fallback.className = 'search-result-art av'; fallback.textContent = radarInitials(item.title); row.appendChild(fallback);
+  }
+  const copy = document.createElement('div'); copy.className = 'search-result-copy';
+  const category = document.createElement('span'); category.className = 'search-cat'; category.textContent = item.categoryLabel;
+  const title = document.createElement('b'); title.textContent = item.title;
+  const when = document.createElement('span'); when.textContent = item.when || item.summary || 'Open the details for more information.';
+  copy.appendChild(category); copy.appendChild(title); copy.appendChild(when); row.appendChild(copy);
+  const actions = document.createElement('div'); actions.className = 'search-result-actions';
+  const details = document.createElement('button'); details.type = 'button'; details.textContent = 'Details'; details.addEventListener('click',() => openCard(item.id)); actions.appendChild(details);
+  const section = document.createElement('button'); section.type = 'button'; section.textContent = 'View Tab'; section.addEventListener('click',() => showTab(item.category)); actions.appendChild(section);
+  const saved = Boolean(radarState.saved[item.id]);
+  const save = document.createElement('button'); save.type = 'button'; save.className = saved ? 'is-saved' : ''; save.textContent = saved ? '♥ Saved' : '♡ Save'; save.setAttribute('aria-pressed',String(saved));
+  save.addEventListener('click',() => { toggleRadarSaved(item.id); renderRadarSearch(); }); actions.appendChild(save);
+  if(saved){
+    const alerts = document.createElement('select'); alerts.setAttribute('aria-label','Alerts for ' + item.title);
+    [['off','Alerts off'],['changes','Changes only'],['all','Changes + reminders']].forEach(([value,label]) => {
+      const option = document.createElement('option'); option.value = value; option.textContent = label;
+      option.selected = (radarState.saved[item.id].alerts || 'off') === value; alerts.appendChild(option);
+    });
+    alerts.addEventListener('change',() => setRadarAlertMode(item.id,alerts.value)); actions.appendChild(alerts);
+  }
+  row.appendChild(actions); return row;
+}
+function renderRadarSearch(){
+  const host = document.getElementById('radarSearchResults');
+  const summary = document.getElementById('radarSearchSummary');
+  if(!host || !summary) return;
+  host.innerHTML = '';
+  const results = radarSearchResults();
+  if(!radarSearchQuery.trim() && radarSearchFilter === 'all' && !radarSearchService){
+    summary.textContent = 'Start typing to search every section.';
+    const empty = document.createElement('div'); empty.className = 'radar-empty'; empty.textContent = 'Try a fighter, comedian, movie, series, team, venue or streaming service.'; host.appendChild(empty); return;
+  }
+  const shown = results.slice(0,60);
+  summary.textContent = results.length + (results.length === 1 ? ' result' : ' results') + (results.length > shown.length ? ' · showing the first ' + shown.length : '');
+  if(!shown.length){
+    const empty = document.createElement('div'); empty.className = 'radar-empty'; empty.textContent = 'Nothing matches that search and filter. Try fewer words or choose All.'; host.appendChild(empty); return;
+  }
+  const list = document.createElement('div'); list.className = 'search-results';
+  shown.forEach(item => list.appendChild(createRadarSearchResult(item))); host.appendChild(list);
+}
+
 function filterSydney(category){
   document.querySelectorAll('[data-sydney-filter]').forEach(button => {
     const active = button.dataset.sydneyFilter === category;
@@ -4213,7 +4413,11 @@ function closeDrawer(){
   document.getElementById('drawer').classList.remove('open');
   document.body.classList.remove('drawer-open');
 }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeDrawer(); });
+document.addEventListener('keydown',e=>{
+  if(e.key !== 'Escape') return;
+  if(document.getElementById('pane-search').classList.contains('on')) closeRadarSearch();
+  else{ closeDrawer(); closeNav(); }
+});
 
 /* ===== TABS ===== */
 const RANGES = {

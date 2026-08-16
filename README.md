@@ -69,6 +69,14 @@ Tabs are linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`,
 `index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`,
 `index.html#myradar`, `index.html#sydney`.
 
+Universal search sits above the desktop tab list; on mobile, a **Search** button
+appears beside **Sections**. It searches names, teams, venues, dates, listing
+details and streaming services across every current tab, with category, upcoming
+week, month, free-event and streaming-service filters. Results can open their
+original tab or detail card, be saved to My Radar and—once saved—have alerts
+configured. Closing search returns the visitor to the tab they were previously
+viewing.
+
 ### How each tab stays current
 
 | Tab | Source | Refresh |

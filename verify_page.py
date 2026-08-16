@@ -108,7 +108,7 @@ if len(sydney_cards) != 12:
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
+for pane in ["pane-search", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
              "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
              "pane-wolves"]:
     if f'id="{pane}"' not in page:
@@ -117,7 +117,10 @@ for pane in ["pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-c
 for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 "bawaRadar.personal.v1", "data-sydney-filter", 'id="radarAlerts"',
                 'id="radarAlertBadge"', "radarActiveAlerts", "setRadarAlertMode",
-                "dismissRadarAlert"]:
+                "dismissRadarAlert", 'id="navSearchInput"', 'id="radarSearchInput"',
+                'id="radarSearchResults"', 'id="radarSearchService"',
+                'data-search-filter="week"', "openRadarSearch", "renderRadarSearch",
+                "setRadarSearchService"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 
