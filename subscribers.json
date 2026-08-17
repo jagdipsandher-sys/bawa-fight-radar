@@ -48,6 +48,15 @@
         "source": "added by Jack — family",
         "date": "2026-08-15"
       }
+    },
+    {
+      "email": "jamesgarlandjnr@gmail.com",
+      "name": "James Garland Jr",
+      "active": true,
+      "consent": {
+        "source": "personally asked Jack to add him",
+        "date": "2026-08-17"
+      }
     }
   ]
 }
