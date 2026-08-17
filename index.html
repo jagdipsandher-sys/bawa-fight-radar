@@ -405,6 +405,65 @@
   .search-result-actions select,.search-result-actions button{border:1px solid #aaa;background:#fff;color:var(--ink);padding:5px 7px;font-size:.7rem}
   .search-result-actions button{cursor:pointer;font-weight:800;text-transform:uppercase}
   .search-result-actions button.is-saved{background:var(--red);border-color:var(--red);color:#fff}
+  /* ===== FOOD & DRINKS EXPLORER ===== */
+  .food-location{border:1px solid var(--faint);border-top:4px solid #000;background:#fff;padding:15px;margin:0 0 14px}
+  .food-location-row{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:8px;align-items:end}
+  .food-location label{display:block;color:var(--grey);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+  #foodAutocompleteHost{display:block;margin-top:5px}#foodAutocompleteHost[hidden]{display:none}gmp-place-autocomplete{width:100%;color:var(--ink);font-size:.9rem}
+  .food-location-inputs{display:flex;gap:7px;margin-top:5px}
+  .food-location input{min-width:0;flex:1;border:1px solid #888;background:#fff;color:var(--ink);padding:10px 11px;font-size:.9rem;outline:none}
+  .food-location input:focus{border-color:#000;box-shadow:inset 0 -2px 0 var(--red)}
+  .food-location button,.food-controls button,.food-controls select,.food-view-toggle button,.food-map-action{
+    border:1px solid #888;background:#fff;color:var(--ink);cursor:pointer;padding:8px 10px;
+    font:800 .68rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.07em
+  }
+  .food-location button.primary{background:#111;border-color:#111;color:#fff}
+  .food-shortcuts{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .food-shortcuts button{padding:5px 8px;font-size:.64rem}
+  .food-active-location{color:var(--grey);font-size:.76rem;margin-top:8px}
+  .food-active-location b{color:var(--ink)}
+  .food-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid #aaa;margin-bottom:12px}
+  .food-categories button{border:0;border-right:1px solid #aaa;border-bottom:1px solid #aaa;background:#fff;color:var(--ink);cursor:pointer;padding:10px 7px;
+    font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+  .food-categories button:nth-child(4n){border-right:0}
+  .food-categories button:nth-last-child(-n+3){border-bottom:0}
+  .food-categories button.active{background:#111;color:#fff;box-shadow:inset 0 -4px 0 var(--red)}
+  .food-controls{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+  .food-controls button.active{background:var(--red);border-color:var(--red);color:#fff}
+  .food-controls label{display:flex;align-items:center;gap:5px;color:var(--grey);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+  .food-controls input{accent-color:var(--red)}
+  .food-view-toggle{display:none;margin-left:auto}
+  .food-view-toggle button.active{background:#111;color:#fff}
+  .food-summary{display:flex;justify-content:space-between;gap:10px;color:var(--grey);font-size:.76rem;margin:0 0 9px}
+  .food-explorer{display:grid;grid-template-columns:minmax(330px,.9fr) minmax(360px,1.1fr);gap:13px;align-items:start}
+  .food-results{border:1px solid var(--faint);background:#fff;min-height:360px}
+  .food-empty{padding:24px;color:var(--grey);font-size:.86rem;line-height:1.55}
+  .food-empty b{display:block;color:var(--ink);font:800 1.1rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;margin-bottom:4px}
+  .food-live-link{display:inline-block;margin-top:12px;background:var(--red);color:#fff;text-decoration:none;padding:9px 12px;
+    font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.07em}
+  .food-card{display:grid;grid-template-columns:104px minmax(0,1fr);gap:11px;padding:11px;border-bottom:1px solid #ececec;cursor:pointer;position:relative}
+  .food-card:last-child{border-bottom:0}.food-card:hover,.food-card.selected{background:#fafafa}.food-card.selected{box-shadow:inset 4px 0 0 var(--red)}
+  .food-photo{width:104px;height:104px;object-fit:cover;background:#e6e6e6;border:1px solid #ddd}
+  .food-photo-fallback{display:flex;align-items:center;justify-content:center;width:104px;height:104px;background:#111;color:#fff;
+    font:800 1.5rem "Barlow Condensed","Arial Narrow",Arial,sans-serif}
+  .food-photo-credit{display:block;color:#777;font-size:.55rem;line-height:1.2;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:104px}
+  .food-photo-credit a{color:inherit}
+  .food-card-copy h3{font:800 1.05rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;line-height:1.1;margin:0 0 2px}
+  .food-google{color:#444;font-size:.72rem;font-weight:800}.food-google strong{color:#b86b00}.food-address,.food-reason{color:var(--grey);font-size:.73rem;margin-top:3px}
+  .food-reason{color:#333}.food-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .food-tags span{background:#eee;color:#444;padding:2px 5px;font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+  .food-card-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+  .food-card-actions a,.food-card-actions button{border:1px solid #999;background:#fff;color:var(--ink);cursor:pointer;text-decoration:none;padding:4px 7px;
+    font:800 .62rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+  .food-card-actions button.is-saved{background:var(--red);border-color:var(--red);color:#fff}
+  .food-map-wrap{position:sticky;top:12px;height:610px;border:1px solid #aaa;background:#eee;overflow:hidden}
+  #foodMap{width:100%;height:100%}.food-map-fallback{display:flex;align-items:center;justify-content:center;text-align:center;height:100%;padding:28px;color:var(--grey)}
+  .food-map-fallback b{display:block;color:var(--ink);font:800 1.3rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;text-transform:uppercase}
+  .food-map-action{display:inline-block;margin-top:12px;background:#111;color:#fff;text-decoration:none;border-color:#111}
+  .food-loading{display:flex;align-items:center;gap:9px;padding:24px;color:var(--grey)}
+  .food-spinner{width:18px;height:18px;border:3px solid #ddd;border-top-color:var(--red);border-radius:50%;animation:foodspin .7s linear infinite}
+  @keyframes foodspin{to{transform:rotate(360deg)}}
+  .food-legal{color:var(--grey);font-size:.68rem;line-height:1.45;margin-top:10px}.food-legal a{color:inherit}
   .radar-privacy{color:var(--grey);font-size:.74rem;border-top:1px solid #ddd;padding-top:10px;margin-top:12px}
   .radar-save.is-saved{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important}
   .sydney-note{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0 4px}
@@ -443,6 +502,15 @@
     .search-result{grid-template-columns:48px minmax(0,1fr)}
     .search-result-art{width:48px;height:48px}
     .search-result-actions{grid-column:1/-1;justify-content:flex-start;max-width:none}
+    .food-location-row{grid-template-columns:1fr}.food-location-row>button{width:100%}
+    .food-location-inputs{display:grid;grid-template-columns:1fr auto}.food-location-inputs input{width:100%}
+    .food-categories{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .food-categories button,.food-categories button:nth-child(4n){border-right:1px solid #aaa;border-bottom:1px solid #aaa}
+    .food-categories button:nth-child(2n){border-right:0}.food-categories button:last-child{border-bottom:0}
+    .food-explorer{display:block}.food-view-toggle{display:flex}
+    .food-explorer.show-list .food-map-wrap{display:none}.food-explorer.show-map .food-results{display:none}
+    .food-map-wrap{position:relative;top:auto;height:62vh;min-height:420px}
+    .food-card{grid-template-columns:82px minmax(0,1fr)}.food-photo,.food-photo-fallback{width:82px;height:82px}.food-photo-credit{max-width:82px}
     .sydney-note{grid-template-columns:1fr}
   }
   @media(max-width:850px){
@@ -518,6 +586,7 @@ function imgFail(img, initials){
     <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="food"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="food" onclick="showTab('food')">Food &amp; Drinks</button><span class="order-controls"><button type="button" onclick="moveTab('food',-1)" aria-label="Move Food and Drinks up">↑</button><button type="button" onclick="moveTab('food',1)" aria-label="Move Food and Drinks down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="myradar" onclick="showTab('myradar')">My Radar <span class="nav-alert-badge" id="radarAlertBadge" aria-label="unread alerts" hidden>0</span></button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
   </div>
@@ -542,6 +611,7 @@ function imgFail(img, initials){
     <button type="button" aria-pressed="false" data-search-filter="comedy" onclick="setRadarSearchFilter('comedy')">Comedy</button>
     <button type="button" aria-pressed="false" data-search-filter="movies" onclick="setRadarSearchFilter('movies')">Movies</button>
     <button type="button" aria-pressed="false" data-search-filter="series" onclick="setRadarSearchFilter('series')">Series</button>
+    <button type="button" aria-pressed="false" data-search-filter="food" onclick="setRadarSearchFilter('food')">Food</button>
     <button type="button" aria-pressed="false" data-search-filter="sydney" onclick="setRadarSearchFilter('sydney')">Sydney</button>
     <button type="button" aria-pressed="false" data-search-filter="week" onclick="setRadarSearchFilter('week')">This Week</button>
     <button type="button" aria-pressed="false" data-search-filter="month" onclick="setRadarSearchFilter('month')">This Month</button>
@@ -555,12 +625,82 @@ function imgFail(img, initials){
   <footer>Search is local to this page. It does not send queries anywhere, and saving a result adds only that chosen item to My Radar.</footer>
 </div><!-- /pane-search -->
 
-<!-- ================= TAB 1 · MY RADAR ================= -->
+<!-- ================= FOOD & DRINKS ================= -->
+<div class="pane" id="pane-food">
+  <h2>Food &amp; Drinks</h2>
+  <div class="radar-intro">
+    <strong>Pick the occasion, then start from anywhere</strong>
+    <p>Set a suburb or use your current location. Results are ranked from that starting point and only places with a live Google rating of 4.1 or higher are shown. Switch to Fresh Finds when you want some weekly variety.</p>
+  </div>
+
+  <section class="food-location" aria-labelledby="foodLocationHeading">
+    <div class="food-location-row">
+      <form onsubmit="setFoodLocationFromText(event)">
+        <label id="foodLocationHeading" for="foodLocationInput">Starting suburb or city</label>
+        <div id="foodAutocompleteHost" hidden></div>
+        <div class="food-location-inputs" id="foodFallbackLocation">
+          <input id="foodLocationInput" type="search" placeholder="Try Parramatta NSW or New Farm QLD" autocomplete="street-address">
+          <button class="primary" type="submit">Set Location</button>
+        </div>
+      </form>
+      <button type="button" onclick="useFoodCurrentLocation()">Use Current Location</button>
+    </div>
+    <div class="food-shortcuts" aria-label="Quick starting locations">
+      <button type="button" onclick="setFoodShortcut('Sydney CBD',-33.8688,151.2093)">Sydney CBD</button>
+      <button type="button" onclick="setFoodShortcut('Parramatta NSW',-33.8150,151.0011)">Parramatta</button>
+      <button type="button" onclick="setFoodShortcut('Brisbane CBD',-27.4698,153.0251)">Brisbane CBD</button>
+      <button type="button" id="foodSavedLocationButton" onclick="reuseFoodSavedLocation()" hidden>My saved start</button>
+    </div>
+    <div class="food-active-location" id="foodActiveLocation">Starting from <b>Sydney CBD</b></div>
+  </section>
+
+  <div class="food-categories" aria-label="Choose a food or drinks occasion">
+    <button type="button" class="active" aria-pressed="true" data-food-category="paratha" onclick="setFoodCategory('paratha')">Chai &amp; Paratha</button>
+    <button type="button" aria-pressed="false" data-food-category="sunday" onclick="setFoodCategory('sunday')">Sunday Lunch</button>
+    <button type="button" aria-pressed="false" data-food-category="cheap" onclick="setFoodCategory('cheap')">Cheap Eats</button>
+    <button type="button" aria-pressed="false" data-food-category="steak" onclick="setFoodCategory('steak')">CBD Steaks</button>
+    <button type="button" aria-pressed="false" data-food-category="bars" onclick="setFoodCategory('bars')">CBD Bars &amp; Views</button>
+    <button type="button" aria-pressed="false" data-food-category="italian" onclick="setFoodCategory('italian')">CBD Italian</button>
+    <button type="button" aria-pressed="false" data-food-category="pubs" onclick="setFoodCategory('pubs')">Best Pubs</button>
+  </div>
+
+  <div class="food-controls" aria-label="Food result controls">
+    <button type="button" class="active" aria-pressed="true" data-food-discovery="reliable" onclick="setFoodDiscovery('reliable')">Reliable Picks</button>
+    <button type="button" aria-pressed="false" data-food-discovery="fresh" onclick="setFoodDiscovery('fresh')">Fresh Finds</button>
+    <label>Sort
+      <select id="foodSort" onchange="setFoodSort(this.value)">
+        <option value="closest">Closest first</option><option value="best">Best match</option><option value="rating">Highest rated</option>
+      </select>
+    </label>
+    <label>Budget
+      <select id="foodPrice" onchange="setFoodPrice(this.value)">
+        <option value="all">Any price</option><option value="cheap">Cheap</option><option value="moderate">Moderate</option><option value="premium">Premium</option>
+      </select>
+    </label>
+    <label><input id="foodOpenNow" type="checkbox" onchange="setFoodOpenNow(this.checked)"> Open now</label>
+    <div class="food-view-toggle" aria-label="Mobile results view">
+      <button type="button" class="active" aria-pressed="true" data-food-view="list" onclick="setFoodView('list')">List</button>
+      <button type="button" aria-pressed="false" data-food-view="map" onclick="setFoodView('map')">Map</button>
+    </div>
+  </div>
+
+  <div class="food-summary"><span id="foodResultSummary">Choose an occasion to search.</span><span>Google rating 4.1+ · live details</span></div>
+  <div class="food-explorer show-list" id="foodExplorer">
+    <div class="food-results" id="foodResults" aria-live="polite"></div>
+    <div class="food-map-wrap">
+      <div id="foodMap" aria-label="Map of food and drink results"></div>
+    </div>
+  </div>
+  <div class="food-legal">Ratings, review counts, hours, photos and place details are loaded live from Google and are not stored by BAWA. Your chosen starting area and filters stay in this browser. Current location is used only after you tap the button. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy</a> · <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener">Google Maps Terms</a></div>
+  <footer>Use Google Maps and the venue’s own website to confirm current hours, availability and booking details before travelling.</footer>
+</div><!-- /pane-food -->
+
+<!-- ================= MY RADAR ================= -->
 <div class="pane" id="pane-myradar">
   <h2>Build Your Own Radar</h2>
   <div class="radar-intro">
     <strong>Your list, your call</strong>
-    <p>My Radar starts empty. Add only the fights, shows, films, teams and Sydney events you want by tapping ♡ Save on their original tab, then choose whether that item should alert you. Nothing is recommended, followed or added automatically.</p>
+    <p>My Radar starts empty. Add only the fights, shows, films, teams, food places and Sydney events you want by tapping ♡ Save on their original tab. Dated events can use alerts; saved food places are refreshed live from Google instead. Nothing is recommended, followed or added automatically.</p>
   </div>
 
   <div class="radar-stats" aria-label="My Radar summary">
@@ -2393,6 +2533,7 @@ function imgFail(img, initials){
   </div>
 </div>
 
+<script src="maps-config.js"></script>
 <script>
 const FIGHT_CARDS = {
 /*BUILD:FIGHT-CARDS*/
@@ -3993,7 +4134,7 @@ const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS,
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
 const RADAR_TAB_LABELS = {
-  fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',sydney:"What's On Sydney",
+  fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',food:'Food & Drinks',sydney:"What's On Sydney",
   panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',wolves:'Wolves'
 };
 let radarCatalog = {};
@@ -4079,7 +4220,9 @@ function updateRadarSaveButtons(){
   });
 }
 function defaultRadarStatus(item){
-  return item && (item.category === 'movies' || item.category === 'series') ? 'want_to_watch' : 'interested';
+  if(item && (item.category === 'movies' || item.category === 'series')) return 'want_to_watch';
+  if(item && item.category === 'food') return 'want_to_try';
+  return 'interested';
 }
 function toggleRadarSaved(id){
   const item = radarCatalog[id];
@@ -4088,6 +4231,11 @@ function toggleRadarSaved(id){
   else radarState.saved[id] = {
     status:defaultRadarStatus(item),savedAt:new Date().toISOString(),alerts:'off',snapshot:null,dismissed:{}
   };
+  if(radarState.saved[id] && item.category === 'food'){
+    radarState.saved[id].placeId = item.placeId;
+    radarState.saved[id].alerts = 'off';
+    radarState.saved[id].snapshot = null;
+  }
   saveRadarState();
   updateRadarSaveButtons();
   renderMyRadar();
@@ -4097,6 +4245,7 @@ function setRadarStatus(id, status){
   radarState.saved[id].status = status;
   saveRadarState();
   renderMyRadar();
+  if(radarCatalog[id] && radarCatalog[id].category === 'food') refreshFoodFilters();
 }
 function radarDate(item, field){
   const raw = item[field];
@@ -4124,6 +4273,7 @@ function setRadarAlertMode(id, mode){
   const item = radarCatalog[id];
   const saved = radarState.saved[id];
   if(!item || !saved) return;
+  if(item.category === 'food') return;
   saved.alerts = mode;
   saved.snapshot = mode === 'off' ? null : radarSnapshot(item);
   saved.dismissed = {};
@@ -4189,6 +4339,9 @@ function radarStatusOptions(item){
   if(item.category === 'movies' || item.category === 'series') return [
     ['want_to_watch','Want to watch'],['watching','Watching'],['watched','Watched'],['caught_up','Caught up']
   ];
+  if(item.category === 'food') return [
+    ['want_to_try','Want to try'],['booked','Booked'],['tried','Tried'],['favourite','Favourite'],['hidden','Hidden']
+  ];
   return [['interested','Interested'],['booked','Booked'],['done','Done']];
 }
 function renderRadarSaved(){
@@ -4229,7 +4382,9 @@ function renderRadarSaved(){
     alertSelect.addEventListener('change',() => setRadarAlertMode(item.id,alertSelect.value));
     const details = document.createElement('button'); details.type = 'button'; details.textContent = 'Details'; details.addEventListener('click',() => openCard(item.id));
     const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = 'Remove'; remove.addEventListener('click',() => toggleRadarSaved(item.id));
-    actions.appendChild(select); actions.appendChild(alertSelect); actions.appendChild(details); actions.appendChild(remove); row.appendChild(actions); list.appendChild(row);
+    actions.appendChild(select);
+    if(item.category !== 'food') actions.appendChild(alertSelect);
+    actions.appendChild(details); actions.appendChild(remove); row.appendChild(actions); list.appendChild(row);
   });
   host.appendChild(list);
 }
@@ -4408,6 +4563,377 @@ function renderMyRadar(){
   document.getElementById('radarSoonCount').textContent = soon;
 }
 
+/* ===== FOOD & DRINKS ===== */
+const FOOD_STATE_KEY = 'bawaRadar.food.v1';
+const FOOD_CATEGORIES = {
+  paratha:{label:'Chai & Paratha',query:'Punjabi paratha and chai',near:true,minReviews:25,reason:'Punjabi breakfast, fresh paratha and proper chai'},
+  sunday:{label:'Sunday Lunch',query:'best Sunday lunch restaurants',near:true,minReviews:60,reason:'A well-reviewed place for a relaxed Sunday lunch'},
+  cheap:{label:'Cheap Eats',query:'best affordable lunch and cheap eats',near:true,minReviews:50,reason:'Strong value for a casual lunch nearby'},
+  steak:{label:'CBD Steaks',query:'best steakhouse in the CBD',cbd:true,minReviews:100,reason:'A polished CBD steakhouse suitable for clients'},
+  bars:{label:'CBD Bars & Views',query:'best rooftop bars with views in the CBD',cbd:true,minReviews:100,reason:'City drinks, atmosphere and a view for clients or mates'},
+  italian:{label:'CBD Italian',query:'best Italian restaurant in the CBD',cbd:true,minReviews:100,reason:'A highly rated CBD Italian option for a proper meal'},
+  pubs:{label:'Best Pubs',query:'best pubs with good food',near:true,minReviews:80,reason:'A reliable pub with well-reviewed food and drinks'}
+};
+const FOOD_DEFAULT_STATE = {
+  location:{label:'Sydney CBD',lat:-33.8688,lng:151.2093},home:null,
+  category:'paratha',discovery:'reliable',sort:'closest',price:'all',openNow:false,view:'list'
+};
+
+function loadFoodState(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(FOOD_STATE_KEY) || 'null');
+    if(!raw || typeof raw !== 'object') return JSON.parse(JSON.stringify(FOOD_DEFAULT_STATE));
+    const next = {...FOOD_DEFAULT_STATE,...raw};
+    next.location = raw.location && typeof raw.location.label === 'string' ? raw.location : {...FOOD_DEFAULT_STATE.location};
+    next.home = raw.home && typeof raw.home.label === 'string' ? raw.home : null;
+    if(!FOOD_CATEGORIES[next.category]) next.category = 'paratha';
+    if(!['reliable','fresh'].includes(next.discovery)) next.discovery = 'reliable';
+    if(!['closest','best','rating'].includes(next.sort)) next.sort = 'closest';
+    if(!['all','cheap','moderate','premium'].includes(next.price)) next.price = 'all';
+    if(!['list','map'].includes(next.view)) next.view = 'list';
+    return next;
+  }catch(_e){ return JSON.parse(JSON.stringify(FOOD_DEFAULT_STATE)); }
+}
+let foodState = loadFoodState();
+let foodGoogleStatus = 'idle';
+let foodMap = null;
+let foodPlaceClass = null;
+let foodMarkerClass = null;
+let foodMarkers = [];
+let foodRowsById = {};
+let foodLastRawPlaces = [];
+let foodHydratedSaved = false;
+
+function saveFoodState(){
+  try{
+    const stored = JSON.parse(JSON.stringify(foodState));
+    ['location','home'].forEach(key => {
+      if(stored[key] && stored[key].source === 'google'){
+        stored[key] = {label:'Saved starting area',lat:null,lng:null,source:'google',placeId:stored[key].placeId};
+      }
+    });
+    localStorage.setItem(FOOD_STATE_KEY,JSON.stringify(stored));
+  }catch(_e){}
+}
+function foodMapsConfigured(){
+  const key = window.BAWA_MAPS_CONFIG && String(window.BAWA_MAPS_CONFIG.apiKey || '').trim();
+  return Boolean(key && !/replace|your[_ -]?key|placeholder/i.test(key));
+}
+function foodConfig(){ return FOOD_CATEGORIES[foodState.category] || FOOD_CATEGORIES.paratha; }
+function foodNumber(value){
+  if(value === null || value === undefined || value === '') return null;
+  const number = Number(value); return Number.isFinite(number) ? number : null;
+}
+function foodHasCoordinates(location){ return location && foodNumber(location.lat) !== null && foodNumber(location.lng) !== null; }
+function foodCoordinate(value){ return typeof value === 'function' ? value() : Number(value); }
+function foodLatLng(place){
+  if(!place || !place.location) return null;
+  const lat = foodCoordinate(place.location.lat); const lng = foodCoordinate(place.location.lng);
+  return Number.isFinite(lat) && Number.isFinite(lng) ? {lat,lng} : null;
+}
+function foodQuery(){ return foodConfig().query + ' near ' + (foodState.location.label || 'me'); }
+function foodGoogleLink(){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(foodQuery()); }
+function foodResultId(place){ return 'food_' + String(place.id || '').replace(/[^A-Za-z0-9_-]/g,''); }
+function foodFormatReviews(count){
+  return new Intl.NumberFormat('en-AU',{notation:Number(count) >= 1000 ? 'compact' : 'standard',maximumFractionDigits:1}).format(Number(count) || 0);
+}
+function foodPriceValue(level){ return String(level || '').replace('PRICE_LEVEL_','').toUpperCase(); }
+function foodPriceLabel(level){
+  return {FREE:'Free',INEXPENSIVE:'$',MODERATE:'$$',EXPENSIVE:'$$$',VERY_EXPENSIVE:'$$$$'}[foodPriceValue(level)] || '';
+}
+function foodDistanceKm(place){
+  const point = foodLatLng(place); const origin = foodState.location;
+  if(!point || !foodHasCoordinates(origin)) return null;
+  const rad = Math.PI / 180; const aLat = Number(origin.lat) * rad; const bLat = point.lat * rad;
+  const dLat = (point.lat - Number(origin.lat)) * rad; const dLng = (point.lng - Number(origin.lng)) * rad;
+  const a = Math.sin(dLat/2) ** 2 + Math.cos(aLat) * Math.cos(bLat) * Math.sin(dLng/2) ** 2;
+  return 6371 * 2 * Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function foodDistanceLabel(distance){
+  if(distance === null) return '';
+  return distance < 1 ? Math.max(100,Math.round(distance * 10) * 100) + ' m' : distance.toFixed(distance < 10 ? 1 : 0) + ' km';
+}
+function foodOpenNow(place){
+  try{
+    const hours = place.currentOpeningHours || place.regularOpeningHours;
+    return hours && typeof hours.isOpen === 'function' ? hours.isOpen() : null;
+  }catch(_e){ return null; }
+}
+function foodOpenOnSunday(place){
+  const periods = place && place.regularOpeningHours && place.regularOpeningHours.periods;
+  if(!Array.isArray(periods) || !periods.length) return null;
+  return periods.some(period => period.open && Number(period.open.day) === 0);
+}
+function foodHash(value){
+  let hash = 2166136261;
+  for(let i=0;i<value.length;i++){ hash ^= value.charCodeAt(i); hash = Math.imul(hash,16777619); }
+  return hash >>> 0;
+}
+function syncFoodControls(){
+  const input = document.getElementById('foodLocationInput'); if(input) input.value = foodState.location.label || '';
+  const active = document.getElementById('foodActiveLocation');
+  if(active){ active.textContent = 'Starting from '; const bold = document.createElement('b'); bold.textContent = foodState.location.label || 'your chosen area'; active.appendChild(bold); }
+  document.querySelectorAll('[data-food-category]').forEach(button => {
+    const on = button.dataset.foodCategory === foodState.category; button.classList.toggle('active',on); button.setAttribute('aria-pressed',String(on));
+  });
+  document.querySelectorAll('[data-food-discovery]').forEach(button => {
+    const on = button.dataset.foodDiscovery === foodState.discovery; button.classList.toggle('active',on); button.setAttribute('aria-pressed',String(on));
+  });
+  const sort = document.getElementById('foodSort'); if(sort) sort.value = foodState.sort;
+  const price = document.getElementById('foodPrice'); if(price) price.value = foodState.price;
+  const open = document.getElementById('foodOpenNow'); if(open) open.checked = Boolean(foodState.openNow);
+  const explorer = document.getElementById('foodExplorer');
+  if(explorer){ explorer.classList.toggle('show-list',foodState.view === 'list'); explorer.classList.toggle('show-map',foodState.view === 'map'); }
+  document.querySelectorAll('[data-food-view]').forEach(button => {
+    const on = button.dataset.foodView === foodState.view; button.classList.toggle('active',on); button.setAttribute('aria-pressed',String(on));
+  });
+  const savedButton = document.getElementById('foodSavedLocationButton');
+  if(savedButton){ savedButton.hidden = !foodState.home; savedButton.textContent = foodState.home ? 'Home: ' + foodState.home.label : 'My saved start'; }
+}
+function setFoodLocation(label,lat,lng,saveAsHome,source,placeId){
+  foodState.location = {label:label || 'Chosen location',lat:foodNumber(lat),lng:foodNumber(lng),source:source || 'user',placeId:placeId || ''};
+  if(saveAsHome) foodState.home = {...foodState.location};
+  saveFoodState(); syncFoodControls();
+  if(foodMap && foodHasCoordinates(foodState.location)) foodMap.setCenter({lat:foodState.location.lat,lng:foodState.location.lng});
+  runFoodSearch();
+}
+function setFoodLocationFromText(event){
+  event.preventDefault(); const input = document.getElementById('foodLocationInput'); const label = input ? input.value.trim() : '';
+  if(label) setFoodLocation(label,null,null,true);
+}
+function setFoodShortcut(label,lat,lng){ setFoodLocation(label,lat,lng,false); }
+function reuseFoodSavedLocation(){ if(foodState.home) setFoodLocation(foodState.home.label,foodState.home.lat,foodState.home.lng,false); }
+function useFoodCurrentLocation(){
+  const summary = document.getElementById('foodResultSummary');
+  if(!navigator.geolocation){ if(summary) summary.textContent = 'This browser cannot share a current location. Enter a suburb instead.'; return; }
+  if(summary) summary.textContent = 'Waiting for your location…';
+  navigator.geolocation.getCurrentPosition(
+    position => setFoodLocation('Current location',position.coords.latitude,position.coords.longitude,false),
+    () => { if(summary) summary.textContent = 'Location was not available. Enter a suburb or use a quick location instead.'; },
+    {enableHighAccuracy:false,timeout:10000,maximumAge:600000}
+  );
+}
+function setFoodCategory(category){ if(FOOD_CATEGORIES[category]){ foodState.category = category; saveFoodState(); syncFoodControls(); runFoodSearch(); } }
+function setFoodDiscovery(discovery){ foodState.discovery = discovery === 'fresh' ? 'fresh' : 'reliable'; saveFoodState(); syncFoodControls(); refreshFoodFilters(); }
+function setFoodSort(sort){ foodState.sort = ['closest','best','rating'].includes(sort) ? sort : 'closest'; saveFoodState(); refreshFoodFilters(); }
+function setFoodPrice(price){ foodState.price = ['all','cheap','moderate','premium'].includes(price) ? price : 'all'; saveFoodState(); refreshFoodFilters(); }
+function setFoodOpenNow(open){ foodState.openNow = Boolean(open); saveFoodState(); refreshFoodFilters(); }
+function setFoodView(view){
+  foodState.view = view === 'map' ? 'map' : 'list'; saveFoodState(); syncFoodControls();
+  if(foodMap && window.google) setTimeout(() => google.maps.event.trigger(foodMap,'resize'),0);
+}
+function renderFoodFallback(message){
+  const results = document.getElementById('foodResults'); const map = document.getElementById('foodMap');
+  const build = (host,mapMode) => {
+    if(!host) return; host.innerHTML = '';
+    const box = document.createElement('div'); box.className = mapMode ? 'food-map-fallback' : 'food-empty';
+    const inner = document.createElement('div'); const title = document.createElement('b'); title.textContent = mapMode ? 'Open the live Google map' : 'Live Google results are one tap away';
+    const copy = document.createElement('div'); copy.textContent = message || 'Your location and occasion are ready. Open Google Maps to see current ratings, hours, photos and directions.';
+    const link = document.createElement('a'); link.href = foodGoogleLink(); link.target = '_blank'; link.rel = 'noopener'; link.className = mapMode ? 'food-map-action' : 'food-live-link'; link.textContent = 'Open Live Results in Google Maps';
+    inner.appendChild(title); inner.appendChild(copy); inner.appendChild(link); box.appendChild(inner); host.appendChild(box);
+  };
+  build(results,false); build(map,true);
+  const summary = document.getElementById('foodResultSummary'); if(summary) summary.textContent = foodConfig().label + ' · starting from ' + foodState.location.label;
+}
+function showFoodLoading(){
+  const host = document.getElementById('foodResults'); if(!host) return; host.innerHTML = '';
+  const row = document.createElement('div'); row.className = 'food-loading'; const spinner = document.createElement('span'); spinner.className = 'food-spinner';
+  const copy = document.createElement('span'); copy.textContent = 'Checking live Google places near ' + foodState.location.label + '…'; row.appendChild(spinner); row.appendChild(copy); host.appendChild(row);
+}
+function loadFoodGoogle(){
+  if(foodGoogleStatus === 'loading' || foodGoogleStatus === 'ready') return;
+  if(!foodMapsConfigured()){
+    foodGoogleStatus = 'fallback';
+    renderFoodFallback('The live Google search link works now. The embedded results list and pins will appear here after the site’s restricted Google Maps connection is activated.');
+    return;
+  }
+  foodGoogleStatus = 'loading'; showFoodLoading(); window.initFoodGoogle = initFoodGoogle;
+  window.gm_authFailure = () => { foodGoogleStatus = 'failed'; renderFoodFallback('Google could not authorise the site’s map connection. The live Google Maps search still works.'); };
+  const script = document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(window.BAWA_MAPS_CONFIG.apiKey) + '&v=weekly&loading=async&callback=initFoodGoogle';
+  script.async = true; script.defer = true;
+  script.onerror = () => { foodGoogleStatus = 'failed'; renderFoodFallback('The embedded map could not load. The live Google Maps search still works.'); };
+  document.head.appendChild(script);
+}
+async function initFoodGoogle(){
+  try{
+    const mapsLibrary = await google.maps.importLibrary('maps'); const placesLibrary = await google.maps.importLibrary('places'); const markerLibrary = await google.maps.importLibrary('marker');
+    foodPlaceClass = placesLibrary.Place; foodMarkerClass = markerLibrary.AdvancedMarkerElement;
+    await hydrateFoodStartingLocation();
+    const center = foodHasCoordinates(foodState.location) ? {lat:Number(foodState.location.lat),lng:Number(foodState.location.lng)} : FOOD_DEFAULT_STATE.location;
+    foodMap = new mapsLibrary.Map(document.getElementById('foodMap'),{center,zoom:12,mapId:(window.BAWA_MAPS_CONFIG && window.BAWA_MAPS_CONFIG.mapId) || 'DEMO_MAP_ID',mapTypeControl:false,streetViewControl:false,fullscreenControl:true});
+    const autocomplete = new placesLibrary.PlaceAutocompleteElement({includedRegionCodes:['au']}); autocomplete.placeholder = 'Enter a suburb or city in Australia';
+    autocomplete.addEventListener('gmp-select',async event => {
+      const place = event.placePrediction.toPlace(); await place.fetchFields({fields:['id','displayName','formattedAddress','location']});
+      const point = foodLatLng(place); setFoodLocation(place.formattedAddress || place.displayName || 'Chosen location',point && point.lat,point && point.lng,true,'google',place.id);
+    });
+    const host = document.getElementById('foodAutocompleteHost'); const fallback = document.getElementById('foodFallbackLocation');
+    if(host){ host.innerHTML = ''; host.appendChild(autocomplete); host.hidden = false; } if(fallback) fallback.hidden = true;
+    foodGoogleStatus = 'ready'; await hydrateSavedFoodPlaces(); runFoodSearch();
+  }catch(_e){ foodGoogleStatus = 'failed'; renderFoodFallback('The embedded Google explorer could not start. The live Google Maps search still works.'); }
+}
+async function hydrateFoodStartingLocation(){
+  const stored = foodState.location;
+  if(!stored || stored.source !== 'google' || !stored.placeId || foodHasCoordinates(stored)) return;
+  try{
+    const place = new foodPlaceClass({id:stored.placeId});
+    await place.fetchFields({fields:['id','displayName','formattedAddress','location']});
+    const point = foodLatLng(place);
+    if(point){
+      foodState.location = {label:place.formattedAddress || place.displayName || 'Saved starting area',lat:point.lat,lng:point.lng,source:'google',placeId:place.id};
+      if(foodState.home && foodState.home.placeId === place.id) foodState.home = {...foodState.location};
+      syncFoodControls();
+    }
+  }catch(_e){}
+}
+function foodSearchRequest(){
+  const request = {
+    fields:['id','displayName','formattedAddress','location','rating','userRatingCount','priceLevel','currentOpeningHours','regularOpeningHours','googleMapsURI','websiteURI','photos','businessStatus','primaryTypeDisplayName'],
+    textQuery:foodQuery(),maxResultCount:20,minRating:4.0,region:'au'
+  };
+  if(foodHasCoordinates(foodState.location)) request.locationBias = {center:{lat:Number(foodState.location.lat),lng:Number(foodState.location.lng)},radius:25000};
+  return request;
+}
+async function runFoodSearch(){
+  syncFoodControls();
+  if(foodGoogleStatus === 'idle'){ loadFoodGoogle(); return; }
+  if(foodGoogleStatus !== 'ready'){ renderFoodFallback(); return; }
+  showFoodLoading();
+  try{
+    const response = await foodPlaceClass.searchByText(foodSearchRequest()); foodLastRawPlaces = response.places || []; renderFoodPlaces(foodLastRawPlaces);
+  }catch(_e){ renderFoodFallback('Google could not return the embedded results just now. The same live search is available in Google Maps.'); }
+}
+function foodMatchesPrice(place){
+  const level = foodPriceValue(place.priceLevel);
+  if(foodState.category === 'cheap' && ['EXPENSIVE','VERY_EXPENSIVE'].includes(level)) return false;
+  if(foodState.price === 'all' || !level) return true;
+  if(foodState.price === 'cheap') return ['FREE','INEXPENSIVE'].includes(level);
+  if(foodState.price === 'moderate') return level === 'MODERATE';
+  return ['EXPENSIVE','VERY_EXPENSIVE'].includes(level);
+}
+function foodBestScore(row){
+  const rating = Number(row.place.rating) || 0; const reviews = Number(row.place.userRatingCount) || 0; const distance = row.distance === null ? 5 : row.distance;
+  return rating * 20 + Math.log10(reviews + 1) * 8 - Math.min(distance,30) * .35;
+}
+function filteredFoodRows(places){
+  const config = foodConfig();
+  let rows = places.map(place => ({place,distance:foodDistanceKm(place)})).filter(row => {
+    const place = row.place; const saved = radarState.saved[foodResultId(place)];
+    if(Number(place.rating) < 4.1 || Number(place.userRatingCount || 0) < config.minReviews) return false;
+    if(place.businessStatus && String(place.businessStatus) !== 'OPERATIONAL') return false;
+    if(saved && saved.status === 'hidden') return false;
+    if(!foodMatchesPrice(place)) return false;
+    if(foodState.category === 'sunday' && foodOpenOnSunday(place) === false) return false;
+    if(foodState.openNow && foodOpenNow(place) !== true) return false;
+    return true;
+  });
+  if(foodState.discovery === 'fresh'){
+    const week = Math.floor(Date.now()/604800000); rows.sort((a,b) => foodHash((a.place.id || '') + week) - foodHash((b.place.id || '') + week)); rows = rows.slice(0,8);
+  }
+  rows.sort((a,b) => {
+    if(foodState.sort === 'rating') return Number(b.place.rating || 0) - Number(a.place.rating || 0) || Number(b.place.userRatingCount || 0) - Number(a.place.userRatingCount || 0);
+    if(foodState.sort === 'best') return foodBestScore(b) - foodBestScore(a);
+    if(a.distance === null && b.distance === null) return Number(b.place.rating || 0) - Number(a.place.rating || 0);
+    if(a.distance === null) return 1; if(b.distance === null) return -1; return a.distance - b.distance;
+  });
+  return rows.slice(0,12);
+}
+function refreshFoodFilters(){
+  syncFoodControls();
+  if(foodGoogleStatus === 'ready' && foodLastRawPlaces.length) renderFoodPlaces(foodLastRawPlaces);
+  else if(foodGoogleStatus !== 'loading') renderFoodFallback();
+}
+function registerFoodRadarItem(place,row,image){
+  const id = foodResultId(place); const distance = foodDistanceLabel(row.distance); const open = foodOpenNow(place);
+  const meta = ['Google ' + Number(place.rating || 0).toFixed(1),distance,foodPriceLabel(place.priceLevel)].filter(Boolean).join(' · ');
+  const hours = open === true ? 'Open now' : open === false ? 'Closed now' : 'Check current hours';
+  const card = {
+    emoji:'🍽️',kind:'place',title:place.displayName || 'Saved place',when:meta,link:place.googleMapsURI || foodGoogleLink(),linkLabel:'Open in Google Maps ↗',
+    secs:[
+      {h:'Live Google details',b:[[Number(place.rating || 0).toFixed(1) + ' stars',foodFormatReviews(place.userRatingCount) + ' Google reviews',1],[place.formattedAddress || 'Address in Google Maps',distance || foodState.location.label],[hours,foodPriceLabel(place.priceLevel) || 'Price not supplied']]},
+      {h:'Why it is here',b:[[foodConfig().label,foodConfig().reason],[foodState.discovery === 'fresh' ? 'Fresh Find' : 'Reliable Pick','Only live ratings of 4.1 or higher pass the filter']]}
+    ],note:'Place details are loaded live from Google. Confirm hours, bookings and availability with Google Maps or the venue before travelling.'
+  };
+  CARDS[id] = card;
+  radarCatalog[id] = {id,title:card.title,when:card.when,category:'food',categoryLabel:'Food & Drinks',tags:[foodState.category],image:image || '',summary:foodConfig().reason,statusText:hours,start:'',end:'',card,placeId:place.id};
+  return id;
+}
+function foodPhotoBlock(place,title){
+  const wrapper = document.createElement('div'); const photo = place.photos && place.photos[0]; let imageUrl = '';
+  if(photo){ try{ imageUrl = photo.getURI({maxWidth:360,maxHeight:300}); }catch(_e){} }
+  if(imageUrl){
+    const img = document.createElement('img'); img.className = 'food-photo'; img.src = imageUrl; img.alt = title; img.loading = 'lazy';
+    img.addEventListener('error',() => { const fallback = document.createElement('span'); fallback.className = 'food-photo-fallback'; fallback.textContent = radarInitials(title); img.replaceWith(fallback); }); wrapper.appendChild(img);
+    const credits = photo.authorAttributions || [];
+    if(credits.length){
+      const credit = document.createElement('small'); credit.className = 'food-photo-credit'; credit.append('Photo: ');
+      credits.forEach((author,index) => {
+        if(index) credit.append(', ');
+        if(author.uri){ const link = document.createElement('a'); link.href = author.uri; link.target = '_blank'; link.rel = 'noopener'; link.textContent = author.displayName || 'contributor'; credit.appendChild(link); }
+        else credit.append(author.displayName || 'Google contributor');
+      }); wrapper.appendChild(credit);
+    }
+  }else{ const fallback = document.createElement('span'); fallback.className = 'food-photo-fallback'; fallback.textContent = radarInitials(title); wrapper.appendChild(fallback); }
+  return {wrapper,imageUrl};
+}
+function createFoodCard(row,index){
+  const place = row.place; const title = place.displayName || 'Google place'; const card = document.createElement('article'); card.className = 'food-card'; card.tabIndex = 0;
+  const photo = foodPhotoBlock(place,title); card.appendChild(photo.wrapper);
+  const copy = document.createElement('div'); copy.className = 'food-card-copy'; const heading = document.createElement('h3'); heading.textContent = (index + 1) + ' · ' + title; copy.appendChild(heading);
+  const rating = document.createElement('div'); rating.className = 'food-google'; const star = document.createElement('strong'); star.textContent = '★ ' + Number(place.rating || 0).toFixed(1); rating.appendChild(star); rating.append(' (' + foodFormatReviews(place.userRatingCount) + ')');
+  const distance = foodDistanceLabel(row.distance); const price = foodPriceLabel(place.priceLevel); if(distance || price) rating.append(' · ' + [distance,price].filter(Boolean).join(' · ')); copy.appendChild(rating);
+  const address = document.createElement('div'); address.className = 'food-address'; address.textContent = place.formattedAddress || 'Open Google Maps for the address'; copy.appendChild(address);
+  const reason = document.createElement('div'); reason.className = 'food-reason'; reason.textContent = foodConfig().reason; copy.appendChild(reason);
+  const tags = document.createElement('div'); tags.className = 'food-tags';
+  [foodOpenNow(place) === true ? 'Open now' : foodOpenNow(place) === false ? 'Closed now' : '',foodState.category === 'sunday' && foodOpenOnSunday(place) === true ? 'Open Sundays' : '',place.primaryTypeDisplayName || '',foodState.discovery === 'fresh' ? 'Fresh this week' : 'Reliable pick'].filter(Boolean).forEach(label => { const tag = document.createElement('span'); tag.textContent = label; tags.appendChild(tag); }); copy.appendChild(tags);
+  const actions = document.createElement('div'); actions.className = 'food-card-actions'; const maps = document.createElement('a'); maps.href = place.googleMapsURI || foodGoogleLink(); maps.target = '_blank'; maps.rel = 'noopener'; maps.textContent = 'Maps'; actions.appendChild(maps);
+  if(place.websiteURI){ const website = document.createElement('a'); website.href = place.websiteURI; website.target = '_blank'; website.rel = 'noopener'; website.textContent = 'Website'; actions.appendChild(website); }
+  const id = registerFoodRadarItem(place,row,photo.imageUrl); card.dataset.foodId = id;
+  const details = document.createElement('button'); details.type = 'button'; details.textContent = 'Details'; details.addEventListener('click',event => { event.stopPropagation(); openCard(id); }); actions.appendChild(details);
+  const save = document.createElement('button'); save.type = 'button'; save.className = 'radar-save' + (radarState.saved[id] ? ' is-saved' : ''); save.dataset.radarSave = id; save.textContent = radarState.saved[id] ? '♥ Saved' : '♡ Save'; save.setAttribute('aria-pressed',String(Boolean(radarState.saved[id]))); save.addEventListener('click',event => { event.stopPropagation(); toggleRadarSaved(id); }); actions.appendChild(save);
+  copy.appendChild(actions); card.appendChild(copy); card.addEventListener('click',() => selectFoodPlace(id,true)); card.addEventListener('keydown',event => { if(event.key === 'Enter') selectFoodPlace(id,true); });
+  foodRowsById[id] = {card,place,row}; return card;
+}
+function clearFoodMarkers(){ foodMarkers.forEach(marker => { if('map' in marker) marker.map = null; else if(typeof marker.setMap === 'function') marker.setMap(null); }); foodMarkers = []; }
+function addFoodMarker(row,index,id,bounds){
+  if(!foodMap) return; const position = foodLatLng(row.place); if(!position) return; bounds.extend(position); let marker;
+  if(foodMarkerClass){
+    const pin = document.createElement('div'); pin.textContent = String(index + 1); pin.style.cssText = 'width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#d71920;color:#fff;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);font:800 13px Arial';
+    marker = new foodMarkerClass({map:foodMap,position,title:row.place.displayName || 'Food result',content:pin,gmpClickable:true});
+  }else marker = new google.maps.Marker({map:foodMap,position,label:String(index + 1),title:row.place.displayName || 'Food result'});
+  marker.addListener('click',() => selectFoodPlace(id,false)); foodMarkers.push(marker); foodRowsById[id].marker = marker;
+}
+function selectFoodPlace(id,pan){
+  document.querySelectorAll('.food-card').forEach(card => card.classList.toggle('selected',card.dataset.foodId === id)); const item = foodRowsById[id]; if(!item) return;
+  if(pan && foodMap){ const point = foodLatLng(item.place); if(point){ foodMap.panTo(point); foodMap.setZoom(Math.max(foodMap.getZoom() || 13,14)); } }
+  if(!pan && item.card) item.card.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function renderFoodPlaces(places){
+  const host = document.getElementById('foodResults'); if(!host) return; host.innerHTML = ''; foodRowsById = {}; clearFoodMarkers(); const rows = filteredFoodRows(places);
+  const summary = document.getElementById('foodResultSummary'); if(summary) summary.textContent = rows.length + (rows.length === 1 ? ' place' : ' places') + ' · ' + foodConfig().label + ' from ' + foodState.location.label + (foodState.discovery === 'fresh' ? ' · rotated this week' : '');
+  if(!rows.length){
+    const empty = document.createElement('div'); empty.className = 'food-empty'; const title = document.createElement('b'); title.textContent = 'No places passed every filter';
+    const copy = document.createElement('div'); copy.textContent = 'Try Any price, switch off Open now or choose another starting suburb. The 4.1 Google rating floor stays in place.';
+    const link = document.createElement('a'); link.className = 'food-live-link'; link.href = foodGoogleLink(); link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'See the wider Google search'; empty.appendChild(title); empty.appendChild(copy); empty.appendChild(link); host.appendChild(empty); return;
+  }
+  const bounds = new google.maps.LatLngBounds(); rows.forEach((row,index) => { const card = createFoodCard(row,index); host.appendChild(card); addFoodMarker(row,index,card.dataset.foodId,bounds); });
+  if(foodMap && !bounds.isEmpty()) foodMap.fitBounds(bounds,60); updateRadarSaveButtons(); renderMyRadar();
+}
+async function hydrateSavedFoodPlaces(){
+  if(foodHydratedSaved || !foodPlaceClass) return; foodHydratedSaved = true;
+  const savedPlaces = Object.entries(radarState.saved).filter(([_id,saved]) => saved && saved.placeId);
+  await Promise.all(savedPlaces.map(async ([_id,saved]) => {
+    try{
+      const place = new foodPlaceClass({id:saved.placeId}); await place.fetchFields({fields:['id','displayName','formattedAddress','location','rating','userRatingCount','priceLevel','currentOpeningHours','googleMapsURI','websiteURI','photos','primaryTypeDisplayName']});
+      let image = ''; if(place.photos && place.photos[0]) image = place.photos[0].getURI({maxWidth:360,maxHeight:300}); registerFoodRadarItem(place,{place,distance:foodDistanceKm(place)},image);
+    }catch(_e){}
+  })); renderMyRadar();
+}
+function initFoodExplorer(){
+  syncFoodControls();
+  if(foodGoogleStatus === 'idle') loadFoodGoogle(); else if(foodGoogleStatus === 'fallback' || foodGoogleStatus === 'failed') renderFoodFallback();
+}
+
 /* ===== UNIVERSAL SEARCH ===== */
 const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','wolves'];
 let radarSearchQuery = '';
@@ -4424,7 +4950,7 @@ function radarSearchText(item){
 function radarSearchMatchesFilter(item){
   let matches = true;
   if(radarSearchFilter === 'sport') matches = SEARCH_SPORT_TABS.includes(item.category);
-  else if(['comedy','movies','series','sydney'].includes(radarSearchFilter)) matches = item.category === radarSearchFilter;
+  else if(['comedy','movies','series','food','sydney'].includes(radarSearchFilter)) matches = item.category === radarSearchFilter;
   else if(radarSearchFilter === 'week' || radarSearchFilter === 'month'){
     const start = radarDate(item,'start');
     const days = start ? (start - new Date()) / 86400000 : Infinity;
@@ -4515,7 +5041,7 @@ function createRadarSearchResult(item){
   const saved = Boolean(radarState.saved[item.id]);
   const save = document.createElement('button'); save.type = 'button'; save.className = saved ? 'is-saved' : ''; save.textContent = saved ? '♥ Saved' : '♡ Save'; save.setAttribute('aria-pressed',String(saved));
   save.addEventListener('click',() => { toggleRadarSaved(item.id); renderRadarSearch(); }); actions.appendChild(save);
-  if(saved){
+  if(saved && item.category !== 'food'){
     const alerts = document.createElement('select'); alerts.setAttribute('aria-label','Alerts for ' + item.title);
     [['off','Alerts off'],['changes','Changes only'],['all','Changes + reminders']].forEach(([value,label]) => {
       const option = document.createElement('option'); option.value = value; option.textContent = label;
@@ -4533,7 +5059,7 @@ function renderRadarSearch(){
   const results = radarSearchResults();
   if(!radarSearchQuery.trim() && radarSearchFilter === 'all' && !radarSearchService){
     summary.textContent = 'Start typing to search every section.';
-    const empty = document.createElement('div'); empty.className = 'radar-empty'; empty.textContent = 'Try a fighter, comedian, movie, series, team, venue or streaming service.'; host.appendChild(empty); return;
+    const empty = document.createElement('div'); empty.className = 'radar-empty'; empty.textContent = 'Try a fighter, comedian, movie, series, restaurant, team, venue or streaming service.'; host.appendChild(empty); return;
   }
   const shown = results.slice(0,60);
   summary.textContent = results.length + (results.length === 1 ? ' result' : ' results') + (results.length > shown.length ? ' · showing the first ' + shown.length : '');
@@ -4618,6 +5144,7 @@ document.addEventListener('keydown',e=>{
 const RANGES = {
   myradar:  "Your manually saved picks · private on this device",
   sydney:   "What’s on now through Vivid Sydney 2027 · Sydney & surrounds",
+  food:     "Live food & drinks · Google rating 4.1+ · start from any Australian suburb",
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
   comedy:   "Sun 16 Aug 2026 – Mon 16 Aug 2027 · Sydney comedy",
@@ -4631,9 +5158,9 @@ const RANGES = {
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves','myradar','sydney'];
+const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves','food','myradar','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
-const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.manualRadarTail.v1';
+const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.foodBeforeManualTail.v1';
 
 function tabOrder(){
   return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
@@ -4651,8 +5178,8 @@ function restoreTabOrder(){
   let migrated = false;
   try{ migrated = localStorage.getItem(TAB_LAYOUT_KEY) === 'done'; }catch(_e){}
   if(!migrated){
-    order = order.filter(id => id !== 'myradar' && id !== 'sydney');
-    order.push('myradar','sydney');
+    order = order.filter(id => id !== 'food' && id !== 'myradar' && id !== 'sydney');
+    order.push('food','myradar','sydney');
     try{ localStorage.setItem(TAB_LAYOUT_KEY,'done'); }catch(_e){}
   }
   const list = document.getElementById('tabList');
@@ -4740,6 +5267,7 @@ function showTab(id){
   document.getElementById('rangeText').textContent = RANGES[id];
   closeDrawer();
   closeNav();
+  if(id === 'food') initFoodExplorer();
   if(id === 'myradar') renderMyRadar();
   if(location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
 }

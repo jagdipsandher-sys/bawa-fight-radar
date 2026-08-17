@@ -32,7 +32,8 @@ the usual culprit is the app password (check the spaces are stripped).
 
 ## The radar page (`index.html`)
 
-Thirteen tabs, all in the one file. On desktop they sit in a left-hand rail; on
+Fourteen tabs, with the dashboard itself kept in one main file. On desktop the
+tabs sit in a left-hand rail; on
 mobile the **Sections** button opens that same rail. Drag them into a new order,
 or tap **Reorder** and use the arrows. The choice is saved on that device.
 
@@ -55,6 +56,13 @@ detail panel; event tabs also include calendar buttons):
 - **Man Utd** — Manchester United fixtures in Sydney time and the league table.
 - **F1** and **MotoGP** — race weekends, Sydney session times and standings.
 - **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
+- **Food & Drinks** — a location-aware restaurant and bar explorer. Start from
+  any Australian suburb or the device’s current location, then choose Chai &
+  Paratha, Sunday Lunch, Cheap Eats, CBD Steaks, CBD Bars & Views, CBD Italian
+  or Best Pubs. Embedded Google results are filtered to an exact 4.1+ rating,
+  ordered by distance/quality/rating and shown beside matching map pins. Fresh
+  Finds rotates a quality-qualified subset each week; selected places can be
+  saved manually to My Radar.
 - **My Radar** — a private, completely manual shortlist. It starts empty and
   contains only items the visitor deliberately saves from another tab. Saved
   items, statuses and optional alert settings stay on that browser; there are
@@ -66,7 +74,7 @@ detail panel; event tabs also include calendar buttons):
 
 Tabs are linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`, `index.html#movies`,
 `index.html#series`, `index.html#panthers`, `index.html#raiders`,
-`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`,
+`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#wolves`, `index.html#food`,
 `index.html#myradar`, `index.html#sydney`.
 
 Universal search sits above the desktop tab list; on mobile, a **Search** button
@@ -82,6 +90,7 @@ viewing.
 | Tab | Source | Refresh |
 | --- | --- | --- |
 | My Radar | The other tabs + choices stored in the visitor's browser | Immediate, on that device |
+| Food & Drinks | Google Maps JavaScript API + Places API (New) | Live on every search; only Google Place IDs are retained from Google place content |
 | What's On Sydney | Official organiser pages + City of Sydney and Destination NSW guides | Human web search; current weekend through major forward dates |
 | Fights | ESPN MMA feed + `boxing.json` | `build_radar.py`, daily — rolling 4 weeks |
 | Panthers | ESPN NRL feed | `build_panthers.py`, daily — finals appear when published |
@@ -94,6 +103,31 @@ viewing.
 | Comedy | Official venue, promoter and ticket pages | Human web search; 12-month Sydney watch window |
 | Movies | Official studio and Australian cinema listings | Human web search; current and coming-soon releases |
 | Series | Official streamer pages + current Australian availability listings | Human web search; new seasons plus a 33-show classic library |
+
+### Activating the embedded Food & Drinks map
+
+The tab works without credentials as a location-aware launcher into live Google
+Maps searches. The two-panel results list, live ratings/photos/hours and map
+pins activate after this one-time Google Cloud setup:
+
+1. In Google Cloud, create or select a project with billing and enable **Maps
+   JavaScript API** and **Places API (New)**.
+2. Create a browser API key. Under **Application restrictions**, choose HTTP
+   referrers and allow only the exact production HTTPS site, plus localhost while
+   testing. Under **API restrictions**, allow only those two APIs.
+3. Put the restricted browser key in `maps-config.js` as `apiKey`. A browser key
+   is visible to visitors by design; the referrer/API restrictions are what make
+   it safe. Never put a service-account credential, server key or unrestricted
+   key in this repository.
+4. Set billing budgets and API quotas in Google Cloud, test the `#food` tab on
+   desktop and mobile, then deploy normally.
+
+Google ratings, review counts, hours, prices, photos and place names are rendered
+live and are not cached. Photo contributor attribution is displayed with each
+Google photo. The browser stores only the visitor’s location preference and
+filters. A selected Google starting area or saved venue is persisted only by its
+Place ID so current details can be fetched again. `privacy.html` and `terms.html` cover the public
+location and Places disclosures.
 
 ### My Radar views
 

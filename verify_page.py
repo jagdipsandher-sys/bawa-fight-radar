@@ -108,7 +108,7 @@ if len(sydney_cards) != 12:
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-search", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
+for pane in ["pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
              "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
              "pane-wolves"]:
     if f'id="{pane}"' not in page:
@@ -126,6 +126,24 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 "renderRadarPlanner", "radarPlannerClashes"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
+
+for food_control in ['data-tab-item="food"', 'id="foodLocationInput"', 'id="foodResults"',
+                     'id="foodMap"', 'data-food-category="paratha"',
+                     'data-food-category="sunday"', 'data-food-category="steak"',
+                     'data-food-category="bars"', 'data-food-category="italian"',
+                     'data-food-category="pubs"', "Number(place.rating) < 4.1",
+                     "bawaRadar.food.v1", "hydrateSavedFoodPlaces", "foodGoogleLink"]:
+    if food_control not in page:
+        fail(f"Food & Drinks explorer is missing {food_control}")
+
+for policy_page in ["maps-config.js", "privacy.html", "terms.html"]:
+    try:
+        policy_text = open(policy_page).read()
+    except FileNotFoundError:
+        fail(f"Food & Drinks supporting file is missing: {policy_page}")
+        continue
+    if policy_page == "maps-config.js" and re.search(r"private_key|service_account|client_secret", policy_text, re.I):
+        fail("maps-config.js contains a server credential marker; only a referrer-restricted browser key is permitted")
 
 for automatic_radar in ['id="radarRecommendations"', "radarRecommendationItems",
                         "RADAR_INTERESTS", "RADAR_SERVICES"]:
