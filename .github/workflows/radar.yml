@@ -33,6 +33,8 @@ jobs:
         run: python build_f1.py
       - name: Rebuild the MotoGP calendar
         run: python build_motogp.py
+      - name: Rebuild the PGA TOUR calendar
+        run: python build_pga.py
       - name: Rebuild the Wolves fixtures
         run: python build_wolves.py
       - name: Rebuild the standings panels

@@ -22,6 +22,7 @@ MARKERS = ["FIGHT-HERO", "FIGHT-ROWS", "FIGHT-CARDS", "NRL-HERO", "NRL-ROWS", "N
            "UTD-HERO", "UTD-ROWS", "UTD-CARDS", "F1-HERO", "F1-ROWS", "F1-CARDS",
            "UTD-TABLE", "F1-TABLE", "UTD-FULL", "F1-FULL",
            "MGP-HERO", "MGP-ROWS", "MGP-CARDS", "MGP-TABLE", "MGP-FULL",
+           "PGA-HERO", "PGA-ROWS", "PGA-CARDS", "PGA-TABLE", "PGA-FULL",
            "WOLVES-HERO", "WOLVES-ROWS", "WOLVES-CARDS", "WOLVES-TABLE", "WOLVES-FULL"]
 problems = []
 
@@ -110,7 +111,7 @@ if len(sydney_cards) != 12:
 # 6. the tabs themselves must be intact
 for pane in ["pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
              "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
-             "pane-wolves"]:
+             "pane-pga", "pane-wolves"]:
     if f'id="{pane}"' not in page:
         fail(f"tab {pane} has gone missing")
 
@@ -123,7 +124,8 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 "setRadarSearchService", 'id="radarViewSaved"',
                 'id="radarViewAlerts"', 'id="radarViewPlanner"',
                 'data-radar-view="planner"', 'data-planner-window="weekend"',
-                "renderRadarPlanner", "radarPlannerClashes"]:
+                "renderRadarPlanner", "radarPlannerClashes", 'data-tab-item="pga"',
+                "PGA_CARDS"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 

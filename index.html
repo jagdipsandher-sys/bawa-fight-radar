@@ -585,6 +585,7 @@ function imgFail(img, initials){
     <div class="tab-item" draggable="true" data-tab-item="united"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button><span class="order-controls"><button type="button" onclick="moveTab('united',-1)" aria-label="Move Man Utd up">↑</button><button type="button" onclick="moveTab('united',1)" aria-label="Move Man Utd down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="pga"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="pga" onclick="showTab('pga')">PGA Golf</button><span class="order-controls"><button type="button" onclick="moveTab('pga',-1)" aria-label="Move PGA Golf up">↑</button><button type="button" onclick="moveTab('pga',1)" aria-label="Move PGA Golf down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="food"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="food" onclick="showTab('food')">Food &amp; Drinks</button><span class="order-controls"><button type="button" onclick="moveTab('food',-1)" aria-label="Move Food and Drinks up">↑</button><button type="button" onclick="moveTab('food',1)" aria-label="Move Food and Drinks down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="myradar" onclick="showTab('myradar')">My Radar <span class="nav-alert-badge" id="radarAlertBadge" aria-label="unread alerts" hidden>0</span></button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
@@ -1718,6 +1719,159 @@ function imgFail(img, initials){
   ESPN, which doesn't carry the sport. European rounds are late nights here; the Asian and
   Australian rounds are the friendly ones.</footer>
 </div><!-- /pane-motogp -->
+
+<!-- ================= TAB · PGA GOLF ================= -->
+<div class="pane" id="pane-pga">
+
+  <h2>Next Tournament</h2>
+  <div class="hero">
+<!--BUILD:PGA-TABLE-->
+    <div class="card" data-slot="table">
+      <div class="sport">FedExCup &nbsp;<span class="badge fn">Playoffs</span></div>
+      <div class="inner" style="padding-top:14px">
+        <table class="ladder"><thead><tr><th></th><th>Player</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Scottie Scheffler</td><td class="pts">4,123</td></tr><tr><td class="pos">2</td><td class="who">Matt Fitzpatrick</td><td class="pts">3,329</td></tr><tr><td class="pos">3</td><td class="who">Cameron Young</td><td class="pts">3,086</td></tr><tr><td class="pos">4</td><td class="who">Wyndham Clark</td><td class="pts">2,255</td></tr><tr><td class="pos">5</td><td class="who">Chris Gotterup</td><td class="pts">2,254</td></tr><tr><td class="pos">6</td><td class="who">Collin Morikawa</td><td class="pts">2,229</td></tr><tr><td class="pos">7</td><td class="who">Si Woo Kim</td><td class="pts">2,188</td></tr><tr><td class="pos">8</td><td class="who">Sam Burns</td><td class="pts">2,078</td></tr></tbody></table>
+        <div class="dr-note2" style="margin-top:12px">Snapshot checked 18 Aug 2026. Top 50 reach the BMW Championship; top 30 reach the TOUR Championship. <a href="https://www.pgatour.com/fedexcup/rankings.html" style="color:var(--grey)">Live official standings ↗</a></div>
+      </div>
+    </div>
+<!--/BUILD:PGA-TABLE-->
+<!--BUILD:PGA-HERO-->
+    <div class="card" data-slot="pga" data-ends="2026-08-24T12:00:00+10:00">
+      <div class="sport">Next Tournament &nbsp;<span class="badge home">Playoffs</span> <span class="badge soon"><span class="cd" data-until="2026-08-20"></span></span></div>
+      <div class="crest dark">
+        <div class="big"><span style="font-size:2.2rem;vertical-align:middle">🇺🇸</span> BMW Championship <em>⛳</em></div>
+        <div class="lil">Bellerive Country Club · St. Louis, Missouri</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">BMW Championship<small>Live coverage usually runs Thu night–Mon morning Sydney</small></div>
+        <div class="when">Tournament · <span class="t">20–23 August 2026</span></div>
+        <div class="meta">FedExCup Playoffs · top 50 · $20m · 750 points · previous winner: Scottie Scheffler</div>
+        <div class="dr-note2" style="margin-top:12px">Tournament dates are confirmed. Exact Australian live-session times publish on Kayo closer to each round.</div>
+        <div class="btns">
+          <a class="btn red" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a>
+          <a class="btn ghost" href="https://www.espn.com/golf/leaderboard?tournamentId=401811963">Leaderboard</a>
+          <button class="btn ghost" onclick="openCard('pga401811963')">Tournament Details</button>
+          <button class="btn ghost" onclick="addCal('pga401811963')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+<!--/BUILD:PGA-HERO-->
+  </div>
+
+  <h2>Coming Up On The PGA Tour</h2>
+  <table>
+    <thead>
+      <tr><th>Tournament dates</th><th></th><th>Event</th><th>Course</th><th>Follow</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:PGA-ROWS-->
+      <tr data-sport="pga" data-ends="2026-08-24T12:00:00+10:00" data-card="pga401811963">
+        <td class="d">Thu 20 Aug<small>to Sun 23 Aug</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">BMW Championship</span> <span class="badge home">Playoffs</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Playoffs · top 50</span></td>
+        <td>Bellerive Country Club<small>St. Louis, Missouri</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401811963">Scores</a><button class="mini" onclick="openCard('pga401811963')">Details</button><button class="mini" onclick="addCal('pga401811963')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-08-31T12:00:00+10:00" data-card="pga401811964">
+        <td class="d">Thu 27 Aug<small>to Sun 30 Aug</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">TOUR Championship</span> <span class="badge home">Finale</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup finale · top 30</span></td>
+        <td>East Lake Golf Club<small>Atlanta, Georgia</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401811964">Scores</a><button class="mini" onclick="openCard('pga401811964')">Details</button><button class="mini" onclick="addCal('pga401811964')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-09-21T12:00:00+10:00" data-card="pga401850914">
+        <td class="d">Thu 17 Sep<small>to Sun 20 Sep</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">Biltmore Championship Asheville</span> <span class="badge fn">New</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>The Cliffs at Walnut Cove<small>Asheville, North Carolina</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850914">Scores</a><button class="mini" onclick="openCard('pga401850914')">Details</button><button class="mini" onclick="addCal('pga401850914')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-09-28T12:00:00+10:00" data-card="pga401824815">
+        <td class="d">Thu 24 Sep<small>to Sun 27 Sep</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🌍</span><span class="ev">Presidents Cup</span> <span class="badge fn">Team Golf</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · USA v International Team</span></td>
+        <td>Medinah Country Club No. 3<small>Medinah, Illinois</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401824815">Scores</a><button class="mini" onclick="openCard('pga401824815')">Details</button><button class="mini" onclick="addCal('pga401824815')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-10-05T12:00:00+11:00" data-card="pga401850915">
+        <td class="d">Thu 1 Oct<small>to Sun 4 Oct</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">Bank of Utah Championship</span> <span class="badge fn">Fall</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>Black Desert Resort<small>Ivins, Utah</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850915">Scores</a><button class="mini" onclick="openCard('pga401850915')">Details</button><button class="mini" onclick="addCal('pga401850915')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-10-12T12:00:00+11:00" data-card="pga401850916">
+        <td class="d">Thu 8 Oct<small>to Sun 11 Oct</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇯🇵</span><span class="ev">Baycurrent Classic</span> <span class="badge home">Good Time</span><br><span class="sub">Sydney-friendly daytime and evening coverage · FedExCup Fall</span></td>
+        <td>Yokohama Country Club<small>Yokohama, Japan</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850916">Scores</a><button class="mini" onclick="openCard('pga401850916')">Details</button><button class="mini" onclick="addCal('pga401850916')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-10-26T12:00:00+11:00" data-card="pga401850917">
+        <td class="d">Thu 22 Oct<small>to Sun 25 Oct</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇧🇲</span><span class="ev">Butterfield Bermuda Championship</span> <span class="badge fn">Fall</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>Port Royal Golf Course<small>Southampton, Bermuda</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850917">Scores</a><button class="mini" onclick="openCard('pga401850917')">Details</button><button class="mini" onclick="addCal('pga401850917')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-11-02T12:00:00+11:00" data-card="pga401850978">
+        <td class="d">Thu 29 Oct<small>to Sun 1 Nov</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇲🇽</span><span class="ev">VidantaWorld Mexico Open</span> <span class="badge fn">Fall</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>Vidanta Vallarta<small>Vallarta, Mexico</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850978">Scores</a><button class="mini" onclick="openCard('pga401850978')">Details</button><button class="mini" onclick="addCal('pga401850978')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-11-09T12:00:00+11:00" data-card="pga401850979">
+        <td class="d">Thu 5 Nov<small>to Sun 8 Nov</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇲🇽</span><span class="ev">World Wide Technology Championship</span> <span class="badge fn">Fall</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>El Cardonal at Diamante<small>Los Cabos, Mexico</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850979">Scores</a><button class="mini" onclick="openCard('pga401850979')">Details</button><button class="mini" onclick="addCal('pga401850979')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-11-16T12:00:00+11:00" data-card="pga401850980">
+        <td class="d">Thu 12 Nov<small>to Sun 15 Nov</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">Good Good Championship</span> <span class="badge fn">New</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>Omni Barton Creek · Fazio Canyons<small>Austin, Texas</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850980">Scores</a><button class="mini" onclick="openCard('pga401850980')">Details</button><button class="mini" onclick="addCal('pga401850980')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-11-23T12:00:00+11:00" data-card="pga401850981">
+        <td class="d">Thu 19 Nov<small>to Sun 22 Nov</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">The RSM Classic</span> <span class="badge fn">Fall</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · FedExCup Fall</span></td>
+        <td>Sea Island Golf Club · Seaside<small>St. Simons Island, Georgia</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850981">Scores</a><button class="mini" onclick="openCard('pga401850981')">Details</button><button class="mini" onclick="addCal('pga401850981')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-12-07T12:00:00+11:00" data-card="pga401850982">
+        <td class="d">Thu 3 Dec<small>to Sun 6 Dec</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇧🇸</span><span class="ev">Hero World Challenge</span> <span class="badge fn">Special</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · Unofficial PGA TOUR event</span></td>
+        <td>Albany Golf Course<small>New Providence, Bahamas</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401850982">Scores</a><button class="mini" onclick="openCard('pga401850982')">Details</button><button class="mini" onclick="addCal('pga401850982')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="pga" data-ends="2026-12-14T12:00:00+11:00" data-card="pga401909147">
+        <td class="d">Thu 10 Dec<small>to Sun 13 Dec</small></td>
+        <td><span class="sporttag m">PGA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">PGA TOUR Q-School presented by Korn Ferry</span> <span class="badge fn">Tour Cards</span><br><span class="sub">Live coverage usually runs Thu night–Mon morning Sydney · PGA TOUR Q-School</span></td>
+        <td>Dye&#x27;s Valley Course<small>Ponte Vedra Beach, Florida</small></td>
+        <td><a class="mini buy" href="https://kayosports.com.au/sports/sport!golf">Watch · Kayo</a><a class="mini" href="https://www.espn.com/golf/leaderboard?tournamentId=401909147">Scores</a><button class="mini" onclick="openCard('pga401909147')">Details</button><button class="mini" onclick="addCal('pga401909147')">+ Cal</button></td>
+      </tr>
+<!--/BUILD:PGA-ROWS-->
+    </tbody>
+  </table>
+
+  <h2>FedExCup Playoff Picture</h2>
+<!--BUILD:PGA-FULL-->
+<div class="meta" style="margin-bottom:8px">Top 10 plus Australian watch · checked 18 Aug 2026</div>
+<table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Player</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Scottie Scheffler</td><td class="pts">4,123</td></tr><tr><td class="pos">2</td><td class="who">Matt Fitzpatrick</td><td class="pts">3,329</td></tr><tr><td class="pos">3</td><td class="who">Cameron Young</td><td class="pts">3,086</td></tr><tr><td class="pos">4</td><td class="who">Wyndham Clark</td><td class="pts">2,255</td></tr><tr><td class="pos">5</td><td class="who">Chris Gotterup</td><td class="pts">2,254</td></tr><tr><td class="pos">6</td><td class="who">Collin Morikawa</td><td class="pts">2,229</td></tr><tr><td class="pos">7</td><td class="who">Si Woo Kim</td><td class="pts">2,188</td></tr><tr><td class="pos">8</td><td class="who">Sam Burns</td><td class="pts">2,078</td></tr><tr><td class="pos">9</td><td class="who">Tommy Fleetwood</td><td class="pts">2,046</td></tr><tr><td class="pos">10</td><td class="who">Ludvig Åberg</td><td class="pts">1,929</td></tr><tr><td class="pos">16</td><td class="who">Min Woo Lee 🇦🇺</td><td class="pts">1,470</td></tr></tbody></table>
+<div class="dr-note2" style="margin-top:12px"><b>Aussie watch:</b> Min Woo Lee enters the playoffs at No. 16. The TOUR Championship is 72-hole stroke play with all 30 qualifiers starting level. <a href="https://www.pgatour.com/fedexcup/rankings.html" style="color:var(--grey)">Open the live FedExCup table ↗</a></div>
+<!--/BUILD:PGA-FULL-->
+
+  <footer>Australian coverage is on Fox Sports via Kayo. Tournament dates and live
+  status refresh daily from the PGA Tour calendar carried by ESPN; courses, purses
+  and playoff details are checked against the official PGA TOUR schedule. Exact tee
+  times and Kayo session times can move, so the page labels the likely Sydney viewing
+  window instead of guessing a start time.</footer>
+</div><!-- /pane-pga -->
 
 <!-- ================= TAB · WOLVES (NBA) ================= -->
 <div class="pane" id="pane-wolves">
@@ -3235,6 +3389,141 @@ const MGP_CARDS = {
 /*/BUILD:MGP-CARDS*/
 };
 
+const PGA_CARDS = {
+/*BUILD:PGA-CARDS*/
+  pga401811963: {
+    emoji:"⛳",
+    cal:{s:"2026-08-20T08:00:00Z",e:"2026-08-24T01:00:00Z",loc:"Bellerive Country Club, St. Louis, Missouri",approx:true},
+    title:"BMW Championship",
+    when:"20\u201323 August 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["BMW Championship", "FedExCup Playoffs · top 50", 1], ["Tournament dates", "20–23 August 2026"], ["Course", "Bellerive Country Club"], ["Location", "St. Louis, Missouri"], ["Purse / points", "$20m · 750 points"], ["Previous winner", "Scottie Scheffler"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401811963"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401811964: {
+    emoji:"⛳",
+    cal:{s:"2026-08-27T08:00:00Z",e:"2026-08-31T01:00:00Z",loc:"East Lake Golf Club, Atlanta, Georgia",approx:true},
+    title:"TOUR Championship",
+    when:"27\u201330 August 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["TOUR Championship", "FedExCup finale · top 30", 1], ["Tournament dates", "27–30 August 2026"], ["Course", "East Lake Golf Club"], ["Location", "Atlanta, Georgia"], ["Purse / points", "$40m bonus pool"], ["Previous winner", "Tommy Fleetwood"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401811964"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850914: {
+    emoji:"⛳",
+    cal:{s:"2026-09-17T08:00:00Z",e:"2026-09-21T01:00:00Z",loc:"The Cliffs at Walnut Cove, Asheville, North Carolina",approx:true},
+    title:"Biltmore Championship Asheville",
+    when:"17\u201320 September 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Biltmore Championship Asheville", "FedExCup Fall", 1], ["Tournament dates", "17–20 September 2026"], ["Course", "The Cliffs at Walnut Cove"], ["Location", "Asheville, North Carolina"], ["Purse / points", "$5m · 500 points"], ["Previous winner", "New tournament"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850914"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401824815: {
+    emoji:"⛳",
+    cal:{s:"2026-09-24T08:00:00Z",e:"2026-09-28T01:00:00Z",loc:"Medinah Country Club No. 3, Medinah, Illinois",approx:true},
+    title:"Presidents Cup",
+    when:"24\u201327 September 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Presidents Cup", "USA v International Team", 1], ["Tournament dates", "24–27 September 2026"], ["Course", "Medinah Country Club No. 3"], ["Location", "Medinah, Illinois"], ["Purse / points", "Team match play"], ["Previous winner", "USA"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401824815"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850915: {
+    emoji:"⛳",
+    cal:{s:"2026-10-01T08:00:00Z",e:"2026-10-05T00:00:00Z",loc:"Black Desert Resort, Ivins, Utah",approx:true},
+    title:"Bank of Utah Championship",
+    when:"1\u20134 October 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Bank of Utah Championship", "FedExCup Fall", 1], ["Tournament dates", "1–4 October 2026"], ["Course", "Black Desert Resort"], ["Location", "Ivins, Utah"], ["Purse / points", "$6m · 500 points"], ["Previous winner", "Michael Brennan"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850915"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850916: {
+    emoji:"⛳",
+    cal:{s:"2026-10-08T07:00:00Z",e:"2026-10-12T00:00:00Z",loc:"Yokohama Country Club, Yokohama, Japan",approx:true},
+    title:"Baycurrent Classic",
+    when:"8\u201311 October 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Baycurrent Classic", "FedExCup Fall", 1], ["Tournament dates", "8–11 October 2026"], ["Course", "Yokohama Country Club"], ["Location", "Yokohama, Japan"], ["Purse / points", "$8m · 500 points"], ["Previous winner", "Xander Schauffele"], ["Sydney viewing", "Sydney-friendly daytime and evening coverage"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850916"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850917: {
+    emoji:"⛳",
+    cal:{s:"2026-10-22T07:00:00Z",e:"2026-10-26T00:00:00Z",loc:"Port Royal Golf Course, Southampton, Bermuda",approx:true},
+    title:"Butterfield Bermuda Championship",
+    when:"22\u201325 October 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Butterfield Bermuda Championship", "FedExCup Fall", 1], ["Tournament dates", "22–25 October 2026"], ["Course", "Port Royal Golf Course"], ["Location", "Southampton, Bermuda"], ["Purse / points", "$6m · 500 points"], ["Previous winner", "Adam Schenk"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850917"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850978: {
+    emoji:"⛳",
+    cal:{s:"2026-10-29T07:00:00Z",e:"2026-11-02T00:00:00Z",loc:"Vidanta Vallarta, Vallarta, Mexico",approx:true},
+    title:"VidantaWorld Mexico Open",
+    when:"29 Oct\u20131 Nov 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["VidantaWorld Mexico Open", "FedExCup Fall", 1], ["Tournament dates", "29 Oct–1 Nov 2026"], ["Course", "Vidanta Vallarta"], ["Location", "Vallarta, Mexico"], ["Purse / points", "$6m · 500 points"], ["Previous winner", "Brian Campbell"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850978"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850979: {
+    emoji:"⛳",
+    cal:{s:"2026-11-05T07:00:00Z",e:"2026-11-09T00:00:00Z",loc:"El Cardonal at Diamante, Los Cabos, Mexico",approx:true},
+    title:"World Wide Technology Championship",
+    when:"5\u20138 November 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["World Wide Technology Championship", "FedExCup Fall", 1], ["Tournament dates", "5–8 November 2026"], ["Course", "El Cardonal at Diamante"], ["Location", "Los Cabos, Mexico"], ["Purse / points", "$6m · 500 points"], ["Previous winner", "Ben Griffin"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850979"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850980: {
+    emoji:"⛳",
+    cal:{s:"2026-11-12T07:00:00Z",e:"2026-11-16T00:00:00Z",loc:"Omni Barton Creek \u00b7 Fazio Canyons, Austin, Texas",approx:true},
+    title:"Good Good Championship",
+    when:"12\u201315 November 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Good Good Championship", "FedExCup Fall", 1], ["Tournament dates", "12–15 November 2026"], ["Course", "Omni Barton Creek · Fazio Canyons"], ["Location", "Austin, Texas"], ["Purse / points", "$6m · 500 points"], ["Previous winner", "New tournament"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850980"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850981: {
+    emoji:"⛳",
+    cal:{s:"2026-11-19T07:00:00Z",e:"2026-11-23T00:00:00Z",loc:"Sea Island Golf Club \u00b7 Seaside, St. Simons Island, Georgia",approx:true},
+    title:"The RSM Classic",
+    when:"19\u201322 November 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["The RSM Classic", "FedExCup Fall", 1], ["Tournament dates", "19–22 November 2026"], ["Course", "Sea Island Golf Club · Seaside"], ["Location", "St. Simons Island, Georgia"], ["Purse / points", "$7.4m · 500 points"], ["Previous winner", "Sami Valimaki"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850981"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401850982: {
+    emoji:"⛳",
+    cal:{s:"2026-12-03T07:00:00Z",e:"2026-12-07T00:00:00Z",loc:"Albany Golf Course, New Providence, Bahamas",approx:true},
+    title:"Hero World Challenge",
+    when:"3\u20136 December 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["Hero World Challenge", "Unofficial PGA TOUR event", 1], ["Tournament dates", "3–6 December 2026"], ["Course", "Albany Golf Course"], ["Location", "New Providence, Bahamas"], ["Purse / points", "$5m"], ["Previous winner", "Hideki Matsuyama"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401850982"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  },
+  pga401909147: {
+    emoji:"⛳",
+    cal:{s:"2026-12-10T07:00:00Z",e:"2026-12-14T00:00:00Z",loc:"Dye's Valley Course, Ponte Vedra Beach, Florida",approx:true},
+    title:"PGA TOUR Q-School presented by Korn Ferry",
+    when:"10\u201313 December 2026 \u00b7 PGA TOUR",
+    link:"https://www.pgatour.com/schedule",
+    linkLabel:"Official PGA TOUR schedule ↗",
+    secs:[{h:"The Tournament",b:[["PGA TOUR Q-School presented by Korn Ferry", "PGA TOUR Q-School", 1], ["Tournament dates", "10–13 December 2026"], ["Course", "Dye's Valley Course"], ["Location", "Ponte Vedra Beach, Florida"], ["Purse / points", "$1.2m"], ["Previous winner", "AJ Ewart"], ["Sydney viewing", "Live coverage usually runs Thu night–Mon morning Sydney"]]},{h:"Follow It Live",b:[["Australian TV", "Fox Sports via Kayo"], ["Leaderboard", "https://www.espn.com/golf/leaderboard?tournamentId=401909147"], ["Timing", "Exact tee and broadcast times publish tournament week"]]}],
+    note:"The calendar button creates a broad tournament planning hold, not a claimed tee time. Check Kayo and the live leaderboard before play."
+  }
+/*/BUILD:PGA-CARDS*/
+};
+
 const WOLVES_CARDS = {
 /*BUILD:WOLVES-CARDS*/
   wlv10111100: {
@@ -4129,13 +4418,13 @@ const SYDNEY_CARDS = {
   }
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
 
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
 const RADAR_TAB_LABELS = {
   fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',food:'Food & Drinks',sydney:"What's On Sydney",
-  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',wolves:'Wolves'
+  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',pga:'PGA Golf',wolves:'Wolves'
 };
 let radarCatalog = {};
 
@@ -4935,7 +5224,7 @@ function initFoodExplorer(){
 }
 
 /* ===== UNIVERSAL SEARCH ===== */
-const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','wolves'];
+const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','pga','wolves'];
 let radarSearchQuery = '';
 let radarSearchFilter = 'all';
 let radarSearchService = '';
@@ -5155,12 +5444,13 @@ const RANGES = {
   united:   "Premier League · kick-offs in Sydney time",
   f1:       "Formula 1 2026 · every round in Sydney time",
   motogp:   "MotoGP 2026 · every round in Sydney time",
+  pga:      "PGA TOUR 2026 · tournaments, FedExCup & Australian viewing guide",
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','wolves','food','myradar','sydney'];
+const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','wolves','food','myradar','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
-const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.foodBeforeManualTail.v1';
+const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.pgaSportsFoodTail.v1';
 
 function tabOrder(){
   return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
@@ -5178,7 +5468,9 @@ function restoreTabOrder(){
   let migrated = false;
   try{ migrated = localStorage.getItem(TAB_LAYOUT_KEY) === 'done'; }catch(_e){}
   if(!migrated){
-    order = order.filter(id => id !== 'food' && id !== 'myradar' && id !== 'sydney');
+    order = order.filter(id => id !== 'pga' && id !== 'food' && id !== 'myradar' && id !== 'sydney');
+    const motoIndex = order.indexOf('motogp');
+    order.splice(motoIndex >= 0 ? motoIndex + 1 : order.length, 0, 'pga');
     order.push('food','myradar','sydney');
     try{ localStorage.setItem(TAB_LAYOUT_KEY,'done'); }catch(_e){}
   }
