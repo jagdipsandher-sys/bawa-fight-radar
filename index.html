@@ -586,6 +586,7 @@ function imgFail(img, initials){
     <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="pga"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="pga" onclick="showTab('pga')">PGA Golf</button><span class="order-controls"><button type="button" onclick="moveTab('pga',-1)" aria-label="Move PGA Golf up">↑</button><button type="button" onclick="moveTab('pga',1)" aria-label="Move PGA Golf down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="tennis"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="tennis" onclick="showTab('tennis')">Tennis</button><span class="order-controls"><button type="button" onclick="moveTab('tennis',-1)" aria-label="Move Tennis up">↑</button><button type="button" onclick="moveTab('tennis',1)" aria-label="Move Tennis down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="food"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="food" onclick="showTab('food')">Food &amp; Drinks</button><span class="order-controls"><button type="button" onclick="moveTab('food',-1)" aria-label="Move Food and Drinks up">↑</button><button type="button" onclick="moveTab('food',1)" aria-label="Move Food and Drinks down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="myradar" onclick="showTab('myradar')">My Radar <span class="nav-alert-badge" id="radarAlertBadge" aria-label="unread alerts" hidden>0</span></button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
@@ -1872,6 +1873,311 @@ function imgFail(img, initials){
   times and Kayo session times can move, so the page labels the likely Sydney viewing
   window instead of guessing a start time.</footer>
 </div><!-- /pane-pga -->
+
+<!-- ================= TAB · TENNIS ================= -->
+<div class="pane" id="pane-tennis">
+
+  <h2>Next Tournament</h2>
+  <div class="hero">
+<!--BUILD:TENNIS-TABLE-->
+    <div class="card" data-slot="table">
+      <div class="sport">World Rankings &nbsp;<span class="badge fn">ATP + WTA</span></div>
+      <div class="inner" style="padding-top:14px">
+        <div class="when">Men</div>
+        <table class="ladder"><thead><tr><th></th><th>ATP</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Jannik Sinner</td><td class="pts">13,450</td></tr><tr><td class="pos">2</td><td class="who">Carlos Alcaraz</td><td class="pts">8,160</td></tr><tr><td class="pos">3</td><td class="who">Alexander Zverev</td><td class="pts">8,090</td></tr><tr><td class="pos">4</td><td class="who">Felix Auger-Aliassime</td><td class="pts">4,740</td></tr><tr><td class="pos">5</td><td class="who">Novak Djokovic</td><td class="pts">3,760</td></tr></tbody></table>
+        <div class="when" style="margin-top:14px">Women</div>
+        <table class="ladder"><thead><tr><th></th><th>WTA</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Aryna Sabalenka</td><td class="pts">8,670</td></tr><tr><td class="pos">2</td><td class="who">Elena Rybakina</td><td class="pts">8,316</td></tr><tr><td class="pos">3</td><td class="who">Jessica Pegula</td><td class="pts">6,680</td></tr><tr><td class="pos">4</td><td class="who">Coco Gauff</td><td class="pts">5,919</td></tr><tr><td class="pos">5</td><td class="who">Iga Swiatek</td><td class="pts">5,419</td></tr></tbody></table>
+        <div class="dr-note2" style="margin-top:12px">Official rankings snapshot checked 18 Aug 2026. <a href="https://www.atptour.com/en/rankings/singles" style="color:var(--grey)">ATP live ↗</a> · <a href="https://www.wtatennis.com/rankings/singles" style="color:var(--grey)">WTA live ↗</a></div>
+      </div>
+    </div>
+<!--/BUILD:TENNIS-TABLE-->
+<!--BUILD:TENNIS-HERO-->
+    <div class="card" data-slot="tennis" data-ends="2026-08-25T12:00:00+10:00">
+      <div class="sport">Current Tournament &nbsp;<span class="badge home">On Now</span> <span class="badge home">1000</span> <span class="badge soon"><span class="cd" data-until="2026-08-24"></span></span></div>
+      <div class="crest dark">
+        <div class="big"><span style="font-size:2.2rem;vertical-align:middle">🇺🇸</span> Cincinnati Open <em>🎾</em></div>
+        <div class="lil">ATP + WTA · ATP Masters 1000 + WTA 1000 · Mason, Ohio, USA</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">Cincinnati Open<small>Live play usually lands overnight and through the Sydney morning</small></div>
+        <div class="when">Tournament window · <span class="t">11–24 August 2026</span></div>
+        <div class="meta">Hard · ATP Masters 1000 + WTA 1000 · Australian coverage: beIN Sports</div>
+        <div class="dr-note2" style="margin-top:12px">The event window can include qualifying. Exact match times appear in the live order of play and are not guessed here.</div>
+        <div class="btns">
+          <a class="btn red" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a>
+          <a class="btn ghost" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/718-2026/competitionType/1">Live Scores</a>
+          <button class="btn ghost" onclick="openCard('ten0811cincinnatiopen')">Tournament Details</button>
+          <button class="btn ghost" onclick="addCal('ten0811cincinnatiopen')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+<!--/BUILD:TENNIS-HERO-->
+  </div>
+
+  <h2>Coming Up In Tennis</h2>
+  <table>
+    <thead>
+      <tr><th>Tournament window</th><th>Tour</th><th>Event</th><th>Location</th><th>Follow</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:TENNIS-ROWS-->
+      <tr data-sport="tennis" data-ends="2026-08-25T12:00:00+10:00" data-card="ten0811cincinnatiopen">
+        <td class="d">Tue 11 Aug<small>to Mon 24 Aug</small></td>
+        <td><span class="sporttag m">ATP + WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">Cincinnati Open</span> <span class="badge home">1000</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>Mason, Ohio, USA<small>ATP Masters 1000 + WTA 1000</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/718-2026/competitionType/1">Scores</a><button class="mini" onclick="openCard('ten0811cincinnatiopen')">Details</button><button class="mini" onclick="addCal('ten0811cincinnatiopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-08-31T12:00:00+10:00" data-card="ten0823winstonsalemopen">
+        <td class="d">Sun 23 Aug<small>to Sun 30 Aug</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">Winston-Salem Open</span> <span class="badge fn">ATP 250</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>Winston-Salem, North Carolina, USA<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/363-2026/competitionType/3">Scores</a><button class="mini" onclick="openCard('ten0823winstonsalemopen')">Details</button><button class="mini" onclick="addCal('ten0823winstonsalemopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-08-31T12:00:00+10:00" data-card="ten0824abiertognpseguros">
+        <td class="d">Mon 24 Aug<small>to Sun 30 Aug</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇲🇽</span><span class="ev">Abierto GNP Seguros</span> <span class="badge fn">WTA 500</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>Monterrey, Mexico<small>WTA 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/341-2026/competitionType/2">Scores</a><button class="mini" onclick="openCard('ten0824abiertognpseguros')">Details</button><button class="mini" onclick="addCal('ten0824abiertognpseguros')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-15T12:00:00+10:00" data-card="ten0825usopen">
+        <td class="d">Tue 25 Aug<small>to Mon 14 Sep</small></td>
+        <td><span class="sporttag m">ATP + WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">US Open</span> <span class="badge home">Grand Slam</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>New York, USA<small>Grand Slam</small></td>
+        <td><a class="mini buy" href="https://www.stan.com.au/watch/sport/tennis/us-open">Watch · Stan Sport</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/189-2026/competitionType/6">Scores</a><button class="mini" onclick="openCard('ten0825usopen')">Details</button><button class="mini" onclick="addCal('ten0825usopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-21T12:00:00+10:00" data-card="ten0913guadalajaraopenakronpresentedb">
+        <td class="d">Sun 13 Sep<small>to Sun 20 Sep</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇲🇽</span><span class="ev">Guadalajara Open Akron presented by Santander</span> <span class="badge fn">WTA 500</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>Guadalajara, Mexico<small>WTA 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/887-2026/competitionType/2">Scores</a><button class="mini" onclick="openCard('ten0913guadalajaraopenakronpresentedb')">Details</button><button class="mini" onclick="addCal('ten0913guadalajaraopenakronpresentedb')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-22T12:00:00+10:00" data-card="ten0914spopen">
+        <td class="d">Mon 14 Sep<small>to Mon 21 Sep</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇧🇷</span><span class="ev">SP Open</span> <span class="badge fn">WTA 250</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>São Paulo, Brazil<small>WTA 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/1005-2026/competitionType/2">Scores</a><button class="mini" onclick="openCard('ten0914spopen')">Details</button><button class="mini" onclick="addCal('ten0914spopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-21T12:00:00+10:00" data-card="ten0918daviscupqualifiers2ndround">
+        <td class="d">Fri 18 Sep<small>to Sun 20 Sep</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🌍</span><span class="ev">Davis Cup Qualifiers 2nd Round</span> <span class="badge fn">Davis Cup</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Various</span></td>
+        <td>Multiple host cities<small>Davis Cup</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.daviscup.com/en/calendar">Scores</a><button class="mini" onclick="openCard('ten0918daviscupqualifiers2ndround')">Details</button><button class="mini" onclick="addCal('ten0918daviscupqualifiers2ndround')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-29T12:00:00+10:00" data-card="ten0921koreaopen">
+        <td class="d">Mon 21 Sep<small>to Mon 28 Sep</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇰🇷</span><span class="ev">Korea Open</span> <span class="badge fn">WTA 500</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Seoul, South Korea<small>WTA 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/811-2026/competitionType/4">Scores</a><button class="mini" onclick="openCard('ten0921koreaopen')">Details</button><button class="mini" onclick="addCal('ten0921koreaopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-29T12:00:00+10:00" data-card="ten0921singaporetennisopen">
+        <td class="d">Mon 21 Sep<small>to Mon 28 Sep</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇸🇬</span><span class="ev">Singapore Tennis Open</span> <span class="badge fn">WTA 250</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Indoor hard</span></td>
+        <td>Singapore<small>WTA 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/1009-2026/competitionType/4">Scores</a><button class="mini" onclick="openCard('ten0921singaporetennisopen')">Details</button><button class="mini" onclick="addCal('ten0921singaporetennisopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-28T12:00:00+10:00" data-card="ten0922billiejeankingcupfinals">
+        <td class="d">Tue 22 Sep<small>to Sun 27 Sep</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🌍</span><span class="ev">Billie Jean King Cup Finals</span> <span class="badge fn">BJK Cup Finals</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Indoor hard</span></td>
+        <td>Shenzhen, China<small>BJK Cup Finals</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.billiejeankingcup.com/en/more">Scores</a><button class="mini" onclick="openCard('ten0922billiejeankingcupfinals')">Details</button><button class="mini" onclick="addCal('ten0922billiejeankingcupfinals')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-01T12:00:00+10:00" data-card="ten0923chengduopen">
+        <td class="d">Wed 23 Sep<small>to Wed 30 Sep</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">Chengdu Open</span> <span class="badge fn">ATP 250</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Chengdu, China<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/441-2026/competitionType/1">Scores</a><button class="mini" onclick="openCard('ten0923chengduopen')">Details</button><button class="mini" onclick="addCal('ten0923chengduopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-01T12:00:00+10:00" data-card="ten0923hangzhouopen">
+        <td class="d">Wed 23 Sep<small>to Wed 30 Sep</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">Hangzhou Open</span> <span class="badge fn">ATP 250</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Hangzhou, China<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/1001-2026/competitionType/1">Scores</a><button class="mini" onclick="openCard('ten0923hangzhouopen')">Details</button><button class="mini" onclick="addCal('ten0923hangzhouopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-09-28T12:00:00+10:00" data-card="ten0925lavercup">
+        <td class="d">Fri 25 Sep<small>to Sun 27 Sep</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🌍</span><span class="ev">Laver Cup</span> <span class="badge fn">Team Europe v Team World</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>The O2, London<small>Team Europe v Team World</small></td>
+        <td><a class="mini buy" href="https://www.stan.com.au/watch/sport/tennis">Watch · Stan Sport</a><a class="mini" href="https://lavercup.com/schedule">Scores</a><button class="mini" onclick="openCard('ten0925lavercup')">Details</button><button class="mini" onclick="addCal('ten0925lavercup')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-13T12:00:00+11:00" data-card="ten0930chinaopen">
+        <td class="d">Wed 30 Sep<small>to Mon 12 Oct</small></td>
+        <td><span class="sporttag m">ATP + WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">China Open</span> <span class="badge home">1000</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Beijing, China<small>ATP 500 + WTA 1000</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/959-2026/competitionType/1">Scores</a><button class="mini" onclick="openCard('ten0930chinaopen')">Details</button><button class="mini" onclick="addCal('ten0930chinaopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-08T12:00:00+11:00" data-card="ten0930kinoshitagroupjapanopentennisc">
+        <td class="d">Wed 30 Sep<small>to Wed 7 Oct</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇯🇵</span><span class="ev">Kinoshita Group Japan Open Tennis Championships</span> <span class="badge fn">ATP 500</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Tokyo, Japan<small>ATP 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com/tennis/scoreboard/tournament/_/eventId/5-2026/competitionType/1">Scores</a><button class="mini" onclick="openCard('ten0930kinoshitagroupjapanopentennisc')">Details</button><button class="mini" onclick="addCal('ten0930kinoshitagroupjapanopentennisc')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-20T12:00:00+11:00" data-card="ten1005rolexshanghaimasters">
+        <td class="d">Mon 5 Oct<small>to Mon 19 Oct</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">Rolex Shanghai Masters</span> <span class="badge home">1000</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Shanghai, China<small>ATP Masters 1000</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1005rolexshanghaimasters')">Details</button><button class="mini" onclick="addCal('ten1005rolexshanghaimasters')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-20T12:00:00+11:00" data-card="ten1010wuhanopen">
+        <td class="d">Sat 10 Oct<small>to Mon 19 Oct</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">Wuhan Open</span> <span class="badge home">1000</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Wuhan, China<small>WTA 1000</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1010wuhanopen')">Details</button><button class="mini" onclick="addCal('ten1010wuhanopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-27T12:00:00+11:00" data-card="ten1017almatyopen">
+        <td class="d">Sat 17 Oct<small>to Mon 26 Oct</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇰🇿</span><span class="ev">Almaty Open</span> <span class="badge fn">ATP 250</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Almaty, Kazakhstan<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1017almatyopen')">Details</button><button class="mini" onclick="addCal('ten1017almatyopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-27T12:00:00+11:00" data-card="ten1017bnpparibasfortiseuropeanopen">
+        <td class="d">Sat 17 Oct<small>to Mon 26 Oct</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇧🇪</span><span class="ev">BNP Paribas Fortis European Open</span> <span class="badge fn">ATP 250</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Brussels, Belgium<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1017bnpparibasfortiseuropeanopen')">Details</button><button class="mini" onclick="addCal('ten1017bnpparibasfortiseuropeanopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-27T12:00:00+11:00" data-card="ten1017grandprixauvergnerhonealpes">
+        <td class="d">Sat 17 Oct<small>to Mon 26 Oct</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇫🇷</span><span class="ev">Grand Prix Auvergne-Rhône-Alpes</span> <span class="badge fn">ATP 250</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Lyon, France<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1017grandprixauvergnerhonealpes')">Details</button><button class="mini" onclick="addCal('ten1017grandprixauvergnerhonealpes')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-27T12:00:00+11:00" data-card="ten1017kinoshitagroupjapanopen">
+        <td class="d">Sat 17 Oct<small>to Mon 26 Oct</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇯🇵</span><span class="ev">Kinoshita Group Japan Open</span> <span class="badge fn">WTA 250</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Osaka, Japan<small>WTA 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1017kinoshitagroupjapanopen')">Details</button><button class="mini" onclick="addCal('ten1017kinoshitagroupjapanopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-10-27T12:00:00+11:00" data-card="ten1017ningboopen">
+        <td class="d">Sat 17 Oct<small>to Mon 26 Oct</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">Ningbo Open</span> <span class="badge fn">WTA 500</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Ningbo, China<small>WTA 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1017ningboopen')">Details</button><button class="mini" onclick="addCal('ten1017ningboopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-03T12:00:00+11:00" data-card="ten1024erstebankopen">
+        <td class="d">Sat 24 Oct<small>to Mon 2 Nov</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇦🇹</span><span class="ev">Erste Bank Open</span> <span class="badge fn">ATP 500</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Vienna, Austria<small>ATP 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1024erstebankopen')">Details</button><button class="mini" onclick="addCal('ten1024erstebankopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-03T12:00:00+11:00" data-card="ten1024guangzhouopen">
+        <td class="d">Sat 24 Oct<small>to Mon 2 Nov</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇳</span><span class="ev">Guangzhou Open</span> <span class="badge fn">WTA 250</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Guangzhou, China<small>WTA 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1024guangzhouopen')">Details</button><button class="mini" onclick="addCal('ten1024guangzhouopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-03T12:00:00+11:00" data-card="ten1024swissindoorsbasel">
+        <td class="d">Sat 24 Oct<small>to Mon 2 Nov</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇨🇭</span><span class="ev">Swiss Indoors Basel</span> <span class="badge fn">ATP 500</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Basel, Switzerland<small>ATP 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1024swissindoorsbasel')">Details</button><button class="mini" onclick="addCal('ten1024swissindoorsbasel')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-03T12:00:00+11:00" data-card="ten1024toraypanpacificopentennis">
+        <td class="d">Sat 24 Oct<small>to Mon 2 Nov</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇯🇵</span><span class="ev">Toray Pan Pacific Open Tennis</span> <span class="badge fn">WTA 500</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Tokyo, Japan<small>WTA 500</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1024toraypanpacificopentennis')">Details</button><button class="mini" onclick="addCal('ten1024toraypanpacificopentennis')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-10T12:00:00+11:00" data-card="ten1031chennaiopen">
+        <td class="d">Sat 31 Oct<small>to Mon 9 Nov</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇮🇳</span><span class="ev">Chennai Open</span> <span class="badge fn">WTA 250</span><br><span class="sub">Afternoon and evening viewing in Sydney · Hard</span></td>
+        <td>Chennai, India<small>WTA 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1031chennaiopen')">Details</button><button class="mini" onclick="addCal('ten1031chennaiopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-10T12:00:00+11:00" data-card="ten1031prudentialhongkongtennisopen">
+        <td class="d">Sat 31 Oct<small>to Mon 9 Nov</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇭🇰</span><span class="ev">Prudential Hong Kong Tennis Open</span> <span class="badge fn">WTA 250</span><br><span class="sub">Sydney-friendly daytime and evening sessions · Hard</span></td>
+        <td>Hong Kong<small>WTA 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1031prudentialhongkongtennisopen')">Details</button><button class="mini" onclick="addCal('ten1031prudentialhongkongtennisopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-10T12:00:00+11:00" data-card="ten1031rolexparismasters">
+        <td class="d">Sat 31 Oct<small>to Mon 9 Nov</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇫🇷</span><span class="ev">Rolex Paris Masters</span> <span class="badge home">1000</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Paris, France<small>ATP Masters 1000</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1031rolexparismasters')">Details</button><button class="mini" onclick="addCal('ten1031rolexparismasters')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-16T12:00:00+11:00" data-card="ten1106bybitstockholmopen">
+        <td class="d">Fri 6 Nov<small>to Sun 15 Nov</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇸🇪</span><span class="ev">Bybit Stockholm Open</span> <span class="badge fn">ATP 250</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Stockholm, Sweden<small>ATP 250</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1106bybitstockholmopen')">Details</button><button class="mini" onclick="addCal('ten1106bybitstockholmopen')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-17T12:00:00+11:00" data-card="ten1107wtafinals">
+        <td class="d">Sat 7 Nov<small>to Mon 16 Nov</small></td>
+        <td><span class="sporttag m">WTA</span></td>
+        <td><span class="flag" style="margin-right:6px">🇺🇸</span><span class="ev">WTA Finals</span> <span class="badge fn">WTA Finals</span><br><span class="sub">Live play usually lands overnight and through the Sydney morning · Hard</span></td>
+        <td>Indian Wells, California, USA<small>WTA Finals</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1107wtafinals')">Details</button><button class="mini" onclick="addCal('ten1107wtafinals')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-24T12:00:00+11:00" data-card="ten1114nittoatpfinals">
+        <td class="d">Sat 14 Nov<small>to Mon 23 Nov</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇮🇹</span><span class="ev">Nitto ATP Finals</span> <span class="badge fn">ATP Finals</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>Turin, Italy<small>ATP Finals</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1114nittoatpfinals')">Details</button><button class="mini" onclick="addCal('ten1114nittoatpfinals')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-11-30T12:00:00+11:00" data-card="ten1124daviscupfinal8">
+        <td class="d">Tue 24 Nov<small>to Sun 29 Nov</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🌍</span><span class="ev">Davis Cup Final 8</span> <span class="badge fn">Davis Cup Final 8</span><br><span class="sub">European sessions usually run from Sydney evening into the night · Indoor hard</span></td>
+        <td>BolognaFiere, Bologna, Italy<small>Davis Cup Final 8</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.daviscup.com/en/final-8-tickets">Scores</a><button class="mini" onclick="openCard('ten1124daviscupfinal8')">Details</button><button class="mini" onclick="addCal('ten1124daviscupfinal8')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="tennis" data-ends="2026-12-15T12:00:00+11:00" data-card="ten1208nextgenatpfinalspresentedbypif">
+        <td class="d">Tue 8 Dec<small>to Mon 14 Dec</small></td>
+        <td><span class="sporttag m">ATP</span></td>
+        <td><span class="flag" style="margin-right:6px">🇸🇦</span><span class="ev">Next Gen ATP Finals presented by PIF</span> <span class="badge fn">Next Gen ATP Finals</span><br><span class="sub">Afternoon and evening viewing in Sydney · Indoor hard</span></td>
+        <td>Jeddah, Saudi Arabia<small>Next Gen ATP Finals</small></td>
+        <td><a class="mini buy" href="https://www.beinsports.com/en-au/tennis">Watch · beIN Sports</a><a class="mini" href="https://www.espn.com.au/tennis/scoreboard">Scores</a><button class="mini" onclick="openCard('ten1208nextgenatpfinalspresentedbypif')">Details</button><button class="mini" onclick="addCal('ten1208nextgenatpfinalspresentedbypif')">+ Cal</button></td>
+      </tr>
+<!--/BUILD:TENNIS-ROWS-->
+    </tbody>
+  </table>
+
+  <h2>World Rankings &amp; Aussie Watch</h2>
+<!--BUILD:TENNIS-FULL-->
+<div class="hero">
+  <div class="card"><div class="sport">ATP Singles &nbsp;<span class="badge fn">Top 10</span></div><div class="inner" style="padding-top:14px"><table class="ladder"><thead><tr><th></th><th>Player</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Jannik Sinner</td><td class="pts">13,450</td></tr><tr><td class="pos">2</td><td class="who">Carlos Alcaraz</td><td class="pts">8,160</td></tr><tr><td class="pos">3</td><td class="who">Alexander Zverev</td><td class="pts">8,090</td></tr><tr><td class="pos">4</td><td class="who">Felix Auger-Aliassime</td><td class="pts">4,740</td></tr><tr><td class="pos">5</td><td class="who">Novak Djokovic</td><td class="pts">3,760</td></tr><tr><td class="pos">6</td><td class="who">Ben Shelton</td><td class="pts">3,670</td></tr><tr><td class="pos">7</td><td class="who">Daniil Medvedev</td><td class="pts">3,580</td></tr><tr class="me"><td class="pos">8</td><td class="who">Alex de Minaur 🇦🇺</td><td class="pts">3,560</td></tr><tr><td class="pos">9</td><td class="who">Taylor Fritz</td><td class="pts">3,375</td></tr><tr><td class="pos">10</td><td class="who">Flavio Cobolli</td><td class="pts">3,330</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px"><b>Aussie watch:</b> Alex de Minaur is world No. 8. <a href="https://www.atptour.com/en/rankings/singles" style="color:var(--grey)">Live ATP rankings ↗</a></div></div></div>
+  <div class="card"><div class="sport">WTA Singles &nbsp;<span class="badge fn">Top 10</span></div><div class="inner" style="padding-top:14px"><table class="ladder"><thead><tr><th></th><th>Player</th><th class="pts">Pts</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who">Aryna Sabalenka</td><td class="pts">8,670</td></tr><tr><td class="pos">2</td><td class="who">Elena Rybakina</td><td class="pts">8,316</td></tr><tr><td class="pos">3</td><td class="who">Jessica Pegula</td><td class="pts">6,680</td></tr><tr><td class="pos">4</td><td class="who">Coco Gauff</td><td class="pts">5,919</td></tr><tr><td class="pos">5</td><td class="who">Iga Swiatek</td><td class="pts">5,419</td></tr><tr><td class="pos">6</td><td class="who">Mirra Andreeva</td><td class="pts">5,323</td></tr><tr><td class="pos">7</td><td class="who">Karolina Muchova</td><td class="pts">5,048</td></tr><tr><td class="pos">8</td><td class="who">Linda Noskova</td><td class="pts">5,016</td></tr><tr><td class="pos">9</td><td class="who">Elina Svitolina</td><td class="pts">4,634</td></tr><tr><td class="pos">10</td><td class="who">Amanda Anisimova</td><td class="pts">4,353</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px"><b>Aussie watch:</b> Maya Joint leads Australia's women; use the live table for her changing rank. <a href="https://www.wtatennis.com/rankings/singles" style="color:var(--grey)">Live WTA rankings ↗</a></div></div></div>
+</div>
+<div class="meta" style="margin-top:10px">Rankings snapshot checked 18 Aug 2026; the linked official tables are live.</div>
+<!--/BUILD:TENNIS-FULL-->
+
+  <footer>The tournament calendar and live status refresh daily from ESPN's ATP
+  and WTA feeds, checked against the official ATP and WTA calendars. Regular-tour
+  Australian coverage is on beIN Sports; every US Open match is live and on demand
+  on Stan Sport. Tournament windows can include qualifying. Exact orders of play
+  publish close to each session, so unconfirmed match times are never guessed.</footer>
+</div><!-- /pane-tennis -->
 
 <!-- ================= TAB · WOLVES (NBA) ================= -->
 <div class="pane" id="pane-wolves">
@@ -3524,6 +3830,351 @@ const PGA_CARDS = {
 /*/BUILD:PGA-CARDS*/
 };
 
+const TENNIS_CARDS = {
+/*BUILD:TENNIS-CARDS*/
+  ten0811cincinnatiopen: {
+    emoji:"🎾",
+    cal:{s:"2026-08-10T23:00:00Z",e:"2026-08-24T23:00:00Z",loc:"Mason, Ohio, USA",approx:true},
+    title:"Cincinnati Open",
+    when:"11\u201324 August 2026 \u00b7 ATP + WTA",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Cincinnati Open", "ATP + WTA", 1], ["Tournament window", "11–24 August 2026"], ["Level", "ATP Masters 1000 + WTA 1000"], ["Surface", "Hard"], ["Location", "Mason, Ohio, USA"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/718-2026/competitionType/1"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0823winstonsalemopen: {
+    emoji:"🎾",
+    cal:{s:"2026-08-22T23:00:00Z",e:"2026-08-30T23:00:00Z",loc:"Winston-Salem, North Carolina, USA",approx:true},
+    title:"Winston-Salem Open",
+    when:"23\u201330 August 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Winston-Salem Open", "ATP", 1], ["Tournament window", "23–30 August 2026"], ["Level", "ATP 250"], ["Surface", "Hard"], ["Location", "Winston-Salem, North Carolina, USA"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/363-2026/competitionType/3"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0824abiertognpseguros: {
+    emoji:"🎾",
+    cal:{s:"2026-08-23T23:00:00Z",e:"2026-08-30T23:00:00Z",loc:"Monterrey, Mexico",approx:true},
+    title:"Abierto GNP Seguros",
+    when:"24\u201330 August 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Abierto GNP Seguros", "WTA", 1], ["Tournament window", "24–30 August 2026"], ["Level", "WTA 500"], ["Surface", "Hard"], ["Location", "Monterrey, Mexico"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/341-2026/competitionType/2"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0825usopen: {
+    emoji:"🎾",
+    cal:{s:"2026-08-24T23:00:00Z",e:"2026-09-14T23:00:00Z",loc:"New York, USA",approx:true},
+    title:"US Open",
+    when:"25 Aug\u201314 Sep 2026 \u00b7 ATP + WTA",
+    link:"https://www.usopen.org/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["US Open", "ATP + WTA", 1], ["Tournament window", "25 Aug–14 Sep 2026"], ["Level", "Grand Slam"], ["Surface", "Hard"], ["Location", "New York, USA"], ["Australian coverage", "Stan Sport"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/189-2026/competitionType/6"], ["Watch", "https://www.stan.com.au/watch/sport/tennis/us-open"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0913guadalajaraopenakronpresentedb: {
+    emoji:"🎾",
+    cal:{s:"2026-09-12T23:00:00Z",e:"2026-09-20T23:00:00Z",loc:"Guadalajara, Mexico",approx:true},
+    title:"Guadalajara Open Akron presented by Santander",
+    when:"13\u201320 September 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Guadalajara Open Akron presented by Santander", "WTA", 1], ["Tournament window", "13–20 September 2026"], ["Level", "WTA 500"], ["Surface", "Hard"], ["Location", "Guadalajara, Mexico"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/887-2026/competitionType/2"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0914spopen: {
+    emoji:"🎾",
+    cal:{s:"2026-09-13T23:00:00Z",e:"2026-09-21T23:00:00Z",loc:"S\u00e3o Paulo, Brazil",approx:true},
+    title:"SP Open",
+    when:"14\u201321 September 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["SP Open", "WTA", 1], ["Tournament window", "14–21 September 2026"], ["Level", "WTA 250"], ["Surface", "Hard"], ["Location", "São Paulo, Brazil"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/1005-2026/competitionType/2"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0918daviscupqualifiers2ndround: {
+    emoji:"🎾",
+    cal:{s:"2026-09-17T23:00:00Z",e:"2026-09-20T23:00:00Z",loc:"Multiple host cities",approx:true},
+    title:"Davis Cup Qualifiers 2nd Round",
+    when:"18\u201320 September 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Davis Cup Qualifiers 2nd Round", "ATP", 1], ["Tournament window", "18–20 September 2026"], ["Level", "Davis Cup"], ["Surface", "Various"], ["Location", "Multiple host cities"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.daviscup.com/en/calendar"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0921koreaopen: {
+    emoji:"🎾",
+    cal:{s:"2026-09-20T23:00:00Z",e:"2026-09-28T23:00:00Z",loc:"Seoul, South Korea",approx:true},
+    title:"Korea Open",
+    when:"21\u201328 September 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Korea Open", "WTA", 1], ["Tournament window", "21–28 September 2026"], ["Level", "WTA 500"], ["Surface", "Hard"], ["Location", "Seoul, South Korea"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/811-2026/competitionType/4"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0921singaporetennisopen: {
+    emoji:"🎾",
+    cal:{s:"2026-09-20T23:00:00Z",e:"2026-09-28T23:00:00Z",loc:"Singapore",approx:true},
+    title:"Singapore Tennis Open",
+    when:"21\u201328 September 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Singapore Tennis Open", "WTA", 1], ["Tournament window", "21–28 September 2026"], ["Level", "WTA 250"], ["Surface", "Indoor hard"], ["Location", "Singapore"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/1009-2026/competitionType/4"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0922billiejeankingcupfinals: {
+    emoji:"🎾",
+    cal:{s:"2026-09-21T23:00:00Z",e:"2026-09-27T23:00:00Z",loc:"Shenzhen, China",approx:true},
+    title:"Billie Jean King Cup Finals",
+    when:"22\u201327 September 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Billie Jean King Cup Finals", "WTA", 1], ["Tournament window", "22–27 September 2026"], ["Level", "BJK Cup Finals"], ["Surface", "Indoor hard"], ["Location", "Shenzhen, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.billiejeankingcup.com/en/more"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0923chengduopen: {
+    emoji:"🎾",
+    cal:{s:"2026-09-22T23:00:00Z",e:"2026-09-30T23:00:00Z",loc:"Chengdu, China",approx:true},
+    title:"Chengdu Open",
+    when:"23\u201330 September 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Chengdu Open", "ATP", 1], ["Tournament window", "23–30 September 2026"], ["Level", "ATP 250"], ["Surface", "Hard"], ["Location", "Chengdu, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/441-2026/competitionType/1"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0923hangzhouopen: {
+    emoji:"🎾",
+    cal:{s:"2026-09-22T23:00:00Z",e:"2026-09-30T23:00:00Z",loc:"Hangzhou, China",approx:true},
+    title:"Hangzhou Open",
+    when:"23\u201330 September 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Hangzhou Open", "ATP", 1], ["Tournament window", "23–30 September 2026"], ["Level", "ATP 250"], ["Surface", "Hard"], ["Location", "Hangzhou, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/1001-2026/competitionType/1"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0925lavercup: {
+    emoji:"🎾",
+    cal:{s:"2026-09-24T23:00:00Z",e:"2026-09-27T23:00:00Z",loc:"The O2, London",approx:true},
+    title:"Laver Cup",
+    when:"25\u201327 September 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Laver Cup", "ATP", 1], ["Tournament window", "25–27 September 2026"], ["Level", "Team Europe v Team World"], ["Surface", "Indoor hard"], ["Location", "The O2, London"], ["Australian coverage", "Stan Sport"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://lavercup.com/schedule"], ["Watch", "https://www.stan.com.au/watch/sport/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0930chinaopen: {
+    emoji:"🎾",
+    cal:{s:"2026-09-29T23:00:00Z",e:"2026-10-12T22:00:00Z",loc:"Beijing, China",approx:true},
+    title:"China Open",
+    when:"30 Sep\u201312 Oct 2026 \u00b7 ATP + WTA",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["China Open", "ATP + WTA", 1], ["Tournament window", "30 Sep–12 Oct 2026"], ["Level", "ATP 500 + WTA 1000"], ["Surface", "Hard"], ["Location", "Beijing, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/959-2026/competitionType/1"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten0930kinoshitagroupjapanopentennisc: {
+    emoji:"🎾",
+    cal:{s:"2026-09-29T23:00:00Z",e:"2026-10-07T22:00:00Z",loc:"Tokyo, Japan",approx:true},
+    title:"Kinoshita Group Japan Open Tennis Championships",
+    when:"30 Sep\u20137 Oct 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Kinoshita Group Japan Open Tennis Championships", "ATP", 1], ["Tournament window", "30 Sep–7 Oct 2026"], ["Level", "ATP 500"], ["Surface", "Hard"], ["Location", "Tokyo, Japan"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com/tennis/scoreboard/tournament/_/eventId/5-2026/competitionType/1"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1005rolexshanghaimasters: {
+    emoji:"🎾",
+    cal:{s:"2026-10-04T22:00:00Z",e:"2026-10-19T22:00:00Z",loc:"Shanghai, China",approx:true},
+    title:"Rolex Shanghai Masters",
+    when:"5\u201319 October 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Rolex Shanghai Masters", "ATP", 1], ["Tournament window", "5–19 October 2026"], ["Level", "ATP Masters 1000"], ["Surface", "Hard"], ["Location", "Shanghai, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1010wuhanopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-09T22:00:00Z",e:"2026-10-19T22:00:00Z",loc:"Wuhan, China",approx:true},
+    title:"Wuhan Open",
+    when:"10\u201319 October 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Wuhan Open", "WTA", 1], ["Tournament window", "10–19 October 2026"], ["Level", "WTA 1000"], ["Surface", "Hard"], ["Location", "Wuhan, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1017almatyopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-16T22:00:00Z",e:"2026-10-26T22:00:00Z",loc:"Almaty, Kazakhstan",approx:true},
+    title:"Almaty Open",
+    when:"17\u201326 October 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Almaty Open", "ATP", 1], ["Tournament window", "17–26 October 2026"], ["Level", "ATP 250"], ["Surface", "Indoor hard"], ["Location", "Almaty, Kazakhstan"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1017bnpparibasfortiseuropeanopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-16T22:00:00Z",e:"2026-10-26T22:00:00Z",loc:"Brussels, Belgium",approx:true},
+    title:"BNP Paribas Fortis European Open",
+    when:"17\u201326 October 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["BNP Paribas Fortis European Open", "ATP", 1], ["Tournament window", "17–26 October 2026"], ["Level", "ATP 250"], ["Surface", "Indoor hard"], ["Location", "Brussels, Belgium"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1017grandprixauvergnerhonealpes: {
+    emoji:"🎾",
+    cal:{s:"2026-10-16T22:00:00Z",e:"2026-10-26T22:00:00Z",loc:"Lyon, France",approx:true},
+    title:"Grand Prix Auvergne-Rh\u00f4ne-Alpes",
+    when:"17\u201326 October 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Grand Prix Auvergne-Rhône-Alpes", "ATP", 1], ["Tournament window", "17–26 October 2026"], ["Level", "ATP 250"], ["Surface", "Indoor hard"], ["Location", "Lyon, France"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1017kinoshitagroupjapanopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-16T22:00:00Z",e:"2026-10-26T22:00:00Z",loc:"Osaka, Japan",approx:true},
+    title:"Kinoshita Group Japan Open",
+    when:"17\u201326 October 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Kinoshita Group Japan Open", "WTA", 1], ["Tournament window", "17–26 October 2026"], ["Level", "WTA 250"], ["Surface", "Hard"], ["Location", "Osaka, Japan"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1017ningboopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-16T22:00:00Z",e:"2026-10-26T22:00:00Z",loc:"Ningbo, China",approx:true},
+    title:"Ningbo Open",
+    when:"17\u201326 October 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Ningbo Open", "WTA", 1], ["Tournament window", "17–26 October 2026"], ["Level", "WTA 500"], ["Surface", "Hard"], ["Location", "Ningbo, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1024erstebankopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-23T22:00:00Z",e:"2026-11-02T22:00:00Z",loc:"Vienna, Austria",approx:true},
+    title:"Erste Bank Open",
+    when:"24 Oct\u20132 Nov 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Erste Bank Open", "ATP", 1], ["Tournament window", "24 Oct–2 Nov 2026"], ["Level", "ATP 500"], ["Surface", "Indoor hard"], ["Location", "Vienna, Austria"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1024guangzhouopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-23T22:00:00Z",e:"2026-11-02T22:00:00Z",loc:"Guangzhou, China",approx:true},
+    title:"Guangzhou Open",
+    when:"24 Oct\u20132 Nov 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Guangzhou Open", "WTA", 1], ["Tournament window", "24 Oct–2 Nov 2026"], ["Level", "WTA 250"], ["Surface", "Hard"], ["Location", "Guangzhou, China"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1024swissindoorsbasel: {
+    emoji:"🎾",
+    cal:{s:"2026-10-23T22:00:00Z",e:"2026-11-02T22:00:00Z",loc:"Basel, Switzerland",approx:true},
+    title:"Swiss Indoors Basel",
+    when:"24 Oct\u20132 Nov 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Swiss Indoors Basel", "ATP", 1], ["Tournament window", "24 Oct–2 Nov 2026"], ["Level", "ATP 500"], ["Surface", "Indoor hard"], ["Location", "Basel, Switzerland"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1024toraypanpacificopentennis: {
+    emoji:"🎾",
+    cal:{s:"2026-10-23T22:00:00Z",e:"2026-11-02T22:00:00Z",loc:"Tokyo, Japan",approx:true},
+    title:"Toray Pan Pacific Open Tennis",
+    when:"24 Oct\u20132 Nov 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Toray Pan Pacific Open Tennis", "WTA", 1], ["Tournament window", "24 Oct–2 Nov 2026"], ["Level", "WTA 500"], ["Surface", "Hard"], ["Location", "Tokyo, Japan"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1031chennaiopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-30T22:00:00Z",e:"2026-11-09T22:00:00Z",loc:"Chennai, India",approx:true},
+    title:"Chennai Open",
+    when:"31 Oct\u20139 Nov 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Chennai Open", "WTA", 1], ["Tournament window", "31 Oct–9 Nov 2026"], ["Level", "WTA 250"], ["Surface", "Hard"], ["Location", "Chennai, India"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Afternoon and evening viewing in Sydney"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1031prudentialhongkongtennisopen: {
+    emoji:"🎾",
+    cal:{s:"2026-10-30T22:00:00Z",e:"2026-11-09T22:00:00Z",loc:"Hong Kong",approx:true},
+    title:"Prudential Hong Kong Tennis Open",
+    when:"31 Oct\u20139 Nov 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Prudential Hong Kong Tennis Open", "WTA", 1], ["Tournament window", "31 Oct–9 Nov 2026"], ["Level", "WTA 250"], ["Surface", "Hard"], ["Location", "Hong Kong"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Sydney-friendly daytime and evening sessions"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1031rolexparismasters: {
+    emoji:"🎾",
+    cal:{s:"2026-10-30T22:00:00Z",e:"2026-11-09T22:00:00Z",loc:"Paris, France",approx:true},
+    title:"Rolex Paris Masters",
+    when:"31 Oct\u20139 Nov 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Rolex Paris Masters", "ATP", 1], ["Tournament window", "31 Oct–9 Nov 2026"], ["Level", "ATP Masters 1000"], ["Surface", "Indoor hard"], ["Location", "Paris, France"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1106bybitstockholmopen: {
+    emoji:"🎾",
+    cal:{s:"2026-11-05T22:00:00Z",e:"2026-11-15T22:00:00Z",loc:"Stockholm, Sweden",approx:true},
+    title:"Bybit Stockholm Open",
+    when:"6\u201315 November 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Bybit Stockholm Open", "ATP", 1], ["Tournament window", "6–15 November 2026"], ["Level", "ATP 250"], ["Surface", "Indoor hard"], ["Location", "Stockholm, Sweden"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1107wtafinals: {
+    emoji:"🎾",
+    cal:{s:"2026-11-06T22:00:00Z",e:"2026-11-16T22:00:00Z",loc:"Indian Wells, California, USA",approx:true},
+    title:"WTA Finals",
+    when:"7\u201316 November 2026 \u00b7 WTA",
+    link:"https://www.wtatennis.com/tournaments",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["WTA Finals", "WTA", 1], ["Tournament window", "7–16 November 2026"], ["Level", "WTA Finals"], ["Surface", "Hard"], ["Location", "Indian Wells, California, USA"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Live play usually lands overnight and through the Sydney morning"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1114nittoatpfinals: {
+    emoji:"🎾",
+    cal:{s:"2026-11-13T22:00:00Z",e:"2026-11-23T22:00:00Z",loc:"Turin, Italy",approx:true},
+    title:"Nitto ATP Finals",
+    when:"14\u201323 November 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Nitto ATP Finals", "ATP", 1], ["Tournament window", "14–23 November 2026"], ["Level", "ATP Finals"], ["Surface", "Indoor hard"], ["Location", "Turin, Italy"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1124daviscupfinal8: {
+    emoji:"🎾",
+    cal:{s:"2026-11-23T22:00:00Z",e:"2026-11-29T22:00:00Z",loc:"BolognaFiere, Bologna, Italy",approx:true},
+    title:"Davis Cup Final 8",
+    when:"24\u201329 November 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Davis Cup Final 8", "ATP", 1], ["Tournament window", "24–29 November 2026"], ["Level", "Davis Cup Final 8"], ["Surface", "Indoor hard"], ["Location", "BolognaFiere, Bologna, Italy"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "European sessions usually run from Sydney evening into the night"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.daviscup.com/en/final-8-tickets"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  },
+  ten1208nextgenatpfinalspresentedbypif: {
+    emoji:"🎾",
+    cal:{s:"2026-12-07T22:00:00Z",e:"2026-12-14T22:00:00Z",loc:"Jeddah, Saudi Arabia",approx:true},
+    title:"Next Gen ATP Finals presented by PIF",
+    when:"8\u201314 December 2026 \u00b7 ATP",
+    link:"https://www.atptour.com/en/tournaments/",
+    linkLabel:"Official tournament calendar ↗",
+    secs:[{h:"The Tournament",b:[["Next Gen ATP Finals presented by PIF", "ATP", 1], ["Tournament window", "8–14 December 2026"], ["Level", "Next Gen ATP Finals"], ["Surface", "Indoor hard"], ["Location", "Jeddah, Saudi Arabia"], ["Australian coverage", "beIN Sports"], ["Sydney viewing", "Afternoon and evening viewing in Sydney"]]},{h:"Follow It Live",b:[["Scores / order of play", "https://www.espn.com.au/tennis/scoreboard"], ["Watch", "https://www.beinsports.com/en-au/tennis"], ["Timing", "Exact match times publish in the order of play"]]}],
+    note:"The calendar button creates a broad tournament hold, not a claimed match time. Check the live order of play before each session."
+  }
+/*/BUILD:TENNIS-CARDS*/
+};
+
 const WOLVES_CARDS = {
 /*BUILD:WOLVES-CARDS*/
   wlv10111100: {
@@ -4418,13 +5069,13 @@ const SYDNEY_CARDS = {
   }
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
+const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, TENNIS_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
 
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
 const RADAR_TAB_LABELS = {
   fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',food:'Food & Drinks',sydney:"What's On Sydney",
-  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',pga:'PGA Golf',wolves:'Wolves'
+  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',pga:'PGA Golf',tennis:'Tennis',wolves:'Wolves'
 };
 let radarCatalog = {};
 
@@ -5224,7 +5875,7 @@ function initFoodExplorer(){
 }
 
 /* ===== UNIVERSAL SEARCH ===== */
-const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','pga','wolves'];
+const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','pga','tennis','wolves'];
 let radarSearchQuery = '';
 let radarSearchFilter = 'all';
 let radarSearchService = '';
@@ -5445,12 +6096,13 @@ const RANGES = {
   f1:       "Formula 1 2026 · every round in Sydney time",
   motogp:   "MotoGP 2026 · every round in Sydney time",
   pga:      "PGA TOUR 2026 · tournaments, FedExCup & Australian viewing guide",
+  tennis:   "ATP & WTA 2026 · tournaments, rankings & Australian viewing guide",
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','wolves','food','myradar','sydney'];
+const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','tennis','wolves','food','myradar','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
-const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.pgaSportsFoodTail.v1';
+const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.tennisAfterPga.v1';
 
 function tabOrder(){
   return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
@@ -5468,10 +6120,10 @@ function restoreTabOrder(){
   let migrated = false;
   try{ migrated = localStorage.getItem(TAB_LAYOUT_KEY) === 'done'; }catch(_e){}
   if(!migrated){
-    order = order.filter(id => id !== 'pga' && id !== 'food' && id !== 'myradar' && id !== 'sydney');
+    order = order.filter(id => id !== 'tennis');
+    const pgaIndex = order.indexOf('pga');
     const motoIndex = order.indexOf('motogp');
-    order.splice(motoIndex >= 0 ? motoIndex + 1 : order.length, 0, 'pga');
-    order.push('food','myradar','sydney');
+    order.splice(pgaIndex >= 0 ? pgaIndex + 1 : (motoIndex >= 0 ? motoIndex + 1 : order.length), 0, 'tennis');
     try{ localStorage.setItem(TAB_LAYOUT_KEY,'done'); }catch(_e){}
   }
   const list = document.getElementById('tabList');

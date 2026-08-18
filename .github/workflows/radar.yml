@@ -35,6 +35,8 @@ jobs:
         run: python build_motogp.py
       - name: Rebuild the PGA TOUR calendar
         run: python build_pga.py
+      - name: Rebuild the ATP and WTA tennis calendar
+        run: python build_tennis.py
       - name: Rebuild the Wolves fixtures
         run: python build_wolves.py
       - name: Rebuild the standings panels
