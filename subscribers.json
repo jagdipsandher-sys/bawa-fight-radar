@@ -59,6 +59,15 @@
         "source": "personally asked Jack to add him",
         "date": "2026-08-17"
       }
+    },
+    {
+      "email": "jack.marystone@gmail.com",
+      "name": "",
+      "active": true,
+      "consent": {
+        "source": "personally asked Jack to be added",
+        "date": "2026-08-18"
+      }
     }
   ]
 }
