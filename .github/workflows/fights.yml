@@ -1,11 +1,17 @@
 name: BAWA Fight Radar
 on:
   schedule:
-    # GitHub cron is UTC. 00:00 UTC Friday = 10am Sydney Friday (AEST) / 11am (AEDT).
-    # Scheduled twice because GitHub silently skips runs under load —
-    # the script's .last_sent marker stops a double-send.
-    - cron: "0 0 * * 5"
-    - cron: "0 1 * * 5"
+    # GitHub cron is UTC, and GitHub's own docs warn scheduled runs can be
+    # delayed or silently skipped under load — on 28 Aug 2026 two separate
+    # fixed-time triggers both failed to fire and nothing went out until a
+    # manual run caught it. So instead of hoping one exact minute works,
+    # this polls every 10 minutes across the whole 10am–11am Sydney window
+    # (00:00 UTC = 10am Sydney AEST; the window drifts to 11am–12pm once
+    # AEDT starts, same seasonal caveat as before). send_fights.py's
+    # .last_sent marker makes every tick after the first a free no-op, so
+    # this only ever actually sends once — it just gives 6 independent
+    # chances instead of 2 for one of them to land.
+    - cron: "*/10 0 * * 5"
   workflow_dispatch:      # run it by hand from the Actions tab to test
     inputs:
       test_to:
