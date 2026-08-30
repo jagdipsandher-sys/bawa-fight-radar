@@ -95,6 +95,24 @@
         "source": "Jack's own work address, added by himself",
         "date": "2026-08-28"
       }
+    },
+    {
+      "email": "Munveersb98@gmail.com",
+      "name": "",
+      "active": true,
+      "consent": {
+        "source": "added by Jack",
+        "date": "2026-08-28"
+      }
+    },
+    {
+      "email": "jagbajwa07@gmail.com",
+      "name": "",
+      "active": true,
+      "consent": {
+        "source": "added by Jack",
+        "date": "2026-08-28"
+      }
     }
   ]
 }

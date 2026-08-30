@@ -196,17 +196,20 @@ def subscribers():
     return out
 
 
-def send(subject, html):
+def send(subject, html, include_subscribers=True):
     user = os.environ.get("GMAIL_USER", "").strip()
     pw = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "").strip()
     to = [a.strip() for a in os.environ.get("MAIL_TO", "").replace(";", ",").split(",") if a.strip()]
 
-    # friends who asked to be added, deduped against the core list
-    seen = {a.lower() for a in to}
-    for extra in subscribers():
-        if extra.lower() not in seen:
-            seen.add(extra.lower())
-            to.append(extra)
+    # friends who asked to be added, deduped against the core list — skipped
+    # for a test send, or a one-off test_to run would quietly re-mail every
+    # subscriber too instead of just the address(es) being tested
+    if include_subscribers:
+        seen = {a.lower() for a in to}
+        for extra in subscribers():
+            if extra.lower() not in seen:
+                seen.add(extra.lower())
+                to.append(extra)
 
     if not (user and pw and to):
         print("missing GMAIL_USER / GMAIL_APP_PASSWORD / MAIL_TO")
@@ -258,7 +261,8 @@ def main():
     syd_sat = (now.astimezone(SYD) + timedelta(days=1)).strftime("%d %b")
     prefix = "[TEST] " if test else ""
     owner = os.environ.get("GMAIL_USER", "").strip()
-    send(f"{prefix}BAWA Fight Radar — weekend of {syd_sat}", build_html(events, owner))
+    send(f"{prefix}BAWA Fight Radar — weekend of {syd_sat}", build_html(events, owner),
+         include_subscribers=not test)
     if test:
         print("test send — marker left untouched")
         return
