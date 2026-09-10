@@ -12,12 +12,11 @@ from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 SYD = ZoneInfo("Australia/Sydney")
-UA = {"User-Agent": "Mozilla/5.0 (compatible; bawa-radar/1.0)"}
+UA = {}   # ESPN 403s a browser-ish UA here; urllib's default is what works
 
 
 def get(url):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(url, timeout=30) as r:
         return json.load(r)
 
 
@@ -80,8 +79,7 @@ for k, url in photos.items():
     if k.startswith("_"):
         continue
     try:
-        req = urllib.request.Request(url, headers=UA, method="GET")
-        with urllib.request.urlopen(req, timeout=20) as r:
+        with urllib.request.urlopen(url, timeout=20) as r:
             print(f"  {r.status}  {k}")
     except Exception as e:
         code = getattr(e, "code", type(e).__name__)

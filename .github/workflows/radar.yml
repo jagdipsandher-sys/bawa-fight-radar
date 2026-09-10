@@ -21,25 +21,41 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # Every builder below is continue-on-error ON PURPOSE. Each one exits
+      # non-zero when its own feed is down or its season has ended, which is
+      # the right call for that tab — but without this the first such exit
+      # aborted the whole job, skipping every later builder AND the commit
+      # step. That silently froze the entire site for days in Sep 2026 when
+      # the Raiders ran out of fixtures. One dead tab must not stop the rest.
       - name: Rebuild the fights (rolling four weeks)
+        continue-on-error: true
         run: python build_radar.py
       - name: Rebuild the Panthers draw
+        continue-on-error: true
         run: python build_panthers.py
       - name: Rebuild the Raiders draw
+        continue-on-error: true
         run: python build_raiders.py
       - name: Rebuild the Man Utd fixtures
+        continue-on-error: true
         run: python build_united.py
       - name: Rebuild the F1 calendar
+        continue-on-error: true
         run: python build_f1.py
       - name: Rebuild the MotoGP calendar
+        continue-on-error: true
         run: python build_motogp.py
       - name: Rebuild the PGA TOUR calendar
+        continue-on-error: true
         run: python build_pga.py
       - name: Rebuild the ATP and WTA tennis calendar
+        continue-on-error: true
         run: python build_tennis.py
       - name: Rebuild the Wolves fixtures
+        continue-on-error: true
         run: python build_wolves.py
       - name: Rebuild the standings panels
+        continue-on-error: true
         run: python build_standings.py
       - name: Point the feedback buttons at the public address
         env:

@@ -267,7 +267,12 @@ def splice(page, marker, block):
 def main():
     games = collect()
     if not games:
-        sys.exit("no Panthers fixtures returned — leaving the tab as it is")
+        # A finished season is a normal state, not a failure: the feed
+        # answered, there simply are no fixtures left. fetch_week() already
+        # prints loudly if a week actually failed to load, so exiting 0 here
+        # leaves the tab untouched without reporting a broken build.
+        print("no Panthers fixtures returned (season over, or draw not published yet) — leaving the tab as it is")
+        return
 
     print(f"found {len(games)} upcoming Panthers fixtures:")
     for g in games:
