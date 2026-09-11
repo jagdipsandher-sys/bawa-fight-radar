@@ -58,11 +58,24 @@ def initials(name):
     return (bits[0][0] + bits[-1][0]).upper() if len(bits) > 1 else (name[:2] or "??").upper()
 
 
-def photo_for(name):
+# ESPN publishes a headshot per athlete id. Building the URL from the id the
+# fixture feed already gives us means photos keep up with the card by
+# themselves, instead of photos.json going stale every time it rolls over.
+# Fighters ESPN has no headshot for simply 404, and imgFail() swaps in
+# initials — the same graceful fallback as a missing entry.
+ESPN_HEADSHOT = "https://a.espncdn.com/i/headshots/mma/players/full/{}.png"
+
+
+def photo_for(name, ids=None):
     low = name.lower()
+    # photos.json stays the override, so a hand-picked shot always wins
     for key, url in PHOTOS.items():
         if key in low:
             return url
+    if ids:
+        aid = ids.get(low)
+        if aid:
+            return ESPN_HEADSHOT.format(aid)
     return None
 
 
@@ -99,6 +112,16 @@ def day_label(dt):
 def time_label(dt):
     d = syd(dt)
     return d.strftime("%-I:%M%p").lower().replace(":00", "")
+
+
+def main_line(ev):
+    """UFC cards open with prelims hours before the headline bout, so 'from 4am'
+    alone sends people to a 4am alarm for a 7am fight. Show both when the feed
+    gives a separate main-event time."""
+    m = ev.get("main_utc")
+    if not m or m <= ev["when_utc"]:
+        return ""
+    return f" · main event {time_label(m)}"
 
 
 def ends_at(ev):
@@ -142,7 +165,7 @@ def thumbs_html(ev, big=False):
     for i, n in enumerate(names[:2]):
         flag = flag_for(n)
         cls = " class=\"oz\"" if flag and not big else ""
-        url = photo_for(n)
+        url = photo_for(n, ev.get("ids"))
         if big and i == 1:
             out.append('<span class="vs">VS</span>')
         if url:
@@ -186,7 +209,7 @@ def row_html(ev):
            if url else '<span class="badge tbc">AU Broadcaster TBC</span>')
     venue = ev.get("venue") or ""
     return f"""      <tr{' class="big"' if ppv else ''} data-sport="{'ufc' if tag == 'u' else 'box'}" data-ends="{ends_at(ev)}" data-card="{cid}">
-        <td class="d">{day_label(ev['when_utc'])}<small>from {time_label(ev['when_utc'])}</small></td>
+        <td class="d">{day_label(ev['when_utc'])}<small>from {time_label(ev['when_utc'])}{main_line(ev)}</small></td>
         <td><span class="sporttag {tag}">{tagtxt}</span></td>
         <td>{thumbs_html(ev)}<span class="ev">{esc(ev['name'])}</span> {badge}{aussie_badge(ev)}<br><span class="sub">{sub}</span></td>
         <td>{esc(venue)}</td>
@@ -212,7 +235,7 @@ def hero_html(ev, sport_label):
         <div class="fight hd">{esc(ev['name'])}
           <small>{head}</small>
         </div>
-        <div class="when">{day_label(ev['when_utc'])} · <span class="t">From {time_label(ev['when_utc'])} AEST</span></div>
+        <div class="when">{day_label(ev['when_utc'])} · <span class="t">From {time_label(ev['when_utc'])} AEST</span>{main_line(ev)}</div>
         <div class="meta">{esc(ev.get('venue') or '')}{' · ' if ev.get('venue') else ''}{esc(watch) or 'AU broadcaster not confirmed'}</div>
         {'<ul class="mc">' + bullets + '</ul>' if bullets else ''}
         <div class="btns">
@@ -237,7 +260,8 @@ def card_js(ev):
         for i, b in enumerate(ev["fights"])
     ) or '["Card to be announced",""]'
     loc = (ev.get("venue") or "") + (" · " if ev.get("venue") else "") + (ev.get("watch") or "watch at home")
-    when = f"{day_label(start)} · from {time_label(start)} AEST" + (f" · {ev['venue']}" if ev.get("venue") else "")
+    when = (f"{day_label(start)} · from {time_label(start)} AEST{main_line(ev)}"
+            + (f" · {ev['venue']}" if ev.get("venue") else ""))
     return f"""  {cid}: {{
     emoji:"🥊",
     cal:{{s:"{start:%Y-%m-%dT%H:%M:%S}Z",e:"{end:%Y-%m-%dT%H:%M:%S}Z",loc:{json.dumps(loc)}}},

@@ -55,18 +55,39 @@ def fetch_ufc(start: datetime, end: datetime, limit: int = 6):
         except (KeyError, ValueError):
             continue
         fights = []
+        # Fighter -> ESPN athlete id, so headshots can be looked up by id
+        # instead of being hand-typed into photos.json and going stale every
+        # time the card rolls over. The id sits on the COMPETITOR, not on the
+        # nested athlete object.
+        ids = {}
+        main_utc = None
         # ESPN lists a card in running order, so the MAIN EVENT IS LAST. Take
         # it from the end, or the "headline" bouts are actually early prelims.
-        for comp in list(reversed(ev.get("competitions", [])))[:limit]:
-            names = [c.get("athlete", {}).get("displayName", "") for c in comp.get("competitors", [])]
-            names = [n for n in names if n]
+        for idx, comp in enumerate(list(reversed(ev.get("competitions", [])))[:limit]):
+            names = []
+            for c in comp.get("competitors", []):
+                nm = (c.get("athlete") or {}).get("displayName", "")
+                if not nm:
+                    continue
+                names.append(nm)
+                if c.get("id"):
+                    ids[nm.lower()] = str(c["id"])
             if len(names) == 2:
                 fights.append(f"{names[0]} vs {names[1]}")
+            # the main event carries its own start time, hours after the
+            # prelims the event-level date refers to
+            if idx == 0 and comp.get("date"):
+                try:
+                    main_utc = datetime.fromisoformat(comp["date"].replace("Z", "+00:00"))
+                except ValueError:
+                    main_utc = None
         events.append({
             "sport": "UFC / MMA",
             "name": ev.get("name", "UFC event"),
             "when_utc": when,
+            "main_utc": main_utc,
             "fights": fights,
+            "ids": ids,
             "venue": "",
             "watch": au_watch(ev.get("name", "")),
         })

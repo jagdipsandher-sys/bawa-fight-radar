@@ -1,94 +1,44 @@
 #!/usr/bin/env python3
-"""TEMPORARY probe #2 — deleted after use.
+"""TEMPORARY probe — deleted after this run.
 
-Question: can fighter headshots be sourced automatically, so photos.json
-stops running dry every time the card rolls over?
-
-Dumps the full raw shape of one bout (looking for athlete IDs), then tests
-every plausible ESPN headshot URL pattern for a real 200.
+Confirms the automatic headshots actually resolve for the real fighters on
+the upcoming cards, rather than assuming the URL pattern works.
 """
-import json
 import urllib.request
+from datetime import datetime, timezone
 
-BASE = "https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard?dates=20260910-20260921"
-
-
-def get(url):
-    with urllib.request.urlopen(url, timeout=30) as r:
-        return json.load(r)
+from send_fights import SYD, fetch_ufc
+from build_radar import ESPN_HEADSHOT, photo_for, main_line, fighters
 
 
 def status(url):
     try:
         with urllib.request.urlopen(url, timeout=20) as r:
-            return r.status, r.headers.get("Content-Type", ""), r.headers.get("Content-Length", "?")
+            return r.status, r.headers.get("Content-Length", "?")
     except Exception as e:
-        return getattr(e, "code", type(e).__name__), "", ""
+        return getattr(e, "code", type(e).__name__), ""
 
 
-d = get(BASE)
-ev = d["events"][0]
-comp = ev["competitions"][-1]          # main event
+now = datetime.now(timezone.utc)
+events = fetch_ufc(now, now + __import__("datetime").timedelta(days=40))
 
 print("=" * 72)
-print("A. FULL RAW COMPETITOR OBJECT (main event, fighter 1)")
+print("REAL CARDS — times and headshot resolution")
 print("=" * 72)
-print(json.dumps(comp["competitors"][0], indent=2)[:2500])
-
-print()
-print("=" * 72)
-print("B. COMPETITION-LEVEL KEYS (is there an id / link to follow?)")
-print("=" * 72)
-print("competition keys:", sorted(comp.keys()))
-print("event keys      :", sorted(ev.keys()))
-for k in ("id", "uid", "links"):
-    if k in comp:
-        print(f"  comp.{k}: {json.dumps(comp[k])[:400]}")
-
-print()
-print("=" * 72)
-print("C. CAN WE GET AN ATHLETE ID FROM THE SUMMARY ENDPOINT?")
-print("=" * 72)
-try:
-    summ = get(f"https://site.api.espn.com/apis/site/v2/sports/mma/ufc/summary?event={ev['id']}")
-    print("summary keys:", sorted(summ.keys()))
-    txt = json.dumps(summ)
-    print("mentions 'headshot'? ", "headshot" in txt.lower())
-    # find any athlete blocks with ids
-    found = 0
-    def walk(node, path=""):
-        global found
-        if found >= 3:
-            return
-        if isinstance(node, dict):
-            if "athlete" in node and isinstance(node["athlete"], dict):
-                a = node["athlete"]
-                if a.get("id") or a.get("headshot"):
-                    print(f"\n  at {path}.athlete:")
-                    print(f"    keys: {sorted(a.keys())}")
-                    print(f"    id: {a.get('id')}  name: {a.get('displayName')}")
-                    if a.get("headshot"):
-                        print(f"    headshot: {json.dumps(a['headshot'])[:250]}")
-                    found += 1
-            for k, v in node.items():
-                walk(v, f"{path}.{k}")
-        elif isinstance(node, list):
-            for i, v in enumerate(node[:6]):
-                walk(v, f"{path}[{i}]")
-    walk(summ)
-except Exception as e:
-    print("summary fetch failed:", type(e).__name__, e)
-
-print()
-print("=" * 72)
-print("D. DO ESPN HEADSHOT URL PATTERNS ACTUALLY RESOLVE?")
-print("=" * 72)
-# Jon Jones is a well-known MMA athlete id on ESPN — a control test for the
-# URL pattern itself, independent of whether this weekend's fighters have one.
-for label, url in [
-    ("mma pattern (control, Jon Jones 2335639)",
-     "https://a.espncdn.com/i/headshots/mma/players/full/2335639.png"),
-    ("combined-ufc pattern",
-     "https://a.espncdn.com/i/headshots/ufc/players/full/2335639.png"),
-]:
-    print(f"  {status(url)}  {label}")
+for ev in events:
+    syd = ev["when_utc"].astimezone(SYD)
+    print(f"\n{ev['name']}")
+    print(f"  card starts : {syd:%a %d %b %-I:%M%p} {syd.tzname()}")
+    if ev.get("main_utc"):
+        m = ev["main_utc"].astimezone(SYD)
+        print(f"  main event  : {m:%a %d %b %-I:%M%p} {m.tzname()}")
+    print(f"  page shows  : from {syd:%-I:%M%p}{main_line(ev)}".lower().replace(":00", ""))
+    for n in fighters(ev):
+        url = photo_for(n, ev.get("ids"))
+        if not url:
+            print(f"    {n}: no photo -> initials")
+            continue
+        code, size = status(url)
+        src = "espn-auto" if url.startswith(ESPN_HEADSHOT[:40]) else "photos.json"
+        ok = "OK" if code == 200 else "-> falls back to initials"
+        print(f"    {n}: {code} ({src}, {size} bytes) {ok}")
