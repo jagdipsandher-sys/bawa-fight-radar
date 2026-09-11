@@ -2447,6 +2447,13 @@ function imgFail(img, initials){
         <td>Ball Arena</td>
         <td><a class="mini buy" href="https://kayosports.com.au/">Watch · Kayo Sports</a><button class="mini" onclick="openCard('wlv12291430')">Details</button><button class="mini" onclick="addCal('wlv12291430')">+ Cal</button></td>
       </tr>
+      <tr class="big" data-sport="wlv" data-ends="2027-01-01T11:00:00+11:00" data-card="wlv01010800">
+        <td class="d">Fri 1 Jan<small>8:00AM AEST</small></td>
+        <td><span class="sporttag b">NBA</span></td>
+        <td><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/scoreboard/den.png" alt="" onerror="imgFail(this,'DN')"><span class="ev">Wolves v Denver Nuggets</span> <span class="badge home">Home</span> <span class="badge home">Good Time</span><br><span class="sub">Friday morning here — coffee and a replay-free watch</span></td>
+        <td>Target Center</td>
+        <td><a class="mini buy" href="https://kayosports.com.au/">Watch · Kayo Sports</a><button class="mini" onclick="openCard('wlv01010800')">Details</button><button class="mini" onclick="addCal('wlv01010800')">+ Cal</button></td>
+      </tr>
 <!--/BUILD:WOLVES-ROWS-->
     </tbody>
   </table>
@@ -4548,6 +4555,16 @@ const WOLVES_CARDS = {
     link:"https://kayosports.com.au/",
     linkLabel:"Watch on Kayo Sports ↗",
     secs:[{h:"The Game",b:[["Denver Nuggets v Wolves", "away game", 1],["Tip-off", "Tuesday 29 December, 2:30PM Sydney time"],["Arena", "Ball Arena"],["The verdict", "Tuesday 2:30PM Sydney \u2014 a civilised one for once"]]}],
+    note:"Tip-off times move for national TV picks — this follows the live NBA schedule feed, so check back closer to the date."
+  },
+  wlv01010800: {
+    emoji:"🏀",
+    cal:{s:"2026-12-31T21:00:00Z",e:"2027-01-01T00:00:00Z",loc:"Target Center"},
+    title:"Wolves v Denver Nuggets",
+    when:"Fri 1 Jan \u00b7 8:00AM Sydney",
+    link:"https://kayosports.com.au/",
+    linkLabel:"Watch on Kayo Sports ↗",
+    secs:[{h:"The Game",b:[["Wolves v Denver Nuggets", "home game", 1],["Tip-off", "Friday 1 January, 8:00AM Sydney time"],["Arena", "Target Center"],["The verdict", "Friday morning here \u2014 coffee and a replay-free watch"]]}],
     note:"Tip-off times move for national TV picks — this follows the live NBA schedule feed, so check back closer to the date."
   }
 /*/BUILD:WOLVES-CARDS*/
