@@ -24,6 +24,12 @@ from datetime import datetime, timedelta, timezone
 from send_fights import SYD, au_watch, fetch_ufc, load_boxing
 
 WEEKS_AHEAD = 4
+# A fight that is on right now, or finished this morning, is exactly when
+# people go looking for it. Events therefore survive their own finish time by
+# this much before dropping off. Previously an event was dropped the moment
+# its FIRST PRELIM started, which on 20 Sep 2026 deleted UFC 331 seventeen
+# minutes in, four hours before the main event.
+GRACE_HOURS = 48
 PAGE = "index.html"
 
 WATCH_URL = {
@@ -124,10 +130,23 @@ def main_line(ev):
     return f" · main event {time_label(m)}"
 
 
-def ends_at(ev):
-    """Roughly when the broadcast is over — after this the event drops off."""
+def finishes_at(ev):
+    """Roughly when the broadcast is over, in UTC."""
     hours = 6 if ev["sport"].startswith("UFC") else 4
-    return (ev["when_utc"] + timedelta(hours=hours)).astimezone(SYD).isoformat()
+    return ev["when_utc"] + timedelta(hours=hours)
+
+
+def ends_at(ev):
+    """When the broadcast is over, in Sydney time.
+
+    This marks 'still on' vs 'finished' — it is NOT when the row disappears.
+    The page keeps a finished row for GRACE_HOURS after this and greys it out.
+    """
+    return finishes_at(ev).astimezone(SYD).isoformat()
+
+
+def finished(ev, now=None):
+    return finishes_at(ev) < (now or datetime.now(timezone.utc))
 
 
 def is_ppv(ev):
@@ -284,8 +303,15 @@ def main():
     now = datetime.now(timezone.utc)
     end = now + timedelta(weeks=WEEKS_AHEAD)
 
-    events = fetch_ufc(now, end, limit=16) + load_boxing(now, end)
-    events = [e for e in events if now <= e["when_utc"] <= end]
+    # ESPN's window is date-granular, so a card at 21:00Z sits on the PREVIOUS
+    # UTC date — look back past the grace period or it cannot be retrieved at all.
+    since = now - timedelta(hours=GRACE_HOURS + 12)
+    events = fetch_ufc(since, end, limit=16) + load_boxing(since, end)
+    # Keep an event until its broadcast has finished plus the grace period,
+    # rather than dropping it at the opening bell.
+    events = [e for e in events
+              if finishes_at(e) + timedelta(hours=GRACE_HOURS) >= now
+              and e["when_utc"] <= end]
     events.sort(key=lambda e: e["when_utc"])
     for e in events:
         e.setdefault("watch", "")
@@ -299,13 +325,22 @@ def main():
     ufc = [e for e in events if e["sport"].startswith("UFC")]
     box = [e for e in events if not e["sport"].startswith("UFC")]
 
+    # The table now keeps recently-finished events, so the headline card must
+    # pick the first one still to come (or still on) rather than events[0],
+    # which could be a fight that finished yesterday.
+    def next_up(group):
+        return next((e for e in group if not finished(e, now)), group[0] if group else None)
+
     heroes = []
-    if ufc:
-        heroes.append(hero_html(ufc[0], "UFC"))
-    if box:
-        heroes.append(hero_html(box[0], box[0]["sport"]))
+    ufc_hero, box_hero = next_up(ufc), next_up(box)
+    if ufc_hero:
+        heroes.append(hero_html(ufc_hero, "UFC"))
+    if box_hero:
+        heroes.append(hero_html(box_hero, box_hero["sport"]))
     if len(heroes) == 1:                      # keep the two-up grid balanced
-        heroes.append(hero_html(events[1], events[1]["sport"]) if len(events) > 1 else "")
+        spare = next((e for e in events
+                      if e is not ufc_hero and e is not box_hero and not finished(e, now)), None)
+        heroes.append(hero_html(spare, spare["sport"]) if spare else "")
 
     page = open(PAGE).read()
     before = page

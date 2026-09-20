@@ -114,6 +114,10 @@
   .badge.fn{background:#ececec;color:#555}
   .badge.live{background:#000;color:#fff}
   .badge.tbc{background:#fff;border:1px solid var(--grey);color:var(--grey)}
+  /* an event that has been and gone but is still listed during its grace period */
+  .badge.fin{background:#6b6b6b;color:#fff}
+  tr.done{opacity:.55}
+  tr.done .buy{pointer-events:none;opacity:.5}
   .badge.aus{background:#00247d;color:#fff}
   .badge.home{background:#0b6e35;color:#fff}
   .badge.away{background:#ececec;color:#555}
@@ -6118,8 +6122,24 @@ function refreshRadar(){
   const now = new Date();
 
   // 1. drop anything that has already finished
+  // A fight that is on right now, or finished this morning, is exactly when
+  // people look it up. So a row survives its own finish time by GRACE_MS and
+  // is greyed out as Finished in the meantime, instead of vanishing mid-card.
+  // This covers every tab, not just the fights.
+  const GRACE_MS = 48 * 60 * 60 * 1000;
   document.querySelectorAll('tbody tr[data-ends]').forEach(tr => {
-    if (new Date(tr.dataset.ends) < now) tr.remove();
+    const fin = new Date(tr.dataset.ends);
+    if (fin.getTime() + GRACE_MS < now) { tr.remove(); return; }
+    if (fin < now && !tr.classList.contains('done')){
+      tr.classList.add('done');
+      const ev = tr.querySelector('.ev');
+      if (ev && !tr.querySelector('.badge.fin')){
+        const b = document.createElement('span');
+        b.className = 'badge fin';
+        b.textContent = 'Finished';
+        ev.insertAdjacentElement('afterend', b);
+      }
+    }
   });
 
   // 2. promote a stale hero to the next event in its slot
