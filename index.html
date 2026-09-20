@@ -6137,7 +6137,7 @@ function shortDate(d){
 function refreshRadar(){
   const now = new Date();
 
-  // 1. drop anything that has already finished
+  // 1. drop anything whose grace period has expired
   // A fight that is on right now, or finished this morning, is exactly when
   // people look it up. So a row survives its own finish time by GRACE_MS and
   // is greyed out as Finished in the meantime, instead of vanishing mid-card.
@@ -6162,8 +6162,12 @@ function refreshRadar(){
   document.querySelectorAll('.card[data-slot]').forEach(card => {
     const ends = card.dataset.ends;
     if (!ends || new Date(ends) >= now) return;
-    const next = card.closest('.pane')
-                     .querySelector('tbody tr[data-sport="' + card.dataset.slot + '"]');
+    // Skip rows that have themselves finished — recently-finished events now
+    // linger in the table, so grabbing the first row would just re-promote the
+    // fight that has only just ended and leave it billed as the next one.
+    const next = [...card.closest('.pane')
+                         .querySelectorAll('tbody tr[data-sport="' + card.dataset.slot + '"]')]
+                 .find(tr => new Date(tr.dataset.ends) >= now);
     if (next) heroFromRow(card, next);
     else emptyHero(card, 'Nothing left on the radar in this category — new dates get added as they are announced.');
   });
