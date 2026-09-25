@@ -122,6 +122,15 @@
         "source": "added by Jack",
         "date": "2026-09-25"
       }
+    },
+    {
+      "email": "lee.hallett@collectingcars.com",
+      "name": "Lee Hallett",
+      "active": true,
+      "consent": {
+        "source": "added by Jack",
+        "date": "2026-09-25"
+      }
     }
   ]
 }
