@@ -113,6 +113,15 @@
         "source": "added by Jack",
         "date": "2026-08-28"
       }
+    },
+    {
+      "email": "Jbelista@hotmail.com",
+      "name": "",
+      "active": true,
+      "consent": {
+        "source": "added by Jack",
+        "date": "2026-09-25"
+      }
     }
   ]
 }
