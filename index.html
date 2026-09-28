@@ -580,6 +580,7 @@ function imgFail(img, initials){
   </form>
   <div class="wrap" id="tabList">
     <div class="tab-item active" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="bkfc"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="bkfc" onclick="showTab('bkfc')">Bare Knuckle</button><span class="order-controls"><button type="button" onclick="moveTab('bkfc',-1)" aria-label="Move Bare Knuckle up">↑</button><button type="button" onclick="moveTab('bkfc',1)" aria-label="Move Bare Knuckle down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="comedy"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button><span class="order-controls"><button type="button" onclick="moveTab('comedy',-1)" aria-label="Move Comedy up">↑</button><button type="button" onclick="moveTab('comedy',1)" aria-label="Move Comedy down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="movies"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="movies" onclick="showTab('movies')">Movies 🎥</button><span class="order-controls"><button type="button" onclick="moveTab('movies',-1)" aria-label="Move Movies up">↑</button><button type="button" onclick="moveTab('movies',1)" aria-label="Move Movies down">↓</button></span></div>
@@ -1085,6 +1086,76 @@ function imgFail(img, initials){
     <b>Short answer on monster trucks:</b> the next one in Sydney is <b>Monster Jam at Accor Stadium, Saturday 10 October 2026</b> — on sale now from $34. The indoor show, Monster Truck Mania Live at Qudos, already ran on 25–26 April 2026 and isn't back until 2027, so Monster Jam is the one to book. All times Sydney (AEST). Prices shown are the advertised "from" price and rise by seating category; anything marked TBC hasn't been published yet and is deliberately not guessed.
   </footer>
 </div><!-- /pane-other -->
+
+<!-- ================= TAB · BARE KNUCKLE ================= -->
+<div class="pane" id="pane-bkfc">
+
+  <h2>Next Card</h2>
+  <div class="hero">
+<!--BUILD:BKFC-HERO-->
+    <div class="card" data-slot="bkfc" data-ends="2026-10-03T23:00:00+10:00">
+      <div class="sport">BKFC &nbsp;<span class="badge aus">In Australia</span> <span class="badge soon"><span class="cd" data-until="2026-10-03"></span></span></div>
+      <div class="crest dark">
+        <div class="big">Hepi <em>v</em> Shewmaker</div>
+        <div class="lil">Eatons Hill Hotel, Brisbane</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">BKFC Fight Night Australia
+          <small>Haze Hepi <span class="flag">🇦🇺</span> vs Sam Shewmaker · Heavyweight</small>
+        </div>
+        <div class="when">Sat 3 Oct · <span class="t">Doors 5pm AEST</span></div>
+        <div class="meta">Eatons Hill Hotel, Brisbane · Fox Sports Australia &amp; TrillerTV+</div>
+        <ul class="mc">
+          <li>Josh Kuhne vs Elaiah Bishop (Welterweight, 165lb) — co-main</li>
+          <li>BKFC's second trip to Australia, and the only card all year in your own time zone.</li>
+        </ul>
+        <div class="btns">
+          <a class="btn red" href="https://premier.ticketek.com.au/Shows/Show.aspx?sh=EHHXBKFC26">Tickets · Ticketek</a>
+          <button class="btn ghost" onclick="openCard('bkfcaus1003')">Full Card</button>
+          <button class="btn ghost" onclick="addCal('bkfcaus1003')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
+<!--/BUILD:BKFC-HERO-->
+  </div>
+
+  <h2>What's Coming</h2>
+  <table>
+    <thead>
+      <tr><th>Sydney date</th><th></th><th>Card</th><th>Venue</th><th>Watch / Tickets</th></tr>
+    </thead>
+    <tbody>
+<!--BUILD:BKFC-ROWS-->
+      <tr class="big" data-sport="bkfc" data-ends="2026-10-03T23:00:00+10:00" data-card="bkfcaus1003">
+        <td class="d">Sat 3 Oct<small>doors 5pm</small></td>
+        <td><span class="sporttag u">BKFC</span></td>
+        <td><span class="ev">BKFC Fight Night Australia</span> <span class="badge aus">In Australia</span><br><span class="sub">Haze Hepi vs Sam Shewmaker (Heavyweight) · plus Kuhne vs Bishop</span></td>
+        <td>Eatons Hill Hotel, Brisbane</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/Shows/Show.aspx?sh=EHHXBKFC26">Tickets · Ticketek</a><button class="mini" onclick="openCard('bkfcaus1003')">Full Card</button><button class="mini" onclick="addCal('bkfcaus1003')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="bkfc" data-ends="2026-10-18T16:00:00+11:00" data-card="bkfc951017">
+        <td class="d">Sun 18 Oct<small>from 11am</small></td>
+        <td><span class="sporttag u">BKFC</span></td>
+        <td><span class="ev">BKFC 95: Herring vs. Dodson</span> <span class="badge fn">Fight Night</span><br><span class="sub">Jamel Herring vs John Dodson · Sunday late morning here, the pick of the overseas cards</span></td>
+        <td>Prudential Center, Newark NJ</td>
+        <td><span class="badge tbc">AU Broadcaster TBC</span><button class="mini" onclick="openCard('bkfc951017')">Full Card</button><button class="mini" onclick="addCal('bkfc951017')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="bkfc" data-ends="2026-11-08T23:59:00+11:00" data-card="bkfcglasgow1107">
+        <td class="d">Sun 8 Nov<small>start time TBC</small></td>
+        <td><span class="sporttag u">BKFC</span></td>
+        <td><span class="ev">BKFC Fight Night Glasgow</span> <span class="badge tbc">Time Not Announced</span><br><span class="sub">Conor Cooke vs Sean Weir for the UK light heavyweight title · BKFC's first card in Scotland</span></td>
+        <td>OVO Hydro, Glasgow</td>
+        <td><span class="badge tbc">AU Broadcaster TBC</span><button class="mini" onclick="openCard('bkfcglasgow1107')">Full Card</button><button class="mini" onclick="addCal('bkfcglasgow1107')">+ Cal</button></td>
+      </tr>
+<!--/BUILD:BKFC-ROWS-->
+    </tbody>
+  </table>
+
+  <footer>
+    All times Sydney. Bare knuckle has no live fixture feed anywhere — unlike the UFC tab, this one is re-researched by hand each week, so a newly announced card can take a few days to appear. Most BKFC cards stream on <b>TrillerTV+</b> or the BKFC app, with selected events on <b>DAZN</b>; Australian cards have been on <b>Fox Sports</b>. Where the broadcaster is not confirmed it says so rather than guessing.
+  </footer>
+</div><!-- /pane-bkfc -->
+
 
 <!-- ================= TAB 3 · PANTHERS ================= -->
 <div class="pane" id="pane-panthers">
@@ -4685,7 +4756,76 @@ const SYDNEY_CARDS = {
   }
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, TENNIS_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
+const BKFC_CARDS = {
+/*BUILD:BKFC-CARDS*/
+  bkfcaus1003: {
+    emoji:"🤜",
+    cal:{s:"2026-10-03T07:00:00Z",e:"2026-10-03T13:00:00Z",loc:"Eatons Hill Hotel, Brisbane"},
+    title:"BKFC Fight Night Australia",
+    when:"Sat 3 Oct · Doors 5pm AEST · Eatons Hill Hotel, Brisbane",
+    link:"https://premier.ticketek.com.au/Shows/Show.aspx?sh=EHHXBKFC26",
+    linkLabel:"Tickets · Ticketek ↗",
+    secs:[
+      {h:"The Card",b:[
+        ["Haze Hepi vs Sam Shewmaker","Heavyweight — main event. Hepi is the Australian draw, Shewmaker a long-time BKFC heavyweight.",1],
+        ["Josh Kuhne vs Elaiah Bishop","Welterweight, 165lb — co-main"],
+        ["Further bouts","Announced closer to the date"]
+      ]},
+      {h:"Watching It",b:[
+        ["Fox Sports Australia","Broadcast live",1],
+        ["TrillerTV+","Streaming live"],
+        ["Doors 5:00pm","Main event time not published yet"]
+      ]},
+      {h:"Worth Knowing",b:[
+        ["This is the one in your time zone","Saturday evening here, not a 4am alarm — the only BKFC card all year that works for a Sydney viewer",1],
+        ["Brisbane, not Sydney","Eatons Hill is about an hour north of Brisbane airport"]
+      ]}
+    ],
+    note:"Bare knuckle has no live fixture feed — this card was researched by hand and is re-checked weekly. Bouts change; check Ticketek closer to the date."
+  },
+  bkfc951017: {
+    emoji:"🤜",
+    cal:{s:"2026-10-18T00:00:00Z",e:"2026-10-18T05:00:00Z",loc:"Prudential Center, Newark NJ"},
+    title:"BKFC 95: Herring vs. Dodson",
+    when:"Sun 18 Oct · from 11am AEDT · Prudential Center, Newark",
+    link:"https://www.bkfc.com/events/bkfc-95-newark",
+    linkLabel:"Event page · BKFC ↗",
+    secs:[
+      {h:"The Card",b:[
+        ["Jamel Herring vs John Dodson","Main event — both former world-level names crossing into bare knuckle",1],
+        ["Undercard","Announced closer to the date"]
+      ]},
+      {h:"Watching It",b:[
+        ["Australian broadcaster not confirmed","BKFC cards usually land on TrillerTV+ or the BKFC app, with selected events on DAZN",1],
+        ["8:00pm Saturday in Newark","Which is 11am Sunday here — one of the better overseas start times"]
+      ]}
+    ],
+    note:"Researched by hand and re-checked weekly. The Australian broadcaster is left blank on purpose rather than guessed."
+  },
+  bkfcglasgow1107: {
+    emoji:"🤜",
+    cal:{s:"2026-11-07T19:00:00Z",e:"2026-11-07T23:00:00Z",loc:"OVO Hydro, Glasgow"},
+    title:"BKFC Fight Night Glasgow",
+    when:"Sat 7 Nov in Glasgow · Sunday 8 Nov here · start time not announced",
+    link:"https://www.ovohydro.com/events/detail/bare-knuckle-fighting-championship",
+    linkLabel:"Venue page · OVO Hydro ↗",
+    secs:[
+      {h:"The Card",b:[
+        ["Conor Cooke vs Sean Weir","BKFC UK light heavyweight title. Weir is the local man.",1],
+        ["Undercard","Scottish and UK fighters, announced closer to the date"]
+      ]},
+      {h:"Worth Knowing",b:[
+        ["BKFC's first card in Scotland","Follows the record 15,800 crowd in Manchester in September",1],
+        ["Start time not published","The calendar entry uses a 7pm UK placeholder — treat the Sydney time as rough until it is confirmed",1],
+        ["Australian broadcaster not confirmed",""]
+      ]}
+    ],
+    note:"Start time is a placeholder, not a published time. Re-checked weekly and corrected once BKFC announces it."
+  }
+/*/BUILD:BKFC-CARDS*/
+};
+
+const CARDS = Object.assign({}, FIGHT_CARDS, BKFC_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, TENNIS_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
 
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
@@ -5703,6 +5843,7 @@ const RANGES = {
   food:     "Live food & drinks · Google rating 4.1+ · start from any Australian suburb",
   fights:   "Sun 9 Aug – Sun 6 Sep 2026 · Sydney (AEST)",
   other:    "Monster trucks & motorsport · Sydney & NSW",
+  bkfc:     "Bare Knuckle Fighting Championship · every card in Sydney time",
   comedy:   "Sun 16 Aug 2026 – Mon 16 Aug 2027 · Sydney comedy",
   movies:   "Latest Australian cinema releases · checked Sun 16 Aug 2026",
   series:   "33 hand-picked series · new releases & older essentials",
@@ -5716,7 +5857,7 @@ const RANGES = {
   wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','tennis','wolves','food','myradar','sydney'];
+const DEFAULT_TAB_ORDER = ['fights','bkfc','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','tennis','wolves','food','myradar','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
 const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.tennisAfterPga.v1';
 

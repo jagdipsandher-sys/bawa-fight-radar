@@ -17,7 +17,8 @@ import sys
 import tempfile
 
 PAGE = "index.html"
-MARKERS = ["FIGHT-HERO", "FIGHT-ROWS", "FIGHT-CARDS", "NRL-HERO", "NRL-ROWS", "NRL-CARDS",
+MARKERS = ["FIGHT-HERO", "FIGHT-ROWS", "FIGHT-CARDS",
+           "BKFC-HERO", "BKFC-ROWS", "BKFC-CARDS", "NRL-HERO", "NRL-ROWS", "NRL-CARDS",
            "RAI-HERO", "RAI-ROWS", "RAI-CARDS",
            "UTD-HERO", "UTD-ROWS", "UTD-CARDS", "F1-HERO", "F1-ROWS", "F1-CARDS",
            "UTD-TABLE", "F1-TABLE", "UTD-FULL", "F1-FULL",
@@ -110,7 +111,7 @@ if len(sydney_cards) != 12:
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
+for pane in ["pane-bkfc", "pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
              "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
              "pane-pga", "pane-tennis", "pane-wolves"]:
     if f'id="{pane}"' not in page:
@@ -126,7 +127,8 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 'id="radarViewAlerts"', 'id="radarViewPlanner"',
                 'data-radar-view="planner"', 'data-planner-window="weekend"',
                 "renderRadarPlanner", "radarPlannerClashes", 'data-tab-item="pga"',
-                "PGA_CARDS", 'data-tab-item="tennis"', "TENNIS_CARDS"]:
+                "PGA_CARDS", 'data-tab-item="tennis"', "TENNIS_CARDS",
+                'data-tab-item="bkfc"', "BKFC_CARDS"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
 
