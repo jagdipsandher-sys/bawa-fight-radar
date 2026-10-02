@@ -47,6 +47,18 @@ jobs:
           # to the normal recipient list — the override is manual-runs-only
           MAIL_TO: ${{ github.event.inputs.test_to || secrets.MAIL_TO }}
           RADAR_TEST: ${{ github.event.inputs.test_to && '1' || '' }}
+          # What people SEE in their inbox. Gmail will only send as the account
+          # it logs in with, so the address itself cannot be faked here, but the
+          # display name is what almost every mail client actually shows.
+          # Override by adding a FROM_NAME secret.
+          FROM_NAME: ${{ secrets.FROM_NAME || 'Weekend Radar' }}
+          # Set FROM_ADDR only once that address is a VERIFIED "Send mail as"
+          # alias on the GMAIL_USER account, otherwise Gmail silently rewrites
+          # it back and the change does nothing.
+          FROM_ADDR: ${{ secrets.FROM_ADDR }}
+          # Where a reply and an unsubscribe land. Falls back to the sending
+          # account when unset.
+          REPLY_TO: ${{ secrets.REPLY_TO }}
         run: python send_fights.py
       - name: Commit sent marker
         run: |

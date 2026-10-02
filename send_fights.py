@@ -17,6 +17,7 @@ import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from email.message import EmailMessage
+from email.utils import formataddr
 from zoneinfo import ZoneInfo
 
 SYD = ZoneInfo("Australia/Sydney")
@@ -260,15 +261,28 @@ def send(subject, html, include_subscribers=True):
         print(f"refusing to send: {len(to)} recipients is past what a Gmail "
               f"app password can safely carry — move to a mailing provider first")
         sys.exit(1)
+    # Gmail SMTP will only send as the account it authenticated with, so the
+    # address cannot be changed here. What CAN change is what people actually
+    # see: the display name, and where a reply goes. Most mail clients show
+    # the name and hide the address entirely, so this reads as "Weekend Radar"
+    # rather than Jack's personal mailbox.
+    # To genuinely send FROM another address, add it as a verified "Send mail
+    # as" alias on the GMAIL_USER account, then set FROM_ADDR to it.
+    from_name = os.environ.get("FROM_NAME", "").strip() or "Weekend Radar"
+    from_addr = os.environ.get("FROM_ADDR", "").strip() or user
+    reply_to = os.environ.get("REPLY_TO", "").strip() or user
+
     msg = EmailMessage()
     msg["Subject"] = subject
-    msg["From"] = user
+    msg["From"] = formataddr((from_name, from_addr))
+    msg["Reply-To"] = reply_to
     # one-click unsubscribe for mail clients that offer it, which also keeps
-    # Gmail from reading a 20-way BCC as bulk mail
-    msg["List-Unsubscribe"] = f"<mailto:{user}?subject=Unsubscribe%20from%20BAWA%20Radar>"
+    # Gmail from reading a 20-way BCC as bulk mail. Points at the reply
+    # address so an unsubscribe lands in the same place as a reply.
+    msg["List-Unsubscribe"] = f"<mailto:{reply_to}?subject=Unsubscribe%20from%20BAWA%20Radar>"
     # BCC, not To — otherwise every recipient sees every other address, which is
     # fine for three brothers and not fine once friends are on the list.
-    msg["To"] = user
+    msg["To"] = formataddr((from_name, from_addr))
     msg["Bcc"] = ", ".join(to)   # send_message strips this header before sending
     msg.set_content("Please view this in an HTML capable email client.")
     msg.add_alternative(html, subtype="html")
@@ -311,7 +325,10 @@ def main():
         sys.exit(1)
 
     prefix = "[TEST] " if test else ""
-    owner = os.environ.get("GMAIL_USER", "").strip()
+    # the footer unsubscribe should land wherever replies land, not in
+    # the sending mailbox, which recipients never see
+    owner = (os.environ.get("REPLY_TO", "").strip()
+             or os.environ.get("GMAIL_USER", "").strip())
 
     # The email now covers the whole radar, not just the fights. weekend.py
     # reads index.html so the email can never claim something the site does
