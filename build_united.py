@@ -18,12 +18,13 @@ import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+from espn_dates import months_covering
 from send_fights import SYD
 
 TEAM = "Manchester United"
 WEEKS_AHEAD = 16
 PAGE = "index.html"
-FEED = "https://site.api.espn.com/apis/site/v2/sports/soccer/{}/scoreboard?dates={}-{}"
+FEED = "https://site.api.espn.com/apis/site/v2/sports/soccer/{}/scoreboard?dates={}"
 COMPS = [
     ("eng.1", "Premier League", "PL"),
     ("eng.fa", "FA Cup", "FA"),
@@ -42,14 +43,18 @@ def syd(dt):
     return dt.astimezone(SYD)
 
 
-def fetch(code, label, abbr, start):
-    end = start + timedelta(days=13)
-    url = FEED.format(code, start.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
+def fetch(code, label, abbr, ym):
+    """One competition, one calendar month.
+
+    ESPN answers 400 to a date range on soccer now, so the window is a
+    month at a time. See espn_dates.py.
+    """
+    url = FEED.format(code, ym)
     try:
         with urllib.request.urlopen(url, timeout=30) as r:
             data = json.load(r)
     except Exception as e:
-        print(f"  {code} {start:%d %b}: skipped ({type(e).__name__})")
+        print(f"  {code} {ym}: skipped ({type(e).__name__})")
         return []
     out = []
     for ev in data.get("events", []):
@@ -81,8 +86,8 @@ def collect():
     now = datetime.now(timezone.utc)
     games, seen = [], set()
     for code, label, abbr in COMPS:
-        for w in range(0, WEEKS_AHEAD, 2):
-            for g in fetch(code, label, abbr, now + timedelta(weeks=w)):
+        for ym in months_covering(now, WEEKS_AHEAD):
+            for g in fetch(code, label, abbr, ym):
                 key = g["when"].isoformat()
                 if key not in seen and g["when"] > now:
                     seen.add(key)

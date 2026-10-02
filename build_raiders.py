@@ -27,12 +27,13 @@ import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+from espn_dates import months_covering
 from send_fights import SYD
 
 TEAM = "Raiders"
 WEEKS_AHEAD = 14          # covers the run home plus the whole finals series
 PAGE = "index.html"
-FEED = "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/scoreboard?dates={}-{}"
+FEED = "https://site.api.espn.com/apis/site/v2/sports/rugby-league/3/scoreboard?dates={}"
 TICKETS = "https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26"
 LAST_REGULAR_ROUND = 27
 
@@ -41,14 +42,15 @@ def esc(t):
     return html.escape(str(t or ""), quote=True)
 
 
-def fetch_week(start):
-    end = start + timedelta(days=6)
-    url = FEED.format(start.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
+def fetch_month(ym):
+    """One calendar month. ESPN answers 400 to a date range on this sport
+    now, so the window is a month at a time. See espn_dates.py."""
+    url = FEED.format(ym)
     try:
         with urllib.request.urlopen(url, timeout=30) as r:
             data = json.load(r)
     except Exception as e:                       # one bad week must not kill the build
-        print(f"  week of {start:%d %b}: fetch failed ({type(e).__name__}) — skipped")
+        print(f"  {ym}: fetch failed ({type(e).__name__}) — skipped")
         return []
 
     rnd = (data.get("week") or {}).get("number")
@@ -78,8 +80,8 @@ def fetch_week(start):
 def collect():
     now = datetime.now(timezone.utc)
     games, seen = [], set()
-    for w in range(WEEKS_AHEAD):
-        for g in fetch_week(now + timedelta(weeks=w)):
+    for ym in months_covering(now, WEEKS_AHEAD):
+        for g in fetch_month(ym):
             key = g["when"].isoformat()
             if key not in seen and g["when"] > now:
                 seen.add(key)
@@ -93,8 +95,17 @@ def syd(dt):
 
 
 def tag(g):
+    """Round tag, or nothing when the round is genuinely unknown.
+
+    The round used to come from the top level of a single-round query. A
+    month query covers several rounds, so there is no one answer and the
+    feed may not give one. Showing nothing is honest; defaulting to
+    "Finals" would label a round 12 game as a final.
+    """
     r = g["round"]
-    if r and r <= LAST_REGULAR_ROUND:
+    if not r:
+        return ""
+    if r <= LAST_REGULAR_ROUND:
         return f'<span class="sporttag n">R{r}</span>'
     return '<span class="sporttag f">Finals</span>'
 

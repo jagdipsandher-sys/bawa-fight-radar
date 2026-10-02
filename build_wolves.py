@@ -21,12 +21,13 @@ import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+from espn_dates import months_covering
 from send_fights import SYD
 
 TEAM = "Timberwolves"
 WEEKS_AHEAD = 16          # off-season now; this needs to reach the October tip-off
 PAGE = "index.html"
-FEED = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={}-{}"
+FEED = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={}"
 WATCH = "https://kayosports.com.au/"      # AU NBA rights holder
 
 
@@ -38,14 +39,15 @@ def syd(dt):
     return dt.astimezone(SYD)
 
 
-def fetch_week(start):
-    end = start + timedelta(days=6)
-    url = FEED.format(start.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
+def fetch_month(ym):
+    """One calendar month. ESPN answers 400 to a date range on this sport
+    now, so the window is a month at a time. See espn_dates.py."""
+    url = FEED.format(ym)
     try:
         with urllib.request.urlopen(url, timeout=30) as r:
             data = json.load(r)
     except Exception as e:
-        print(f"  week of {start:%d %b}: fetch failed ({type(e).__name__}) — skipped")
+        print(f"  {ym}: fetch failed ({type(e).__name__}) — skipped")
         return []
     out = []
     for ev in data.get("events", []):
@@ -81,8 +83,8 @@ def fetch_week(start):
 def collect():
     now = datetime.now(timezone.utc)
     games, seen = [], set()
-    for w in range(WEEKS_AHEAD):
-        for g in fetch_week(now + timedelta(weeks=w)):
+    for ym in months_covering(now, WEEKS_AHEAD):
+        for g in fetch_month(ym):
             key = g["when"].isoformat()
             if key not in seen and g["when"] > now:
                 seen.add(key)
