@@ -54,8 +54,10 @@ def fetch(code, label, abbr, ym):
         with urllib.request.urlopen(url, timeout=30) as r:
             data = json.load(r)
     except Exception as e:
-        print(f"  {code} {ym}: skipped ({type(e).__name__})")
-        return []
+        # None means the REQUEST broke; an empty list means the feed answered
+        # and had nothing. main() needs to tell those apart.
+        print(f"  {code} {ym}: FAILED ({type(e).__name__}: {e})")
+        return None
     out = []
     for ev in data.get("events", []):
         if TEAM not in ev.get("name", ""):
@@ -70,7 +72,12 @@ def fetch(code, label, abbr, ym):
         logos = {t_.get("homeAway"): ((t_.get("team") or {}).get("logo")
                  or (((t_.get("team") or {}).get("logos") or [{}])[0] or {}).get("href") or "")
                  for t_ in comp.get("competitors", [])}
-        home = teams.get("home", "") == TEAM
+        # ESPN gives the FULL club name ("Penrith Panthers", "Canberra
+        # Raiders", "Manchester United"), not the short form TEAM holds, so
+        # this has to be a substring test. An exact-equality check here reads
+        # every game as "away" and shows our own name back as the opponent
+        # for real home games — exactly the bug the Wolves tab had.
+        home = TEAM in teams.get("home", "")
         out.append({
             "when": when, "comp": label, "abbr": abbr,
             "home": home,
@@ -83,17 +90,26 @@ def fetch(code, label, abbr, ym):
 
 
 def collect():
+    """Upcoming fixtures, plus how many requests were tried and how many broke,
+    so main() can tell an empty calendar from a feed that is down."""
     now = datetime.now(timezone.utc)
     games, seen = [], set()
+    months = months_covering(now, WEEKS_AHEAD)
+    tried = failed = 0
     for code, label, abbr in COMPS:
-        for ym in months_covering(now, WEEKS_AHEAD):
-            for g in fetch(code, label, abbr, ym):
+        for ym in months:
+            tried += 1
+            got = fetch(code, label, abbr, ym)
+            if got is None:
+                failed += 1
+                continue
+            for g in got:
                 key = g["when"].isoformat()
                 if key not in seen and g["when"] > now:
                     seen.add(key)
                     games.append(g)
     games.sort(key=lambda g: g["when"])
-    return games
+    return games, tried, failed
 
 
 def watchability(g):
@@ -201,9 +217,23 @@ def splice(page, marker, block):
 
 
 def main():
-    games = collect()
+    games, tried, failed = collect()
+    if not games and failed == tried:
+        # Every request broke. Say so loudly instead of implying the fixture
+        # list is genuinely empty. Exit non-zero so the log shows a failure;
+        # the workflow has continue-on-error set, so the rest of the site
+        # still rebuilds — an earlier bare sys.exit() here is what froze the
+        # whole page for three days in September.
+        print(f"FEED FAILURE: all {tried} requests to the soccer feed failed. "
+              "The Man Utd tab has been left exactly as it was. "
+              "This is a broken feed, not an empty fixture list.")
+        sys.exit(1)
     if not games:
-        sys.exit("no Manchester United fixtures returned — leaving the tab alone")
+        if failed:
+            print(f"warning: {failed} of {tried} requests failed")
+        print("the soccer feed answered and had no upcoming Manchester United "
+              "fixtures — leaving the Man Utd tab as it is.")
+        return
 
     print(f"{len(games)} upcoming fixtures:")
     for g in games:

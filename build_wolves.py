@@ -47,8 +47,11 @@ def fetch_month(ym):
         with urllib.request.urlopen(url, timeout=30) as r:
             data = json.load(r)
     except Exception as e:
-        print(f"  {ym}: fetch failed ({type(e).__name__}) — skipped")
-        return []
+        # None means the REQUEST broke. An empty list means the feed answered
+        # and had nothing. main() needs to tell those apart: reporting a dead
+        # feed as "season over" is how four tabs sat empty for three weeks.
+        print(f"  {ym}: fetch FAILED ({type(e).__name__}: {e})")
+        return None
     out = []
     for ev in data.get("events", []):
         if TEAM not in ev.get("name", ""):
@@ -81,16 +84,24 @@ def fetch_month(ym):
 
 
 def collect():
+    """Upcoming fixtures, plus how many month queries were tried and how many
+    broke, so main() can tell a finished season from a feed that is down."""
     now = datetime.now(timezone.utc)
     games, seen = [], set()
-    for ym in months_covering(now, WEEKS_AHEAD):
-        for g in fetch_month(ym):
+    months = months_covering(now, WEEKS_AHEAD)
+    failed = 0
+    for ym in months:
+        got = fetch_month(ym)
+        if got is None:
+            failed += 1
+            continue
+        for g in got:
             key = g["when"].isoformat()
             if key not in seen and g["when"] > now:
                 seen.add(key)
                 games.append(g)
     games.sort(key=lambda g: g["when"])
-    return games
+    return games, len(months), failed
 
 
 def watchability(g):
@@ -197,9 +208,23 @@ def splice(page, marker, block):
 
 
 def main():
-    games = collect()
+    games, tried, failed = collect()
+    if not games and failed == tried:
+        # Every single request broke. This is NOT a finished season, it is a
+        # dead feed, and calling it "season over" is exactly how this tab sat
+        # empty for three weeks without anyone noticing. Exit non-zero so the
+        # log shows a failure; the workflow has continue-on-error set, so the
+        # rest of the site still rebuilds.
+        print(f"FEED FAILURE: all {tried} month queries to the NBA feed failed. "
+              "The Wolves tab has been left exactly as it was. "
+              "This is a broken feed, not an empty season — it needs looking at.")
+        sys.exit(1)
     if not games:
-        print("no Timberwolves fixtures returned (off-season, or schedule not out yet) — leaving the tab as it is")
+        if failed:
+            print(f"warning: {failed} of {tried} month queries failed")
+        print("the NBA feed answered and had no upcoming Timberwolves fixtures — "
+              "season finished, or next season's draw is not out yet. "
+              "Leaving the Wolves tab as it is.")
         return
 
     print(f"{len(games)} upcoming Timberwolves fixtures:")

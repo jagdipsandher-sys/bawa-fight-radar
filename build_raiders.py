@@ -49,9 +49,12 @@ def fetch_month(ym):
     try:
         with urllib.request.urlopen(url, timeout=30) as r:
             data = json.load(r)
-    except Exception as e:                       # one bad week must not kill the build
-        print(f"  {ym}: fetch failed ({type(e).__name__}) — skipped")
-        return []
+    except Exception as e:
+        # None means the REQUEST broke. An empty list means the feed answered
+        # and had nothing. main() needs to tell those apart: reporting a dead
+        # feed as "season over" is how four tabs sat empty for three weeks.
+        print(f"  {ym}: fetch FAILED ({type(e).__name__}: {e})")
+        return None
 
     rnd = (data.get("week") or {}).get("number")
     out = []
@@ -65,7 +68,13 @@ def fetch_month(ym):
             when = datetime.fromisoformat(ev["date"].replace("Z", "+00:00"))
         except (KeyError, ValueError):
             continue
-        home_is_us = teams.get("home", "") == TEAM
+        # A substring test, not equality. This feed happens to use the short
+        # name ("Panthers vs Raiders"), so equality worked, but the NBA and
+        # soccer feeds use the full club name and an equality check there read
+        # every game as "away" — the bug the Wolves tab had. Matching on the
+        # substring is correct either way, and no other NRL club's name
+        # contains another's.
+        home_is_us = TEAM in teams.get("home", "")
         out.append({
             "when": when,
             "round": rnd,
@@ -78,16 +87,24 @@ def fetch_month(ym):
 
 
 def collect():
+    """Upcoming fixtures, plus how many month queries were tried and how many
+    broke, so main() can tell a finished season from a feed that is down."""
     now = datetime.now(timezone.utc)
     games, seen = [], set()
-    for ym in months_covering(now, WEEKS_AHEAD):
-        for g in fetch_month(ym):
+    months = months_covering(now, WEEKS_AHEAD)
+    failed = 0
+    for ym in months:
+        got = fetch_month(ym)
+        if got is None:
+            failed += 1
+            continue
+        for g in got:
             key = g["when"].isoformat()
             if key not in seen and g["when"] > now:
                 seen.add(key)
                 games.append(g)
     games.sort(key=lambda g: g["when"])
-    return games
+    return games, len(months), failed
 
 
 def syd(dt):
@@ -271,6 +288,45 @@ STATIC_CARDS = """  raiFinals: {
   }"""
 
 
+# ---------------------------------------------------------------------------
+# The off-season.
+#
+# A finished season is not a broken tab, but it should not keep billing a
+# September game as the "Next Match" either. The page's own fallback copy for
+# an empty table reads "this page needs a refresh with new dates", which is
+# fine for a fortnight's gap and wrong for a five-month one.
+#
+# So when the feed is healthy and has nothing left, the tab says so plainly.
+# Neither block carries data-ends, which means the browser never prunes the
+# row and never tries to promote the card — see refreshRadar() in index.html.
+# ---------------------------------------------------------------------------
+OFF_HERO = """    <div class="card" data-slot="{slot}">
+      <div class="sport">Season Finished</div>
+      <div class="crest dark">
+        <div class="big">{club}</div>
+        <div class="lil">Back in March</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">{heading}
+          <small>{blurb}</small>
+        </div>
+        <div class="when">Next season · <span class="t">kicks off early March 2027</span></div>
+        <div class="btns">
+          <a class="btn red" href="https://www.nrl.com/draw/">NRL Draw</a>
+          <button class="btn ghost" onclick="openCard('{finals_card}')">Finals Explained</button>
+        </div>
+      </div>
+    </div>"""
+
+OFF_ROW = """      <tr>
+        <td class="d">March<small>2027</small></td>
+        <td><span class="sporttag n">NRL</span></td>
+        <td><span class="ev">{club} · 2027 Season</span> <span class="badge tbc">Draw Not Out Yet</span><br><span class="sub">{rowsub}</span></td>
+        <td>Round 1 venue TBC</td>
+        <td><a class="mini buy" href="https://www.nrl.com/draw/">NRL Draw</a></td>
+      </tr>"""
+
+
 def splice(page, marker, block):
     pat = re.compile(rf"(<!--BUILD:{marker}-->|/\*BUILD:{marker}\*/).*?(<!--/BUILD:{marker}-->|/\*/BUILD:{marker}\*/)", re.S)
     if not pat.search(page):
@@ -279,13 +335,37 @@ def splice(page, marker, block):
 
 
 def main():
-    games = collect()
+    games, tried, failed = collect()
+    if not games and failed == tried:
+        # Every single request broke. This is NOT a finished season, it is a
+        # dead feed, and calling it "season over" is exactly how this tab sat
+        # empty for three weeks without anyone noticing. Exit non-zero so the
+        # log shows a failure; the workflow has continue-on-error set, so the
+        # rest of the site still rebuilds.
+        print(f"FEED FAILURE: all {tried} month queries to the NRL feed failed. "
+              "The Raiders tab has been left exactly as it was. "
+              "This is a broken feed, not an empty season — it needs looking at.")
+        sys.exit(1)
     if not games:
-        # A finished season is a normal state, not a failure: the feed
-        # answered, there simply are no fixtures left. fetch_week() already
-        # prints loudly if a week actually failed to load, so exiting 0 here
-        # leaves the tab untouched without reporting a broken build.
-        print("no Raiders fixtures returned (season over, or draw not published yet) — leaving the tab as it is")
+        if failed:
+            print(f"warning: {failed} of {tried} month queries failed")
+        print("the NRL feed answered and had no upcoming Raiders fixtures — "
+              "the season is over. Switching the Raiders tab to its off-season state.")
+        page = open(PAGE).read()
+        before = page
+        page = splice(page, "RAI-HERO", OFF_HERO.format(
+            slot="nrl", club="Raiders", finals_card="raiFinals",
+            heading="Canberra's 2026 season is done",
+            blurb='The draw for 2027 lands around February. Fixtures appear on this tab automatically the day it is published'))
+        page = splice(page, "RAI-ROWS", OFF_ROW.format(
+            club="Raiders", rowsub="Canberra's 2026 season finished in September. Round 1 of 2027 is usually the first week of March, and this tab fills itself in as soon as the NRL publishes the draw") + finals_tail([]))
+        page = splice(page, "RAI-CARDS", STATIC_CARDS)
+        if page == before:
+            print("Raiders tab already showing the off-season")
+            return
+        with open(PAGE, "w") as f:
+            f.write(page)
+        print("Raiders tab switched to its off-season state")
         return
 
     print(f"found {len(games)} upcoming Raiders fixtures:")
