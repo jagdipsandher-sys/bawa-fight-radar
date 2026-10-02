@@ -23,6 +23,26 @@ SYD = ZoneInfo("Australia/Sydney")
 DAYS_AHEAD = 9  # cover this weekend + the week ahead
 MARKER = ".last_sent"
 
+# Jack wants this landing between 9:00 and 10:30am Sydney.
+# GitHub runs free scheduled jobs late and by an amount that varies week to
+# week (28 minutes to 3 hours observed), so the schedule fires several times
+# from well before the window and THIS guard decides when it is allowed to
+# go. An attempt that lands too early exits quietly and the next one takes it.
+SEND_FROM = (9, 0)
+SEND_BY = (10, 30)
+# ...but never skip a week over it. If every attempt lands late, send anyway.
+SEND_LATEST = (13, 0)
+
+
+def send_window(now_syd):
+    """'send', 'early' or 'late' for a given Sydney time."""
+    hm = (now_syd.hour, now_syd.minute)
+    if hm < SEND_FROM:
+        return "early"
+    if hm <= SEND_BY:
+        return "send"
+    return "send" if hm <= SEND_LATEST else "late"
+
 # Reliable rule-based AU watch info ONLY — anything else stays blank (never guess).
 def au_watch(event_name: str) -> str:
     n = event_name.lower()
@@ -269,6 +289,17 @@ def main():
         print("already sent today — skipping")
         return
 
+    now_syd = datetime.now(SYD)
+    if not test:
+        state = send_window(now_syd)
+        if state == "early":
+            print(f"{now_syd:%-I:%M%p} Sydney is before the {SEND_FROM[0]}am send window "
+                  f"— exiting so a later attempt sends it")
+            return
+        if state == "late":
+            print(f"{now_syd:%-I:%M%p} Sydney is past the window, sending anyway "
+                  f"rather than skipping the week")
+
     now = datetime.now(timezone.utc)
     end = now + timedelta(days=DAYS_AHEAD)
     events = fetch_ufc(now, end) + load_boxing(now, end)
@@ -279,11 +310,28 @@ def main():
         print("no fixtures found — refusing to send")
         sys.exit(1)
 
-    syd_sat = (now.astimezone(SYD) + timedelta(days=1)).strftime("%d %b")
     prefix = "[TEST] " if test else ""
     owner = os.environ.get("GMAIL_USER", "").strip()
-    send(f"{prefix}BAWA Fight Radar — weekend of {syd_sat}", build_html(events, owner),
-         include_subscribers=not test)
+
+    # The email now covers the whole radar, not just the fights. weekend.py
+    # reads index.html so the email can never claim something the site does
+    # not show. If that fails for any reason, fall back to the fights-only
+    # body rather than sending nothing.
+    try:
+        import weekend
+        import email_body
+        blocks = weekend.lineup()
+        subj = email_body.subject(blocks)
+        body = email_body.build(blocks, weekend.watchlist(), weekend.sydney_bits(), owner)
+        print(f"weekend lineup: {sum(len(b['events']) for b in blocks)} events "
+              f"across {len(blocks)} tabs")
+    except Exception as e:
+        print(f"weekend build failed ({type(e).__name__}: {e}) — falling back to fights only")
+        syd_sat = (now.astimezone(SYD) + timedelta(days=1)).strftime("%d %b")
+        subj = f"BAWA Fight Radar, weekend of {syd_sat}"
+        body = build_html(events, owner)
+
+    send(prefix + subj, body, include_subscribers=not test)
     if test:
         print("test send — marker left untouched")
         return
