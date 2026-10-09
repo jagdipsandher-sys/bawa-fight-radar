@@ -20,10 +20,14 @@ on:
     - cron: "0 22 * * 4"
     - cron: "0 23 * * 4"
     - cron: "0 0 * * 5"
-  workflow_dispatch:      # run it by hand from the Actions tab to test
+  workflow_dispatch:      # run it by hand from the Actions tab
     inputs:
       test_to:
-        description: "Test send to ONE address (leave blank to use the normal list)"
+        description: "TEST send to these addresses, comma separated. Subject gets a [TEST] prefix"
+        required: false
+        default: ""
+      send_only:
+        description: "REAL send of this week's email to just these addresses, comma separated. For someone who has only just joined. Does not affect the weekly send"
         required: false
         default: ""
 concurrency:
@@ -43,10 +47,13 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          # blank/absent test_to (i.e. every scheduled Friday run) falls through
-          # to the normal recipient list — the override is manual-runs-only
-          MAIL_TO: ${{ github.event.inputs.test_to || secrets.MAIL_TO }}
-          RADAR_TEST: ${{ github.event.inputs.test_to && '1' || '' }}
+          # Both overrides are manual-runs-only: on a scheduled Friday run both
+          # inputs are absent, so this falls through to the normal list.
+          # send_only wins if someone fills in both, and then no [TEST] prefix
+          # is added, because a real send to a new joiner is the whole point.
+          MAIL_TO: ${{ github.event.inputs.send_only || github.event.inputs.test_to || secrets.MAIL_TO }}
+          RADAR_TEST: ${{ (!github.event.inputs.send_only && github.event.inputs.test_to) && '1' || '' }}
+          RADAR_SOLO: ${{ github.event.inputs.send_only && '1' || '' }}
           # What people SEE in their inbox. Gmail will only send as the account
           # it logs in with, so the address itself cannot be faked here, but the
           # display name is what almost every mail client actually shows.

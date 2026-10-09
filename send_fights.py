@@ -244,8 +244,8 @@ def send(subject, html, include_subscribers=True):
     to = [a.strip() for a in os.environ.get("MAIL_TO", "").replace(";", ",").split(",") if a.strip()]
 
     # friends who asked to be added, deduped against the core list — skipped
-    # for a test send, or a one-off test_to run would quietly re-mail every
-    # subscriber too instead of just the address(es) being tested
+    # for a test or solo send, which would otherwise quietly re-mail every
+    # subscriber too instead of just the address(es) asked for
     if include_subscribers:
         seen = {a.lower() for a in to}
         for extra in subscribers():
@@ -293,18 +293,36 @@ def send(subject, html, include_subscribers=True):
 
 
 def main():
-    # A hand-run test to a single address must not touch the marker — otherwise
-    # testing on a Friday morning would silently cancel that day's real send.
+    # Two kinds of hand-run send, both to an explicit address list rather than
+    # the weekly one:
+    #
+    #   RADAR_TEST  a test. Subject gets a [TEST] prefix.
+    #   RADAR_SOLO  a real email to someone who has just joined, so they get
+    #               this week's rather than waiting until next Friday. Same
+    #               email everyone else got, no prefix.
+    #
+    # Both skip the subscriber merge, leave the marker alone and ignore the
+    # send window. Touching the marker would silently cancel that day's real
+    # send; merging the list would mail everyone a second time.
     test = bool(os.environ.get("RADAR_TEST", "").strip())
-
-    today = datetime.now(timezone.utc).date().isoformat()
-    # dedupe: the backup cron must not double-send
-    if not test and os.path.exists(MARKER) and open(MARKER).read().strip() == today:
-        print("already sent today — skipping")
-        return
+    solo = bool(os.environ.get("RADAR_SOLO", "").strip())
+    one_off = test or solo
 
     now_syd = datetime.now(SYD)
-    if not test:
+    # The marker is SYDNEY's date, not UTC's. This matters: the send window is
+    # 9:00 to 10:30am Sydney, which in UTC is 22:00-23:30 Thursday in AEDT but
+    # straddles midnight UTC in AEST, and the "0 0 * * 5" backup cron is
+    # 11:00am Friday Sydney. With a UTC-dated marker, a send at 23:35 UTC
+    # Thursday stamped 10-08 while the backup cron an hour later saw UTC
+    # 10-09, missed the match, and would have mailed the whole list a second
+    # time. One Sydney-dated marker per Sydney Friday is the thing we actually
+    # mean by "already sent today".
+    today = now_syd.date().isoformat()
+    # dedupe: the backup cron must not double-send
+    if not one_off and os.path.exists(MARKER) and open(MARKER).read().strip() == today:
+        print("already sent today — skipping")
+        return
+    if not one_off:
         state = send_window(now_syd)
         if state == "early":
             print(f"{now_syd:%-I:%M%p} Sydney is before the {SEND_FROM[0]}am send window "
@@ -324,7 +342,7 @@ def main():
         print("no fixtures found — refusing to send")
         sys.exit(1)
 
-    prefix = "[TEST] " if test else ""
+    prefix = "[TEST] " if test else ""      # a solo send is the real thing
     # the footer unsubscribe should land wherever replies land, not in
     # the sending mailbox, which recipients never see
     owner = (os.environ.get("REPLY_TO", "").strip()
@@ -348,9 +366,10 @@ def main():
         subj = f"BAWA Fight Radar, weekend of {syd_sat}"
         body = build_html(events, owner)
 
-    send(prefix + subj, body, include_subscribers=not test)
-    if test:
-        print("test send — marker left untouched")
+    send(prefix + subj, body, include_subscribers=not one_off)
+    if one_off:
+        print(f"{'test' if test else 'one-off'} send — marker left untouched, "
+              f"the weekly send is unaffected")
         return
     with open(MARKER, "w") as f:
         f.write(today)
