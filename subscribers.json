@@ -149,6 +149,15 @@
         "source": "asked Jack to be put on the Friday list",
         "date": "2026-10-09"
       }
+    },
+    {
+      "email": "caylon@daveyjapan.com",
+      "name": "Caylon",
+      "active": true,
+      "consent": {
+        "source": "asked Jack to be put on the Friday list",
+        "date": "2026-10-09"
+      }
     }
   ]
 }
