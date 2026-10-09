@@ -131,6 +131,24 @@
         "source": "added by Jack",
         "date": "2026-09-25"
       }
+    },
+    {
+      "email": "luke@schembript.com",
+      "name": "Luke Schembri",
+      "active": true,
+      "consent": {
+        "source": "asked Jack to be put on the Friday list",
+        "date": "2026-10-09"
+      }
+    },
+    {
+      "email": "patrick@daveyjapan.com",
+      "name": "",
+      "active": true,
+      "consent": {
+        "source": "asked Jack to be put on the Friday list",
+        "date": "2026-10-09"
+      }
     }
   ]
 }
