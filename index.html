@@ -592,7 +592,7 @@ function imgFail(img, initials){
     <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="pga"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="pga" onclick="showTab('pga')">PGA Golf</button><span class="order-controls"><button type="button" onclick="moveTab('pga',-1)" aria-label="Move PGA Golf up">↑</button><button type="button" onclick="moveTab('pga',1)" aria-label="Move PGA Golf down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="tennis"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="tennis" onclick="showTab('tennis')">Tennis</button><span class="order-controls"><button type="button" onclick="moveTab('tennis',-1)" aria-label="Move Tennis up">↑</button><button type="button" onclick="moveTab('tennis',1)" aria-label="Move Tennis down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="wolves"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="wolves" onclick="showTab('wolves')">Wolves</button><span class="order-controls"><button type="button" onclick="moveTab('wolves',-1)" aria-label="Move Wolves up">↑</button><button type="button" onclick="moveTab('wolves',1)" aria-label="Move Wolves down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="nba"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="nba" onclick="showTab('nba')">NBA</button><span class="order-controls"><button type="button" onclick="moveTab('nba',-1)" aria-label="Move NBA up">↑</button><button type="button" onclick="moveTab('nba',1)" aria-label="Move NBA down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="food"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="food" onclick="showTab('food')">Food &amp; Drinks</button><span class="order-controls"><button type="button" onclick="moveTab('food',-1)" aria-label="Move Food and Drinks up">↑</button><button type="button" onclick="moveTab('food',1)" aria-label="Move Food and Drinks down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="myradar" onclick="showTab('myradar')">My Radar <span class="nav-alert-badge" id="radarAlertBadge" aria-label="unread alerts" hidden>0</span></button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
@@ -879,8 +879,25 @@ function imgFail(img, initials){
   <h2>This Weekend</h2>
   <div class="hero">
 <!--BUILD:FIGHT-HERO-->
+    <div class="card" data-slot="ufc" data-ends="2026-10-25T07:00:00+11:00">
+      <div class="sport">UFC &nbsp;<span class="badge ppv">Pay-Per-View</span> <span class="badge aus">Aussie / NZ on the card</span> <span class="badge soon"><span class="cd" data-until="2026-10-25"></span></span></div>
+      <div class="faces"><img src="https://a.espncdn.com/i/headshots/mma/players/full/3949584.png" alt="Alexander Volkanovski" onerror="imgFail(this,'AV')"><span class="vs">VS</span><img src="https://a.espncdn.com/i/headshots/mma/players/full/4029275.png" alt="Movsar Evloev" onerror="imgFail(this,'ME')"></div>
+      <div class="inner">
+        <div class="fight hd">UFC 333: Volkanovski vs. Evloev
+          <small>Alexander Volkanovski <span class="flag">🇳🇿</span> vs Movsar Evloev</small>
+        </div>
+        <div class="when">Sun 25 Oct · <span class="t">From 1am AEST</span> · main event 5am</div>
+        <div class="meta">Main Event (Foxtel/Kayo PPV $59.95) — prelims Paramount+/10</div>
+        <ul class="mc"><li>Merab Dvalishvili vs Petr Yan</li><li>Ramazan Temirov vs Lone&#x27;er Kavanagh</li><li>Alexander Volkov vs Rizvan Kuniev</li></ul>
+        <div class="btns">
+          <a class="btn red" href="https://www.paramountplus.com/au/">Buy PPV · Main Event</a>
+          <button class="btn ghost" onclick="openCard('ufc333volkanovskivsevl1024')">Full Card</button>
+          <button class="btn ghost" onclick="addCal('ufc333volkanovskivsevl1024')">+ Calendar</button>
+        </div>
+      </div>
+    </div>
     <div class="card" data-slot="ufc" data-ends="2026-11-01T14:00:00+11:00">
-      <div class="sport">UFC &nbsp;<span class="badge fn">Fight Night</span> <span class="badge soon"><span class="cd" data-until="2026-11-01"></span></span></div>
+      <div class="sport">UFC / MMA &nbsp;<span class="badge fn">Fight Night</span> <span class="badge soon"><span class="cd" data-until="2026-11-01"></span></span></div>
       <div class="faces"><img src="https://a.espncdn.com/i/headshots/mma/players/full/3028863.png" alt="Renato Moicano" onerror="imgFail(this,'RM')"><span class="vs">VS</span><img src="https://a.espncdn.com/i/headshots/mma/players/full/5144007.png" alt="Tom Nolan" onerror="imgFail(this,'TN')"></div>
       <div class="inner">
         <div class="fight hd">UFC Fight Night: Moicano vs. Nolan
@@ -893,23 +910,6 @@ function imgFail(img, initials){
           <a class="btn red" href="https://www.paramountplus.com/au/">Watch · Paramount+</a>
           <button class="btn ghost" onclick="openCard('ufcfightnightmoicanovs1031')">Full Card</button>
           <button class="btn ghost" onclick="addCal('ufcfightnightmoicanovs1031')">+ Calendar</button>
-        </div>
-      </div>
-    </div>
-    <div class="card" data-slot="ufc" data-ends="2026-11-08T15:00:00+11:00">
-      <div class="sport">UFC / MMA &nbsp;<span class="badge fn">Fight Night</span> <span class="badge soon"><span class="cd" data-until="2026-11-08"></span></span></div>
-      <div class="faces"><img src="https://a.espncdn.com/i/headshots/mma/players/full/4295192.png" alt="Sean Brady" onerror="imgFail(this,'SB')"><span class="vs">VS</span><img src="https://a.espncdn.com/i/headshots/mma/players/full/4921516.png" alt="Gabriel Bonfim" onerror="imgFail(this,'GB')"></div>
-      <div class="inner">
-        <div class="fight hd">UFC Fight Night: Bonfim vs. Brady
-          <small>Sean Brady vs Gabriel Bonfim</small>
-        </div>
-        <div class="when">Sun 8 Nov · <span class="t">From 9am AEST</span> · main event 12pm</div>
-        <div class="meta">Paramount+</div>
-        <ul class="mc"><li>Tatiana Suarez vs Virna Jandiroba</li><li>Davey Grant vs Elijah Smith</li><li>Wellington Turman vs Seokhyeon Ko</li></ul>
-        <div class="btns">
-          <a class="btn red" href="https://www.paramountplus.com/au/">Watch · Paramount+</a>
-          <button class="btn ghost" onclick="openCard('ufcfightnightbonfimvsb1107')">Full Card</button>
-          <button class="btn ghost" onclick="addCal('ufcfightnightbonfimvsb1107')">+ Calendar</button>
         </div>
       </div>
     </div>
@@ -2048,12 +2048,18 @@ function imgFail(img, initials){
   publish close to each session, so unconfirmed match times are never guessed.</footer>
 </div><!-- /pane-tennis -->
 
-<!-- ================= TAB · WOLVES (NBA) ================= -->
-<div class="pane" id="pane-wolves">
+<!-- ================= TAB · NBA ================= -->
+<div class="pane" id="pane-nba">
 
-  <h2>Next Game</h2>
+  <h2>NBA — Eastern &amp; Western Conferences</h2>
   <div class="hero">
-<!--BUILD:WOLVES-TABLE-->
+<!--BUILD:NBA-TABLE-->
+    <div class="card" data-slot="table">
+      <div class="sport">Eastern Conference &nbsp;<span class="badge fn">2026-27</span></div>
+      <div class="inner" style="padding-top:14px">
+        <table class="ladder"><thead><tr><th></th><th>Team</th><th class="num">W-L</th><th class="pts">Pct</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" alt="" onerror="imgFail(this,'AH')">Atlanta Hawks</td><td class="num">2-0</td><td class="pts">1.000</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" alt="" onerror="imgFail(this,'DP')">Detroit Pistons</td><td class="num">2-0</td><td class="pts">1.000</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" alt="" onerror="imgFail(this,'P7')">Philadelphia 76ers</td><td class="num">2-0</td><td class="pts">1.000</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/tor.png" alt="" onerror="imgFail(this,'TR')">Toronto Raptors</td><td class="num">2-0</td><td class="pts">1.000</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ind.png" alt="" onerror="imgFail(this,'IP')">Indiana Pacers</td><td class="num">1-1</td><td class="pts">.500</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/wsh.png" alt="" onerror="imgFail(this,'WW')">Washington Wizards</td><td class="num">1-1</td><td class="pts">.500</td></tr></tbody></table>
+      </div>
+    </div>
     <div class="card" data-slot="table">
       <div class="sport">Western Conference &nbsp;<span class="badge fn">2026-27</span></div>
       <div class="inner" style="padding-top:14px">
@@ -2061,8 +2067,12 @@ function imgFail(img, initials){
         <div class="dr-note2" style="margin-top:12px">The Wolves lead the West.</div>
       </div>
     </div>
-<!--/BUILD:WOLVES-TABLE-->
-<!--BUILD:WOLVES-HERO-->
+<!--/BUILD:NBA-TABLE-->
+  </div>
+
+  <h2>Followed Team · Western Conference</h2>
+  <div class="hero">
+<!--BUILD:NBA-HERO-->
     <div class="card" data-slot="wlv" data-ends="2026-11-03T15:00:00+11:00">
       <div class="sport">Next Game &nbsp;<span class="badge home">Home</span> <span class="badge home">Good Time</span> <span class="badge soon"><span class="cd" data-until="2026-11-03"></span></span></div>
       <div class="crest dark">
@@ -2082,16 +2092,16 @@ function imgFail(img, initials){
         </div>
       </div>
     </div>
-<!--/BUILD:WOLVES-HERO-->
+<!--/BUILD:NBA-HERO-->
   </div>
 
-  <h2>Fixtures — What's Coming</h2>
+  <h2>Minnesota Timberwolves — Upcoming Games</h2>
   <table>
     <thead>
       <tr><th>Sydney date</th><th></th><th>Match</th><th>Arena</th><th>Watch</th></tr>
     </thead>
     <tbody>
-<!--BUILD:WOLVES-ROWS-->
+<!--BUILD:NBA-ROWS-->
       <tr class="big" data-sport="wlv" data-ends="2026-11-03T15:00:00+11:00" data-card="wlv11031200">
         <td class="d">Tue 3 Nov<small>12:00PM AEST</small></td>
         <td><span class="sporttag b">NBA</span></td>
@@ -2267,17 +2277,18 @@ function imgFail(img, initials){
         <td>TD Garden</td>
         <td><a class="mini buy" href="https://kayosports.com.au/">Watch · Kayo Sports</a><button class="mini" onclick="openCard('wlv02131200')">Details</button><button class="mini" onclick="addCal('wlv02131200')">+ Cal</button></td>
       </tr>
-<!--/BUILD:WOLVES-ROWS-->
+<!--/BUILD:NBA-ROWS-->
     </tbody>
   </table>
 
-  <h2>Western Conference</h2>
-<!--BUILD:WOLVES-FULL-->
+  <h2>Full Conference Standings</h2>
+<!--BUILD:NBA-FULL-->
+<div class="meta" style="margin-bottom:8px">Eastern Conference — 2026-27</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">Pct</th><th class="pts">GB</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" alt="" onerror="imgFail(this,'AH')">Atlanta Hawks</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" alt="" onerror="imgFail(this,'DP')">Detroit Pistons</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" alt="" onerror="imgFail(this,'P7')">Philadelphia 76ers</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/tor.png" alt="" onerror="imgFail(this,'TR')">Toronto Raptors</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ind.png" alt="" onerror="imgFail(this,'IP')">Indiana Pacers</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/wsh.png" alt="" onerror="imgFail(this,'WW')">Washington Wizards</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">7</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" alt="" onerror="imgFail(this,'BC')">Boston Celtics</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">8</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/chi.png" alt="" onerror="imgFail(this,'CB')">Chicago Bulls</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">9</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/cha.png" alt="" onerror="imgFail(this,'CH')">Charlotte Hornets</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">10</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bkn.png" alt="" onerror="imgFail(this,'BN')">Brooklyn Nets</td><td class="num">0</td><td class="num">1</td><td class="num">.000</td><td class="pts">1.5</td></tr><tr><td class="pos">11</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/cle.png" alt="" onerror="imgFail(this,'CC')">Cleveland Cavaliers</td><td class="num">0</td><td class="num">1</td><td class="num">.000</td><td class="pts">1.5</td></tr><tr><td class="pos">12</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" alt="" onerror="imgFail(this,'NY')">New York Knicks</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr><tr><td class="pos">13</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mil.png" alt="" onerror="imgFail(this,'MB')">Milwaukee Bucks</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr><tr><td class="pos">14</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/orl.png" alt="" onerror="imgFail(this,'OM')">Orlando Magic</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr><tr><td class="pos">15</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" alt="" onerror="imgFail(this,'MH')">Miami Heat</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/nba/standings" style="color:var(--grey)">ESPN NBA standings</a> — click through for the full detail, form guide and results.</div>
 <div class="meta" style="margin-bottom:8px">Western Conference — 2026-27</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">Pct</th><th class="pts">GB</th></tr></thead><tbody><tr class="me"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/min.png" alt="" onerror="imgFail(this,'MT')">Minnesota Timberwolves</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/por.png" alt="" onerror="imgFail(this,'PT')">Portland Trail Blazers</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" alt="" onerror="imgFail(this,'LA')">Los Angeles Lakers</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" alt="" onerror="imgFail(this,'OC')">Oklahoma City Thunder</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" alt="" onerror="imgFail(this,'MG')">Memphis Grizzlies</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" alt="" onerror="imgFail(this,'HR')">Houston Rockets</td><td class="num">2</td><td class="num">0</td><td class="num">1.000</td><td class="pts">-</td></tr><tr><td class="pos">7</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lac.png" alt="" onerror="imgFail(this,'LC')">LA Clippers</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">8</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/utah.png" alt="" onerror="imgFail(this,'UJ')">Utah Jazz</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">9</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/dal.png" alt="" onerror="imgFail(this,'DM')">Dallas Mavericks</td><td class="num">1</td><td class="num">1</td><td class="num">.500</td><td class="pts">1</td></tr><tr><td class="pos">10</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/den.png" alt="" onerror="imgFail(this,'DN')">Denver Nuggets</td><td class="num">0</td><td class="num">1</td><td class="num">.000</td><td class="pts">1.5</td></tr><tr><td class="pos">11</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phx.png" alt="" onerror="imgFail(this,'PS')">Phoenix Suns</td><td class="num">0</td><td class="num">1</td><td class="num">.000</td><td class="pts">1.5</td></tr><tr><td class="pos">12</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/no.png" alt="" onerror="imgFail(this,'NO')">New Orleans Pelicans</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr><tr><td class="pos">13</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" alt="" onerror="imgFail(this,'SA')">San Antonio Spurs</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr><tr><td class="pos">14</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/gs.png" alt="" onerror="imgFail(this,'GS')">Golden State Warriors</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr><tr><td class="pos">15</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sac.png" alt="" onerror="imgFail(this,'SK')">Sacramento Kings</td><td class="num">0</td><td class="num">2</td><td class="num">.000</td><td class="pts">2</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/nba/standings" style="color:var(--grey)">ESPN NBA standings</a> — click through for the full detail, form guide and results.</div>
-<!--/BUILD:WOLVES-FULL-->
+<!--/BUILD:NBA-FULL-->
 
-  <footer>All times Sydney. NBA tip-offs run through the US evening, which lands anywhere from a Sydney lunchtime to the small hours depending on the time zone — the schedule comes from the live NBA feed and is rebuilt every morning. Australian games are shown on Kayo Sports.</footer>
-</div><!-- /pane-wolves -->
+  <footer>The NBA is organised here as one league—not one tab per team. Eastern and Western Conference standings refresh daily, while followed teams such as the Minnesota Timberwolves sit inside their conference with Sydney-time fixtures, viewing links and calendar buttons. Australian games are shown on Kayo Sports.</footer>
+</div><!-- /pane-nba -->
 
 <!-- ================= TAB · COMEDY ================= -->
 <div class="pane" id="pane-comedy">
@@ -3749,8 +3760,8 @@ const TENNIS_CARDS = {
 /*/BUILD:TENNIS-CARDS*/
 };
 
-const WOLVES_CARDS = {
-/*BUILD:WOLVES-CARDS*/
+const NBA_CARDS = {
+/*BUILD:NBA-CARDS*/
   wlv11031200: {
     emoji:"🏀",
     cal:{s:"2026-11-03T01:00:00Z",e:"2026-11-03T04:00:00Z",loc:"Target Center"},
@@ -4001,7 +4012,7 @@ const WOLVES_CARDS = {
     secs:[{h:"The Game",b:[["Boston Celtics v Wolves", "away game", 1],["Tip-off", "Saturday 13 February, 12:00PM Sydney time"],["Arena", "TD Garden"],["The verdict", "Saturday 12:00PM Sydney \u2014 a civilised one for once"]]}],
     note:"Tip-off times move for national TV picks — this follows the live NBA schedule feed, so check back closer to the date."
   }
-/*/BUILD:WOLVES-CARDS*/
+/*/BUILD:NBA-CARDS*/
 };
 
 const COMEDY_CARDS = {
@@ -4712,13 +4723,13 @@ const BKFC_CARDS = {
 /*/BUILD:BKFC-CARDS*/
 };
 
-const CARDS = Object.assign({}, FIGHT_CARDS, BKFC_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, TENNIS_CARDS, WOLVES_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
+const CARDS = Object.assign({}, FIGHT_CARDS, BKFC_CARDS, MANUAL_CARDS, NRL_CARDS, RAI_CARDS, UTD_CARDS, F1_CARDS, MGP_CARDS, PGA_CARDS, TENNIS_CARDS, NBA_CARDS, COMEDY_CARDS, MOVIE_CARDS, SERIES_CARDS, SYDNEY_CARDS);
 
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
 const RADAR_TAB_LABELS = {
   fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',food:'Food & Drinks',sydney:"What's On Sydney",
-  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',pga:'PGA Golf',tennis:'Tennis',wolves:'Wolves'
+  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',pga:'PGA Golf',tennis:'Tennis',nba:'NBA',wolves:'NBA'
 };
 let radarCatalog = {};
 
@@ -4727,7 +4738,10 @@ function loadRadarState(){
   try{
     const raw = JSON.parse(localStorage.getItem(RADAR_STATE_KEY) || 'null');
     if(!raw || typeof raw !== 'object') return emptyRadarState();
-    return {saved: raw.saved && typeof raw.saved === 'object' ? raw.saved : {}};
+    const saved = raw.saved && typeof raw.saved === 'object' ? raw.saved : {};
+    // Preserve existing Wolves saves while moving the public navigation to NBA.
+    Object.values(saved).forEach(item => { if(item && item.category === 'wolves') item.category = 'nba'; });
+    return {saved};
   }catch(_e){ return emptyRadarState(); }
 }
 let radarState = loadRadarState();
@@ -5518,7 +5532,7 @@ function initFoodExplorer(){
 }
 
 /* ===== UNIVERSAL SEARCH ===== */
-const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','pga','tennis','wolves'];
+const SEARCH_SPORT_TABS = ['fights','other','panthers','raiders','united','f1','motogp','pga','tennis','nba'];
 let radarSearchQuery = '';
 let radarSearchFilter = 'all';
 let radarSearchService = '';
@@ -5741,10 +5755,10 @@ const RANGES = {
   motogp:   "MotoGP 2026 · every round in Sydney time",
   pga:      "PGA TOUR 2026 · tournaments, FedExCup & Australian viewing guide",
   tennis:   "ATP & WTA 2026 · tournaments, rankings & Australian viewing guide",
-  wolves:   "NBA 2026-27 · Minnesota Timberwolves in Sydney time"
+  nba:      "NBA 2026-27 · Eastern & Western Conferences · followed teams in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','bkfc','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','tennis','wolves','food','myradar','sydney'];
+const DEFAULT_TAB_ORDER = ['fights','bkfc','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','tennis','nba','food','myradar','sydney'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
 const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.tennisAfterPga.v1';
 
@@ -5758,6 +5772,7 @@ function restoreTabOrder(){
   let saved = [];
   try{ saved = JSON.parse(localStorage.getItem(TAB_ORDER_KEY) || '[]'); }catch(_e){}
   if(!Array.isArray(saved)) saved = [];
+  saved = saved.map(id => id === 'wolves' ? 'nba' : id);
   const known = saved.filter(id => DEFAULT_TAB_ORDER.includes(id));
   const missing = DEFAULT_TAB_ORDER.filter(id => !known.includes(id));
   let order = saved.length ? [...known,...missing] : [...DEFAULT_TAB_ORDER];
@@ -5848,6 +5863,7 @@ function bindTabDrag(){
   });
 }
 function showTab(id){
+  if(id === 'wolves') id = 'nba';
   if(!RANGES[id]) id = 'fights';
   document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
@@ -5997,14 +6013,19 @@ function refreshRadar(){
 
   // 1. drop anything whose grace period has expired
   // A fight that is on right now, or finished this morning, is exactly when
-  // people look it up. So a row survives its own finish time by GRACE_MS and
-  // is greyed out as Finished in the meantime, instead of vanishing mid-card.
-  // This covers every tab, not just the fights.
-  const GRACE_MS = 48 * 60 * 60 * 1000;
+  // people look it up. UFC and boxing therefore remain fully clickable for a
+  // complete 24 hours after the estimated broadcast finish. Other event tabs
+  // keep their existing 48-hour finished-row behaviour.
+  const FIGHT_GRACE_MS = 24 * 60 * 60 * 1000;
+  const DEFAULT_GRACE_MS = 48 * 60 * 60 * 1000;
+  const isFight = node => ['ufc','box'].includes(node.dataset.sport || node.dataset.slot || '');
+  const retentionMs = node => isFight(node) ? FIGHT_GRACE_MS : DEFAULT_GRACE_MS;
   document.querySelectorAll('tbody tr[data-ends]').forEach(tr => {
     const fin = new Date(tr.dataset.ends);
-    if (fin.getTime() + GRACE_MS < now) { tr.remove(); return; }
-    if (fin < now && !tr.classList.contains('done')){
+    if (fin.getTime() + retentionMs(tr) < now) { tr.remove(); return; }
+    // A retained fight is intentionally still a live, usable card: viewers
+    // may be opening the stream, replay, results or full card later that day.
+    if (!isFight(tr) && fin < now && !tr.classList.contains('done')){
       tr.classList.add('done');
       const ev = tr.querySelector('.ev');
       if (ev && !tr.querySelector('.badge.fin')){
@@ -6019,13 +6040,10 @@ function refreshRadar(){
   // 2. promote a stale hero to the next event in its slot
   document.querySelectorAll('.card[data-slot]').forEach(card => {
     const ends = card.dataset.ends;
-    if (!ends || new Date(ends) >= now) return;
-    // Skip rows that have themselves finished — recently-finished events now
-    // linger in the table, so grabbing the first row would just re-promote the
-    // fight that has only just ended and leave it billed as the next one.
+    if (!ends || new Date(ends).getTime() + retentionMs(card) >= now) return;
     const next = [...card.closest('.pane')
                          .querySelectorAll('tbody tr[data-sport="' + card.dataset.slot + '"]')]
-                 .find(tr => new Date(tr.dataset.ends) >= now);
+                 .find(tr => new Date(tr.dataset.ends).getTime() + retentionMs(tr) >= now);
     if (next) heroFromRow(card, next);
     else emptyHero(card, 'Nothing left on the radar in this category — new dates get added as they are announced.');
   });

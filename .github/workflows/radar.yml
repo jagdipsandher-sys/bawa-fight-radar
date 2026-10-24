@@ -51,9 +51,9 @@ jobs:
       - name: Rebuild the ATP and WTA tennis calendar
         continue-on-error: true
         run: python build_tennis.py
-      - name: Rebuild the Wolves fixtures
+      - name: Rebuild the NBA followed-team fixtures
         continue-on-error: true
-        run: python build_wolves.py
+        run: python build_nba.py
       - name: Rebuild the standings panels
         continue-on-error: true
         run: python build_standings.py

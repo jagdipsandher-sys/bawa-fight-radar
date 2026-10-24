@@ -114,11 +114,12 @@ def name_of(entry):
 
 
 def card(title, sub, inner, note=""):
+    note_html = (f'\n        <div class="dr-note2" style="margin-top:12px">{esc(note)}</div>'
+                 if note else "")
     return f"""    <div class="card" data-slot="table">
       <div class="sport">{esc(title)} &nbsp;<span class="badge fn">{esc(sub)}</span></div>
       <div class="inner" style="padding-top:14px">
-        {inner}
-        {'<div class="dr-note2" style="margin-top:12px">' + esc(note) + '</div>' if note else ''}
+        {inner}{note_html}
       </div>
     </div>"""
 
@@ -325,13 +326,10 @@ def find_conference(data, keyword):
     return None, ""
 
 
-def nba_rows(data):
+def nba_rows(data, conference):
     if not data:
         return None, ""
-    entries, group_name = find_conference(data, "west")
-    if not entries:
-        entries = collect_entries(data)         # unrecognised shape — show what there is
-        group_name = "NBA"
+    entries, group_name = find_conference(data, conference)
     if not entries:
         return None, ""
     rows = []
@@ -360,8 +358,8 @@ def nba_played_any(rows):
 
 
 def nba_data():
-    """This season's Western Conference table, or last season's final one if
-    the new season hasn't tipped off yet — same reasoning as pl_data().
+    """Both conference tables, or last season's final tables if the new season
+    hasn't tipped off yet — same reasoning as pl_data().
 
     ESPN's NBA "season" parameter is the year the season ENDS, not starts
     (season=2026 is the 2025-26 season), the opposite of the Premier League's
@@ -370,22 +368,26 @@ def nba_data():
     that end year, for both branches, so callers can label consistently.
     """
     year = datetime.now(timezone.utc).year
-    rows, group = nba_rows(get(NBA, year + 1))
-    if nba_played_any(rows):
-        return rows, group, False, year + 1
-    prev, prev_group = nba_rows(get(NBA, year))
-    if nba_played_any(prev):
-        return prev, prev_group, True, year
-    return rows, group, False, year + 1
+    current = get(NBA, year + 1)
+    east, east_group = nba_rows(current, "east")
+    west, west_group = nba_rows(current, "west")
+    if nba_played_any(east) or nba_played_any(west):
+        return east, east_group, west, west_group, False, year + 1
+    previous = get(NBA, year)
+    prev_east, prev_east_group = nba_rows(previous, "east")
+    prev_west, prev_west_group = nba_rows(previous, "west")
+    if nba_played_any(prev_east) or nba_played_any(prev_west):
+        return prev_east, prev_east_group, prev_west, prev_west_group, True, year
+    return east, east_group, west, west_group, False, year + 1
 
 
-def nba_panel(rows, group, is_last, season_year):
+def nba_panel(rows, group, is_last, season_year, highlight=""):
     if not nba_played_any(rows):
-        return not_started("Western Conference", "NBA",
+        return not_started(group or "NBA Conference", "NBA",
                            "The season hasn't tipped off yet and there is no previous table "
                            "to fall back on.")
     top = rows[:6]
-    mine = next((r for r in rows if r["name"] == ME_NBA), None)
+    mine = next((r for r in rows if r["name"] == highlight), None) if highlight else None
     show, gapped = list(top), False
     if mine and mine not in top:
         gapped, show = True, top + [mine]
@@ -394,7 +396,7 @@ def nba_panel(rows, group, is_last, season_year):
     for i, r in enumerate(show):
         if gapped and i == len(top):
             body += '<tr><td class="gap" colspan="4"></td></tr>'
-        cls = ' class="me"' if r["name"] == ME_NBA else (' class="lead"' if r["rank"] == 1 else "")
+        cls = ' class="me"' if r["name"] == highlight else (' class="lead"' if r["rank"] == 1 else "")
         body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
                  f'<td class="who">{crest(r)}{esc(SHORT_NBA.get(r["name"], r["name"]))}</td>'
                  f'<td class="num">{esc(r["won"])}-{esc(r["lost"])}</td>'
@@ -419,13 +421,13 @@ def nba_panel(rows, group, is_last, season_year):
     return card(group or "Western Conference", sub, table, note)
 
 
-def nba_full(rows, group, is_last, season_year):
+def nba_full(rows, group, is_last, season_year, highlight=""):
     if not nba_played_any(rows):
         return ('<table><tbody><tr><td class="gone">No table yet — the season hasn\'t tipped off '
                 'and there is nothing to show.</td></tr></tbody></table>')
     body = ""
     for r in rows:
-        cls = ' class="me"' if r["name"] == ME_NBA else (' class="lead"' if r["rank"] == 1 else "")
+        cls = ' class="me"' if r["name"] == highlight else (' class="lead"' if r["rank"] == 1 else "")
         body += (f'<tr{cls}><td class="pos">{r["rank"]}</td>'
                  f'<td class="who">{crest(r)}{esc(r["name"])}</td>'
                  f'<td class="num">{esc(r["won"])}</td><td class="num">{esc(r["lost"])}</td>'
@@ -439,6 +441,21 @@ def nba_full(rows, group, is_last, season_year):
             '<th class="pts">GB</th></tr></thead>'
             f'<tbody>{body}</tbody></table>'
             + source_note(SRC_NBA, "ESPN NBA standings"))
+
+
+def nba_panels(east, east_group, west, west_group, is_last, season_year):
+    """One summary card per conference; the followed team is highlighted."""
+    return "\n".join([
+        nba_panel(east, east_group or "Eastern Conference", is_last, season_year),
+        nba_panel(west, west_group or "Western Conference", is_last, season_year, ME_NBA),
+    ])
+
+
+def nba_full_conferences(east, east_group, west, west_group, is_last, season_year):
+    return "\n".join([
+        nba_full(east, east_group or "Eastern Conference", is_last, season_year),
+        nba_full(west, west_group or "Western Conference", is_last, season_year, ME_NBA),
+    ])
 
 
 def splice(page, marker, block):
@@ -456,8 +473,9 @@ def main():
     drivers, teams = f1_data()
     print(f"  {len(drivers)} drivers, {len(teams)} constructors")
     print("NBA:")
-    nba_r, nba_group, nba_is_last, nba_year = nba_data()
-    print(f"  {len(nba_r or [])} teams, group {nba_group!r}, season {nba_year}, using last season: {nba_is_last}")
+    nba_east, nba_east_group, nba_west, nba_west_group, nba_is_last, nba_year = nba_data()
+    print(f"  {len(nba_east or [])} East, {len(nba_west or [])} West, "
+          f"season {nba_year}, using last season: {nba_is_last}")
 
     page = open(PAGE).read()
     before = page
@@ -465,8 +483,10 @@ def main():
     page = splice(page, "F1-TABLE", f1_panel(drivers, teams))
     page = splice(page, "UTD-FULL", pl_full(pl_r, pl_season, is_last))
     page = splice(page, "F1-FULL", f1_full(drivers, teams))
-    page = splice(page, "WOLVES-TABLE", nba_panel(nba_r, nba_group, nba_is_last, nba_year))
-    page = splice(page, "WOLVES-FULL", nba_full(nba_r, nba_group, nba_is_last, nba_year))
+    page = splice(page, "NBA-TABLE", nba_panels(
+        nba_east, nba_east_group, nba_west, nba_west_group, nba_is_last, nba_year))
+    page = splice(page, "NBA-FULL", nba_full_conferences(
+        nba_east, nba_east_group, nba_west, nba_west_group, nba_is_last, nba_year))
     if page == before:
         print("standings already current")
         return

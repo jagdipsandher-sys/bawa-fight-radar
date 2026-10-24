@@ -8,6 +8,7 @@ on:
     paths:
       - "index.html"
       - "build_*.py"
+      - "test_*.py"
       - "verify_page.py"
   workflow_dispatch: {}
 permissions:
@@ -21,4 +22,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: Check the page is not broken
-        run: python verify_page.py
+        run: |
+          python -m unittest discover -p 'test_*.py'
+          python verify_page.py

@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
 """
-Rebuilds the Wolves (Minnesota Timberwolves) tab from ESPN's NBA feed.
+Rebuilds followed-team fixtures inside the NBA tab from ESPN's NBA feed.
 
 Same idea as the Man Utd tab — the point is the CLOCK. NBA tip-offs are US
 evening times, which land anywhere from a Sydney lunchtime to a Sydney
 sunrise depending on which US time zone the game is in, so everything is
 converted to Sydney and the awkward ones are called out.
 
-Only one competition exists here (no cups to juggle like the football tab),
-so this queries a week at a time like the Panthers/Raiders builders rather
-than the fortnightly multi-competition walk build_united.py does. The NBA
-season doesn't start until mid-October, so in the off-season this correctly
-returns nothing until the schedule is out — see finals_tail-less handling
-in main().
+The top-level page is organised by conference; this builder owns the followed
+teams subsection. Keep the team definitions together so another club can be
+added here without creating another top-level navigation tab.
 """
 import html
 import json
@@ -24,7 +21,11 @@ from datetime import datetime, timedelta, timezone
 from espn_dates import months_covering
 from send_fights import SYD
 
-TEAM = "Timberwolves"
+FOLLOWED_TEAMS = [
+    {"key": "wlv", "match": "Timberwolves", "short": "Wolves",
+     "name": "Minnesota Timberwolves", "conference": "Western Conference"},
+]
+TEAM = FOLLOWED_TEAMS[0]
 WEEKS_AHEAD = 16          # off-season now; this needs to reach the October tip-off
 PAGE = "index.html"
 FEED = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates={}"
@@ -54,7 +55,7 @@ def fetch_month(ym):
         return None
     out = []
     for ev in data.get("events", []):
-        if TEAM not in ev.get("name", ""):
+        if TEAM["match"] not in ev.get("name", ""):
             continue
         comp = (ev.get("competitions") or [{}])[0]
         teams = {t.get("homeAway"): (t.get("team") or {}).get("displayName", "")
@@ -71,7 +72,7 @@ def fetch_month(ym):
         # a substring test — an exact-equality check here left every game
         # reading as "away" and, for actual home games, showed the Wolves'
         # own name back as the "opponent".
-        home = TEAM in teams.get("home", "")
+        home = TEAM["match"] in teams.get("home", "")
         out.append({
             "when": when,
             "home": home,
@@ -123,7 +124,7 @@ BADGE = {"good": '<span class="badge home">Good Time</span>',
 
 
 def cid(g):
-    return f"wlv{syd(g['when']):%m%d%H%M}"
+    return f"{TEAM['key']}{syd(g['when']):%m%d%H%M}"
 
 
 def ends(g):
@@ -140,13 +141,14 @@ def crest(url, name, size=""):
 
 
 def title(g):
-    return f"Wolves v {g['opponent']}" if g["home"] else f"{g['opponent']} v Wolves"
+    return (f"{TEAM['short']} v {g['opponent']}" if g["home"]
+            else f"{g['opponent']} v {TEAM['short']}")
 
 
 def row(g):
     verdict, band = watchability(g)
     ha = '<span class="badge home">Home</span>' if g["home"] else '<span class="badge away">Away</span>'
-    return f"""      <tr{' class="big"' if band == 'good' else ''} data-sport="wlv" data-ends="{ends(g)}" data-card="{cid(g)}">
+    return f"""      <tr{' class="big"' if band == 'good' else ''} data-sport="{TEAM['key']}" data-ends="{ends(g)}" data-card="{cid(g)}">
         <td class="d">{syd(g['when']):%a %-d %b}<small>{syd(g['when']):%-I:%M%p} AEST</small></td>
         <td><span class="sporttag b">NBA</span></td>
         <td>{crest(g['logo'], g['opponent'])}<span class="ev">{esc(title(g))}</span> {ha} {BADGE[band]}<br><span class="sub">{esc(verdict)}</span></td>
@@ -158,10 +160,10 @@ def row(g):
 def hero(g):
     verdict, band = watchability(g)
     ha = '<span class="badge home">Home</span>' if g["home"] else '<span class="badge away">Away</span>'
-    return f"""    <div class="card" data-slot="wlv" data-ends="{ends(g)}">
+    return f"""    <div class="card" data-slot="{TEAM['key']}" data-ends="{ends(g)}">
       <div class="sport">Next Game &nbsp;{ha} {BADGE[band]} <span class="badge soon"><span class="cd" data-until="{syd(g['when']):%Y-%m-%d}"></span></span></div>
       <div class="crest dark">
-        <div class="big">{crest(g['mylogo'] if g['home'] else g['logo'], 'x', 'width:34px;height:34px;vertical-align:middle;margin-right:8px')}{esc(g['opponent'] if not g['home'] else 'Wolves')} <em>v</em> {esc('Wolves' if not g['home'] else g['opponent'])}{crest(g['logo'] if g['home'] else g['mylogo'], 'x', 'width:34px;height:34px;vertical-align:middle;margin-left:8px')}</div>
+        <div class="big">{crest(g['mylogo'] if g['home'] else g['logo'], 'x', 'width:34px;height:34px;vertical-align:middle;margin-right:8px')}{esc(g['opponent'] if not g['home'] else TEAM['short'])} <em>v</em> {esc(TEAM['short'] if not g['home'] else g['opponent'])}{crest(g['logo'] if g['home'] else g['mylogo'], 'x', 'width:34px;height:34px;vertical-align:middle;margin-left:8px')}</div>
         <div class="lil">{esc(g['venue'] or 'venue TBC')}</div>
       </div>
       <div class="inner">
@@ -216,7 +218,7 @@ def main():
         # log shows a failure; the workflow has continue-on-error set, so the
         # rest of the site still rebuilds.
         print(f"FEED FAILURE: all {tried} month queries to the NBA feed failed. "
-              "The Wolves tab has been left exactly as it was. "
+              "The NBA followed-team section has been left exactly as it was. "
               "This is a broken feed, not an empty season — it needs looking at.")
         sys.exit(1)
     if not games:
@@ -224,23 +226,23 @@ def main():
             print(f"warning: {failed} of {tried} month queries failed")
         print("the NBA feed answered and had no upcoming Timberwolves fixtures — "
               "season finished, or next season's draw is not out yet. "
-              "Leaving the Wolves tab as it is.")
+              "Leaving the NBA followed-team section as it is.")
         return
 
-    print(f"{len(games)} upcoming Timberwolves fixtures:")
+    print(f"{len(games)} upcoming {TEAM['name']} fixtures:")
     for g in games:
         print(f"  {syd(g['when']):%a %d %b %-I:%M%p} {'v' if g['home'] else 'away to'} {g['opponent']}")
 
     page = open(PAGE).read()
     before = page
-    page = splice(page, "WOLVES-HERO", hero(games[0]))
-    page = splice(page, "WOLVES-ROWS", "\n".join(row(g) for g in games))
-    page = splice(page, "WOLVES-CARDS", ",\n".join(card(g) for g in games))
+    page = splice(page, "NBA-HERO", hero(games[0]))
+    page = splice(page, "NBA-ROWS", "\n".join(row(g) for g in games))
+    page = splice(page, "NBA-CARDS", ",\n".join(card(g) for g in games))
     if page == before:
-        print("wolves tab already current")
+        print("NBA followed-team section already current")
         return
     open(PAGE, "w").write(page)
-    print(f"rebuilt the Wolves tab: {len(games)} fixtures")
+    print(f"rebuilt the NBA followed-team section: {len(games)} fixtures")
 
 
 if __name__ == "__main__":

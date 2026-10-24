@@ -25,11 +25,11 @@ from send_fights import SYD, au_watch, fetch_ufc, load_boxing
 
 WEEKS_AHEAD = 4
 # A fight that is on right now, or finished this morning, is exactly when
-# people go looking for it. Events therefore survive their own finish time by
-# this much before dropping off. Previously an event was dropped the moment
-# its FIRST PRELIM started, which on 20 Sep 2026 deleted UFC 331 seventeen
-# minutes in, four hours before the main event.
-GRACE_HOURS = 48
+# people go looking for it. Keep the complete, clickable card for one full day
+# after the estimated end of the broadcast, then remove it. Previously the row
+# lingered for 48 hours but the featured card and watch link stopped working as
+# soon as the estimated finish time passed.
+GRACE_HOURS = 24
 PAGE = "index.html"
 
 WATCH_URL = {
@@ -139,14 +139,25 @@ def finishes_at(ev):
 def ends_at(ev):
     """When the broadcast is over, in Sydney time.
 
-    This marks 'still on' vs 'finished' — it is NOT when the row disappears.
-    The page keeps a finished row for GRACE_HOURS after this and greys it out.
+    This marks the estimated end of the broadcast. It is NOT when the card
+    disappears: both the builder and browser retain it until expires_at().
     """
     return finishes_at(ev).astimezone(SYD).isoformat()
 
 
-def finished(ev, now=None):
-    return finishes_at(ev) < (now or datetime.now(timezone.utc))
+def expires_at(ev):
+    """The first instant at which a fight is no longer shown on the radar."""
+    return finishes_at(ev) + timedelta(hours=GRACE_HOURS)
+
+
+def retained(ev, now=None):
+    """True throughout the event and its complete post-fight grace window."""
+    return expires_at(ev) >= (now or datetime.now(timezone.utc))
+
+
+def featured_event(events):
+    """The earliest retained fight stays featured until its expiry time."""
+    return events[0] if events else None
 
 
 def is_ppv(ev):
@@ -309,9 +320,7 @@ def main():
     events = fetch_ufc(since, end, limit=16) + load_boxing(since, end)
     # Keep an event until its broadcast has finished plus the grace period,
     # rather than dropping it at the opening bell.
-    events = [e for e in events
-              if finishes_at(e) + timedelta(hours=GRACE_HOURS) >= now
-              and e["when_utc"] <= end]
+    events = [e for e in events if retained(e, now) and e["when_utc"] <= end]
     events.sort(key=lambda e: e["when_utc"])
     for e in events:
         e.setdefault("watch", "")
@@ -325,21 +334,18 @@ def main():
     ufc = [e for e in events if e["sport"].startswith("UFC")]
     box = [e for e in events if not e["sport"].startswith("UFC")]
 
-    # The table now keeps recently-finished events, so the headline card must
-    # pick the first one still to come (or still on) rather than events[0],
-    # which could be a fight that finished yesterday.
-    def next_up(group):
-        return next((e for e in group if not finished(e, now)), group[0] if group else None)
-
     heroes = []
-    ufc_hero, box_hero = next_up(ufc), next_up(box)
+    # Every event in these lists is still inside its retention window. Keep
+    # the earliest one featured even after the broadcast finishes so today's
+    # card remains prominent and watchable for the full 24 hours.
+    ufc_hero = featured_event(ufc)
+    box_hero = featured_event(box)
     if ufc_hero:
         heroes.append(hero_html(ufc_hero, "UFC"))
     if box_hero:
         heroes.append(hero_html(box_hero, box_hero["sport"]))
     if len(heroes) == 1:                      # keep the two-up grid balanced
-        spare = next((e for e in events
-                      if e is not ufc_hero and e is not box_hero and not finished(e, now)), None)
+        spare = next((e for e in events if e is not ufc_hero and e is not box_hero), None)
         heroes.append(hero_html(spare, spare["sport"]) if spare else "")
 
     page = open(PAGE).read()

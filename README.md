@@ -32,7 +32,7 @@ the usual culprit is the app password (check the spaces are stripped).
 
 ## The radar page (`index.html`)
 
-Sixteen tabs, with the dashboard itself kept in one main file. On desktop the
+Seventeen tabs, with the dashboard itself kept in one main file. On desktop the
 tabs sit in a left-hand rail; on
 mobile the **Sections** button opens that same rail. Drag them into a new order,
 or tap **Reorder** and use the arrows. The choice is saved on that device.
@@ -64,7 +64,10 @@ detail panel; event tabs also include calendar buttons):
   and Australian viewing links. Regular tour coverage routes to beIN Sports and
   the US Open to Stan; tournament windows can include qualifying, and
   unconfirmed match times are never guessed.
-- **Wolves** — Minnesota Timberwolves fixtures in Sydney time and standings.
+- **NBA** — Eastern and Western Conference standings in one league view. The
+  Minnesota Timberwolves are the first followed-team subsection under the West,
+  with Sydney-time fixtures, viewing links and calendar buttons. More followed
+  teams can be added inside NBA without creating another top-level tab.
 - **Food & Drinks** — a location-aware restaurant and bar explorer. Start from
   any Australian suburb or the device’s current location, then choose Chai &
   Paratha, Sunday Lunch, Cheap Eats, CBD Steaks, CBD Bars & Views, CBD Italian
@@ -83,7 +86,7 @@ detail panel; event tabs also include calendar buttons):
 
 Tabs are linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`, `index.html#movies`,
 `index.html#series`, `index.html#panthers`, `index.html#raiders`,
-`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#pga`, `index.html#tennis`, `index.html#wolves`, `index.html#food`,
+`index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#pga`, `index.html#tennis`, `index.html#nba`, `index.html#food`,
 `index.html#myradar`, `index.html#sydney`.
 
 Universal search sits above the desktop tab list; on mobile, a **Search** button
@@ -109,7 +112,7 @@ viewing.
 | MotoGP | Official MotoGP feed | `build_motogp.py`, daily |
 | PGA Golf | ESPN PGA TOUR calendar + official PGA TOUR schedule and FedExCup table | `build_pga.py`, daily; exact broadcast sessions link to Kayo |
 | Tennis | ESPN ATP/WTA feeds + official ATP/WTA calendars and rankings | `build_tennis.py`, daily; viewing routes to beIN Sports or Stan without guessing match times |
-| Wolves | ESPN NBA feed | `build_wolves.py`, daily |
+| NBA | ESPN NBA feed | `build_nba.py` + `build_standings.py`, daily |
 | Other Action | Human web search | Scheduled Claude session, Sun night 1am Sydney |
 | Comedy | Official venue, promoter and ticket pages | Human web search; 12-month Sydney watch window |
 | Movies | Official studio and Australian cinema listings | Human web search; current and coming-soon releases |
