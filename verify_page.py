@@ -112,7 +112,7 @@ if len(sydney_cards) != 12:
 
 # 6. the tabs themselves must be intact
 for pane in ["pane-bkfc", "pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
-             "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
+             "pane-nrl", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
              "pane-pga", "pane-tennis", "pane-nba"]:
     if f'id="{pane}"' not in page:
         fail(f"tab {pane} has gone missing")
@@ -126,12 +126,20 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 "setRadarSearchService", 'id="radarViewSaved"',
                 'id="radarViewAlerts"', 'id="radarViewPlanner"',
                 'data-radar-view="planner"', 'data-planner-window="weekend"',
-                "renderRadarPlanner", "radarPlannerClashes", 'data-tab-item="pga"',
-                "PGA_CARDS", 'data-tab-item="tennis"', "TENNIS_CARDS",
-                'data-tab-item="nba"', "NBA_CARDS", 'data-tab-item="bkfc"', "BKFC_CARDS",
+                "renderRadarPlanner", "radarPlannerClashes", 'data-tab-item="combat"',
+                'data-tab-item="teams"', 'data-tab-item="motorsport"',
+                'data-tab-item="golf-tennis"', 'data-tab-item="watch"',
+                'data-tab-item="whats-on"', "NAV_GROUPS", "GROUP_VIEW_KEY",
+                "nrlSeasonActive", "renderSectionSwitcher", "PGA_CARDS", "TENNIS_CARDS",
+                "NBA_CARDS", "BKFC_CARDS",
                 "FIGHT_GRACE_MS = 24 * 60 * 60 * 1000", "isFight(node)"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")
+
+expected_nav = {"myradar", "combat", "teams", "motorsport", "golf-tennis", "watch", "whats-on", "food"}
+actual_nav = set(re.findall(r'<div class="tab-item[^>]*data-tab-item="([^"]+)"', page))
+if actual_nav != expected_nav:
+    fail(f"sidebar should contain exactly the eight grouped sections; found {sorted(actual_nav)}")
 
 for food_control in ['data-tab-item="food"', 'id="foodLocationInput"', 'id="foodResults"',
                      'id="foodMap"', 'data-food-category="paratha"',

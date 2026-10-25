@@ -32,59 +32,30 @@ the usual culprit is the app password (check the spaces are stripped).
 
 ## The radar page (`index.html`)
 
-Seventeen tabs, with the dashboard itself kept in one main file. On desktop the
-tabs sit in a left-hand rail; on
-mobile the **Sections** button opens that same rail. Drag them into a new order,
-or tap **Reorder** and use the arrows. The choice is saved on that device.
+Eight permanent sections replace the old list of seventeen individual feeds.
+On desktop they sit in the left-hand rail; on mobile the **Sections** button
+opens the same rail. Each section has a compact internal switcher and remembers
+the visitor's last-opened subsection. The eight sections can still be reordered.
 
-Each tab follows the same layout (hero cards, lookahead table and slide-out
-detail panel; event tabs also include calendar buttons):
+- **My Radar** — the same private, completely manual shortlist and alerts.
+- **Combat Sports** — UFC and boxing together with Bare Knuckle.
+- **Team Sports** — NRL followed teams, Man Utd/football and NBA. Panthers and
+  Raiders appear beneath NRL during the season; during the off-season they are
+  replaced by one compact NRL status page. They return automatically when a
+  confirmed fixture is within four weeks.
+- **Motorsport** — Formula 1, MotoGP and other live vehicle events in one place.
+  Future Supercars or rally feeds belong here and only appear when populated.
+- **Golf & Tennis** — PGA Golf and the combined ATP/WTA radar.
+- **Watch** — latest movies and the 33-show personalised series library.
+- **What's On** — the Sydney city guide and the 12-month comedy calendar.
+- **Food & Drinks** — the existing location-aware 4.1+ restaurant and bar
+  explorer, including Chai & Paratha, Sunday Lunch and CBD client venues.
 
-- **Fights** — UFC and boxing, as before.
-- **Other Action** — monster trucks and motorsport around Sydney/NSW. The one
-  that matters: **Monster Jam, Accor Stadium, Sat 10 Oct 2026, 6pm, from $34.**
-- **Comedy** — confirmed headline stand-up shows across a 12-month Sydney watch
-  window, with official event artwork and ticket details only.
-- **Movies** — current and imminent Australian cinema releases, official poster
-  art, details and links to live Sydney session times.
-- **Series** — a 33-show personalised library built around Game of Thrones,
-  The Sopranos, Mayor of Kingstown and gritty British/Irish crime drama. It is
-  grouped by mood and mixes new releases with older essentials.
-- **Panthers** — Penrith's remaining 2026 fixtures with venues, kick-off times
-  and where to buy.
-- **Raiders** — Canberra's remaining NRL fixtures and finals path.
-- **Man Utd** — Manchester United fixtures in Sydney time and the league table.
-- **F1** and **MotoGP** — race weekends, Sydney session times and standings.
-- **PGA Golf** — the upcoming PGA TOUR schedule, courses and locations,
-  FedExCup playoff picture, live leaderboards, Australian viewing guidance and
-  Kayo links. Tournament dates refresh daily; unconfirmed tee times are never
-  presented as exact starts.
-- **Tennis** — a combined ATP and WTA radar with the next tournament, remaining
-  calendar, current official rankings, Australian players to watch, live scores
-  and Australian viewing links. Regular tour coverage routes to beIN Sports and
-  the US Open to Stan; tournament windows can include qualifying, and
-  unconfirmed match times are never guessed.
-- **NBA** — Eastern and Western Conference standings in one league view. The
-  Minnesota Timberwolves are the first followed-team subsection under the West,
-  with Sydney-time fixtures, viewing links and calendar buttons. More followed
-  teams can be added inside NBA without creating another top-level tab.
-- **Food & Drinks** — a location-aware restaurant and bar explorer. Start from
-  any Australian suburb or the device’s current location, then choose Chai &
-  Paratha, Sunday Lunch, Cheap Eats, CBD Steaks, CBD Bars & Views, CBD Italian
-  or Best Pubs. Embedded Google results are filtered to an exact 4.1+ rating,
-  ordered by distance/quality/rating and shown beside matching map pins. Fresh
-  Finds rotates a quality-qualified subset each week; selected places can be
-  saved manually to My Radar.
-- **My Radar** — a private, completely manual shortlist. It starts empty and
-  contains only items the visitor deliberately saves from another tab. Saved
-  items, statuses and optional alert settings stay on that browser; there are
-  no automatic recommendations and no account or personal-data upload.
-- **What's On Sydney** — a curated city guide spanning food, festivals, art,
-  family events and major annual dates. It launches with 12 verified events
-  from official organisers and includes quick filters such as This Weekend,
-  Free and Food & Drink.
+The content pages retain their hero cards, tables, detail drawers, live links,
+calendar actions and My Radar save controls; only the navigation hierarchy has
+changed.
 
-Tabs are linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`, `index.html#movies`,
+Subsections remain directly linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`, `index.html#movies`,
 `index.html#series`, `index.html#panthers`, `index.html#raiders`,
 `index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#pga`, `index.html#tennis`, `index.html#nba`, `index.html#food`,
 `index.html#myradar`, `index.html#sydney`.
@@ -97,7 +68,7 @@ original tab or detail card, be saved to My Radar and—once saved—have alerts
 configured. Closing search returns the visitor to the tab they were previously
 viewing.
 
-### How each tab stays current
+### How each section stays current
 
 | Tab | Source | Refresh |
 | --- | --- | --- |

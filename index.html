@@ -91,6 +91,21 @@
   #navOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:23}
   .pane{display:none}
   .pane.on{display:block}
+  .section-switcher{
+    display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:22px 0 -10px;
+    padding:8px;background:#f2f2f2;border:1px solid var(--faint);border-left:4px solid var(--red);
+  }
+  .section-switcher-label{
+    margin:0 5px 0 2px;color:#555;font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    letter-spacing:.1em;text-transform:uppercase;
+  }
+  .section-switcher button{
+    border:1px solid #aaa;background:#fff;color:#333;cursor:pointer;padding:8px 10px;
+    font:800 .7rem "Barlow Condensed","Arial Narrow",Arial,sans-serif;
+    letter-spacing:.07em;text-transform:uppercase;
+  }
+  .section-switcher button:hover{border-color:#111;color:#111}
+  .section-switcher button.active{background:#111;border-color:#111;color:#fff;box-shadow:inset 0 -3px 0 var(--red)}
 
   h2{
     font-size:1.15rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);
@@ -516,6 +531,9 @@
     .food-map-wrap{position:relative;top:auto;height:62vh;min-height:420px}
     .food-card{grid-template-columns:82px minmax(0,1fr)}.food-photo,.food-photo-fallback{width:82px;height:82px}.food-photo-credit{max-width:82px}
     .sydney-note{grid-template-columns:1fr}
+    .section-switcher{align-items:stretch}
+    .section-switcher-label{width:100%;margin-bottom:2px}
+    .section-switcher button{flex:1 1 calc(50% - 6px)}
   }
   @media(max-width:850px){
     .app-shell{display:block}
@@ -579,25 +597,16 @@ function imgFail(img, initials){
     <button type="submit">Go</button>
   </form>
   <div class="wrap" id="tabList">
-    <div class="tab-item active" draggable="true" data-tab-item="fights"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="fights" onclick="showTab('fights')">Fights</button><span class="order-controls"><button type="button" onclick="moveTab('fights',-1)" aria-label="Move Fights up">↑</button><button type="button" onclick="moveTab('fights',1)" aria-label="Move Fights down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="bkfc"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="bkfc" onclick="showTab('bkfc')">Bare Knuckle</button><span class="order-controls"><button type="button" onclick="moveTab('bkfc',-1)" aria-label="Move Bare Knuckle up">↑</button><button type="button" onclick="moveTab('bkfc',1)" aria-label="Move Bare Knuckle down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="other"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="other" onclick="showTab('other')">Other Action</button><span class="order-controls"><button type="button" onclick="moveTab('other',-1)" aria-label="Move Other Action up">↑</button><button type="button" onclick="moveTab('other',1)" aria-label="Move Other Action down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="comedy"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="comedy" onclick="showTab('comedy')">Comedy</button><span class="order-controls"><button type="button" onclick="moveTab('comedy',-1)" aria-label="Move Comedy up">↑</button><button type="button" onclick="moveTab('comedy',1)" aria-label="Move Comedy down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="movies"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="movies" onclick="showTab('movies')">Movies 🎥</button><span class="order-controls"><button type="button" onclick="moveTab('movies',-1)" aria-label="Move Movies up">↑</button><button type="button" onclick="moveTab('movies',1)" aria-label="Move Movies down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="series"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="series" onclick="showTab('series')">Series</button><span class="order-controls"><button type="button" onclick="moveTab('series',-1)" aria-label="Move Series up">↑</button><button type="button" onclick="moveTab('series',1)" aria-label="Move Series down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="panthers"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="panthers" onclick="showTab('panthers')">Panthers</button><span class="order-controls"><button type="button" onclick="moveTab('panthers',-1)" aria-label="Move Panthers up">↑</button><button type="button" onclick="moveTab('panthers',1)" aria-label="Move Panthers down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="raiders"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="raiders" onclick="showTab('raiders')">Raiders</button><span class="order-controls"><button type="button" onclick="moveTab('raiders',-1)" aria-label="Move Raiders up">↑</button><button type="button" onclick="moveTab('raiders',1)" aria-label="Move Raiders down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="united"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="united" onclick="showTab('united')">Man Utd</button><span class="order-controls"><button type="button" onclick="moveTab('united',-1)" aria-label="Move Man Utd up">↑</button><button type="button" onclick="moveTab('united',1)" aria-label="Move Man Utd down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="f1"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="f1" onclick="showTab('f1')">F1</button><span class="order-controls"><button type="button" onclick="moveTab('f1',-1)" aria-label="Move F1 up">↑</button><button type="button" onclick="moveTab('f1',1)" aria-label="Move F1 down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="motogp"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motogp" onclick="showTab('motogp')">MotoGP</button><span class="order-controls"><button type="button" onclick="moveTab('motogp',-1)" aria-label="Move MotoGP up">↑</button><button type="button" onclick="moveTab('motogp',1)" aria-label="Move MotoGP down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="pga"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="pga" onclick="showTab('pga')">PGA Golf</button><span class="order-controls"><button type="button" onclick="moveTab('pga',-1)" aria-label="Move PGA Golf up">↑</button><button type="button" onclick="moveTab('pga',1)" aria-label="Move PGA Golf down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="tennis"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="tennis" onclick="showTab('tennis')">Tennis</button><span class="order-controls"><button type="button" onclick="moveTab('tennis',-1)" aria-label="Move Tennis up">↑</button><button type="button" onclick="moveTab('tennis',1)" aria-label="Move Tennis down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="nba"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="nba" onclick="showTab('nba')">NBA</button><span class="order-controls"><button type="button" onclick="moveTab('nba',-1)" aria-label="Move NBA up">↑</button><button type="button" onclick="moveTab('nba',1)" aria-label="Move NBA down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="food"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="food" onclick="showTab('food')">Food &amp; Drinks</button><span class="order-controls"><button type="button" onclick="moveTab('food',-1)" aria-label="Move Food and Drinks up">↑</button><button type="button" onclick="moveTab('food',1)" aria-label="Move Food and Drinks down">↓</button></span></div>
     <div class="tab-item" draggable="true" data-tab-item="myradar"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="myradar" onclick="showTab('myradar')">My Radar <span class="nav-alert-badge" id="radarAlertBadge" aria-label="unread alerts" hidden>0</span></button><span class="order-controls"><button type="button" onclick="moveTab('myradar',-1)" aria-label="Move My Radar up">↑</button><button type="button" onclick="moveTab('myradar',1)" aria-label="Move My Radar down">↓</button></span></div>
-    <div class="tab-item" draggable="true" data-tab-item="sydney"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="sydney" onclick="showTab('sydney')">What's On Sydney</button><span class="order-controls"><button type="button" onclick="moveTab('sydney',-1)" aria-label="Move What's On Sydney up">↑</button><button type="button" onclick="moveTab('sydney',1)" aria-label="Move What's On Sydney down">↓</button></span></div>
+    <div class="tab-item active" draggable="true" data-tab-item="combat"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab active" data-tab="combat" onclick="showTab('combat')">Combat Sports</button><span class="order-controls"><button type="button" onclick="moveTab('combat',-1)" aria-label="Move Combat Sports up">↑</button><button type="button" onclick="moveTab('combat',1)" aria-label="Move Combat Sports down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="teams"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="teams" onclick="showTab('teams')">Team Sports</button><span class="order-controls"><button type="button" onclick="moveTab('teams',-1)" aria-label="Move Team Sports up">↑</button><button type="button" onclick="moveTab('teams',1)" aria-label="Move Team Sports down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="motorsport"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="motorsport" onclick="showTab('motorsport')">Motorsport</button><span class="order-controls"><button type="button" onclick="moveTab('motorsport',-1)" aria-label="Move Motorsport up">↑</button><button type="button" onclick="moveTab('motorsport',1)" aria-label="Move Motorsport down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="golf-tennis"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="golf-tennis" onclick="showTab('golf-tennis')">Golf &amp; Tennis</button><span class="order-controls"><button type="button" onclick="moveTab('golf-tennis',-1)" aria-label="Move Golf and Tennis up">↑</button><button type="button" onclick="moveTab('golf-tennis',1)" aria-label="Move Golf and Tennis down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="watch"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="watch" onclick="showTab('watch')">Watch</button><span class="order-controls"><button type="button" onclick="moveTab('watch',-1)" aria-label="Move Watch up">↑</button><button type="button" onclick="moveTab('watch',1)" aria-label="Move Watch down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="whats-on"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="whats-on" onclick="showTab('whats-on')">What's On</button><span class="order-controls"><button type="button" onclick="moveTab('whats-on',-1)" aria-label="Move What's On up">↑</button><button type="button" onclick="moveTab('whats-on',1)" aria-label="Move What's On down">↓</button></span></div>
+    <div class="tab-item" draggable="true" data-tab-item="food"><span class="tab-grip" aria-hidden="true">⠿</span><button class="tab" data-tab="food" onclick="showTab('food')">Food &amp; Drinks</button><span class="order-controls"><button type="button" onclick="moveTab('food',-1)" aria-label="Move Food and Drinks up">↑</button><button type="button" onclick="moveTab('food',1)" aria-label="Move Food and Drinks down">↓</button></span></div>
   </div>
-  <div class="nav-hint">Drag sections into your order, or tap Reorder and use the arrows. Your order is saved on this device.</div>
+  <div class="nav-hint">Eight clear sections. Open one to switch between its sports or categories. Drag sections into your order, or tap Reorder and use the arrows.</div>
 </nav>
 
 <main class="content">
@@ -1155,6 +1164,37 @@ function imgFail(img, initials){
     All times Sydney. Bare knuckle has no live fixture feed anywhere — unlike the UFC tab, this one is re-researched by hand each week, so a newly announced card can take a few days to appear. Most BKFC cards stream on <b>TrillerTV+</b> or the BKFC app, with selected events on <b>DAZN</b>; Australian cards have been on <b>Fox Sports</b>. Where the broadcaster is not confirmed it says so rather than guessing.
   </footer>
 </div><!-- /pane-bkfc -->
+
+<!-- ================= TEAM SPORTS · NRL OFF-SEASON ================= -->
+<div class="pane" id="pane-nrl">
+  <h2>NRL · Off-Season</h2>
+  <div class="hero">
+    <div class="card">
+      <div class="sport">Seasonal Section &nbsp;<span class="badge fn">Off-season</span></div>
+      <div class="crest dark">
+        <div class="big">NRL</div>
+        <div class="lil">Returns automatically before Round 1</div>
+      </div>
+      <div class="inner">
+        <div class="fight hd">The NRL radar is resting
+          <small>Instead of keeping two empty team choices in the sidebar, NRL is condensed here until confirmed fixtures are close enough to be useful.</small>
+        </div>
+        <div class="when">Automatic return · <span class="t">within four weeks of the next confirmed fixture</span></div>
+        <div class="btns"><a class="btn red" href="https://www.nrl.com/draw/">Official NRL Draw</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sport">Followed Teams</div>
+      <div class="inner" style="padding-top:20px">
+        <div class="fight hd">Panthers &amp; Raiders
+          <small>Both team feeds, viewing details and calendar controls remain connected behind the scenes. They reappear as separate NRL choices when the season returns.</small>
+        </div>
+        <div class="meta" style="margin-top:14px">Old Panthers and Raiders links route here during the off-season, so bookmarks never hit a dead page.</div>
+      </div>
+    </div>
+  </div>
+  <footer>NRL visibility is driven by confirmed fixture dates, not a hard-coded calendar switch. The daily builders continue checking both followed teams throughout the off-season.</footer>
+</div><!-- /pane-nrl -->
 
 
 <!-- ================= TAB 3 · PANTHERS ================= -->
@@ -4728,8 +4768,8 @@ const CARDS = Object.assign({}, FIGHT_CARDS, BKFC_CARDS, MANUAL_CARDS, NRL_CARDS
 /* ===== MY RADAR ===== */
 const RADAR_STATE_KEY = 'bawaRadar.personal.v1';
 const RADAR_TAB_LABELS = {
-  fights:'Fights',other:'Other Action',comedy:'Comedy',movies:'Movies',series:'Series',food:'Food & Drinks',sydney:"What's On Sydney",
-  panthers:'Panthers',raiders:'Raiders',united:'Man Utd',f1:'F1',motogp:'MotoGP',pga:'PGA Golf',tennis:'Tennis',nba:'NBA',wolves:'NBA'
+  fights:'UFC & Boxing',bkfc:'Bare Knuckle',other:'Other Motorsport',comedy:'Comedy',movies:'Movies',series:'Series',food:'Food & Drinks',sydney:"What's On Sydney",
+  nrl:'NRL',panthers:'NRL · Panthers',raiders:'NRL · Raiders',united:'Football · Man Utd',f1:'Formula 1',motogp:'MotoGP',pga:'PGA Golf',tennis:'Tennis',nba:'Basketball · NBA',wolves:'Basketball · NBA'
 };
 let radarCatalog = {};
 
@@ -5580,8 +5620,7 @@ function syncRadarSearchInputs(value){
 function openRadarSearch(value, focusMain){
   const searchPane = document.getElementById('pane-search');
   if(!searchPane.classList.contains('on')){
-    const active = document.querySelector('.tab.active');
-    searchPreviousTab = active ? active.dataset.tab : 'fights';
+    searchPreviousTab = activeRadarTab || 'fights';
   }
   if(typeof value === 'string') radarSearchQuery = value;
   syncRadarSearchInputs(radarSearchQuery);
@@ -5737,7 +5776,7 @@ document.addEventListener('keydown',e=>{
   else{ closeDrawer(); closeNav(); }
 });
 
-/* ===== TABS ===== */
+/* ===== GROUPED NAVIGATION ===== */
 const RANGES = {
   myradar:  "Your manually saved picks · private on this device",
   sydney:   "What’s on now through Vivid Sydney 2027 · Sydney & surrounds",
@@ -5748,6 +5787,7 @@ const RANGES = {
   comedy:   "Sun 16 Aug 2026 – Mon 16 Aug 2027 · Sydney comedy",
   movies:   "Latest Australian cinema releases · checked Sun 16 Aug 2026",
   series:   "33 hand-picked series · new releases & older essentials",
+  nrl:      "NRL off-season · followed teams return automatically before the next confirmed fixture",
   panthers: "Round 24 → Grand Final Sun 4 Oct 2026",
   raiders:  "Round 24 → Grand Final Sun 4 Oct 2026",
   united:   "Premier League · kick-offs in Sydney time",
@@ -5758,9 +5798,49 @@ const RANGES = {
   nba:      "NBA 2026-27 · Eastern & Western Conferences · followed teams in Sydney time"
 };
 
-const DEFAULT_TAB_ORDER = ['fights','bkfc','other','comedy','movies','series','panthers','raiders','united','f1','motogp','pga','tennis','nba','food','myradar','sydney'];
+const NAV_GROUPS = {
+  'myradar': {label:'My Radar', items:[{id:'myradar',label:'My Radar'}]},
+  'combat': {label:'Combat Sports', items:[{id:'fights',label:'UFC & Boxing'},{id:'bkfc',label:'Bare Knuckle'}]},
+  'teams': {label:'Team Sports', items:[{id:'panthers',label:'NRL · Panthers'},{id:'raiders',label:'NRL · Raiders'},{id:'united',label:'Football · Man Utd'},{id:'nba',label:'Basketball · NBA'}]},
+  'motorsport': {label:'Motorsport', items:[{id:'f1',label:'Formula 1'},{id:'motogp',label:'MotoGP'},{id:'other',label:'Other & Live Events'}]},
+  'golf-tennis': {label:'Golf & Tennis', items:[{id:'pga',label:'PGA Golf'},{id:'tennis',label:'Tennis'}]},
+  'watch': {label:'Watch', items:[{id:'movies',label:'Movies'},{id:'series',label:'Series'}]},
+  'whats-on': {label:"What's On", items:[{id:'sydney',label:"What's On Sydney"},{id:'comedy',label:'Comedy'}]},
+  'food': {label:'Food & Drinks', items:[{id:'food',label:'Food & Drinks'}]}
+};
+const TAB_TO_GROUP = {wolves:'teams',nrl:'teams',panthers:'teams',raiders:'teams',united:'teams',nba:'teams',fights:'combat',bkfc:'combat',f1:'motorsport',motogp:'motorsport',other:'motorsport',pga:'golf-tennis',tennis:'golf-tennis',movies:'watch',series:'watch',sydney:'whats-on',comedy:'whats-on',food:'food',myradar:'myradar'};
+const DEFAULT_TAB_ORDER = ['myradar','combat','teams','motorsport','golf-tennis','watch','whats-on','food'];
 const TAB_ORDER_KEY = 'bawaRadar.tabOrder.v1';
-const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.tennisAfterPga.v1';
+const TAB_LAYOUT_KEY = 'bawaRadar.tabLayout.groupedSections.v1';
+const GROUP_VIEW_KEY = 'bawaRadar.groupViews.v1';
+let activeRadarTab = 'fights';
+let groupViews = {};
+try{ groupViews = JSON.parse(localStorage.getItem(GROUP_VIEW_KEY) || '{}') || {}; }catch(_e){ groupViews = {}; }
+
+function nrlSeasonActive(){
+  const now = Date.now();
+  const returnWindow = now + 28 * 86400000;
+  return [...document.querySelectorAll('#pane-panthers tr[data-sport="nrl"][data-ends],#pane-raiders tr[data-sport="nrl"][data-ends]')]
+    .some(row => {
+      const end = new Date(row.dataset.ends).getTime();
+      return Number.isFinite(end) && end >= now && end <= returnWindow;
+    });
+}
+function groupItems(group){
+  if(group === 'teams' && !nrlSeasonActive()){
+    return [{id:'nrl',label:'NRL · Off-season'},{id:'united',label:'Football · Man Utd'},{id:'nba',label:'Basketball · NBA'}];
+  }
+  return (NAV_GROUPS[group] || NAV_GROUPS.combat).items;
+}
+function preferredGroupTab(group){
+  const items = groupItems(group);
+  const preferred = groupViews[group];
+  return items.some(item => item.id === preferred) ? preferred : items[0].id;
+}
+function saveGroupView(group,id){
+  groupViews[group] = id;
+  try{ localStorage.setItem(GROUP_VIEW_KEY,JSON.stringify(groupViews)); }catch(_e){}
+}
 
 function tabOrder(){
   return [...document.querySelectorAll('#tabList .tab-item')].map(item => item.dataset.tabItem);
@@ -5772,27 +5852,25 @@ function restoreTabOrder(){
   let saved = [];
   try{ saved = JSON.parse(localStorage.getItem(TAB_ORDER_KEY) || '[]'); }catch(_e){}
   if(!Array.isArray(saved)) saved = [];
-  saved = saved.map(id => id === 'wolves' ? 'nba' : id);
-  const known = saved.filter(id => DEFAULT_TAB_ORDER.includes(id));
-  const missing = DEFAULT_TAB_ORDER.filter(id => !known.includes(id));
-  let order = saved.length ? [...known,...missing] : [...DEFAULT_TAB_ORDER];
   let migrated = false;
   try{ migrated = localStorage.getItem(TAB_LAYOUT_KEY) === 'done'; }catch(_e){}
+  let order;
   if(!migrated){
-    order = order.filter(id => id !== 'tennis');
-    const pgaIndex = order.indexOf('pga');
-    const motoIndex = order.indexOf('motogp');
-    order.splice(pgaIndex >= 0 ? pgaIndex + 1 : (motoIndex >= 0 ? motoIndex + 1 : order.length), 0, 'tennis');
+    // The one-time navigation cleanup intentionally replaces the old list of
+    // 17 feeds with the approved eight-section order.
+    order = [...DEFAULT_TAB_ORDER];
     try{ localStorage.setItem(TAB_LAYOUT_KEY,'done'); }catch(_e){}
+  }else{
+    const known = saved.filter(id => DEFAULT_TAB_ORDER.includes(id));
+    const missing = DEFAULT_TAB_ORDER.filter(id => !known.includes(id));
+    order = saved.length ? [...known,...missing] : [...DEFAULT_TAB_ORDER];
   }
   const list = document.getElementById('tabList');
   order.forEach(id => {
     const item = list.querySelector('[data-tab-item="' + id + '"]');
     if(item) list.appendChild(item);
   });
-  if(saved.length && (order.some(id => !saved.includes(id)) || !migrated)){
-    try{ localStorage.setItem(TAB_ORDER_KEY, JSON.stringify(order)); }catch(_e){}
-  }
+  try{ localStorage.setItem(TAB_ORDER_KEY, JSON.stringify(order)); }catch(_e){}
 }
 function moveTab(id, direction){
   const list = document.getElementById('tabList');
@@ -5862,13 +5940,44 @@ function bindTabDrag(){
     dragging = null;
   });
 }
+function renderSectionSwitcher(group,id){
+  document.querySelectorAll('.section-switcher').forEach(nav => nav.remove());
+  const items = groupItems(group);
+  if(items.length < 2) return;
+  const pane = document.getElementById('pane-' + id);
+  if(!pane) return;
+  const nav = document.createElement('nav');
+  nav.className = 'section-switcher';
+  nav.setAttribute('aria-label',(NAV_GROUPS[group] || {}).label + ' choices');
+  const label = document.createElement('span');
+  label.className = 'section-switcher-label';
+  label.textContent = (NAV_GROUPS[group] || {}).label;
+  nav.appendChild(label);
+  items.forEach(item => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = item.label;
+    button.classList.toggle('active',item.id === id);
+    button.setAttribute('aria-pressed',String(item.id === id));
+    button.addEventListener('click',() => showTab(item.id));
+    nav.appendChild(button);
+  });
+  pane.insertBefore(nav,pane.firstChild);
+}
 function showTab(id){
   if(id === 'wolves') id = 'nba';
-  if(!RANGES[id]) id = 'fights';
+  if((id === 'panthers' || id === 'raiders') && !nrlSeasonActive()) id = 'nrl';
+  let group = NAV_GROUPS[id] ? id : TAB_TO_GROUP[id];
+  if(!group) { group = 'combat'; id = 'fights'; }
+  if(NAV_GROUPS[id]) id = preferredGroupTab(group);
+  if(!RANGES[id] || !document.getElementById('pane-' + id)) { group = 'combat'; id = 'fights'; }
+  activeRadarTab = id;
+  saveGroupView(group,id);
   document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.id === 'pane-' + id));
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
-  document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.tabItem === id));
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === group));
+  document.querySelectorAll('.tab-item').forEach(t => t.classList.toggle('active', t.dataset.tabItem === group));
   document.getElementById('rangeText').textContent = RANGES[id];
+  renderSectionSwitcher(group,id);
   closeDrawer();
   closeNav();
   if(id === 'food') initFoodExplorer();
