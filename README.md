@@ -38,7 +38,9 @@ opens the same rail. Each section has a compact internal switcher and remembers
 the visitor's last-opened subsection. The eight sections can still be reordered.
 
 - **My Radar** — the same private, completely manual shortlist and alerts.
-- **Combat Sports** — UFC and boxing together with Bare Knuckle.
+- **Combat Sports** — separate UFC, Boxing and Bare Knuckle subsections. Boxing
+  is divided into Heavyweights, Big Names & Title Fights, and Exhibitions so a
+  showcase is never confused with a professional contest.
 - **Team Sports** — NRL followed teams, Man Utd/football and NBA. Panthers and
   Raiders appear beneath NRL during the season; during the off-season they are
   replaced by one compact NRL status page. They return automatically when a
@@ -55,7 +57,7 @@ The content pages retain their hero cards, tables, detail drawers, live links,
 calendar actions and My Radar save controls; only the navigation hierarchy has
 changed.
 
-Subsections remain directly linkable: `index.html#fights`, `index.html#other`, `index.html#comedy`, `index.html#movies`,
+Subsections remain directly linkable: `index.html#fights`, `index.html#boxing`, `index.html#other`, `index.html#comedy`, `index.html#movies`,
 `index.html#series`, `index.html#panthers`, `index.html#raiders`,
 `index.html#united`, `index.html#f1`, `index.html#motogp`, `index.html#pga`, `index.html#tennis`, `index.html#nba`, `index.html#food`,
 `index.html#myradar`, `index.html#sydney`.
@@ -75,7 +77,8 @@ viewing.
 | My Radar | The other tabs + choices stored in the visitor's browser | Immediate, on that device |
 | Food & Drinks | Google Maps JavaScript API + Places API (New) | Live on every search; only Google Place IDs are retained from Google place content |
 | What's On Sydney | Official organiser pages + City of Sydney and Destination NSW guides | Human web search; current weekend through major forward dates |
-| Fights | ESPN MMA feed + `boxing.json` | `build_radar.py`, daily — rolling 4 weeks |
+| UFC | ESPN MMA feed | `build_radar.py`, daily — rolling 4 weeks |
+| Boxing | Official promoter, sanctioning-body and broadcaster announcements stored in `boxing.json` | `build_boxing.py`, daily — rolling 12 months plus date-TBC exhibitions |
 | Panthers | ESPN NRL feed | `build_panthers.py`, daily — finals appear when published |
 | Raiders | ESPN NRL feed | `build_raiders.py`, daily — finals appear when published |
 | Man Utd | ESPN football feed | `build_united.py`, daily |
@@ -217,20 +220,36 @@ cricket is a note, four people wanting it is the next tab.
 
 ## Updating boxing
 
-No reliable free boxing API exists, so `boxing.json` is the source of truth.
-Edit it on github.com (pencil icon) when fights are announced — or ask Claude
-each week for the current list. Each entry:
+No reliable free boxing API covers the distinction this radar needs, so
+`boxing.json` is the reviewed source of truth. `build_boxing.py` rebuilds the
+page daily, removes a completed fight only after its 24-hour grace period and
+keeps date-TBC exhibitions out of the professional schedule.
+
+The inclusion rules are:
+
+- every announced headline, world-title or leading-contender heavyweight bout;
+- major champions, recognisable names and meaningful title fights at other weights;
+- celebrity or legend exhibitions in the separate **Exhibitions & Showcases** lane.
+
+Each entry links back to an official promoter, sanctioning body or broadcaster.
+Use `date_utc` only when the start time is confirmed:
 
 ```json
 {
   "name": "Fighter A vs Fighter B",
-  "promotion": "Matchroom",
+  "promotion": "Official promoter",
+  "category": "heavyweight",
+  "status": "confirmed",
   "date_utc": "2026-08-29T21:00:00Z",
   "venue": "O2 Arena, London",
   "fights": ["Main event (title)", "Co-feature"],
-  "watch_au": "DAZN"
+  "watch_au": "DAZN",
+  "link": "https://official-source.example/event",
+  "verified_on": "2026-10-25"
 }
 ```
 
-`date_utc` is the main-event start in UTC (Sydney is UTC+10 winter, +11 summer).
-Leave `watch_au` as `""` if the Australian broadcaster isn't confirmed.
+If only the day is confirmed, use `local_date` and `timezone`; the page will say
+**Sydney time TBC** and withhold the calendar button rather than guessing. For a
+signed exhibition without a date, use `"status": "date_tbc"` and omit both date
+fields. Leave `watch_au` as `"Australian broadcaster TBC"` when unconfirmed.

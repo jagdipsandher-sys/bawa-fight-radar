@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Rebuilds the Fights tab of index.html so the radar always shows a ROLLING
+Rebuilds the UFC tab of index.html so the radar always shows a ROLLING
 FOUR WEEKS, rather than a hand-typed list that runs dry after a month.
 
   UFC / MMA : ESPN's public JSON feed — the same one the Friday email uses
-  Boxing    : boxing.json in this repo
+  Boxing    : built separately by build_boxing.py from boxing.json
   Photos    : photos.json  (surname -> headshot; missing ones show initials)
   Flags     : aussies.json (surname -> AU/NZ flag + badge)
 
@@ -21,7 +21,7 @@ import re
 import sys
 from datetime import datetime, timedelta, timezone
 
-from send_fights import SYD, au_watch, fetch_ufc, load_boxing
+from send_fights import SYD, au_watch, fetch_ufc
 
 WEEKS_AHEAD = 4
 # A fight that is on right now, or finished this morning, is exactly when
@@ -317,7 +317,7 @@ def main():
     # ESPN's window is date-granular, so a card at 21:00Z sits on the PREVIOUS
     # UTC date — look back past the grace period or it cannot be retrieved at all.
     since = now - timedelta(hours=GRACE_HOURS + 12)
-    events = fetch_ufc(since, end, limit=16) + load_boxing(since, end)
+    events = fetch_ufc(since, end, limit=16)
     # Keep an event until its broadcast has finished plus the grace period,
     # rather than dropping it at the opening bell.
     events = [e for e in events if retained(e, now) and e["when_utc"] <= end]
@@ -331,21 +331,17 @@ def main():
     if not events:
         sys.exit("no events in the next four weeks — refusing to blank the radar")
 
-    ufc = [e for e in events if e["sport"].startswith("UFC")]
-    box = [e for e in events if not e["sport"].startswith("UFC")]
+    ufc = events
 
     heroes = []
     # Every event in these lists is still inside its retention window. Keep
     # the earliest one featured even after the broadcast finishes so today's
     # card remains prominent and watchable for the full 24 hours.
     ufc_hero = featured_event(ufc)
-    box_hero = featured_event(box)
     if ufc_hero:
         heroes.append(hero_html(ufc_hero, "UFC"))
-    if box_hero:
-        heroes.append(hero_html(box_hero, box_hero["sport"]))
     if len(heroes) == 1:                      # keep the two-up grid balanced
-        spare = next((e for e in events if e is not ufc_hero and e is not box_hero), None)
+        spare = next((e for e in events if e is not ufc_hero), None)
         heroes.append(hero_html(spare, spare["sport"]) if spare else "")
 
     page = open(PAGE).read()
@@ -361,7 +357,7 @@ def main():
     with open(PAGE, "w") as f:
         f.write(page)
     print(f"rebuilt {PAGE}: {len(events)} events to {syd(end):%a %d %b} "
-          f"({len(ufc)} UFC, {len(box)} boxing)")
+          f"({len(ufc)} UFC)")
 
 
 if __name__ == "__main__":

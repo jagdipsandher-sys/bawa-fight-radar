@@ -1,36 +1,118 @@
 [
   {
-    "name": "Teremoana vs Savage",
-    "promotion": "Matchroom",
-    "date_utc": "2026-08-12T09:00:00Z",
-    "venue": "Broadbeach, Gold Coast",
+    "name": "Canelo Alvarez vs Christian Mbilli",
+    "promotion": "Riyadh Season / The Ring",
+    "category": "notable",
+    "status": "confirmed",
+    "date_utc": "2026-11-01T00:00:00Z",
+    "venue": "The Venue, Riyadh, Saudi Arabia",
+    "weight": "Super middleweight",
+    "stakes": "WBC Super Middleweight World Title",
     "fights": [
-      "Teremoana Teremoana vs DeAndre Savage (Heavyweight, 10 rds)",
-      "Michael Zerafa vs Alejandro Ortiz (Middleweight)"
+      "Christian Mbilli vs Canelo Alvarez (WBC Super Middleweight World Title)",
+      "Jaime Munguia vs Nikita Zon (WBA Super Middleweight World Title)",
+      "Rafael Espinoza vs Lorenzo Parra (WBO Featherweight World Title)",
+      "Lindolfo Delgado vs Arthur Biyarslanov (IBF Super Lightweight World Title)"
     ],
-    "watch_au": "DAZN"
+    "watch_au": "DAZN PPV",
+    "link": "https://wbcboxing.com/en/where-to-watch-mbilli-vs-alvarez/",
+    "image": "https://portalcdn.spa.gov.sa/backend/original/202610/M10981903.jpg",
+    "verified_on": "2026-10-25",
+    "include_reason": "Canelo is one of boxing's biggest active names and this is a world-title fight."
   },
   {
-    "name": "Itauma vs Hrgovic — IBF Heavyweight Title",
-    "promotion": "Queensberry",
-    "date_utc": "2026-08-29T21:00:00Z",
-    "venue": "O2 Arena, London",
+    "name": "Teremoana Teremoana vs Hemi Ahio",
+    "promotion": "Matchroom Boxing",
+    "category": "heavyweight",
+    "status": "confirmed",
+    "local_date": "2026-11-18",
+    "timezone": "Australia/Melbourne",
+    "venue": "Pullman Melbourne Albert Park, Melbourne",
+    "weight": "Heavyweight",
+    "stakes": "Trans-Tasman heavyweight headliner",
     "fights": [
-      "Moses Itauma vs Filip Hrgovic (Vacant IBF Heavyweight Title)",
-      "Sam Noakes vs Denys Berinchyk (Lightweight)",
-      "Constantin Ursu vs Ben Vaughan (British & Commonwealth WW Title)"
+      "Teremoana Teremoana vs Hemi Ahio (Heavyweight)",
+      "Omar El-Abdallah vs Lilo Telepe (Middleweight)"
     ],
-    "watch_au": ""
+    "watch_au": "Fox Sports and Kayo Sports",
+    "link": "https://www.matchroomboxing.com/news/heavyweight-superstar-teremoana-teremoana-meets-dangerous-hemi-ahio-in-melbourne-as-matchroom-boxing-returns-to-australia-on-wednesday-november-18-live-on-fox-sports/",
+    "image": "https://www.matchroomboxing.com/app/uploads/2026/10/4B4A9546-1500x1000.jpg",
+    "verified_on": "2026-10-25",
+    "include_reason": "All announced headline-level heavyweight bouts are included, with Australian and New Zealand fighters prioritised."
   },
   {
-    "name": "Ruiz Jr vs Knyba",
-    "promotion": "Matchroom",
-    "date_utc": "2026-09-05T02:00:00Z",
-    "venue": "Prudential Center, Newark",
+    "name": "Agit Kabayel vs Nelson Hysa",
+    "promotion": "Queensberry Promotions",
+    "category": "heavyweight",
+    "status": "confirmed",
+    "date_utc": "2026-11-28T19:00:00Z",
+    "venue": "Merkur Spiel-Arena, Dusseldorf, Germany",
+    "weight": "Heavyweight",
+    "stakes": "WBC Heavyweight World Title",
     "fights": [
-      "Andy Ruiz Jr vs Damian Knyba (Heavyweight, 12 rds)",
-      "Vito Mielnicki Jr vs Austin Williams (Middleweight)"
+      "Agit Kabayel vs Nelson Hysa (WBC Heavyweight World Title)"
     ],
-    "watch_au": ""
+    "watch_au": "DAZN PPV",
+    "link": "https://wbcboxing.com/donde-ver-kabayel-vs-hysa/",
+    "image": "https://dazngroup.com/wp-content/uploads/2026/10/DSG-12668-Agit-vs-Hysa-Annouce-v3.3-dont-miss-v3.3.webp",
+    "verified_on": "2026-10-25",
+    "include_reason": "Every announced heavyweight world-title fight is included."
+  },
+  {
+    "name": "Tyson Fury vs Anthony Joshua",
+    "promotion": "The Ring / Matchroom Boxing",
+    "category": "heavyweight",
+    "status": "confirmed",
+    "local_date": "2026-12-11",
+    "timezone": "Europe/London",
+    "venue": "Principality Stadium, Cardiff, Wales",
+    "weight": "Heavyweight",
+    "stakes": "Heavyweight blockbuster",
+    "fights": [
+      "Tyson Fury vs Anthony Joshua (Heavyweight)",
+      "Undercard to be announced"
+    ],
+    "watch_au": "Netflix",
+    "link": "https://www.netflix.com/tudum/features/tyson-fury-anthony-joshua-live-on-netflix",
+    "image": "https://dnm.nflximg.net/api/v6/s0XAg4q_jvYbSSbLvySyUsliNSg/AAAAQS8Ix3wYeCozDB7dx3iuwKYsOOZNzIaGKnXCQy2ush0rYUoNWHA3SZ7kcnWv807WjHuKQGkhQPi2b3CW_3btYVDwsgzv20cMd0EMX51DwUwG8r3TsmEOQ9PgwjDaE8sOg7d0JFVlsbSbyzCZdvqNEXQJkZM.jpg?r=d5c",
+    "verified_on": "2026-10-25",
+    "include_reason": "All announced headline-level heavyweight bouts are included."
+  },
+  {
+    "name": "Dmitry Bivol vs Callum Smith",
+    "promotion": "RCC Boxing / Matchroom Boxing",
+    "category": "notable",
+    "status": "confirmed",
+    "local_date": "2026-12-12",
+    "timezone": "Asia/Yekaterinburg",
+    "venue": "UMMC Arena, Yekaterinburg, Russia",
+    "weight": "Light heavyweight",
+    "stakes": "Unified Light Heavyweight World Titles",
+    "fights": [
+      "Dmitry Bivol vs Callum Smith (Unified Light Heavyweight World Titles)"
+    ],
+    "watch_au": "Australian broadcaster TBC",
+    "link": "https://www.vsppromotions.com/post/official-dmitry-bivol-to-defend-unified-light-heavyweight-world-titles-against-callum-smith",
+    "image": "https://cdn.prod.website-files.com/61b954b32b5886c4e547c8a5/6acdaac331342a3f81f8daa4_6acdaa78cd6e82f91944c29a_vsp-boxing-2026-10-12-bivol-vs-callum-smith.jpeg",
+    "verified_on": "2026-10-25",
+    "include_reason": "Bivol is a pound-for-pound star and the bout is for unified world titles."
+  },
+  {
+    "name": "Mike Tyson vs Floyd Mayweather",
+    "promotion": "CSI Sports",
+    "category": "exhibition",
+    "status": "date_tbc",
+    "venue": "Venue TBC",
+    "weight": "Exhibition",
+    "stakes": "Signed exhibition; rescheduled after Tyson's hand injury",
+    "fights": [
+      "Mike Tyson vs Floyd Mayweather (Exhibition)"
+    ],
+    "watch_au": "Broadcaster TBC",
+    "link": "https://csisports.tv/tyson-vs-mayweather-exhibition-is-on-tyson-broken-hand-pushes-event-from-spring-to-fall-of-2026/",
+    "image": "https://csisports.tv/wp-content/uploads/1080x1080-FALL-2026-no-signed.png",
+    "verified_on": "2026-10-25",
+    "review_after": "2026-11-01",
+    "include_reason": "Major celebrity exhibitions are shown separately and never mixed with sanctioned professional contests."
   }
 ]

@@ -18,6 +18,7 @@ import tempfile
 
 PAGE = "index.html"
 MARKERS = ["FIGHT-HERO", "FIGHT-ROWS", "FIGHT-CARDS",
+           "BOXING-HERO", "BOXING-SECTIONS", "BOXING-CARDS",
            "BKFC-HERO", "BKFC-ROWS", "BKFC-CARDS", "NRL-HERO", "NRL-ROWS", "NRL-CARDS",
            "RAI-HERO", "RAI-ROWS", "RAI-CARDS",
            "UTD-HERO", "UTD-ROWS", "UTD-CARDS", "F1-HERO", "F1-ROWS", "F1-CARDS",
@@ -111,7 +112,7 @@ if len(sydney_cards) != 12:
 
 
 # 6. the tabs themselves must be intact
-for pane in ["pane-bkfc", "pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
+for pane in ["pane-bkfc", "pane-boxing", "pane-search", "pane-food", "pane-myradar", "pane-sydney", "pane-fights", "pane-other", "pane-comedy", "pane-movies", "pane-series",
              "pane-nrl", "pane-panthers", "pane-raiders", "pane-united", "pane-f1", "pane-motogp",
              "pane-pga", "pane-tennis", "pane-nba"]:
     if f'id="{pane}"' not in page:
@@ -131,7 +132,7 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 'data-tab-item="golf-tennis"', 'data-tab-item="watch"',
                 'data-tab-item="whats-on"', "NAV_GROUPS", "GROUP_VIEW_KEY",
                 "nrlSeasonActive", "renderSectionSwitcher", "PGA_CARDS", "TENNIS_CARDS",
-                "NBA_CARDS", "BKFC_CARDS",
+                "NBA_CARDS", "BOXING_CARDS", "BKFC_CARDS", "items:[{id:'fights',label:'UFC'},{id:'boxing',label:'Boxing'},{id:'bkfc',label:'Bare Knuckle'}]",
                 "FIGHT_GRACE_MS = 24 * 60 * 60 * 1000", "isFight(node)"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")

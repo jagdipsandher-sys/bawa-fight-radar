@@ -15,7 +15,7 @@ import ssl
 import smtplib
 import sys
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from email.message import EmailMessage
 from email.utils import formataddr
 from zoneinfo import ZoneInfo
@@ -56,7 +56,15 @@ def au_watch(event_name: str) -> str:
 
 def sydney(dt_utc: datetime) -> str:
     d = dt_utc.astimezone(SYD)
-    return d.strftime("%a %d %b · %I:%M%p AEST").replace(" 0", " ").replace("AM", "am").replace("PM", "pm")
+    return d.strftime("%a %d %b · %I:%M%p %Z").replace(" 0", " ").replace("AM", "am").replace("PM", "pm")
+
+
+def event_when(event) -> str:
+    """Do not turn a confirmed date into a made-up Sydney start time."""
+    if event.get("time_confirmed", True):
+        return sydney(event["when_utc"])
+    day = date.fromisoformat(event["local_date"])
+    return day.strftime("%a %d %b").replace(" 0", " ") + " · Sydney time TBC"
 
 
 def fetch_ufc(start: datetime, end: datetime, limit: int = 6):
@@ -123,8 +131,19 @@ def load_boxing(start: datetime, end: datetime):
         return []
     events = []
     for ev in raw:
+        if ev.get("status") in {"date_tbc", "cancelled"}:
+            continue
         try:
-            when = datetime.fromisoformat(ev["date_utc"].replace("Z", "+00:00"))
+            if ev.get("date_utc"):
+                when = datetime.fromisoformat(ev["date_utc"].replace("Z", "+00:00"))
+                time_confirmed = True
+            else:
+                local_day = date.fromisoformat(ev["local_date"])
+                zone = ZoneInfo(ev.get("timezone") or "Australia/Sydney")
+                # Noon is only a sorting/filtering anchor. event_when() keeps
+                # the email honest by displaying "Sydney time TBC".
+                when = datetime.combine(local_day, time(12, 0), zone).astimezone(timezone.utc)
+                time_confirmed = False
         except (KeyError, ValueError):
             continue
         if not (start <= when <= end):
@@ -136,6 +155,9 @@ def load_boxing(start: datetime, end: datetime):
             "fights": ev.get("fights", []),
             "venue": ev.get("venue", ""),
             "watch": ev.get("watch_au", ""),  # blank = unconfirmed, never guess
+            "time_confirmed": time_confirmed,
+            "local_date": ev.get("local_date", ""),
+            "link": ev.get("link", ""),
         })
     return events
 
@@ -164,7 +186,7 @@ def build_html(events, owner=""):
           <span style="background:{tag_bg};color:#ffffff;padding:2px 7px;letter-spacing:2px;">{tag}</span>
           &nbsp;{hero['sport']}{venue}</div>
         <div style="font-family:{HD};font-size:26px;font-weight:bold;color:#1b1b1b;text-transform:uppercase;padding:6px 0 2px;">{hero['name']}</div>
-        <div style="font-family:{HD};font-size:16px;color:#d20a0a;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{sydney(hero['when_utc'])} (Sydney)</div>
+        <div style="font-family:{HD};font-size:16px;color:#d20a0a;font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{event_when(hero)} (Sydney)</div>
         <div style="font-size:13px;color:#333333;padding-top:6px;line-height:1.5;">{fights}</div>
         <div style="font-size:12px;color:#6b6b6b;padding-top:5px;">Watch: <b>{watch}</b></div>
       </td></tr>"""
@@ -175,7 +197,7 @@ def build_html(events, owner=""):
         fade_rows.append(f"""
       <tr><td style="padding:10px 20px 0;">
         <div style="font-family:{HD};font-size:19px;font-weight:bold;color:{c_name};text-transform:uppercase;">{ev['name']}</div>
-        <div style="font-family:{HD};font-size:13px;color:{c_meta};font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{sydney(ev['when_utc'])} (Sydney)</div>
+        <div style="font-family:{HD};font-size:13px;color:{c_meta};font-weight:bold;text-transform:uppercase;letter-spacing:1px;">{event_when(ev)} (Sydney)</div>
       </td></tr>""")
     more = len(events) - 1
     plural = "s" if more != 1 else ""

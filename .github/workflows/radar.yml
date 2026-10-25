@@ -30,6 +30,9 @@ jobs:
       - name: Rebuild the fights (rolling four weeks)
         continue-on-error: true
         run: python build_radar.py
+      - name: Rebuild boxing (heavyweights, big names and exhibitions)
+        continue-on-error: true
+        run: python build_boxing.py
       - name: Rebuild the Panthers draw
         continue-on-error: true
         run: python build_panthers.py
