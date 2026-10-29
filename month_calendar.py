@@ -25,6 +25,9 @@ import weekend
 
 SYD = ZoneInfo("Australia/Sydney")
 SITE = "https://jagdipsandher-sys.github.io/bawa-fight-radar/"
+# Pre-rendered month banners, built by make_banner.py and committed. See the
+# note at the top of that file for why they are files rather than built here.
+BANNER = SITE + "img/month-{ym}.jpg"
 
 # Which tabs feed the calendar, in the order a clash is resolved. The boys are
 # here for the fights, so combat wins a crowded square and tennis loses it.
@@ -222,6 +225,16 @@ def _cell(day, events, month_name, in_month, today_num):
     )
 
 
+def _main_event(days):
+    """The fight to put on the banner strip: the next combat event still to
+    come this month, else the first one of the month."""
+    fights = [e for d in sorted(days) for e in days[d]
+              if e["label"] in ("UFC", "Boxing", "BKFC")]
+    if not fights:
+        return None
+    return next((e for e in fights if not e["past"]), fights[0])
+
+
 def render(year=None, month=None, page_path="index.html", now=None):
     """The whole calendar block, ready to drop into the email body."""
     now = now or datetime.now(SYD)
@@ -235,14 +248,29 @@ def render(year=None, month=None, page_path="index.html", now=None):
     month_name = f"{first:%B}".upper()
     today_num = now.day if (now.year, now.month) == (year, month) else None
 
+    # The banner is an image, so it has to survive a client that blocks
+    # images: the alt text carries the month, and the main event bar below it
+    # is live HTML that always shows.
     head = (
-        f'<tr><td colspan="7" style="background:{INK};padding:10px 12px">'
-        f'<span style="font-family:{HD};font-size:12px;letter-spacing:2px;'
-        f'color:#f0bcbc">WHATS ON IN</span><br>'
-        f'<span style="font-family:{HD};font-size:27px;font-weight:bold;'
-        f'letter-spacing:1px;color:#ffffff">{month_name} {year}</span>'
-        f'</td></tr>'
+        f'<tr><td colspan="7" style="padding:0;background:{INK}">'
+        f'<a href="{SITE}" target="_blank" style="text-decoration:none">'
+        f'<img src="{BANNER.format(ym=f"{year}{month:02d}")}" width="560" '
+        f'alt="Whats on this month · {month_name} {year} · BAWA Fight Radar" '
+        f'style="display:block;width:100%;max-width:560px;height:auto;border:0;'
+        f'font-family:{HD};font-size:18px;color:#ffffff;padding:14px 0">'
+        f'</a></td></tr>'
     )
+    main = _main_event(days)
+    if main:
+        head += (
+            f'<tr><td colspan="7" style="background:{INK};padding:9px 12px" align="center">'
+            f'<a href="{esc(link_for(main))}" target="_blank" style="text-decoration:none">'
+            f'<span style="font-family:{BODY};font-size:9px;letter-spacing:4px;'
+            f'text-transform:uppercase;color:#9b9ba1">Main event&nbsp;&nbsp;</span>'
+            f'<span style="font-family:{HD};font-size:17px;font-weight:bold;'
+            f'letter-spacing:1px;color:#ffffff">{esc(main["label"].upper())} '
+            f'&middot; {esc(main["short"].upper())}</span></a></td></tr>'
+        )
     dow = "<tr>" + "".join(
         f'<td align="center" style="background:#1d1d20;padding:5px 0;'
         f'font-family:{HD};font-size:10px;letter-spacing:1px;color:#e8e8e6">{d}</td>'
