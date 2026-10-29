@@ -175,8 +175,8 @@ def link_for(e):
 # ---------------------------------------------------------------------------
 HD = "'Arial Narrow','Helvetica Neue Condensed',Arial,Helvetica,sans-serif"
 BODY = "'Helvetica Neue',Helvetica,Arial,sans-serif"
-INK = "#14281d"
-EDGE = "#dcdcd4"
+INK = "#141416"
+EDGE = "#e2e2de"
 
 DOW = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
 
@@ -203,7 +203,7 @@ def _cell(day, events, month_name, in_month, today_num):
     is_today = day == today_num
     past = all(e["past"] for e in events) and events
     numcol = "#b6b6ae" if past else INK
-    bg = "#fffdf5" if is_today else "#ffffff"
+    bg = "#fffaf7" if is_today else "#ffffff"
     ring = f"border:2px solid {INK};" if is_today else f"border:1px solid {EDGE};"
 
     chips = "".join(_chip(e) for e in events[:MAX_PER_DAY])
@@ -238,14 +238,14 @@ def render(year=None, month=None, page_path="index.html", now=None):
     head = (
         f'<tr><td colspan="7" style="background:{INK};padding:10px 12px">'
         f'<span style="font-family:{HD};font-size:12px;letter-spacing:2px;'
-        f'color:#cfe0d2">WHATS ON IN</span><br>'
+        f'color:#f0bcbc">WHATS ON IN</span><br>'
         f'<span style="font-family:{HD};font-size:27px;font-weight:bold;'
         f'letter-spacing:1px;color:#ffffff">{month_name} {year}</span>'
         f'</td></tr>'
     )
     dow = "<tr>" + "".join(
-        f'<td align="center" style="background:#223c2c;padding:5px 0;'
-        f'font-family:{HD};font-size:10px;letter-spacing:1px;color:#ffffff">{d}</td>'
+        f'<td align="center" style="background:#1d1d20;padding:5px 0;'
+        f'font-family:{HD};font-size:10px;letter-spacing:1px;color:#e8e8e6">{d}</td>'
         for d in DOW) + "</tr>"
 
     weeks = Calendar(firstweekday=6).monthdayscalendar(year, month)  # Sunday first
