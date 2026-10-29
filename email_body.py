@@ -15,11 +15,17 @@ Nothing in here invents an event. Everything comes from weekend.lineup(),
 which reads the live radar page, so a quiet weekend produces a short email
 rather than a padded one.
 """
+import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 SYD = ZoneInfo("Australia/Sydney")
 SITE = "https://jagdipsandher-sys.github.io/bawa-fight-radar/"
+
+# The month calendar is off until Jack has seen it in his own inbox, because
+# this email goes to suppliers and close contacts as well as the boys. Set
+# RADAR_CALENDAR=1 to include it; the workflow exposes that as a manual input.
+CALENDAR_ON = bool(os.environ.get("RADAR_CALENDAR", "").strip())
 HD = "'Arial Narrow','Helvetica Neue Condensed',Arial,Helvetica,sans-serif"
 BODY = "'Helvetica Neue',Helvetica,Arial,sans-serif"
 RED = "#d20a0a"
@@ -126,6 +132,24 @@ def build(blocks, series=None, sydney=None, owner="", when=None):
           <a href="{SITE}#sydney" style="color:{RED};font-weight:bold;">Whats On Sydney tab</a>.</div>
       </td></tr>"""
 
+    # Month at a glance. Built from the same page the rest of the email reads,
+    # and every square links to that actual event rather than just its tab.
+    # If it fails for any reason the email still goes out without it.
+    calendar = ""
+    if CALENDAR_ON:
+        try:
+            import month_calendar
+            block = month_calendar.render(now=when)
+            if block:
+                calendar = f"""
+      <tr><td style="padding:14px 20px 0;">
+        <div style="font-family:{HD};font-size:13px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:{RED};padding-bottom:8px;">
+          The Month Ahead</div>
+        {block}
+      </td></tr>"""
+        except Exception as e:                      # never lose the email over a graphic
+            print(f"calendar skipped ({type(e).__name__}: {e})")
+
     foot = ""
     if owner:
         foot = (f'<div style="padding-top:10px;">You are on this because you asked Jack to be. '
@@ -153,6 +177,7 @@ def build(blocks, series=None, sydney=None, owner="", when=None):
       </td></tr>
       {rows}
       {extras}
+      {calendar}
 
       <tr><td align="center" style="padding:22px 20px 8px;">
         <a href="{SITE}" style="background:{RED};color:#ffffff;font-family:{HD};font-size:17px;font-weight:bold;

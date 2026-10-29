@@ -30,6 +30,10 @@ on:
         description: "REAL send of this week's email to just these addresses, comma separated. For someone who has only just joined. Does not affect the weekly send"
         required: false
         default: ""
+      calendar:
+        description: "Include the month-at-a-glance calendar (set to 1). Off by default until it is signed off"
+        required: false
+        default: ""
 concurrency:
   group: fight-radar
   cancel-in-progress: false
@@ -54,6 +58,8 @@ jobs:
           MAIL_TO: ${{ github.event.inputs.send_only || github.event.inputs.test_to || secrets.MAIL_TO }}
           RADAR_TEST: ${{ (!github.event.inputs.send_only && github.event.inputs.test_to) && '1' || '' }}
           RADAR_SOLO: ${{ github.event.inputs.send_only && '1' || '' }}
+          # Month calendar in the email body. Manual runs only for now.
+          RADAR_CALENDAR: ${{ github.event.inputs.calendar }}
           # What people SEE in their inbox. Gmail will only send as the account
           # it logs in with, so the address itself cannot be faked here, but the
           # display name is what almost every mail client actually shows.

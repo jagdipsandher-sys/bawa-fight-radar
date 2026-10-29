@@ -5943,7 +5943,7 @@ function showTab(id){
   closeNav();
   if(id === 'food') initFoodExplorer();
   if(id === 'myradar') renderMyRadar();
-  if(location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id);
+  if(location.hash.slice(1).split('/')[0] !== id) history.replaceState(null, '', '#' + id);
 }
 
 /* "58 days away" / "Tomorrow" next to the events you keep missing */
@@ -6213,8 +6213,21 @@ restoreTabOrder();
 bindTabDrag();
 annotateRadarItems();
 renderMyRadar();
-showTab(location.hash.slice(1) || 'fights');
-addEventListener('hashchange', () => showTab(location.hash.slice(1) || 'fights'));
+/* Deep links.
+     #united             opens that tab, exactly as it always has
+     #united/utd1101     opens the tab AND the drawer for that one event
+   The second form is what the month calendar in the Friday email points at,
+   so a tap lands on the actual fight rather than the top of a tab. An id that
+   no longer exists falls back to the tab on its own, which is what an old
+   link in an old email should do once the event has dropped off the page. */
+function routeHash(){
+  const [tab, card] = (location.hash.slice(1) || 'fights').split('/');
+  showTab(tab || 'fights');
+  // after showTab, which closes any open drawer
+  if(card && typeof CARDS !== 'undefined' && CARDS[card]) openCard(card);
+}
+routeHash();
+addEventListener('hashchange', routeHash);
 </script>
 </body>
 </html>
