@@ -132,7 +132,8 @@ for control in ['id="tabNav"', 'id="tabList"', "bawaRadar.tabOrder.v1",
                 'data-tab-item="golf-tennis"', 'data-tab-item="watch"',
                 'data-tab-item="whats-on"', "NAV_GROUPS", "GROUP_VIEW_KEY",
                 "nrlSeasonActive", "renderSectionSwitcher", "PGA_CARDS", "TENNIS_CARDS",
-                "NBA_CARDS", "BOXING_CARDS", "BKFC_CARDS", "items:[{id:'fights',label:'UFC'},{id:'boxing',label:'Boxing'},{id:'bkfc',label:'Bare Knuckle'}]",
+                "NBA_CARDS", "BOXING_CARDS", "BKFC_CARDS", "IBC_CARDS",
+                "items:[{id:'fights',label:'UFC'},{id:'boxing',label:'Boxing'},{id:'bkfc',label:'Bare Knuckle'},{id:'ibc',label:'IBC Brawling'}]",
                 "FIGHT_GRACE_MS = 24 * 60 * 60 * 1000", "isFight(node)"]:
     if control not in page:
         fail(f"reorderable left navigation is missing {control}")

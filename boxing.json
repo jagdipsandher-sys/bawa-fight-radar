@@ -21,6 +21,27 @@
     "include_reason": "Canelo is one of boxing's biggest active names and this is a world-title fight."
   },
   {
+    "name": "Paul Gallen vs Nelson Asofa-Solomona",
+    "promotion": "No Limit Boxing",
+    "category": "heavyweight",
+    "status": "confirmed",
+    "date_utc": "2026-11-06T08:00:00Z",
+    "venue": "TikTok Entertainment Centre, Darling Harbour, Sydney",
+    "weight": "Heavyweight",
+    "stakes": "Five round heavyweight crossover headliner",
+    "fights": [
+      "Paul Gallen vs Nelson Asofa-Solomona (Heavyweight, 5 rounds)",
+      "Callum Peters vs Juan Diego Ortiz (Middleweight, 10 rounds)",
+      "Ahmad Reda vs Jake Wyllie (Lightweight, 10 rounds)",
+      "Paulo Aokuso vs Mobin Khahrazeh (Light heavyweight, 10 rounds)"
+    ],
+    "watch_au": "Main Event PPV on Kayo and Fox Sports",
+    "link": "https://nolimitboxing.com.au/events/paul-gallen-vs-nelson-asofa-solomona",
+    "verified_on": "2026-11-06",
+    "review_after": "2026-11-08",
+    "include_reason": "Australian heavyweight headliner in Sydney. Gallen out of retirement against Nelson Asofa-Solomona, the biggest local card of the month and the exact sort of home fight the radar was missing."
+  },
+  {
     "name": "Teremoana Teremoana vs Hemi Ahio",
     "promotion": "Matchroom Boxing",
     "category": "heavyweight",
