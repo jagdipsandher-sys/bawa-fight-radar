@@ -51,6 +51,15 @@ jobs:
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          # Moving off Gmail is a secrets change, not a code change. Add these
+          # four and the email sends from a real topsecretimports.com.au
+          # address instead of a personal gmail one. Leave them unset and
+          # nothing changes. Port 587 is STARTTLS (Microsoft 365, Resend,
+          # Postmark); 465 is implicit TLS (Gmail).
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           # Both overrides are manual-runs-only: on a scheduled Friday run both
           # inputs are absent, so this falls through to the normal list.
           # send_only wins if someone fills in both, and then no [TEST] prefix
@@ -69,9 +78,10 @@ jobs:
           # changed. A repo secret still overrides it if ever needed.
           # The doubled apostrophe is how a GitHub expression escapes one.
           FROM_NAME: ${{ secrets.FROM_NAME || 'BAWA''s Friday Fire Up' }}
-          # Set FROM_ADDR only once that address is a VERIFIED "Send mail as"
-          # alias on the GMAIL_USER account, otherwise Gmail silently rewrites
-          # it back and the change does nothing.
+          # The address people see. While the mail still goes through Gmail
+          # this only works if it is a VERIFIED "Send mail as" alias on that
+          # account, otherwise Gmail silently rewrites it back. Once SMTP_HOST
+          # points at the domain's own provider, set this freely.
           FROM_ADDR: ${{ secrets.FROM_ADDR }}
           # Where a reply and an unsubscribe land. Falls back to the sending
           # account when unset.

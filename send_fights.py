@@ -261,8 +261,12 @@ def subscribers():
 
 
 def send(subject, html, include_subscribers=True):
-    user = os.environ.get("GMAIL_USER", "").strip()
-    pw = os.environ.get("GMAIL_APP_PASSWORD", "").replace(" ", "").strip()
+    # SMTP_USER / SMTP_PASSWORD win if set, so moving provider does not mean
+    # keeping a secret called GMAIL_ anything. The old names still work.
+    user = (os.environ.get("SMTP_USER", "").strip()
+            or os.environ.get("GMAIL_USER", "").strip())
+    pw = (os.environ.get("SMTP_PASSWORD", "") or
+          os.environ.get("GMAIL_APP_PASSWORD", "")).replace(" ", "").strip()
     to = [a.strip() for a in os.environ.get("MAIL_TO", "").replace(";", ",").split(",") if a.strip()]
 
     # friends who asked to be added, deduped against the core list — skipped
@@ -276,7 +280,7 @@ def send(subject, html, include_subscribers=True):
                 to.append(extra)
 
     if not (user and pw and to):
-        print("missing GMAIL_USER / GMAIL_APP_PASSWORD / MAIL_TO")
+        print("missing SMTP_USER/GMAIL_USER, SMTP_PASSWORD/GMAIL_APP_PASSWORD or MAIL_TO")
         sys.exit(1)
 
     if len(to) > 400:      # Gmail's daily ceiling is ~500; stop well short of it
@@ -308,10 +312,30 @@ def send(subject, html, include_subscribers=True):
     msg["Bcc"] = ", ".join(to)   # send_message strips this header before sending
     msg.set_content("Please view this in an HTML capable email client.")
     msg.add_alternative(html, subtype="html")
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ssl.create_default_context()) as s:
-        s.login(user, pw)
-        s.send_message(msg)
-    print(f"sent to {len(to)} recipient(s)")
+    # The mail server is configurable so the radar can move off Gmail without
+    # a code change. Gmail will only ever send as the account it logs in with,
+    # which is why the From address was stuck as a personal gmail.com address.
+    # Point SMTP_HOST at the domain's own provider (Microsoft 365, or a sending
+    # service) and FROM_ADDR can finally be a real topsecretimports.com.au
+    # address rather than a display name papering over a gmail one.
+    #
+    # Port 465 is implicit TLS (Gmail). Port 587 is STARTTLS, which is what
+    # Microsoft 365 and most sending services require, so both are handled.
+    host = os.environ.get("SMTP_HOST", "").strip() or "smtp.gmail.com"
+    port = int(os.environ.get("SMTP_PORT", "").strip() or 465)
+    ctx = ssl.create_default_context()
+    if port == 465:
+        with smtplib.SMTP_SSL(host, port, context=ctx) as s:
+            s.login(user, pw)
+            s.send_message(msg)
+    else:
+        with smtplib.SMTP(host, port) as s:
+            s.ehlo()
+            s.starttls(context=ctx)
+            s.ehlo()
+            s.login(user, pw)
+            s.send_message(msg)
+    print(f"sent to {len(to)} recipient(s)" + (f" via {host}" if host != "smtp.gmail.com" else ""))
 
 
 def main():
