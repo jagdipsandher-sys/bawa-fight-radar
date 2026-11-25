@@ -1310,20 +1310,25 @@ function imgFail(img, initials){
 
     <!-- NEXT GAME HERO -->
 <!--BUILD:NRL-HERO-->
-    <div class="card" data-slot="nrl">
-      <div class="sport">Season Finished</div>
+    <div class="card" data-slot="nrl" data-ends="2027-03-06T21:45:00+11:00">
+      <div class="sport">NRL Round 1 &nbsp;<span class="badge away">Away</span> <span class="badge soon"><span class="cd" data-until="2027-03-06"></span></span></div>
       <div class="crest dark">
-        <div class="big">Panthers</div>
-        <div class="lil">Back in March</div>
+        <div class="big">Panthers <em>v</em> Knights</div>
+        <div class="lil">McDonald Jones Stadium</div>
       </div>
       <div class="inner">
-        <div class="fight hd">Penrith's 2026 season is done
-          <small>The draw for 2027 lands around February. Fixtures appear on this tab automatically the day it is published</small>
+        <div class="fight hd">Knights v Panthers
+          <small>Late finish — a school-night call for the young fella</small>
         </div>
-        <div class="when">Next season · <span class="t">kicks off early March 2027</span></div>
+        <div class="when">Sat 6 Mar · <span class="t">Kick-off 7:35pm AEST</span></div>
+        <div class="meta">McDonald Jones Stadium</div>
+        <ul class="mc">
+          <li>Away from home — check the venue’s own ticketing before planning a trip.</li>
+        </ul>
         <div class="btns">
-          <a class="btn red" href="https://www.nrl.com/draw/">NRL Draw</a>
-          <button class="btn ghost" onclick="openCard('panFinals')">Finals Explained</button>
+          <a class="btn red" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets</a>
+          <button class="btn ghost" onclick="openCard('nrl0306')">Match Details</button>
+          <button class="btn ghost" onclick="addCal('nrl0306')">+ Calendar</button>
         </div>
       </div>
     </div>
@@ -1362,12 +1367,33 @@ function imgFail(img, initials){
     </thead>
     <tbody>
 <!--BUILD:NRL-ROWS-->
-      <tr>
-        <td class="d">March<small>2027</small></td>
-        <td><span class="sporttag n">NRL</span></td>
-        <td><span class="ev">Panthers · 2027 Season</span> <span class="badge tbc">Draw Not Out Yet</span><br><span class="sub">Penrith's 2026 season finished in September. Round 1 of 2027 is usually the first week of March, and this tab fills itself in as soon as the NRL publishes the draw</span></td>
-        <td>Round 1 venue TBC</td>
-        <td><a class="mini buy" href="https://www.nrl.com/draw/">NRL Draw</a></td>
+      <tr data-sport="nrl" data-ends="2027-03-06T21:45:00+11:00" data-card="nrl0306">
+        <td class="d">Sat 6 Mar<small>7:35pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Knights v Panthers</span> <span class="badge away">Away</span><br><span class="sub">Late finish — a school-night call for the young fella</span></td>
+        <td>McDonald Jones Stadium</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('nrl0306')">Details</button><button class="mini" onclick="addCal('nrl0306')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="nrl" data-ends="2027-03-14T18:15:00+11:00" data-card="nrl0314">
+        <td class="d">Sun 14 Mar<small>4:05pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Warriors v Panthers</span> <span class="badge away">Away</span><br><span class="sub">Away game — one for the telly unless you fancy the trip</span></td>
+        <td>Go Media Stadium</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('nrl0314')">Details</button><button class="mini" onclick="addCal('nrl0314')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="nrl" data-ends="2027-03-20T21:45:00+11:00" data-card="nrl0320">
+        <td class="d">Sat 20 Mar<small>7:35pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Raiders v Panthers</span> <span class="badge away">Away</span><br><span class="sub">Late finish — a school-night call for the young fella</span></td>
+        <td>GIO Stadium</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('nrl0320')">Details</button><button class="mini" onclick="addCal('nrl0320')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="nrl" data-ends="2027-03-26T22:10:00+11:00" data-card="nrl0326">
+        <td class="d">Fri 26 Mar<small>8:00pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Panthers v Dolphins</span> <span class="badge home">Home</span><br><span class="sub">Late finish — a school-night call for the young fella</span></td>
+        <td>BlueBet Stadium</td>
+        <td><a class="mini buy" href="https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218">Buy · Ticketmaster</a><button class="mini" onclick="openCard('nrl0326')">Details</button><button class="mini" onclick="addCal('nrl0326')">+ Cal</button></td>
       </tr>
       <tr data-sport="nrl" data-ends="2026-09-28T23:59:00+10:00">
         <td class="d">Mid-Sep<small>4-week series</small></td>
@@ -1400,20 +1426,25 @@ function imgFail(img, initials){
 
     <!-- NEXT GAME HERO -->
 <!--BUILD:RAI-HERO-->
-    <div class="card" data-slot="nrl">
-      <div class="sport">Season Finished</div>
+    <div class="card" data-slot="nrl" data-ends="2027-03-07T20:25:00+11:00">
+      <div class="sport">NRL Round 1 &nbsp;<span class="badge home">Home</span> <span class="badge soon"><span class="cd" data-until="2027-03-07"></span></span></div>
       <div class="crest dark">
-        <div class="big">Raiders</div>
-        <div class="lil">Back in March</div>
+        <div class="big">Raiders <em>v</em> Rabbitohs</div>
+        <div class="lil">GIO Stadium</div>
       </div>
       <div class="inner">
-        <div class="fight hd">Canberra's 2026 season is done
-          <small>The draw for 2027 lands around February. Fixtures appear on this tab automatically the day it is published</small>
+        <div class="fight hd">Raiders v Rabbitohs
+          <small>Home game at GIO Stadium</small>
         </div>
-        <div class="when">Next season · <span class="t">kicks off early March 2027</span></div>
+        <div class="when">Sun 7 Mar · <span class="t">Kick-off 6:15pm AEST</span></div>
+        <div class="meta">GIO Stadium</div>
+        <ul class="mc">
+          <li>Home game at GIO Stadium, Canberra.</li>
+        </ul>
         <div class="btns">
-          <a class="btn red" href="https://www.nrl.com/draw/">NRL Draw</a>
-          <button class="btn ghost" onclick="openCard('raiFinals')">Finals Explained</button>
+          <a class="btn red" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets</a>
+          <button class="btn ghost" onclick="openCard('rai0307')">Match Details</button>
+          <button class="btn ghost" onclick="addCal('rai0307')">+ Calendar</button>
         </div>
       </div>
     </div>
@@ -1451,12 +1482,33 @@ function imgFail(img, initials){
     </thead>
     <tbody>
 <!--BUILD:RAI-ROWS-->
-      <tr>
-        <td class="d">March<small>2027</small></td>
-        <td><span class="sporttag n">NRL</span></td>
-        <td><span class="ev">Raiders · 2027 Season</span> <span class="badge tbc">Draw Not Out Yet</span><br><span class="sub">Canberra's 2026 season finished in September. Round 1 of 2027 is usually the first week of March, and this tab fills itself in as soon as the NRL publishes the draw</span></td>
-        <td>Round 1 venue TBC</td>
-        <td><a class="mini buy" href="https://www.nrl.com/draw/">NRL Draw</a></td>
+      <tr class="big" data-sport="nrl" data-ends="2027-03-07T20:25:00+11:00" data-card="rai0307">
+        <td class="d">Sun 7 Mar<small>6:15pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Raiders v Rabbitohs</span> <span class="badge home">Home</span><br><span class="sub">Home game at GIO Stadium</span></td>
+        <td>GIO Stadium</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('rai0307')">Details</button><button class="mini" onclick="addCal('rai0307')">+ Cal</button></td>
+      </tr>
+      <tr data-sport="nrl" data-ends="2027-03-13T19:40:00+11:00" data-card="rai0313">
+        <td class="d">Sat 13 Mar<small>5:30pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Perth Bears v Raiders</span> <span class="badge away">Away</span><br><span class="sub">Away game — one for the telly unless you fancy the trip</span></td>
+        <td>HBF Park</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('rai0313')">Details</button><button class="mini" onclick="addCal('rai0313')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="nrl" data-ends="2027-03-20T21:45:00+11:00" data-card="rai0320">
+        <td class="d">Sat 20 Mar<small>7:35pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Raiders v Panthers</span> <span class="badge home">Home</span><br><span class="sub">Late finish — a school-night call for the young fella</span></td>
+        <td>GIO Stadium</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('rai0320')">Details</button><button class="mini" onclick="addCal('rai0320')">+ Cal</button></td>
+      </tr>
+      <tr class="big" data-sport="nrl" data-ends="2027-03-28T20:25:00+11:00" data-card="rai0328">
+        <td class="d">Sun 28 Mar<small>6:15pm</small></td>
+        <td><span class="sporttag n">R1</span></td>
+        <td><span class="ev">Raiders v Sharks</span> <span class="badge home">Home</span><br><span class="sub">Home game at GIO Stadium</span></td>
+        <td>GIO Stadium</td>
+        <td><a class="mini buy" href="https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26">Tickets · Ticketek</a><button class="mini" onclick="openCard('rai0328')">Details</button><button class="mini" onclick="addCal('rai0328')">+ Cal</button></td>
       </tr>
       <tr data-sport="nrl" data-ends="2026-09-28T23:59:00+10:00">
         <td class="d">Mid-Sep<small>4-week series</small></td>
@@ -2006,14 +2058,14 @@ function imgFail(img, initials){
     <div class="card" data-slot="table">
       <div class="sport">Eastern Conference &nbsp;<span class="badge fn">2026-27</span></div>
       <div class="inner" style="padding-top:14px">
-        <table class="ladder"><thead><tr><th></th><th>Team</th><th class="num">W-L</th><th class="pts">Pct</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" alt="" onerror="imgFail(this,'P7')">Philadelphia 76ers</td><td class="num">14-4</td><td class="pts">.778</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" alt="" onerror="imgFail(this,'AH')">Atlanta Hawks</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" alt="" onerror="imgFail(this,'BC')">Boston Celtics</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" alt="" onerror="imgFail(this,'NY')">New York Knicks</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" alt="" onerror="imgFail(this,'DP')">Detroit Pistons</td><td class="num">10-6</td><td class="pts">.625</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" alt="" onerror="imgFail(this,'MH')">Miami Heat</td><td class="num">10-6</td><td class="pts">.625</td></tr></tbody></table>
+        <table class="ladder"><thead><tr><th></th><th>Team</th><th class="num">W-L</th><th class="pts">Pct</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" alt="" onerror="imgFail(this,'P7')">Philadelphia 76ers</td><td class="num">14-4</td><td class="pts">.778</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" alt="" onerror="imgFail(this,'AH')">Atlanta Hawks</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" alt="" onerror="imgFail(this,'BC')">Boston Celtics</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" alt="" onerror="imgFail(this,'NY')">New York Knicks</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" alt="" onerror="imgFail(this,'DP')">Detroit Pistons</td><td class="num">11-6</td><td class="pts">.647</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" alt="" onerror="imgFail(this,'MH')">Miami Heat</td><td class="num">10-6</td><td class="pts">.625</td></tr></tbody></table>
       </div>
     </div>
     <div class="card" data-slot="table">
       <div class="sport">Western Conference &nbsp;<span class="badge fn">2026-27</span></div>
       <div class="inner" style="padding-top:14px">
-        <table class="ladder"><thead><tr><th></th><th>Team</th><th class="num">W-L</th><th class="pts">Pct</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" alt="" onerror="imgFail(this,'SA')">Spurs</td><td class="num">14-3</td><td class="pts">.824</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" alt="" onerror="imgFail(this,'LA')">Lakers</td><td class="num">14-3</td><td class="pts">.824</td></tr><tr class="me"><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/min.png" alt="" onerror="imgFail(this,'MT')">Wolves</td><td class="num">13-5</td><td class="pts">.722</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" alt="" onerror="imgFail(this,'HR')">Houston Rockets</td><td class="num">13-5</td><td class="pts">.722</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" alt="" onerror="imgFail(this,'MG')">Grizzlies</td><td class="num">13-5</td><td class="pts">.722</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/den.png" alt="" onerror="imgFail(this,'DN')">Denver Nuggets</td><td class="num">10-5</td><td class="pts">.667</td></tr></tbody></table>
-        <div class="dr-note2" style="margin-top:12px">The Wolves are 1.5 games behind top spot.</div>
+        <table class="ladder"><thead><tr><th></th><th>Team</th><th class="num">W-L</th><th class="pts">Pct</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" alt="" onerror="imgFail(this,'SA')">Spurs</td><td class="num">15-3</td><td class="pts">.833</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" alt="" onerror="imgFail(this,'LA')">Lakers</td><td class="num">15-3</td><td class="pts">.833</td></tr><tr class="me"><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/min.png" alt="" onerror="imgFail(this,'MT')">Wolves</td><td class="num">13-5</td><td class="pts">.722</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" alt="" onerror="imgFail(this,'HR')">Houston Rockets</td><td class="num">13-5</td><td class="pts">.722</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" alt="" onerror="imgFail(this,'MG')">Grizzlies</td><td class="num">13-5</td><td class="pts">.722</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/den.png" alt="" onerror="imgFail(this,'DN')">Denver Nuggets</td><td class="num">10-5</td><td class="pts">.667</td></tr></tbody></table>
+        <div class="dr-note2" style="margin-top:12px">The Wolves are 2 games behind top spot.</div>
       </div>
     </div>
 <!--/BUILD:NBA-TABLE-->
@@ -2232,8 +2284,8 @@ function imgFail(img, initials){
 
   <h2>Full Conference Standings</h2>
 <!--BUILD:NBA-FULL-->
-<div class="meta" style="margin-bottom:8px">Eastern Conference — 2026-27</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">Pct</th><th class="pts">GB</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" alt="" onerror="imgFail(this,'P7')">Philadelphia 76ers</td><td class="num">14</td><td class="num">4</td><td class="num">.778</td><td class="pts">-</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" alt="" onerror="imgFail(this,'AH')">Atlanta Hawks</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" alt="" onerror="imgFail(this,'BC')">Boston Celtics</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" alt="" onerror="imgFail(this,'NY')">New York Knicks</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" alt="" onerror="imgFail(this,'DP')">Detroit Pistons</td><td class="num">10</td><td class="num">6</td><td class="num">.625</td><td class="pts">3</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" alt="" onerror="imgFail(this,'MH')">Miami Heat</td><td class="num">10</td><td class="num">6</td><td class="num">.625</td><td class="pts">3</td></tr><tr><td class="pos">7</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/cle.png" alt="" onerror="imgFail(this,'CC')">Cleveland Cavaliers</td><td class="num">9</td><td class="num">9</td><td class="num">.500</td><td class="pts">5</td></tr><tr><td class="pos">8</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/orl.png" alt="" onerror="imgFail(this,'OM')">Orlando Magic</td><td class="num">7</td><td class="num">9</td><td class="num">.438</td><td class="pts">6</td></tr><tr><td class="pos">9</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/wsh.png" alt="" onerror="imgFail(this,'WW')">Washington Wizards</td><td class="num">7</td><td class="num">11</td><td class="num">.389</td><td class="pts">7</td></tr><tr><td class="pos">10</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/tor.png" alt="" onerror="imgFail(this,'TR')">Toronto Raptors</td><td class="num">6</td><td class="num">11</td><td class="num">.353</td><td class="pts">7.5</td></tr><tr><td class="pos">11</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ind.png" alt="" onerror="imgFail(this,'IP')">Indiana Pacers</td><td class="num">6</td><td class="num">12</td><td class="num">.333</td><td class="pts">8</td></tr><tr><td class="pos">12</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/chi.png" alt="" onerror="imgFail(this,'CB')">Chicago Bulls</td><td class="num">5</td><td class="num">12</td><td class="num">.294</td><td class="pts">8.5</td></tr><tr><td class="pos">13</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/cha.png" alt="" onerror="imgFail(this,'CH')">Charlotte Hornets</td><td class="num">4</td><td class="num">12</td><td class="num">.250</td><td class="pts">9</td></tr><tr><td class="pos">14</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bkn.png" alt="" onerror="imgFail(this,'BN')">Brooklyn Nets</td><td class="num">3</td><td class="num">13</td><td class="num">.188</td><td class="pts">10</td></tr><tr><td class="pos">15</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mil.png" alt="" onerror="imgFail(this,'MB')">Milwaukee Bucks</td><td class="num">2</td><td class="num">16</td><td class="num">.111</td><td class="pts">12</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/nba/standings" style="color:var(--grey)">ESPN NBA standings</a> — click through for the full detail, form guide and results.</div>
-<div class="meta" style="margin-bottom:8px">Western Conference — 2026-27</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">Pct</th><th class="pts">GB</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" alt="" onerror="imgFail(this,'SA')">San Antonio Spurs</td><td class="num">14</td><td class="num">3</td><td class="num">.824</td><td class="pts">-</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" alt="" onerror="imgFail(this,'LA')">Los Angeles Lakers</td><td class="num">14</td><td class="num">3</td><td class="num">.824</td><td class="pts">-</td></tr><tr class="me"><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/min.png" alt="" onerror="imgFail(this,'MT')">Minnesota Timberwolves</td><td class="num">13</td><td class="num">5</td><td class="num">.722</td><td class="pts">1.5</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" alt="" onerror="imgFail(this,'HR')">Houston Rockets</td><td class="num">13</td><td class="num">5</td><td class="num">.722</td><td class="pts">1.5</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" alt="" onerror="imgFail(this,'MG')">Memphis Grizzlies</td><td class="num">13</td><td class="num">5</td><td class="num">.722</td><td class="pts">1.5</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/den.png" alt="" onerror="imgFail(this,'DN')">Denver Nuggets</td><td class="num">10</td><td class="num">5</td><td class="num">.667</td><td class="pts">3</td></tr><tr><td class="pos">7</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/por.png" alt="" onerror="imgFail(this,'PT')">Portland Trail Blazers</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">3</td></tr><tr><td class="pos">8</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/dal.png" alt="" onerror="imgFail(this,'DM')">Dallas Mavericks</td><td class="num">10</td><td class="num">7</td><td class="num">.588</td><td class="pts">4</td></tr><tr><td class="pos">9</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phx.png" alt="" onerror="imgFail(this,'PS')">Phoenix Suns</td><td class="num">9</td><td class="num">7</td><td class="num">.563</td><td class="pts">4.5</td></tr><tr><td class="pos">10</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" alt="" onerror="imgFail(this,'OC')">Oklahoma City Thunder</td><td class="num">10</td><td class="num">8</td><td class="num">.556</td><td class="pts">4.5</td></tr><tr><td class="pos">11</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/gs.png" alt="" onerror="imgFail(this,'GS')">Golden State Warriors</td><td class="num">9</td><td class="num">8</td><td class="num">.529</td><td class="pts">5</td></tr><tr><td class="pos">12</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/no.png" alt="" onerror="imgFail(this,'NO')">New Orleans Pelicans</td><td class="num">5</td><td class="num">14</td><td class="num">.263</td><td class="pts">10</td></tr><tr><td class="pos">13</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lac.png" alt="" onerror="imgFail(this,'LC')">LA Clippers</td><td class="num">4</td><td class="num">12</td><td class="num">.250</td><td class="pts">9.5</td></tr><tr><td class="pos">14</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/utah.png" alt="" onerror="imgFail(this,'UJ')">Utah Jazz</td><td class="num">3</td><td class="num">15</td><td class="num">.167</td><td class="pts">11.5</td></tr><tr><td class="pos">15</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sac.png" alt="" onerror="imgFail(this,'SK')">Sacramento Kings</td><td class="num">2</td><td class="num">14</td><td class="num">.125</td><td class="pts">11.5</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/nba/standings" style="color:var(--grey)">ESPN NBA standings</a> — click through for the full detail, form guide and results.</div>
+<div class="meta" style="margin-bottom:8px">Eastern Conference — 2026-27</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">Pct</th><th class="pts">GB</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" alt="" onerror="imgFail(this,'P7')">Philadelphia 76ers</td><td class="num">14</td><td class="num">4</td><td class="num">.778</td><td class="pts">-</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" alt="" onerror="imgFail(this,'AH')">Atlanta Hawks</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" alt="" onerror="imgFail(this,'BC')">Boston Celtics</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" alt="" onerror="imgFail(this,'NY')">New York Knicks</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/det.png" alt="" onerror="imgFail(this,'DP')">Detroit Pistons</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">2.5</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" alt="" onerror="imgFail(this,'MH')">Miami Heat</td><td class="num">10</td><td class="num">6</td><td class="num">.625</td><td class="pts">3</td></tr><tr><td class="pos">7</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/cle.png" alt="" onerror="imgFail(this,'CC')">Cleveland Cavaliers</td><td class="num">9</td><td class="num">9</td><td class="num">.500</td><td class="pts">5</td></tr><tr><td class="pos">8</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/orl.png" alt="" onerror="imgFail(this,'OM')">Orlando Magic</td><td class="num">7</td><td class="num">10</td><td class="num">.412</td><td class="pts">6.5</td></tr><tr><td class="pos">9</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/wsh.png" alt="" onerror="imgFail(this,'WW')">Washington Wizards</td><td class="num">7</td><td class="num">11</td><td class="num">.389</td><td class="pts">7</td></tr><tr><td class="pos">10</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/tor.png" alt="" onerror="imgFail(this,'TR')">Toronto Raptors</td><td class="num">6</td><td class="num">11</td><td class="num">.353</td><td class="pts">7.5</td></tr><tr><td class="pos">11</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/ind.png" alt="" onerror="imgFail(this,'IP')">Indiana Pacers</td><td class="num">6</td><td class="num">12</td><td class="num">.333</td><td class="pts">8</td></tr><tr><td class="pos">12</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/chi.png" alt="" onerror="imgFail(this,'CB')">Chicago Bulls</td><td class="num">5</td><td class="num">12</td><td class="num">.294</td><td class="pts">8.5</td></tr><tr><td class="pos">13</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/cha.png" alt="" onerror="imgFail(this,'CH')">Charlotte Hornets</td><td class="num">4</td><td class="num">12</td><td class="num">.250</td><td class="pts">9</td></tr><tr><td class="pos">14</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/bkn.png" alt="" onerror="imgFail(this,'BN')">Brooklyn Nets</td><td class="num">3</td><td class="num">13</td><td class="num">.188</td><td class="pts">10</td></tr><tr><td class="pos">15</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mil.png" alt="" onerror="imgFail(this,'MB')">Milwaukee Bucks</td><td class="num">2</td><td class="num">16</td><td class="num">.111</td><td class="pts">12</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/nba/standings" style="color:var(--grey)">ESPN NBA standings</a> — click through for the full detail, form guide and results.</div>
+<div class="meta" style="margin-bottom:8px">Western Conference — 2026-27</div><table class="ladder" style="border:1px solid var(--faint);padding:0 10px"><thead><tr><th></th><th>Team</th><th class="num">W</th><th class="num">L</th><th class="num">Pct</th><th class="pts">GB</th></tr></thead><tbody><tr class="lead"><td class="pos">1</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" alt="" onerror="imgFail(this,'SA')">San Antonio Spurs</td><td class="num">15</td><td class="num">3</td><td class="num">.833</td><td class="pts">-</td></tr><tr><td class="pos">2</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" alt="" onerror="imgFail(this,'LA')">Los Angeles Lakers</td><td class="num">15</td><td class="num">3</td><td class="num">.833</td><td class="pts">-</td></tr><tr class="me"><td class="pos">3</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/min.png" alt="" onerror="imgFail(this,'MT')">Minnesota Timberwolves</td><td class="num">13</td><td class="num">5</td><td class="num">.722</td><td class="pts">2</td></tr><tr><td class="pos">4</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" alt="" onerror="imgFail(this,'HR')">Houston Rockets</td><td class="num">13</td><td class="num">5</td><td class="num">.722</td><td class="pts">2</td></tr><tr><td class="pos">5</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" alt="" onerror="imgFail(this,'MG')">Memphis Grizzlies</td><td class="num">13</td><td class="num">5</td><td class="num">.722</td><td class="pts">2</td></tr><tr><td class="pos">6</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/den.png" alt="" onerror="imgFail(this,'DN')">Denver Nuggets</td><td class="num">10</td><td class="num">5</td><td class="num">.667</td><td class="pts">3.5</td></tr><tr><td class="pos">7</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/por.png" alt="" onerror="imgFail(this,'PT')">Portland Trail Blazers</td><td class="num">11</td><td class="num">6</td><td class="num">.647</td><td class="pts">3.5</td></tr><tr><td class="pos">8</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/dal.png" alt="" onerror="imgFail(this,'DM')">Dallas Mavericks</td><td class="num">10</td><td class="num">7</td><td class="num">.588</td><td class="pts">4.5</td></tr><tr><td class="pos">9</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/phx.png" alt="" onerror="imgFail(this,'PS')">Phoenix Suns</td><td class="num">9</td><td class="num">7</td><td class="num">.563</td><td class="pts">5</td></tr><tr><td class="pos">10</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" alt="" onerror="imgFail(this,'OC')">Oklahoma City Thunder</td><td class="num">10</td><td class="num">8</td><td class="num">.556</td><td class="pts">5</td></tr><tr><td class="pos">11</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/gs.png" alt="" onerror="imgFail(this,'GS')">Golden State Warriors</td><td class="num">9</td><td class="num">8</td><td class="num">.529</td><td class="pts">5.5</td></tr><tr><td class="pos">12</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/no.png" alt="" onerror="imgFail(this,'NO')">New Orleans Pelicans</td><td class="num">5</td><td class="num">14</td><td class="num">.263</td><td class="pts">10.5</td></tr><tr><td class="pos">13</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/lac.png" alt="" onerror="imgFail(this,'LC')">LA Clippers</td><td class="num">4</td><td class="num">12</td><td class="num">.250</td><td class="pts">10</td></tr><tr><td class="pos">14</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/utah.png" alt="" onerror="imgFail(this,'UJ')">Utah Jazz</td><td class="num">3</td><td class="num">16</td><td class="num">.158</td><td class="pts">12.5</td></tr><tr><td class="pos">15</td><td class="who"><img class="crest-ico" src="https://a.espncdn.com/i/teamlogos/nba/500/sac.png" alt="" onerror="imgFail(this,'SK')">Sacramento Kings</td><td class="num">2</td><td class="num">15</td><td class="num">.118</td><td class="pts">12.5</td></tr></tbody></table><div class="dr-note2" style="margin-top:12px">Numbers from <a href="https://www.espn.com.au/nba/standings" style="color:var(--grey)">ESPN NBA standings</a> — click through for the full detail, form guide and results.</div>
 <!--/BUILD:NBA-FULL-->
 
   <footer>The NBA is organised here as one league—not one tab per team. Eastern and Western Conference standings refresh daily, while followed teams such as the Minnesota Timberwolves sit inside their conference with Sydney-time fixtures, viewing links and calendar buttons. Australian games are shown on Kayo Sports.</footer>
@@ -2994,6 +3046,42 @@ const MANUAL_CARDS = {
 
 const NRL_CARDS = {
 /*BUILD:NRL-CARDS*/
+  nrl0306: {
+    emoji:"🐾",
+    cal:{s:"2027-03-06T08:35:00Z",e:"2027-03-06T10:35:00Z",loc:"McDonald Jones Stadium"},
+    title:"Round 1 \u00b7 Knights v Panthers",
+    when:"Sat 6 Mar \u00b7 Kick-off 7:35pm AEST \u00b7 McDonald Jones Stadium",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Knights v Panthers", "Round 1 \u00b7 away game", 1],["Venue", "McDonald Jones Stadium"],["Tickets", "Ticketek \u2014 the home club sells this one"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  nrl0314: {
+    emoji:"🐾",
+    cal:{s:"2027-03-14T05:05:00Z",e:"2027-03-14T07:05:00Z",loc:"Go Media Stadium"},
+    title:"Round 1 \u00b7 Warriors v Panthers",
+    when:"Sun 14 Mar \u00b7 Kick-off 4:05pm AEST \u00b7 Go Media Stadium",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Warriors v Panthers", "Round 1 \u00b7 away game", 1],["Venue", "Go Media Stadium"],["Tickets", "Ticketek \u2014 the home club sells this one"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  nrl0320: {
+    emoji:"🐾",
+    cal:{s:"2027-03-20T08:35:00Z",e:"2027-03-20T10:35:00Z",loc:"GIO Stadium"},
+    title:"Round 1 \u00b7 Raiders v Panthers",
+    when:"Sat 20 Mar \u00b7 Kick-off 7:35pm AEST \u00b7 GIO Stadium",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Raiders v Panthers", "Round 1 \u00b7 away game", 1],["Venue", "GIO Stadium"],["Tickets", "Ticketek \u2014 the home club sells this one"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  nrl0326: {
+    emoji:"🐾",
+    cal:{s:"2027-03-26T09:00:00Z",e:"2027-03-26T11:00:00Z",loc:"BlueBet Stadium"},
+    title:"Round 1 \u00b7 Panthers v Dolphins",
+    when:"Fri 26 Mar \u00b7 Kick-off 8:00pm AEST \u00b7 BlueBet Stadium",
+    link:"https://www.ticketmaster.com.au/penrith-panthers-tickets/artist/1297218",
+    secs:[{h:"The Match",b:[["Panthers v Dolphins", "Round 1 \u00b7 home game", 1],["Venue", "BlueBet Stadium"],["Tickets", "Ticketmaster \u2014 Penrith sell all home games there"],["Getting there", "Ticket includes trains, buses, light rail and ferries on match day"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
   panFinals: {
     emoji:"🏆",
     title:"NRL Finals — How It Works",
@@ -3041,6 +3129,42 @@ const NRL_CARDS = {
 
 const RAI_CARDS = {
 /*BUILD:RAI-CARDS*/
+  rai0307: {
+    emoji:"⚡",
+    cal:{s:"2027-03-07T07:15:00Z",e:"2027-03-07T09:15:00Z",loc:"GIO Stadium"},
+    title:"Round 1 \u00b7 Raiders v Rabbitohs",
+    when:"Sun 7 Mar \u00b7 Kick-off 6:15pm AEST \u00b7 GIO Stadium",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Raiders v Rabbitohs", "Round 1 \u00b7 home game", 1],["Venue", "GIO Stadium"],["Tickets", "Ticketek \u2014 the NRL's ticketing partner for this fixture"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  rai0313: {
+    emoji:"⚡",
+    cal:{s:"2027-03-13T06:30:00Z",e:"2027-03-13T08:30:00Z",loc:"HBF Park"},
+    title:"Round 1 \u00b7 Perth Bears v Raiders",
+    when:"Sat 13 Mar \u00b7 Kick-off 5:30pm AEST \u00b7 HBF Park",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Perth Bears v Raiders", "Round 1 \u00b7 away game", 1],["Venue", "HBF Park"],["Tickets", "Ticketek \u2014 the NRL's ticketing partner for this fixture"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  rai0320: {
+    emoji:"⚡",
+    cal:{s:"2027-03-20T08:35:00Z",e:"2027-03-20T10:35:00Z",loc:"GIO Stadium"},
+    title:"Round 1 \u00b7 Raiders v Panthers",
+    when:"Sat 20 Mar \u00b7 Kick-off 7:35pm AEST \u00b7 GIO Stadium",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Raiders v Panthers", "Round 1 \u00b7 home game", 1],["Venue", "GIO Stadium"],["Tickets", "Ticketek \u2014 the NRL's ticketing partner for this fixture"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
+  rai0328: {
+    emoji:"⚡",
+    cal:{s:"2027-03-28T07:15:00Z",e:"2027-03-28T09:15:00Z",loc:"GIO Stadium"},
+    title:"Round 1 \u00b7 Raiders v Sharks",
+    when:"Sun 28 Mar \u00b7 Kick-off 6:15pm AEST \u00b7 GIO Stadium",
+    link:"https://premier.ticketek.com.au/shows/show.aspx?sh=NRLPREM26",
+    secs:[{h:"The Match",b:[["Raiders v Sharks", "Round 1 \u00b7 home game", 1],["Venue", "GIO Stadium"],["Tickets", "Ticketek \u2014 the NRL's ticketing partner for this fixture"]]}],
+    note:"Fixture pulled from the live NRL feed — kick-off times can move, finals venues are set after the last round."
+  },
   raiFinals: {
     emoji:"🏆",
     title:"NRL Finals — How It Works",
